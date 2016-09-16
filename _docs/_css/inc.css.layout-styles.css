@@ -1,0 +1,74 @@
+
+/* =General
+--------------------------------------------------------------------------------------------------*/
+
+/* Remove padding and margin */
+* {
+	margin: 0;
+	padding: 0;
+}
+
+
+/* =Main Layout
+--------------------------------------------------------------------------------------------------*/
+body {
+	
+}
+#grad-horiz-left {
+	padding-left: 2em;
+	background: url(../_images/grad-horiz-white-to-gray.png) top left repeat-y;
+}
+#grad-horiz-right {
+	padding: 1em 2em 1em 0;
+	background: url(../_images/grad-horiz-gray-to-white.png) top right repeat-y;
+}
+
+
+/* =Main Menu
+--------------------------------------------------------------------------------------------------*/
+ul.MainMenu {
+	clear: left;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	font-size: 0.8em;
+	margin-bottom: 1.8em;
+	line-height: 1.5;
+}
+ul.MainMenu li {
+	display: inline;
+	margin: 0;
+	padding: 0;
+}
+ul.MainMenu li span {
+	padding: 0 0.5em;
+}
+ul.MainMenu li a {
+	color: #999;
+}
+ul.MainMenu li a:hover {
+	color: #1240b0;
+}
+ul.MainMenu li.PlaceHolder {
+	float: none;
+}
+
+.MainMenu .HighlightedLink {
+	color: #009999
+}
+
+
+/* =Footer
+--------------------------------------------------------------------------------------------------*/
+#footer {
+	border-top: 1px solid #036;
+	margin-top: 4em;
+	padding-top: 0.5em;
+	text-align: right;
+	font-size: 0.8em;
+	padding-bottom: 2em;
+}
+#ceon-button-logo, #jked-logo {
+	float: left;
+	margin-right: 14px;
+}

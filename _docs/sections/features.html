@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>.:: Ceon :: Zen Cart :: Module :: Ceon URI Mapping ::.</title>
+	<link rel="stylesheet" href="../_css/inc.css.layout-styles.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="../_css/inc.css.styles.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="../_css/inc.css.layout-styles-print.css" type="text/css" media="print" />
+	<script src="../_javascript/inc.js.general-functions.js" type="text/javascript"></script>
+	<script src="../_javascript/inc.js.css-functions.js" type="text/javascript"></script>
+	<script src="../_javascript/inc.js.restrict-width.js" type="text/javascript"></script>
+	<script src="../_javascript/inc.js.crossfade.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="../_css/litebox.css" type="text/css" media="screen" />
+	<script src="../_javascript/litebox/prototype.lite.js" type="text/javascript"></script>
+	<script src="../_javascript/litebox/moo.fx.js" type="text/javascript"></script>
+	<script src="../_javascript/litebox/litebox-1.2.js" type="text/javascript"></script>
+	<!--[if gte IE 5]>
+	<link rel="stylesheet" href="../_css/litebox-ie.css" type="text/css" media="screen" />
+	<![endif]-->
+</head>
+
+<body><a name="top" id="top"></a>
+
+<noscript>
+	<style type="text/css">
+	body { margin: 0 auto; max-width: 75em; padding-left: 5%; padding-right: 5%; }
+	.CrossFadeText { margin: 0 auto; max-width: 75em; right: auto; padding-left: 20em; }
+	</style>
+</noscript>
+
+<script type="text/javascript">
+<!-- 
+// Script resizes main div if client window is larger than a predefined variable
+var restrict_width = new CeonRestrictWidth(360, 900);
+
+// Initialise crossfade by hiding crossfade object first
+CeonAddLoadEvent(CeonCrossfadeInit);
+
+document.write('<' + 'style type="text/css" media="screen">');
+document.write('.JavaScriptOutput, .JavaScriptAndPrintOutput { display: block; }');
+document.write('.NoscriptAndPrintOutputBlock { display: none; }<' + '/style>');
+// -->
+</script>
+
+<div id="grad-horiz-left">
+	<div id="grad-horiz-right">
+
+<h1 class="Title">Ceon URI Mapping</h1>
+<div class="TitleByLineWrapper">&nbsp;
+	<div id="crossfade">
+		<p class="CrossFadeText" id="byline"><a href="http://ceon.net/software/business/zen-cart?doc=zc-um">probably the best Zen Cart URI Mapping/SEO Module in the world! ...ever!</a></p>
+		<p class="CrossFadeText" id="ceon-link"><a href="http://ceon.net/software/business/zen-cart?doc=zc-um">Click here to get more great software from Ceon</a></p>
+	</div>
+</div>
+<ul class="MainMenu">
+	<li><a href="../index.html">Overview</a><span> | </span></li>
+	<li><a href="installation.html">Installation</a><span> | </span></li>
+	<li><a href="configuration.html">Configuration</a><span> | </span></li>
+	<li><a href="faqs.html">FAQs</a><span> | </span></li>
+	<li><a href="support.html">Support</a><span> | </span></li>
+	<li><a href="revision-history.html">Revision History</a><span> | </span></li>
+	<li><a href="upgrading.html">Upgrading</a><span> | </span></li>
+	<li><a href="module-info.html">Module Info</a><span> | </span></li>
+	<li><a href="features.html">Module Features</a></li>
+</ul>
+
+<h2><a name="features" id="features"></a>Features</h2>
+<ul>
+	<li>
+		<h3>Use <span style="text-decoration: underline">Static URIs</span> to Make Web Addresses Easier To Remember and Easier To Enter. Improve the store's Rankings in Search Engines!</h3>
+		<ul>
+			<li>Implementing a major part of all SEO (Search Engine Optimisation) practices, this module lets the store specify static, keyword-based URIs to be used instead of the dynamic, ID-based URIs which Zen Cart uses as standard.</li>
+			<li><p>For example, for a product, instead of dynamic URIs like this:</p>
+			<p class="Example">http://yourstore.com/index.php?main_page=product_info&amp;cPath=3&amp;products_id=5</p></li>
+			<li><p>A static address - easy to read, easy to type in and full of keywords - could be specified for the product:</p>
+			<p class="Example">http://yourstore.com/books/life-is-good</p></li>
+		</ul>
+	</li>
+	
+	<li>
+		<h3>Historical URI Mapping - No More Broken Links!</h3>
+		<ul>
+			<li>Each Category/Product/Manufacturer/EZ-Page/Zen Cart Page (<em>subject</em>) with URI mapping(s) has a single &ldquo;Current&rdquo; URI.</li>
+			<li>Any number of URIs can map to the same subject. However, when a customer uses a URI which is not the &ldquo;current&rdquo; URI they are quickly and automatically redirected to the &ldquo;current&rdquo; URI. This occurs before the site begins to display, so is completely transparent.</li>
+			<li>&ldquo;Deleted&rdquo;/&ldquo;Previous&rdquo; URI mappings still point towards their original subject, by redirecting the user to the &ldquo;Current&rdquo; URI for the subject (unless they have become overridden by a current or newer URI mapping which uses the same URI of course!).</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h3>Canonical URIs</h3>
+		<ul>
+			<li>Any page with a static URI automatically has a canonical URI tag added to the page's header. This minimises &ldquo;duplicate content&rdquo; reports as it tells the search engines that multiple &ldquo;pages&rdquo; should be treated as one.</li>
+			<li>For example, instead of the search engine thinking that <code>/all-products?disp_order=1</code> is a different page from <code>/all-products?disp_order=3</code>, Ceon URI Mapping lets it know that the page's &ldquo;real&rdquo; URI is just <code>/all-products</code> and that these other URIs are just variations for the same page.</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h3>Easy-to-use Admin Integration for Categories, Products, Manufacturers and EZ-Pages</h3>
+		<ul>
+			<li>Specifying custom URI mappings for Categories, Products, Manufacturers and EZ-Pages is quick and easy... just browse to the appropriate Category/Product/Manufacturer/EZ-Page in the admin and enter the URI to be used in the text fields added by the module, or tick the &ldquo;auto-generate&rdquo; check box, if auto-generation is enabled!</li>
+			<li>Change existing Category/Product/Manufacturer/EZ-Page URI mappings in the same easy manner!</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h3>URI Mapping Auto-generation</h3>
+		<ul>
+			<li>The module comes with very powerful, flexible and easy-to-use URI mapping auto-generation functionality.</li>
+			<li>If auto-generation is used to create a URI mapping for a Category, Product, Manufacturer or EZ-Page it automatically capitalises the Category/Product/Manufacturer Name or EZ-Page Title according to the store's preferred settings, replaces any whitespace with a preferred character, removes selected words and replaces particular characters/strings as specified in the configuration utility.</li>
+			<li><p><strong>Please Note</strong>: This module does not automatically add mappings for existing Categories/Products/Manufacturers/EZ-Pages - if the site has <strong>existing</strong> Categories/Products/Manufacturers/EZ-Pages, they'll continue to use the standard Zen Cart dynamic URIs, <strong>until</strong> a URI has been entered or auto-generated for them, by editing the respective Category/Product/Manufacturer/EZ-Page in the admin.</p>
+
+			<p>This means going in and editing <strong>every</strong> Category/Product/Manufacturer/EZ-Page for which a static URI mapping is desired. Ceon's <a href="http://ceon.net/software/business/zen-cart/uri-mappings-manager?doc=zc-um" target="_blank">URI Mappings Manager</a> software can generate URIs for entire categories etc. at once.</p></li>
+		</ul>
+	</li>
+	
+	<li>
+		<h3>Full Multi-language Support - including Transliteration and UTF-8!</h3>
+		<ul>
+			<li>The module is fully multilingual - every page can have a URI mapping for each language supported by the store!</li>
+			<li>The module automatically causes Zen Cart to use the language the URI uses, greatly enhancing Zen Cart's language functionality!</li>
+			<li>This multi-language functionality makes it likely that the site will feature much higher in search engine listings specific to the various languages the store supports.</li>
+			<li>The module also has full support for transliteration! When using the URI mapping auto-generation functionality it transliterates the names/titles from any language into plain ASCII, the format used by URIs.</li>
+			<li>Transliteration support means that characters outside of the standard character set allowed in URIs won't just be stripped from the URI, leaving words with letters missing. For example, &ldquo;&aacute;&rdquo; is replaced with &ldquo;a&rdquo;, &ldquo;&szlig;&rdquo; is replaced with &ldquo;ss&rdquo; etc.</li>
+			<li>The transliteration support extends to supporting the UTF-8 character set, so Japanese, Chinese characters etc. are all handled easily!</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h3>Organise EZ-Pages into Site Sections</h3>
+		<ul>
+			<li>By putting a bit of thought into the format of URI mappings for EZ-Pages, it is possible to organise them into logical sections.</li>
+			<li>EZ-Pages no longer have to appear as being &ldquo;root&rdquo; pages of the site!</li>
+			<li><p>For example, a &ldquo;Company&rdquo; section could be created with 4 EZ-Pages using URI mappings such as the following:</p>
+			<p class="Example">/company
+			<br />/company/about-us
+			<br />/company/about-us/endorsements
+			<br />/company/how-to-find-us</p></li>
+		</ul>
+	</li>
+	
+	<li>
+		<h3>Ability to use Static URIs for any Zen Cart page</h3>
+		<ul>
+			<li>There are two methods for using static URIs for any Zen Cart page, <strong>both of which have full support for having a &ldquo;current&rdquo; URI, as many historical/&ldquo;old&rdquo; URIs as necessary and are fully multi-lingual</strong>:
+				<ol>
+					<li>Static URIs can be used for any Zen Cart page by directly entering the static URI for the page and the type of the page in the database table for the module.
+						<ul>
+							<li>Using this method to specify static URIs for a Zen Cart page will cause every link to that page to use the static URI instead of the dynamic Zen Cart URI.</li>
+							<li><p>For example, to create a static URI for &ldquo;index.php?main_page=specials&rdquo;:</p>
+								<p class="Example"><strong>uri:</strong> /latest-offers</p>
+								<p class="Example"><strong>main_page:</strong> specials</p>
+							</li>
+						</ul>
+					</li>
+					<li>Static URIs being used for Zen Cart pages can also allow data to be supplied to Zen Cart.
+						<ul>
+							<li>This is achieved by initialising the GET variables for the Zen Cart page when it is loaded, which are set up by directly entering the static URI for the page, the type of the page and the GET variables to be loaded in the database table for the module.</li>
+							<li><p>For example:</p>
+								<p class="Example"><strong>uri:</strong> /surveys/shipping</p>
+							</li>
+							<li><p>Could map to a custom survey page, with the necessary ID for the survey to be shown:</p>
+								<p class="Example"><strong>main_page:</strong> survey</p>
+								<p class="Example"><strong>query_string_parameters:</strong> survey_id=2</p>
+							</li>
+							<li>Please Note: These URIs will only be used as the static URIs for links if the query string parameters being used to generate the link are <strong>exactly</strong> the same as the value of the &ldquo;query_string_parameters&rdquo; field (with the exception that the session parameter, if any, is ignored).</li>
+						</ul>
+					</li>
+				</ol>
+			</li>
+			<li>Please note: There is no admin interface for entering these URI mappings in this module, they have to be entered manually (using software such as PHPMyAdmin). Alternatively, Ceon's <a href="http://ceon.net/software/business/zen-cart/uri-mappings-manager?doc=zc-um" target="_blank">URI Mappings Manager</a> software has an easy-to-use interface for setting up and managing all the URI mappings this module can use.</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h3>Automatic Usage of any URI mappings Defined for Categories, Products, Manufacturers, EZ-Pages or any other Zen Cart page!</h3>
+		<ul>
+			<li>The module modifies the main zen_href_link function slightly to make automatic use of any URI mappings defined for a category, product, manufacturer, EZ-Page or other Zen Cart page.</li>
+			<li>Having each page link to each other using their static URIs makes the site easier to navigate and increases the usage of keywords on the site, further helping SEO!</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h3>Ability to use Static URIs as an Alias for any other Static URI</h3>
+		<ul>
+			<li>The module can be used to redirect from one static URI to an alternative URI (even to an external URI).</li>
+			<li>The exact type of redirection (temporary/permanent etc.) can even be controlled, by specifying the HTTP Status Code to be used for the redirection to the alternative URI.</li>
+			<li>Creating aliases allows the store to handle visits to broken/old links.</li>
+			<li>It also allows the store to increase the number of keywords being used to link to a page on the site through the creation of an alternative link/alias.</li>
+			<li>Please note: There is no admin interface for entering these URI mappings in this module, they have to be entered manually (using software such as PHPMyAdmin). Alternatively, Ceon's <a href="http://ceon.net/software/business/zen-cart/uri-mappings-manager?doc=zc-um" target="_blank">URI Mappings Manager</a> software has an easy-to-use interface for setting up and managing all the URI mappings this module can use.</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h3>Automated support for standard Zen Cart pages related to a Product</h3>
+		<ul>
+			<li>The Reviews and Tell-A-Friend sections can automatically be made &ldquo;subsections&rdquo; of the product's main info page, by appending some specific URI parts to the product info page's static URI.</li>
+			<li><p>This saves effort setting up URIs for these pages specifically for each product, as it creates static URIs such as:</p>
+				<p class="Example">/books/life-is-good/reviews</p>
+				<p class="Example">/books/life-is-good/tell-a-friend</p>
+			</li>
+			<li><span class="NewFeature">[New for 4.0.0]</span> A section in the module's Config Utility allows the store to select which &ldquo;Product Page URIs&rdquo; are automatically managed by the software, and to set the text that should be used for the URIs.</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h3>100% Compatibility with Zen Cart and Most Modules, Minimal Tweaks Required for Some Other Modules</h3>
+		<ul>
+			<li>Installing the module won't break any of the functionality of Zen Cart.</li>
+			<li>The module works using Zen Cart's Initsystem so it doesn't interfere with any of its workings. Zen Cart pages have no idea the module is even running, the run-time environment appears exactly as if the module wasn't installed.</li>
+			<li>This means that the module should work perfectly with most (and most likely all) other Zen Cart modules - as long as they don't use relative links/paths. Those modules which do use relative links/paths simply need to have their relative links/paths changed to static links/paths, something which is easily done by adding a single define to the start of the links/paths.</li>
+			<li><span class="NewFeature">[New for 4.0.0]</span> The software does its best to work out if it is being called by a third party script instead of directly from Zen Cart and will prevent itself from interfering with the running of the third party script!</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h3>Transparently Handles URIs With or Without a Slash (/) at the End</h3>
+		<ul>
+			<li><p>The module sees URIs with a slash at the end as identical to those without one. For example, the following are equivalent:</p>
+				<p class="Example">http://yourstore.com/books/life-is-good
+				<br />http://yourstore.com/books/life-is-good/</p>
+			</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h3>Respects Context of a Link to a Category/Product page</h3>
+		<ul>
+			<li>The module retains Zen Cart's category history when linking to a subcategory of another category or a linked product which is not within its &ldquo;master&rdquo; category, so the full path back through any parent categories is available. (Without this feature all categories being mapped to by a URI mapping would appear as if their only parent category was the root of the store and linked products would always show as belonging to their &ldquo;master&rdquo; category, which is not necessarily the category the customer has accessed the product from).</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h3>Avoids Possibility of Duplicate URIs</h3>
+		<ul>
+			<li><span class="NewFeature">[New for 4.0.0]</span> The software won't allow a duplicate URI mapping to be created. It can be configured to warn the user when an attempt is being made to create a URI mapping which would clash with one already being used elsewhere.</li>
+			<li>For product URIs, the software can even be configured to automatically append a number to a URI when a clash is detected, to make the URI unique without the user having to manually change anything themselves!</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h3>Support for all of Zen Cart's Standard Product Types (and more)!</h3>
+		<ul>
+			<li>The module has full support for the standard 5 product types in Zen Cart plus the product_book type (version 4 from the Zen Cart download area).</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h3>Easy to Install and Keep Up To Date!</h3>
+		<ul>
+			<li><span class="NewFeature">[New for 4.0.0]</span> The module has an &ldquo;Installation Check&rdquo; section in its config utility which analyses the store's configuration, identifies any problems and tells you what they are and how to fix them!</li>
+			<li><span class="NewFeature">[New for 4.0.0]</span> Once the module has been installed initially, upgrading to a new version takes around 10 seconds. The files for the new version simply have to be copied across, then the software will take over and carry out any necessary updates itself!</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h3>Compatible with the Most Popular Webservers</h3>
+		<p>A webserver that supports rewrite rules is required. Currently tested/supported webservers are:</p>
+		<ul>
+			<li>Apache with mod_rewrite.</li>
+			<li>IIS with ISAPI_Rewrite 3.</li>
+			<li>IIS with IIS URL Rewrite.</li>
+			<li>nginx.</li>
+			<li>Zeus Webserver (get in <a href="http://ceon.net/software/business/zen-cart/uri-mapping/contact-us?doc=zc-um" target="_blank">contact</a> for integration details).</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h3>Lightweight!</h3>
+		<ul>
+			<li>The module has a minimal impact on the server as it is very lightweight.</li>
+		</ul>
+	</li>
+</ul>
+
+<p class="BackToTop"><a href="#top">Back to top</a></p>
+
+<p id="footer"><a href="http://ceon.net/software/business/zen-cart?doc=zc-um" target="_blank"><img src="../_images/ceon-button-logo.png" alt="Ceon" id="ceon-button-logo" /></a><a href="http://jked.net" target="_blank"><img src="../_images/jked-logo.gif" alt="JKED" id="jked-logo" /></a>Module &amp; Documentation &copy; Copyright 2008-2012 <a href="http://ceon.net/software/business/zen-cart?doc=zc-um" target="_blank">Ceon</a></p>
+
+	</div>
+</div>
+
+<script type="text/javascript">
+<!-- // Output resizeable div end tag
+restrict_width.outputClosingTag();
+// -->
+</script>
+
+</body>
+</html>

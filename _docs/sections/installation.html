@@ -1,0 +1,454 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>.:: Ceon :: Zen Cart :: Module :: Ceon URI Mapping ::.</title>
+	<link rel="stylesheet" href="../_css/inc.css.layout-styles.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="../_css/inc.css.styles.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="../_css/inc.css.layout-styles-print.css" type="text/css" media="print" />
+	<script src="../_javascript/inc.js.general-functions.js" type="text/javascript"></script>
+	<script src="../_javascript/inc.js.css-functions.js" type="text/javascript"></script>
+	<script src="../_javascript/inc.js.restrict-width.js" type="text/javascript"></script>
+	<script src="../_javascript/inc.js.crossfade.js" type="text/javascript"></script>
+</head>
+
+<body><a name="top" id="top"></a>
+
+<noscript>
+	<style type="text/css">
+	body { margin: 0 auto; max-width: 75em; padding-left: 5%; padding-right: 5%; }
+	.CrossFadeText { margin: 0 auto; max-width: 75em; right: auto; padding-left: 20em; }
+	</style>
+</noscript>
+
+<script type="text/javascript">
+<!-- 
+// Script resizes main div if client window is larger than a predefined variable
+var restrict_width = new CeonRestrictWidth(360, 900);
+
+// Initialise crossfade by hiding crossfade object first
+CeonAddLoadEvent(CeonCrossfadeInit);
+// -->
+</script>
+
+<div id="grad-horiz-left">
+	<div id="grad-horiz-right">
+
+<h1 class="Title">Ceon URI Mapping</h1>
+<div class="TitleByLineWrapper">&nbsp;
+	<div id="crossfade">
+		<p class="CrossFadeText" id="byline"><a href="http://ceon.net/software/business/zen-cart?doc=zc-um">probably the best Zen Cart URI Mapping/SEO Module in the world! ...ever!</a></p>
+		<p class="CrossFadeText" id="ceon-link"><a href="http://ceon.net/software/business/zen-cart?doc=zc-um">Click here to get more great software from Ceon</a></p>
+	</div>
+</div>
+<ul class="MainMenu">
+	<li><a href="../index.html">Overview</a><span> | </span></li>
+	<li><a href="installation.html">Installation</a><span> | </span></li>
+	<li><a href="configuration.html">Configuration</a><span> | </span></li>
+	<li><a href="faqs.html">FAQs</a><span> | </span></li>
+	<li><a href="support.html">Support</a><span> | </span></li>
+	<li><a href="revision-history.html">Revision History</a><span> | </span></li>
+	<li><a href="upgrading.html">Upgrading</a><span> | </span></li>
+	<li><a href="module-info.html">Module Info</a><span> | </span></li>
+	<li><a href="features.html">Module Features</a></li>
+</ul>
+
+<h2><a name="installation" id="installation"></a>Installation</h2>
+<p>Installation of the module has been made as simple as possible and shouldn't take long for any stores which have not already modified any of the core files which this module has to modify.</p>
+<p>If any of the core files this distribution uses have already been modified (because of another third party module being installed for example) then the changes for the respective files should be applied manually by copying across the appropriate sections of code required for the Ceon URI Mapping module. These sections are clearly marked (with &ldquo;// BEGIN&rdquo; and &ldquo;// END&rdquo; comments) within the sample files provided in this distribution.</p>
+
+<h3><a name="requirements" id="requirements"></a>Requirements</h3>
+<ul class="SystemRequirements">
+	<li>
+		<p>A webserver that supports rewrite rules is required. Currently tested/supported webservers are:</p>
+		
+		<ul class="BulletedList">
+			<li>Apache with mod_rewrite</li>
+			<li>IIS with ISAPI_Rewrite 3</li>
+			<li>IIS with IIS URL Rewrite</li>
+			<li>nginx</li>
+			<li>Zeus Webserver (get in <a href="http://ceon.net/software/business/zen-cart/uri-mapping/contact-us?doc=zc-um" target="_blank">contact</a> for integration details)</li>
+		</ul>
+	</li>
+</ul>
+
+
+<h3>Installation Overview</h3>
+<ol id="installation-overview">
+	<li>Copy the new files from the distribution into the Zen Cart installation.</li>
+	<li>Copy the modified core files from the distribution into the Zen Cart installation, or modify the respective core files.</li>
+	<li>Copy the modified template files from the distribution into the Zen Cart installation or modify their equivalents in the store's existing template files.</li>
+	<li>Create the Database Tables and Configuration and Configure the URI Auto-generation Settings.</li>
+	<li>Configure the settings for the Auto-managing of URIs for Products' &ldquo;Reviews&rdquo; and &ldquo;Tell-A-Friend&rdquo; pages</li>
+	<li>Run the Installation Check</li>
+	<li>Add the rewrite rules to the webserver (Apache/IIS etc.).</li>
+	<li>[OPTIONAL but RECOMMENDED] Configure the Google Sitemap (XML) Module</li>
+	<li>[OPTIONAL but RECOMMENDED] Take a note of the FAQs</li>
+	<li>Set up the URI mappings for categories, products, manufacturers and EZ-Pages.</li>
+</ol>
+
+<h3>Installation Steps</h3>
+<ol class="InstallationSteps">
+	<li>
+		<h4>New Files</h4>
+		
+		<p>These are the new files which make up this module. Copy them all into their respective folders in the Zen Cart installation.</p>
+		
+		<p>Most files are used by all Zen Cart versions.</p>
+		<p>There is an additional file which is used only by Zen Cart 1.3.x; if the store uses Zen Cart 1.3.x, be sure to copy this extra file across from the folder <span class="FileName">files/additional_file_for_1.3.x</span>.</p>
+		
+		<h5>New files for the Admin directory</h5>
+		
+		<p>Most Zen Cart stores have their admin directory renamed from the default of &ldquo;admin&rdquo;.</p>
+		<p>Copy all of the folders and files from the <span class="FileName">files/admin</span> folder into the store's &ldquo;admin&rdquo; directory, whatever it is called.</p>
+		<p>The files are already in the correct directory structure, so a single drag-and-drop of the folders/files in the <span class="FileName">files/admin</span> folder into the &ldquo;admin&rdquo; directory for the store will put the files in the correct locations.</p>
+		<p><strong>Please do not copy the files individually</strong> - there's simply no need - doing so often results in files being missed out!</p>
+		
+		<ul class="Steps">
+			<li>admin/images/ceon-button-logo.png</li>
+			<li>admin/images/ceon-input-fade-tb-gray-white.png</li>
+			<li>admin/images/ceon-tab-background.png</li>
+			<li>admin/images/ceon-tab-background-selected.png</li>
+			<li>admin/includes/classes/class.CeonURIMappingAdminCategoryPages.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingAdminEZPagePages.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingAdminManufacturerPages.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingAdminProductPages.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingConfigUtility.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingInstallationCheck.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingInstallOrUpgrade.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingTabbedPanelAdminInterface.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingVersion.php</li>
+			<li>admin/includes/extra_datafiles/ceon_uri_mapping_database_tables.php</li>
+			<li>admin/includes/extra_datafiles/ceon_uri_mapping_filenames.php</li>
+			<li>admin/includes/extra_datafiles/ceon_uri_mapping_product_pages.php</li>
+			<li>admin/includes/functions/extra_functions/ceon_uri_mapping_admin_page_reg.php</li>
+			<li>admin/includes/languages/english/extra_definitions/ceon_uri_mapping.php</li>
+			<li>admin/includes/languages/english/ceon_uri_mapping_admin_pages.php</li>
+			<li>admin/includes/languages/english/ceon_uri_mapping_category_pages.php</li>
+			<li>admin/includes/languages/english/ceon_uri_mapping_config.php</li>
+			<li>admin/includes/languages/english/ceon_uri_mapping_default_uri_parts.php</li>
+			<li>admin/includes/languages/english/ceon_uri_mapping_ezpage_pages.php</li>
+			<li>admin/includes/languages/english/ceon_uri_mapping_installation_check.php</li>
+			<li>admin/includes/languages/english/ceon_uri_mapping_manufacturer_pages.php</li>
+			<li>admin/includes/languages/english/ceon_uri_mapping_product_pages.php</li>
+			<li>admin/includes/languages/english/ceon_uri_mapping_tabbed_panel_admin_interface.php</li>
+			<li>admin/ceon_uri_mapping_config.php</li>
+			<li class="NoMarginBottom">admin/ceon_uri_mapping_installation_check.php</li>
+		</ul>
+		
+
+		<h5>New files for the main store directory</h5>
+		
+		<p>Copy the <span class="FileName">includes</span> folder from the <span class="FileName">files</span> folder into the store's main directory.</p>
+		<p>The files are already in the correct directory structure, so a single drag-and-drop of the folder into the root directory for the store will put the files in the correct locations.</p>
+		<p><strong>Please do not copy the files individually</strong> - there's simply no need - doing so often results in files being missed out!</p>
+		<p class="Note"><strong>Warning</strong>: Be careful <em class="Underlined FontStyleNormal">NOT</em> to copy the files from the <span class="FileName">files/includes</span> folder into the store's <span class="FileName">admin/includes</span> directory, they go in the <span class="FileName">includes</span> directory which is <strong>alongside, not inside</strong> the store's admin directory.</p>
+		
+		<ul class="Steps">
+			<li>includes/auto_loaders/config.ceon_uri_mapping.php</li>
+			<li>includes/classes/transliteration (* This directory and ALL files in it!)</li>
+			<li>includes/classes/class.CeonURIMappingAdmin.php</li>
+			<li>includes/classes/class.CeonURIMappingAdminCategories.php</li>
+			<li>includes/classes/class.CeonURIMappingAdminCategoriesProducts.php</li>
+			<li>includes/classes/class.CeonURIMappingAdminEZPages.php</li>
+			<li>includes/classes/class.CeonURIMappingAdminManufacturers.php</li>
+			<li>includes/classes/class.CeonURIMappingAdminProducts.php</li>
+			<li>includes/classes/class.CeonURIMappingDBLookup.php</li>
+			<li>includes/classes/class.CeonURIMappingHandler.php</li>
+			<li>includes/classes/class.CeonURIMappingHandlerBase.php</li>
+			<li>includes/classes/class.CeonURIMappingHREFLinkBuilder.php</li>
+			<li>includes/classes/class.CeonString.php</li>
+			<li>includes/classes/class.Transliteration.php</li>
+			<li>includes/extra_datafiles/ceon_uri_mapping_database_tables.php</li>
+			<li>includes/extra_datafiles/ceon_uri_mapping_filenames.php</li>
+			<li class="NoMarginBottom">includes/extra_datafiles/ceon_uri_mapping_product_pages.php</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4>Modified Core Files</h4>
+		
+		<p>A few core Zen Cart files must be modified to work with the Ceon URI Mapping module.</p>
+		
+		<h5>Modified core files for the Admin directory</h5>
+		
+		<ul class="BulletedList">
+			<li>
+				<p>It is likely that none of these files have been modified for the store already, in which case it should be possible to simply <em class="Underlined">back up the files</em> and then overwrite the files with the pre-modified sample files from this distribution, for the version of Zen Cart being used by the store.</p>
+			</li>
+			<li>
+				<p>However, if any of these core files <strong>have</strong> already been modified for the store, the changes within the sample files included in this distribution must be applied to the previously modified core files.</p>
+				<p>The changes are clearly marked within the sample files in the distribution and should be easy enough to copy across, especially if a &ldquo;diff&rdquo; software package (such as the free WinMerge or the excellent, commercial, Beyond Compare) is used.</p>
+				<p>Instructions on how to copy across the modifications necessary for this module - to version of the respective core files which have previously been modified - can be found <a href="faqs.html#modifying-core-files">in this FAQ</a>.</p>
+			</li>
+		</ul>
+		
+		<p>The modified core files can be found within the <span class="FileName">modified_core_files</span> folder in the distribution. A list of the files follows.</p>
+		<p>If any of the &ldquo;Product Types&rdquo; (e.g. Document General or Product Book) aren't used by the store, there's no need to copy/modify the files in the respective directories (e.g. document_general or product_book).</p>
+		<p>If the store's core files haven't been modified then there's no need to copy the files individually - that often results in files being missed out! They already have the correct folder structure, so a single drag-and-drop of the folders/files in the <span class="FileName">modified_core_files</span> folder (for the exact same version of Zen Cart) into the root directory for the store will put the files in the correct locations.</p>
+		
+		<p class="Note"><strong>Please Note</strong>: If the admin folder for the store is not named &ldquo;admin&rdquo;, then care must be taken to place the files from within the <span class="FileName">modified_core_files/admin</span> folder into the store's admin folder. Simply copying across the <span class="FileName">modified_core_files/admin</span> folder won't work!</p>
+		
+		<ul class="Steps">
+			<li>admin/includes/functions/general.php</li>
+			<li>admin/includes/functions/html_output.php</li>
+			<li>admin/includes/modules/document_general/collect_info.php</li>
+			<li>admin/includes/modules/document_general/preview_info.php</li>
+			<li>admin/includes/modules/document_product/collect_info.php</li>
+			<li>admin/includes/modules/document_product/preview_info.php</li>
+			<li>admin/includes/modules/product/collect_info.php</li>
+			<li>admin/includes/modules/product/preview_info.php</li>
+			<li>admin/includes/modules/product_book/collect_info.php</li>
+			<li>admin/includes/modules/product_book/copy_to_confirm.php</li>
+			<li>admin/includes/modules/product_book/preview_info.php</li>
+			<li>admin/includes/modules/product_book/update_product.php</li>
+			<li>admin/includes/modules/product_free_shipping/collect_info.php</li>
+			<li>admin/includes/modules/product_free_shipping/preview_info.php</li>
+			<li>admin/includes/modules/product_music/collect_info.php</li>
+			<li>admin/includes/modules/product_music/copy_to_confirm.php</li>
+			<li>admin/includes/modules/product_music/preview_info.php</li>
+			<li>admin/includes/modules/product_music/update_product.php</li>
+			<li>admin/includes/modules/copy_to_confirm.php</li>
+			<li>admin/includes/modules/move_product_confirm.php</li>
+			<li>admin/includes/modules/sidebox_move_product.php</li>
+			<li>admin/includes/modules/update_product.php</li>
+			<li>admin/categories.php</li>
+			<li>admin/document_general.php</li>
+			<li>admin/document_product.php</li>
+			<li>admin/ezpages.php</li>
+			<li>admin/manufacturers.php</li>
+			<li>admin/product.php</li>
+			<li>admin/product_free_shipping.php</li>
+			<li class="NoMarginBottom">admin/product_music.php</li>
+		</ul>
+		
+		<h5>Modified core files for the main store directory</h5>
+		
+		<p>Some versions of Zen Cart require modifications that others don't. Just apply the modifications to files that are present in the <em class="FileName">modified_core_files</em> folder for the version of Zen Cart the store uses.</p>
+		
+		<p>If a file doesn't exist in the overrides directory, simply copy the pre-modified sample file from this distribution, for the version of Zen Cart being used by the store, into the overrides folder.</p>
+		
+		<ul class="Steps">
+			<li>includes/auto_loaders/config.canonical.php (Zen Cart 1.3.0 - 1.3.8)</li>
+			<li>includes/functions/html_output.php (Zen Cart 1.3.0 - 1.5.0)</li>
+			<li>includes/init_includes/overrides/init_add_crumbs.php  (Zen Cart 1.3.5 - 1.5.0)</li>
+			<li>includes/init_includes/overrides/init_canonical.php (Zen Cart 1.3.0 - 1.5.0)</li>
+			<li>includes/init_includes/overrides/init_currencies.php  (Zen Cart 1.3.0 - 1.5.0)</li>
+			<li class="NoMarginBottom">includes/init_includes/overrides/init_sessions.php  (Zen Cart 1.3.9/1.5.0)</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4>Template Files For Zen Cart 1.3.x</h4>
+		
+		<p>A few of the standard Zen Cart template files require modifications to work with this module as they weren't built in a way that supports static URIs.</p>
+		<p>Modifications to existing template files, for static URIs to be able to be used by some of the standard Zen Cart sideboxes and by the product listing filter forms, have been made to &ldquo;clean&rdquo; copies of the template files from a &ldquo;fresh&rdquo; installation of Zen Cart and are included as &ldquo;sample&rdquo; files in this distribution.</p>
+		
+		<ul class="BulletedList">
+			<li>
+				<p>If any of these template files <strong>haven't</strong> already been modified for the store, the sample files included in this distribution can be copied into the store's template directory and will then override the standard versions of the files included in the Zen Cart distribution.</p></li>
+			<li>
+				<p>If any of these template files <strong>have</strong> already been modified for the store, then the changes necessary to support the use of static URIs must be made to the store's modified file(s). The changes are clearly marked within the sample files in the distribution and should be easy enough to copy across, especially if a &ldquo;diff&rdquo; software package (such as the free WinMerge or the excellent, commercial, Beyond Compare) is used.</p>
+				<p>Instructions on how to copy across the modifications necessary for this module - to template files which have previously been modified - can be found <a href="faqs.html#modifying-template-files">in this FAQ</a>.</p></li>
+		
+		</ul>
+		
+		<p>The sample template files can be found within the <span class="FileName">template_override_files</span> folder in the distribution. They are:</p>
+		
+		<ul class="Steps">
+			<li>includes/templates/STORE-TEMPLATE/sideboxes/tpl_manufacturers_select.php</li>
+			<li>includes/templates/STORE-TEMPLATE/sideboxes/tpl_music_genres_select.php</li>
+			<li>includes/templates/STORE-TEMPLATE/sideboxes/tpl_record_company_select.php</li>
+			<li class="NoMarginBottom">includes/templates/STORE-TEMPLATE/templates/tpl_index_product_list.php</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4><span class="WeightNormal">[Zen Cart Versions 1.3.0 - 1.3.8 Only]</span> Enable Canonical URI Support</h4>
+		
+		<p>This installation step doesn't apply for stores using Zen Cart versions 1.3.9 or 1.5.0.</p>
+		
+		<p>Canonical URI support is an absolutely <strong>essential</strong> feature of this module, so it must be enabled properly.</p>
+		
+		<p>If it isn't, search engines will penalise the site and it may well drop down in its rankings!</p>
+		
+		<p>Zen Cart versions 1.3.9 and 1.5.0 have the necessary canonical code built into them already but previous versions of Zen Cart must have a file modified to add this support.</p>
+		
+		<p>The file <span class="FileName">includes/templates/STORE-TEMPLATE/common/html_header.php</span> must be modified.</p>
+		
+		<ul class="BulletedList">
+			<li>
+				<p>If the template file <span class="FileName">includes/templates/STORE-TEMPLATE/common/html_header.php</span> does not yet exist, then simply copy across the file from the <span class="FileName">template_override_files</span> folder for the version of Zen Cart the store is using.</p>
+			</li>
+			<li>
+				<p>If the template file <span class="FileName">includes/templates/STORE-TEMPLATE/common/html_header.php</span> does exist for the store, then the simple change necessary for canonical URI support must be made to the store's <span class="FileName">html_header.php</span>.</p>
+				<p>The change is clearly marked within the sample file in the distribution and should be easy enough to copy across, especially if a &ldquo;diff&rdquo; software package (such as the free WinMerge or the excellent, commercial, Beyond Compare) is used.</p>
+				<p>Instructions on how to copy across the modifications necessary for this module - to existing template files - can be found <a href="faqs.html#modifying-template-files">in this FAQ</a>.</p></li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4>Create the Database Tables and Configuration and Configure the URI Auto-generation Settings</h4>
+		
+		<p>This software comes with some intelligent installation and error checking functionality which makes it easy to install the module and to keep the database and configuration up to date.</p>
+		
+		<p>This installation/upgrade functionality runs automatically when the configuration utility is accessed. (In the future, if the module is being upgraded, the configuration utility should also be accessed then.)</p>
+		
+		<ul class="Steps">
+			<li class="NoMarginBottom">
+				<p class="NoMarginBottom">Simply go to <em>Modules &gt; URI Mapping Config</em> in the Admin and the database tables and configuration will be automatically created.</p>
+			</li>
+		</ul>
+		
+		<p>Details of how to configure the URI auto-generation settings and set up the URI mappings for the store are provided in the <a href="configuration.html#autogen-config" target="_blank">configuration section</a>.</p>
+	</li>
+	
+	<li>
+		<h4>Configure the settings for the Auto-managing of URIs for Products' &ldquo;Reviews&rdquo; and &ldquo;Tell-A-Friend&rdquo; pages</h4>
+		
+		<p>It is <strong>highly recommended</strong> to configure these settings as, if the store doesn't use any of the &ldquo;Reviews&rdquo; pages or the &ldquo;Tell-A-Friend&rdquo; page (which has been removed altogther from Zen Cart 1.5.0 onwards), disabling the automatic generation of URIs for these page types reduces the number of URI Mappings added to the store's database, keeping the <em class="Underlined">software fast and efficient</em>, and therefore avoiding a potentially wasteful slowdown of the site!</p>
+		
+		<ul class="Steps">
+			<li>
+				<p>Go to <em>Modules &gt; Ceon URI Mapping (SEO) Config</em> in the Zen Cart Admin.</p>
+			</li>
+			<li>
+				<p>Go to the <em>Auto-managed Product Page URIs</em> tab.</p>
+			</li>
+			<li class="NoMarginBottom">
+				<p class="NoMarginBottom">Untick the checkboxes for any page types the store doesn't use - or simply isn't interested in having static URIs for - and click &ldquo;Save&rdquo;.</p>
+			</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4>Run the Installation Check</h4>
+		
+		<p>This software comes with an amazingly handy Installation Check utility.</p>
+		
+		<p>The installation check will examine the store's configuration files and warn you about any mistakes in the files which you need to correct, and will even provide full information about what you should do.</p>
+		
+		<p>It will also check all the core files that must be modified for Ceon URI Mapping to work optimally, and warn you if any of the modifications are missing or out of date, again giving information on what you should do!</p>
+		
+		<p>A quick glance at this new admin page should help you identify and fix any problems with the installation quickly and easily!</p>
+		
+		<ul class="Steps">
+			<li>
+				<p>Go to <em>Modules &gt; Ceon URI Mapping (SEO) Config</em> in the Zen Cart Admin.</p>
+			</li>
+			<li>
+				<p>Then go to the <em>Installation Check</em> tab and click on the link to open the Installation Check utility page.</p>
+			</li>
+			<li>
+				<p>The module will now automatically carry out the installation check.</p>
+			</li>
+			<li class="NoMarginBottom">
+				<p class="NoMarginBottom">If any errors are listed, follow the instructions given by the software.</p>
+			</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4><a name="example-rewrite-rule-functionality" id="example-rewrite-rule-functionality"></a>Add the Rewrite Rule to the Webserver (Apache/IIS etc.)</h4>
+		
+		<p>Having a working rewrite rule installed is <strong>one of the most important aspects of installing this software</strong>.</p>
+		
+		<p>To make things as easy as possible, the module comes with handy &ldquo;Example Rewrite Rule&rdquo; functionality.</p>
+		
+		<p>The module will analyse the filesystem on the server and attempt to build a rewrite rule for the store that has any necessary exclusions added.</p>
+		
+		<ul class="Steps">
+			<li>
+				<p>Go to <em>Modules &gt; Ceon URI Mapping (SEO) Config</em> in the Zen Cart Admin.</p>
+			</li>
+			<li>
+				<p>Then go to the <em>Installation Check</em> tab and click on the link to open the Installation Check utility page.</p>
+			</li>
+			<li>
+				<p>Since any errors with the store's configuration files should have been fixed after running the installation check in the previous step, the &ldquo;Example Rewrite Rule&rdquo; panel will be displayed.</p>
+			</li>
+			<li>
+				<p>Read the instructions given in that panel and copy and paste the new Rewrite Rule to the store's .htaccess file/VirtualHost directive, as desired.</p>
+			</li>
+			<li>
+				<p>Remember this is just an <strong>Example</strong> rewrite rule, some customisation may be required to take account of other software on the server which the site uses, or other file type extensions etc. that the store wants to exclude or include.</p>
+			</li>
+			<li class="NoMarginBottom">
+				<p class="NoMarginBottom">Details of how to modify the necessary rewrite rule for the store are provided in the  <a href="configuration.html#adjusting-the-rewrite-rule" target="_blank">configuration section</a>.</p>			</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4><span class="WeightNormal">[OPTIONAL but RECOMMENDED]</span> Configure the SitemapXML (formerly &ldquo;Google Sitemap&rdquo;) Module</h4>
+		
+		<p>If the store uses the SitemapXML (Google Sitemap) module, it needs to be configured to work better with static URIs.</p>
+		
+		<p>Otherwise, the store's rankings may be penalised because of links in the sitemap redirecting to other links.</p>
+		
+		<ul class="Steps">
+			<li>
+				<p>Go to <em>Configuration &gt; Sitemap XML</em> in the Zen Cart Admin.</p>
+			</li>
+			<li>
+				<p>Newer versions of the module have the option &ldquo;Using parameter language in links&rdquo;. If this option exists, make sure to set it to &ldquo;false&rdquo;.</p>
+			</li>
+			<li class="NoMarginBottom">
+				<p class="NoMarginBottom">Older versions of the module have the option &ldquo;Generate language_id for default language&rdquo;. If this option exists, make sure to set it to &ldquo;false&rdquo;.</p>
+			</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4><span class="WeightNormal">[OPTIONAL but RECOMMENDED]</span> Take a note of the FAQs</h4>
+		
+		<p>Lots of people ask us the same questions. It's worth reading the FAQs.</p>
+		
+		<p>At the very least, here are some of the most popular questions that are covered.</p>
+		
+		<p>If you are experiencing any problems, please check the FAQs for <strong>more</strong> questions and their answers. Support information is outlined in the <a href="support.html" target="_blank">support section</a>.</p>
+		
+		<ul class="BulletedList">
+			<li><a href="faqs.html#uri-mappings-need-added">The software is installed and working but the store's URIs still use dynamic Zen Cart ones (like <code>index.php?main_page=xx</code>).</a></li>
+			<li><a href="faqs.html#rewrite-rule-missing-error">A 404 server error is being displayed (e.g. a 404 error).</a></li>
+			<li><a href="faqs.html#session-id" target="_blank">A session parameter (like &ldquo;<code>?zenid=XXXX</code>&rdquo;) is being added to the end of the store's URIs.</a></li>
+			<li><a href="faqs.html#linked-products" target="_blank">A string beginning with &ldquo;<code>?cPath</code>&rdquo; is being added to the end of a product's URI.</a></li>
+			<li><a href="#relative-path-issues">When Ceon URI Mapping is enabled images stop appearing on the site!</a></li>
+			<li><a href="#relative-path-issues-layout">When Ceon URI Mapping is enabled the site's layout is messed up!</a></li>
+			<li><a href="#relative-path-issues-ajax">When Ceon URI Mapping is enabled an AJAX module (e.g. JavaScript menus) doesn't work properly!</a></li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4>Set Up the URI Mappings for Categories, Products, Manufacturers and EZ-Pages</h4>
+		
+		<p>Now all that has to be done is to set up the URI mappings for the store in the Zen Cart Admin.</p>
+		
+		<p>Details of how to configure the module and how to set up the URI mappings for the store are provided in the  <a href="configuration.html">configuration section</a>.</p>
+	</li>
+	
+	<li>
+		<h4>That's it! Enjoy the new URIs!</h4>
+		
+		<p>It may have taken a wee while, but the above should all have been fairly easy to do. And the Installation Check certainly helps!</p>
+		
+		<p>Please make sure to keep up to date with the software. Thanks to the way the module has been designed, with lots of auto-upgrade functionality built in, upgrading to subsequent versions will most likely just be a matter of overwriting some files, taking only a few seconds.</p>
+		
+		<p>Enjoy the software and the nice, readable and easy-to-type URIs it allows the store to have!</p>
+	</li>
+</ol>
+
+<p class="BackToTop"><a href="#top">Back to top</a></p>
+
+<p id="footer"><a href="http://ceon.net/software/business/zen-cart?doc=zc-um" target="_blank"><img src="../_images/ceon-button-logo.png" alt="Ceon" id="ceon-button-logo" /></a><a href="http://jked.net" target="_blank"><img src="../_images/jked-logo.gif" alt="JKED" id="jked-logo" /></a>Module &amp; Documentation &copy; Copyright 2008-2012 <a href="http://ceon.net/software/business/zen-cart?doc=zc-um" target="_blank">Ceon</a></p>
+
+	</div>
+</div>
+
+<script type="text/javascript">
+<!-- // Output resizeable div end tag
+restrict_width.outputClosingTag();
+// -->
+</script>
+
+</body>
+</html>

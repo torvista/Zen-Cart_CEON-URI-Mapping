@@ -1,0 +1,430 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>.:: Ceon :: Zen Cart :: Module :: Ceon URI Mapping ::.</title>
+	<link rel="stylesheet" href="../_css/inc.css.layout-styles.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="../_css/inc.css.styles.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="../_css/inc.css.layout-styles-print.css" type="text/css" media="print" />
+	<script src="../_javascript/inc.js.general-functions.js" type="text/javascript"></script>
+	<script src="../_javascript/inc.js.css-functions.js" type="text/javascript"></script>
+	<script src="../_javascript/inc.js.restrict-width.js" type="text/javascript"></script>
+	<script src="../_javascript/inc.js.crossfade.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="../_css/litebox.css" type="text/css" media="screen" />
+	<script src="../_javascript/litebox/prototype.lite.js" type="text/javascript"></script>
+	<script src="../_javascript/litebox/moo.fx.js" type="text/javascript"></script>
+	<script src="../_javascript/litebox/litebox-1.2.js" type="text/javascript"></script>
+	<!--[if gte IE 5]>
+	<link rel="stylesheet" href="../_css/litebox-ie.css" type="text/css" media="screen" />
+	<![endif]-->
+</head>
+
+<body><a name="top" id="top"></a>
+
+<noscript>
+	<style type="text/css">
+	body { margin: 0 auto; max-width: 75em; padding-left: 5%; padding-right: 5%; }
+	.CrossFadeText { margin: 0 auto; max-width: 75em; right: auto; padding-left: 20em; }
+	</style>
+</noscript>
+
+<script type="text/javascript">
+<!-- 
+// Script resizes main div if client window is larger than a predefined variable
+var restrict_width = new CeonRestrictWidth(360, 900);
+
+// Initialise crossfade by hiding crossfade object first
+CeonAddLoadEvent(CeonCrossfadeInit);
+
+document.write('<' + 'style type="text/css" media="screen">');
+document.write('.JavaScriptOutput, .JavaScriptAndPrintOutput { display: block; }');
+document.write('.NoscriptAndPrintOutputBlock { display: none; }<' + '/style>');
+// -->
+</script>
+
+<div id="grad-horiz-left">
+	<div id="grad-horiz-right">
+
+<h1 class="Title">Ceon URI Mapping</h1>
+<div class="TitleByLineWrapper">&nbsp;
+	<div id="crossfade">
+		<p class="CrossFadeText" id="byline"><a href="http://ceon.net/software/business/zen-cart?doc=zc-um">probably the best Zen Cart URI Mapping/SEO Module in the world! ...ever!</a></p>
+		<p class="CrossFadeText" id="ceon-link"><a href="http://ceon.net/software/business/zen-cart?doc=zc-um">Click here to get more great software from Ceon</a></p>
+	</div>
+</div>
+<ul class="MainMenu">
+	<li><a href="../index.html">Overview</a><span> | </span></li>
+	<li><a href="installation.html">Installation</a><span> | </span></li>
+	<li><a href="configuration.html">Configuration</a><span> | </span></li>
+	<li><a href="faqs.html">FAQs</a><span> | </span></li>
+	<li><a href="support.html">Support</a><span> | </span></li>
+	<li><a href="revision-history.html">Revision History</a><span> | </span></li>
+	<li><a href="upgrading.html">Upgrading</a><span> | </span></li>
+	<li><a href="module-info.html">Module Info</a><span> | </span></li>
+	<li><a href="features.html">Module Features</a></li>
+</ul>
+
+<h2><a name="faqs" id="faqs"></a>Frequently Asked Questions (FAQs)</h2>
+
+<ol class="TableOfContents">
+	<li><a href="#uri-mappings-need-added">The software is installed and working but the store's URIs still use dynamic Zen Cart ones (like <code>index.php?main_page=xx</code>).</a></li>
+	<li><a href="#rewrite-rule-missing-error">A 404 server error is being displayed (e.g. a 404 error).</a></li>
+	<li><a href="#rewrite-rule-error">A server error is being displayed (e.g. a &ldquo;500 Bad Request&rdquo; error).</a></li>
+	<li><a href="#relative-path-issues">When Ceon URI Mapping is enabled images stop appearing on the site!</a></li>
+	<li><a href="#relative-path-issues-layout">When Ceon URI Mapping is enabled the site's layout is messed up!</a></li>
+	<li><a href="#relative-path-issues-modules">When Ceon URI Mapping is enabled a module on the site doesn't work properly! (E.g. Dynamic menus/popups etc. stop working).</a></li>
+	<li><a href="#file-extensions-blocked">When the rewrite rule for Ceon URI Mapping is added, some file types on the site are blocked or showing up as 404s!</a></li>
+	<li><a href="#session-id">A session parameter (like &ldquo;<code>?zenid=XXXX</code>&rdquo;) is being added to the end of the store's URIs.</a></li>
+	<li><a href="#linked-products">A string beginning with &ldquo;<code>?cPath</code>&rdquo; is being added to the end of a product's URI.</a></li>
+	<li><a href="#rewrite-rule-blocking-addresses">After adding the rewrite rule access to part of the site (e.g. the site's control panel) is being blocked.</a></li>
+	<li><a href="#modifying-core-files">Some of the core files have already been modified for the site. How can the Ceon URI Mapping code be added?</a></li>
+	<li><a href="#modifying-template-files">Some of the template files for the site have already been modified. How can the Ceon URI Mapping code be added?</a></li>
+	<li><a href="#missing-config-group-option">The software is installed but there is no &ldquo;Ceon URI Mapping (SEO)&rdquo; option in the store's &ldquo;Configuration&rdquo; menu.</a></li>
+	<li><a href="#missing-config-utility-menu-item">When installing/upgrading the software for a Zen Cart 1.3.x store there is no menu item called &ldquo;Ceon URI Mapping (SEO) Config&rdquo; in the &ldquo;Modules&rdquo; menu of the store's Zen Cart admin.</a></li>
+	<li><a href="#distribute-to-clients">Can we distribute this distribution to our clients?</a></li>
+	<li><a href="#help-donate">How can I donate/help with the module?</a></li>
+</ol>
+
+<ol id="faqs-content">
+	<li>
+		<h4><a name="uri-mappings-need-added" id="uri-mappings-need-added"></a>The software is installed and working but the store's URIs still use dynamic Zen Cart ones (like <code>index.php?main_page=xx</code>).</h4>
+		
+		<ul class="BulletedList">
+			<li>
+				<p>Ceon URI Mapping <strong>does not</strong> automatically add mappings for existing Categories/Products/Manufacturers/EZ-Pages!</p>
+				
+				<p>You can read more about this <a href="configuration.html#uri-mappings-need-added">here</a>.</p>
+			</li>
+			
+			<li>
+				<p>If that is not the source of the &ldquo;problem&rdquo; and you have added some mappings, but the store is still using dynamic URIs where it should be mapping to static URIs, then a problem may have occurred during the installation of the software...</p>
+				
+				<p>This <a href="#missing-config-group-option">FAQ</a> may have the answer to the problem.</p>
+			</li>
+		</ul>
+		
+		<p class="BackToTableOfContents"><a href="#top">Back to top</a></p>
+	</li>
+	
+	<li>
+		<h4><a name="rewrite-rule-missing-error" id="rewrite-rule-missing-error"></a>A server error is being displayed (e.g. a 404 error).</h4>
+		
+		<p>This is most likely caused by the person installing the software not having added a working Rewrite Rule.</p>
+		
+		<p>As is mentioned in the <a href="configuration.html#rewrite-rule">Setting up a Rewrite Rule</a> section of the documentation, a RewriteRule needs to be added for the store, either to a .htaccess file or a VirtualHost Directive.</p>
+		
+		<p>Follow the instructions in the <a href="configuration.html#rewrite-rule">Setting up a Rewrite Rule</a> section of the documentation.</p>
+		
+		<p>If that doesn't help, then, this kind of issue is something that is outside the scope of this documentation. There are plenty of guides to be found on the internet on how to configure a server properly for Rewrite handling.</p>
+		
+		<p class="Note"><strong>Please Note:</strong> If you attempt to contact Ceon directly about any such issues you may be required to pay for any support given, as outlined in the <a href="support.html">support documentation</a>.</p>
+		
+		<p class="BackToTableOfContents"><a href="#top">Back to top</a></p>
+	</li>
+	
+	<li>
+		<h4><a name="rewrite-rule-error" id="rewrite-rule-error"></a>A server error is being displayed (e.g. a &ldquo;Bad Request&rdquo; error).</h4>
+		
+		<p>This is most likely caused by using the wrong path to &ldquo;index.php&rdquo; being used in the <code>RewriteRule</code> directive or by other rewrite rules on the server interfering with the rule being used for the Ceon URI Mapping module.</p>
+		
+		<ul class="BulletedList">
+			<li>If putting the rule in a <span class="FileName">.htaccess</span> file, then care needs to be taken with the location of the file and the final path to <code>index.php</code> being used in the <code>RewriteRule</code> directive.</li>
+			<li>If putting the rule in a <strong>VirtualHost directive</strong>, the <code>RewriteRule</code> will need to have the relative path to the Zen Cart directory prepended to <code>index.php</code>.</li>
+		</ul>
+		
+		<ul class="Steps">
+			<li>
+				<p>If putting the rule in a <span class="FileName">.htaccess</span> file, make sure the <strong>directory</strong> the shop is in (e.g. &ldquo;shop/&rdquo;) is before <code>index.php</code> in the last line of the Rewrite Rule. That may fix things!</p>
+				<p>For example, the line may end up looking as follows (<strong>note that there's no slash at the beginning of the shop's directory name</strong>):</p>
+				<p><code>RewriteRule .* shop/index.php?%{QUERY_STRING} [L]</code></p>
+			</li>
+			<li class="NoMarginBottom">
+				<p>If that doesn't work, try putting a slash in front of the path to the index.php file.</p>
+				<p>For example, the line may end up looking like one of the following:</p>
+				<p><code>RewriteRule .* /index.php?%{QUERY_STRING} [L]</code></p>
+				<p class="NoMarginBottom"><code>RewriteRule .* /shop/index.php?%{QUERY_STRING} [L]</code></p>
+			</li>
+		</ul>
+		
+		<ul class="Steps">
+			<li class="NoMarginBottom">
+				<p>If putting the rule in a <strong>VirtualHost directive</strong>, try adding the <strong>relative path</strong> to the shop (e.g. &ldquo;/&rdquo; or &ldquo;/shop/&rdquo;) before <code>index.php</code> in the last line of the Rewrite Rule and restart the webserver. Depending on your version of Apache, that may fix things!</p>
+				<p>For example, the line may end up looking as follows:</p>
+				<p class="NoMarginBottom"><code>RewriteRule .* /shop/index.php?%{QUERY_STRING} [L]</code></p>
+			</li>
+		</ul>
+		
+		<p>If trying the above doesn't help, then, this kind of issue is something that is outside the scope of this documentation. There are plenty of guides to be found on the internet on how to configure a server properly for Rewrite handling.</p>
+		<p class="Note"><strong>Please Note:</strong> If you attempt to contact Ceon directly about any such issues you may be required to pay for any support given, as outlined in the <a href="support.html">support documentation</a>.</p>
+		
+		<p class="BackToTableOfContents"><a href="#top">Back to top</a></p>
+	</li>
+	
+	<li>
+		<h4><a name="relative-path-issues" id="relative-path-issues"></a>When Ceon URI Mapping is enabled images stop appearing on the site!</h4>
+		
+		<p>Ceon URI Mapping enables a site to use static URIs.</p>
+		
+		<p>For a site to work with static URIs, <strong>all paths</strong> on the site must be <strong>relative to the site's root</strong>, NOT to the current page!</p>
+		
+		<p>These are often known as &ldquo;absolute&rdquo; paths.</p>
+		
+		<p>The site's root is &ldquo;/&rdquo;. E.g. <code>http://storesite.com/</code>.</p>
+		
+		<p>There are several things that can be done to make sure this happens.</p>
+		
+		<ul class="Steps">
+			<li>
+				<p>First off, make sure that the site has a <code>&lt;base href=&quot;http://storesite.com/&quot; /&gt;</code> tag set in the Zen Cart header file.</p>
+			</li>
+			<li>
+				<p>This tag <strong>must come before</strong> any tags that load in CSS or JavaScript files.</p>
+			</li>
+			<li>
+				<p>The tag is normally added by Zen Cart to the file <span class="FileName">includes/templates/template_default/common/html_header.php</span>.</p>
+			</li>
+			<li>
+				<p>If the store uses a custom template, it may be using a file <span class="FileName">includes/templates/STORE-TEMPLATE/common/html_header.php</span>.</p>
+			</li>
+			<li class="NoMarginBottom">
+				<p class="NoMarginBottom">Make sure that the <code>&lt;base href=&quot;...</code> tag is present in which of these files the store uses - unfortunately some template creators, unprofessionally, accidentally leave out this essential tag.</p>
+			</li>
+		</ul>
+		
+		<p>If that doesn't fix things, then individual paths may need to be changed from relative paths to absolute paths.</p>
+		
+		<ul class="Steps">
+			<li class="NoMarginBottom">
+				<p>Use paths that go right from the root to their final file.</p>
+				<p>For example, instead of a CSS file using a relative link to an image like:</p>
+				<p><code>url(../images/some-image-name.png)</code></p>
+				<p>Use a full, absolute path such as:</p>
+				<p class="NoMarginBottom"><code>url(/includes/templates/STORE-TEMPLATE/images/some-image-name.png)</code></p>
+				
+			</li>
+		</ul>
+		
+		<p class="BackToTableOfContents"><a href="#top">Back to top</a></p>
+	</li>
+	
+	<li>
+		<h4><a name="relative-path-issues-layout" id="relative-path-issues-layout"></a>When Ceon URI Mapping is enabled the site's layout is messed up!</h4>
+		
+		<p>This is the same issue that is covered in <a href="#relative-path-issues">this FAQ</a>.</p>
+		
+		<p class="BackToTableOfContents"><a href="#top">Back to top</a></p>
+	</li>
+	
+	<li>
+		<h4><a name="relative-path-issues-modules" id="relative-path-issues-modules"></a>When Ceon URI Mapping is enabled a module on the site doesn't work properly! (E.g. Dynamic menus/popups etc. stop working)</h4>
+		
+		<p>This is <strong>quite likely</strong> to be a similar issue to that covered in <a href="#relative-path-issues">this FAQ</a>.</p>
+		
+		<p class="Underlined">Try reading and applying what is mentioned in that FAQ first.</p>
+		
+		<p>If the information in that FAQ doesn't enable you to fix things:</p>
+		
+		<ul class="Steps">
+			<li>If the module uses JavaScript/AJAX, check any JavaScript to make sure that it isn't expecting the current page's URI always to be the root of the store (e.g. http://storesite.com/shop/).</li>
+			
+			<li>As static URIs appear to be like &ldquo;subfolders&rdquo; to modules written using JavaScript, the module may need to be recoded to work with static URIs.</li>
+		
+			<li class="NoMarginBottom">This can be done by having paths within the software built from the root of the store and not relative to the current &ldquo;subfolder&rdquo; on the site, as static URIs break the idea of a site having folders in the URI.</li>
+		</ul>
+		
+		<p>If that doesn't enable you to fix things:</p>
+		
+		<ul class="Steps">
+			<li>Check the module's code to see if it uses the <code>$_SERVER['REQUEST_URI']</code> variable.</li>
+			
+			<li>As the use of static URIs means that the Zen Cart query string parameters are no longer present in <code>$_SERVER['REQUEST_URI']</code>, any code which checks against them in this variable will fail, and therefore needs to be rewritten to work with a Zen Cart that uses static URIs.</li>
+		
+			<li class="NoMarginBottom">
+				<p>For example, if the code used a test such as:</p>
+				<p><code>strstr($_SERVER['REQUEST_URI'], 'create_account')</code></p>
+				<p>It could be changed to:</p>
+				<p class="NoMarginBottom"><code>$_GET['main_page'] == 'create_account'</code></p>
+			</li>
+		</ul>
+		
+		<p>If none of the above helps, then, this kind of issue is something that is outside the scope of this documentation.</p>
+		<p class="Note"><strong>Please Note:</strong> If you attempt to contact Ceon directly about any such issues you may be required to pay for any support given, as outlined in the <a href="support.html">support documentation</a>.</p>
+		
+		<p class="BackToTableOfContents"><a href="#top">Back to top</a></p>
+	</li>
+	
+	<li>
+		<h4><a name="file-extensions-blocked" id="file-extensions-blocked"></a>When the rewrite rule for Ceon URI Mapping is added, some file types on the site are blocked or showing up as 404s!</h4>
+		
+		<p>Information about preventing problems with Ceon URI Mapping &ldquo;blocking&rdquo; certain file types can found in <a href="configuration.html#prevent-rewriting-of-file-extensions">the configuration documentation</a>.</p>
+		
+		<p class="BackToTableOfContents"><a href="#top">Back to top</a></p>
+	</li>
+	
+	<li>
+		<h4><a name="session-id" id="session-id"></a>A session parameter (like &ldquo;<code>?zenid=XXXX</code>&rdquo;) is being added to the end of the store's URIs.</h4>
+		
+		<p>Zen Cart adds a session ID to the end of all links on the very first page that a user visits.</p>
+		<p>This is because when the user first arrives, no cookie has been set in their browser, so Zen Cart must assume that cookies are not enabled, and therefore it adds something like &ldquo;<code>?zenid=XXXX</code>&rdquo; to the end of all the links/URIs on the first page visited.</p>
+		<p>There is no way to avoid this; however <strong>it is not a problem</strong>!</p>
+		<p>Ceon URI Mapping has full Canonical URI support built in, so the search engines don't see the &ldquo;<code>?zenid=XXXX</code>&rdquo; bit at all and the site is not penalised in any way.</p>
+		<p>It may not look as nice as you'd like but it only appears for the first page and, as has just been said <strong>this is unavoidable - just ignore it</strong>!</p>
+		
+		<p class="BackToTableOfContents"><a href="#top">Back to top</a></p>
+	</li>
+	
+	<li>
+		<h4><a name="linked-products" id="linked-products"></a>A string beginning with &ldquo;<code>?cPath</code>&rdquo; is being added to the end of a product's URI.</h4>
+		
+		<p>The module retains Zen Cart's category history when linking to a linked product which is not within its &ldquo;master&rdquo; category, so the full path back through any parent categories is available. To do so, it is essential that the &ldquo;<code>cpath</code>&rdquo; query string parameter is added to the URI.</p>
+		<p>Without this feature all linked products would always show as belonging to their &ldquo;master&rdquo; category, which will not be the category the customer has accessed the product from.. this would make it appear to the customer that they had &ldquo;jumped&rdquo; to another part of the site, they would no longer be in the same category they were in previously!</p>
+		<p>There is no way to avoid the <code>cPath</code> parameter being added for linked products. It's advised to use linked products only when necessary and/or to simply accept that it's not possible in Zen Cart to omit the <code>cPath</code> parameter in the URI of linked products.</p>
+		
+		<p class="BackToTableOfContents"><a href="#top">Back to top</a></p>
+	</li>
+	
+	<li>
+		<h4><a name="rewrite-rule-blocking-addresses" id="rewrite-rule-blocking-addresses"></a>After adding the rewrite rule access to part of the site (e.g. the site's control panel) is being blocked.</h4>
+		
+		<p>Information about adding exceptions to the rewrite rule - and therefore restoring access to particular addresses on/sections of the site - can be found <a href="configuration.html#adding-rewrite-rule-exceptions">in the configuration documentation</a>.</p>
+		
+		<p class="BackToTableOfContents"><a href="#top">Back to top</a></p>
+	</li>
+	
+	<li>
+		<h4><a name="modifying-core-files" id="modifying-core-files"></a>Some of the core files have already been modified for the site. How can the Ceon URI Mapping code be added?</h4>
+		
+		<p>Each change in the core files required for the Ceon URI Mapping module to work is clearly marked in the sample versions of the files.</p>
+		<p>Changes begin with a comment such as:</p>
+		<p><code>// BEGIN CEON URI MAPPING 1 of x</code></p>
+		<p>And end with a comment such as:</p>
+		<p><code>// END CEON URI MAPPING 1 of x</code></p>
+		<p>Where &lsquo;<em>x</em>&rsquo; is the number of code changes within the current file which must be included for the Ceon URI Mapping module to use that file correctly.</p>
+		
+		<ul class="Steps">
+			<li class="NoMarginBottom">Each change should be copied and pasted into the modified core file <strong>at the exact same place</strong> it is present within the respective sample file.</li>
+		</ul>
+		
+		<ul class="Steps">
+			<li class="NoMarginBottom">Using a &ldquo;diff&rdquo; software package, such as the free WinMerge software or the excellent, commercial, Beyond Compare software, makes this considerably easier to do without mistakes.</li>
+		</ul>
+		
+		<p class="BackToTableOfContents"><a href="#top">Back to top</a></p>
+	</li>
+	
+	<li>
+		<h4><a name="modifying-template-files" id="modifying-template-files"></a>Some of the template files for the site have already been modified. How can the Ceon URI Mapping code be added?</h4>
+		
+		<p>The changes to the template files, which are required for static URIs to be able to be used by some of the standard Zen Cart sideboxes and by the product listing filter forms, are clearly marked in the sample versions of the files.</p>
+		<p>Changes begin with a comment such as:</p>
+		<p><code>// BEGIN CEON URI MAPPING 1 of x</code></p>
+		<p>And end with a comment:</p>
+		<p><code>// END CEON URI MAPPING 1 of x</code></p>
+		<p>Where &lsquo;<em>x</em>&rsquo; is the number of code changes within the current file which must be included for the Ceon URI Mapping module to use that file correctly.</p>
+		
+		<ul class="Steps">
+			<li class="NoMarginBottom">Each change should be copied and pasted into the modified template file <strong>at the exact same place</strong> it is present within the respective sample file.</li>
+		</ul>
+		
+		<ul class="Steps">
+			<li class="NoMarginBottom">Using a &ldquo;diff&rdquo; software package, such as the free WinMerge software or the excellent, commercial, Beyond Compare software, makes this considerably easier to do without mistakes.</li>
+		</ul>
+		
+		<p class="BackToTableOfContents"><a href="#top">Back to top</a></p>
+	</li>
+	
+	<li>
+		<h4><a name="missing-config-group-option" id="missing-config-group-option"></a>The software is installed abut there is no &ldquo;Ceon URI Mapping (SEO)&rdquo; option in the store's &ldquo;Configuration&rdquo; menu.</h4>
+		
+		<p>It essential that there is a section in the &ldquo;Configuration&rdquo; menu of the store's Zen Cart admin called &ldquo;Ceon URI Mapping (SEO)&rdquo;.</p>
+		
+		<p>If this configuration group and option is missing Ceon URI Mapping will show and work within the Zen Cart admin but will <strong>not be enabled in the store</strong> - standard Zen Cart dynamic URIs will be used!</p>
+		
+		<p>For some reason, some servers fail to add the configuration group and option when installing Ceon URI Mapping.</p>
+		
+		<p>This can hopefully be fixed by the following...</p>
+		
+		<ul class="Steps">
+			<li>
+				<p>Go to <em>Modules &gt; Ceon URI Mapping (SEO) Config</em> in the Zen Cart Admin.</p>
+			</li>
+			<li>
+				<p>Then go to the <em>Installation Check</em> tab and click on the link to open the Installation Check utility page.</p>
+			</li>
+			<li>
+				<p>The module will now automatically carry out the installation check.</p>
+			</li>
+			<li>
+				<p>If any errors are listed, follow the instructions given by the software.</p>
+			</li>
+			<li>
+				<p>Now go <strong>back</strong> to <em>Modules &gt; Ceon URI Mapping (SEO) Config</em> in the Zen Cart Admin.</p>
+			</li>
+			<li>
+				<p>Go back to the <em>Installation Check</em> tab and click on the link to run the configuration checker.</p>
+			</li>
+			<li class="NoMarginBottom">
+				<p class="NoMarginBottom">If any problems are found with the configuration, the software should hopefully be able to fix the problems.</p>
+			</li>
+		</ul>
+		
+		<p>If this does not fix things then there is simply something wrong with the server/site itself.</p>
+		
+		<p class="BackToTableOfContents"><a href="#top">Back to top</a></p>
+	</li>
+	
+	<li>
+		<h4><a name="missing-config-utility-menu-item" id="missing-config-utility-menu-item"></a>When installing/upgrading the software for a Zen Cart 1.3.x store there is no menu item called &ldquo;Ceon URI Mapping (SEO) Config&rdquo; in the &ldquo;Modules&rdquo; menu of the store's Zen Cart admin.</h4>
+		
+		<p>The additional file to add the link to the Ceon URI Mapping Config Utility to the store admin's modules menu must have accidentally been missed when installing/upgrading the software.</p>
+		
+		<ul class="Steps">
+			<li class="NoMarginBottom">
+				<p class="NoMarginBottom">Copy the file missed out originally. <a href="installation.html#additional-file-for-zc-1-3-x">Click here</a> for more information on what file should be copied.</p>
+			</li>
+		</ul>
+		
+		<p class="BackToTableOfContents"><a href="#top">Back to top</a></p>
+	</li>
+	
+	<li>
+		<h4><a name="distribute-to-clients" id="distribute-to-clients"></a>Can we distribute this distribution to our clients?</h4>
+		
+		<p>Yes, the software is GPL. However, the documentation in this distribution is copyrighted to Ceon and must not be distributed in a modified form without our express permission.</p>
+		<p>As long as the documentation isn't modified, it can be freely distributed along with the software.</p>
+		<p>If you'd like to modify the documentation, for example by branding it with your company logo, please <a href="http://ceon.net/software/business/zen-cart/uri-mapping/contact-us?doc=zc-um">contact us</a> for permission! A credit acknowledgement to Ceon and JKED will <strong>always</strong> be required.</p>
+		
+		<p class="BackToTableOfContents"><a href="#top">Back to top</a></p>
+	</li>
+	
+	<li>
+		<h4><a name="help-donate" id="help-donate"></a>How can I donate/help with the module?</h4>
+		
+		<p>If you have any feedback or a bug report, please <a href="http://ceon.net/software/business/zen-cart/uri-mapping/contact-us?doc=zc-um">send it to us</a>! There's nothing that makes developing more rewarding than feeling that it is appreciated!</p>
+		
+		<ul class="Steps">
+			<li class="NoMarginBottom">
+				<p><a href="https://cardpay.ceon.net/zc-uri-mapping?doc=zc-um"><img src="../_images/ceon-donation-button.png" alt="Donate by Credit/Debit Card or PayPal.  We accept Visa, MasterCard, Maestro, American Express, Visa Debit, Visa Electron &amp; MasterCard Debit!" title="Donate by Credit/Debit Card or PayPal.  We accept Visa, MasterCard, Maestro, American Express, Visa Debit, Visa Electron &amp; MasterCard Debit!" class="RightImage NoMarginBottom" /></a>This module has taken over 14 weeks of work, with none of the time taken being paid for by anyone, so if you find it useful, please support us - just click the donate button.</p>
+				<p>We'll have more time to keep this contribution up-to-date and to support those who need our help if some nice people <a href="https://cardpay.ceon.net/zc-uri-mapping?doc=zc-um" title="Donate by Credit/Debit Card or PayPal. We accept Visa, MasterCard, Maestro, American Express, Visa Debit, Visa Electron &amp; MasterCard Debit!" class="RightImage NoMarginBottom">donate</a>.</p>
+				<p class="NoMarginBottom"><strong>Fewer than 1 in 500 people donate towards our software, so it would be greatly appreciated</strong> - Thanks!</p>
+				<div class="SpacerSmall"></div>
+			</li>
+		</ul>
+	</li>
+</ol>
+
+<p class="BackToTop"><a href="#top">Back to top</a></p>
+
+<p id="footer"><a href="http://ceon.net/software/business/zen-cart?doc=zc-um" target="_blank"><img src="../_images/ceon-button-logo.png" alt="Ceon" id="ceon-button-logo" /></a><a href="http://jked.net" target="_blank"><img src="../_images/jked-logo.gif" alt="JKED" id="jked-logo" /></a>Module &amp; Documentation &copy; Copyright 2008-2012 <a href="http://ceon.net/software/business/zen-cart?doc=zc-um" target="_blank">Ceon</a></p>
+
+	</div>
+</div>
+
+<script type="text/javascript">
+<!-- // Output resizeable div end tag
+restrict_width.outputClosingTag();
+// -->
+</script>
+
+</body>
+</html>

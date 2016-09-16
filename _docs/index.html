@@ -1,0 +1,760 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>.:: Ceon :: Zen Cart :: Module :: Ceon URI Mapping ::.</title>
+	<link rel="stylesheet" href="_css/inc.css.layout-styles.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="_css/inc.css.styles.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="_css/inc.css.layout-styles-print.css" type="text/css" media="print" />
+	<script src="_javascript/inc.js.general-functions.js" type="text/javascript"></script>
+	<script src="_javascript/inc.js.css-functions.js" type="text/javascript"></script>
+	<script src="_javascript/inc.js.restrict-width.js" type="text/javascript"></script>
+	<script src="_javascript/inc.js.crossfade.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="_css/litebox.css" type="text/css" media="screen" />
+	<script src="_javascript/litebox/prototype.lite.js" type="text/javascript"></script>
+	<script src="_javascript/litebox/moo.fx.js" type="text/javascript"></script>
+	<script src="_javascript/litebox/litebox-1.2.js" type="text/javascript"></script>
+	<!--[if gte IE 5]>
+	<link rel="stylesheet" href="_css/litebox-ie.css" type="text/css" media="screen" />
+	<![endif]-->
+</head>
+
+<body><a name="top" id="top"></a>
+
+<noscript>
+	<style type="text/css">
+	body { margin: 0 auto; max-width: 75em; padding-left: 5%; padding-right: 5%; }
+	.CrossFadeText { margin: 0 auto; max-width: 75em; right: auto; padding-left: 20em; }
+	</style>
+</noscript>
+
+<script type="text/javascript">
+<!-- 
+// Script resizes main div if client window is larger than a predefined variable
+var restrict_width = new CeonRestrictWidth(360, 900);
+
+// Initialise crossfade by hiding crossfade object first
+CeonAddLoadEvent(CeonCrossfadeInit);
+
+CeonAddLoadEvent(initLightbox);
+
+document.write('<' + 'style type="text/css" media="screen">');
+document.write('.JavaScriptOutput, .JavaScriptAndPrintOutput { display: block; }');
+document.write('.NoscriptAndPrintOutputBlock { display: none; }<' + '/style>');
+// -->
+</script>
+
+<div id="grad-horiz-left">
+	<div id="grad-horiz-right">
+
+<h1 class="Title">Ceon URI Mapping</h1>
+<div class="TitleByLineWrapper">&nbsp;
+	<div id="crossfade">
+		<p class="CrossFadeText" id="byline"><a href="http://ceon.net/software/business/zen-cart?doc=zc-um">probably the best Zen Cart URI Mapping/SEO Module in the world! ...ever!</a></p>
+		<p class="CrossFadeText" id="ceon-link"><a href="http://ceon.net/software/business/zen-cart?doc=zc-um">Click here to get more great software from Ceon</a></p>
+	</div>
+</div>
+<ul class="MainMenu">
+	<li><a href="index.html">Overview</a><span> | </span></li>
+	<li><a href="sections/installation.html">Installation</a><span> | </span></li>
+	<li><a href="sections/configuration.html">Configuration</a><span> | </span></li>
+	<li><a href="sections/faqs.html">FAQs</a><span> | </span></li>
+	<li><a href="sections/support.html">Support</a><span> | </span></li>
+	<li><a href="sections/revision-history.html">Revision History</a><span> | </span></li>
+	<li><a href="sections/upgrading.html">Upgrading</a><span> | </span></li>
+	<li><a href="sections/module-info.html">Module Info</a><span> | </span></li>
+	<li><a href="sections/features.html">Module Features</a></li>
+</ul>
+
+
+<div class="DonationRequest" style="width: 31%">
+	<p><a href="https://cardpay.ceon.net/zc-uri-mapping?doc=zc-um"><img src="_images/ceon-donation-button.png" alt="Donate by Credit/Debit Card or PayPal. We accept Visa, MasterCard, Maestro, American Express, Visa Debit, Visa Electron &amp; MasterCard Debit!" title="Donate by Credit/Debit Card or PayPal. We accept Visa, MasterCard, Maestro, American Express, Visa Debit, Visa Electron &amp; MasterCard Debit!" class="RightImage" /></a>This module has taken over 14 weeks of work, with none of the time taken being paid for by anyone, so if you find it useful, please support us - just click the donate button.</p>
+	<p class="NoMarginBottom"><strong>Fewer than 1 in 500 people donate towards our software, so it would be greatly appreciated</strong> - Thanks!</p>
+</div>
+
+<p class="Highlight1"><strong>IMPORTANT</strong>: This plugin has been updated to work with newer Zen Cart versions, currently up to v1.5.5. NO changes to this documentation (other than in the Revision History) so the many links throughout these pages to the old ceon.net server no longer work as the old Ceon server is now defunct.</p>
+<p class="Highlight1">Support is available through the Zen Cart forum thread: <a href="https://www.zen-cart.com/showthread.php?184548-Ceon-URI-Mapping-v4-x" target="_blank">https://www.zen-cart.com/showthread.php?184548-Ceon-URI-Mapping-v4-x</a>.</p>
+<p>Thanks for using software from Ceon...we're sure it will contribute to making the store a great success!</p>
+<p>The step-by-step <a href="sections/installation.html">Installation Instructions</a> for this module are easy to follow, with the whole process taking just a few minutes.</p>
+<p><strong>You must read the first section</strong> of the <a href="sections/configuration.html">configuration documentation</a>. We've gone to great lengths to make it as easy to follow as possible, so you can set up the store's URI mappings quickly and easily.</p>
+<p>If you have any problems configuring the software, or encounter any errors (for example &ldquo;Bad Request&rdquo; server errors etc.), please check the <a href="sections/faqs.html">Frequently Asked Questions (FAQs)</a> for quick solutions, or avail of the <a href="sections/support.html">support</a> that we offer.</p>
+<p>Don't forget to check out our other software...we've no doubt you'll find it essential as well...</p>
+
+<div class="SpacerSmall"></div>
+
+<div class="OtherZenCartReleasesIntroBox">
+	<h2><a name="our-other-zc-releases" id="our-other-zc-releases"></a>Build a better e-commerce store and get more orders from customers!</h2>
+	<h3>Other Zen Cart Releases from Ceon</h3>
+	<p>We offer many modules essential for any Zen Cart store - check out the other modules we have available to help <strong>build a better and more profitable store</strong>...</p>
+	
+	<ul class="OtherCeonReleasesMenu">
+		<li><a href="#uri">URI Mapping (SEO/SEF) Software</a></li>
+		<li><a href="#shipping">Advanced Shipping Software</a></li>
+		<li><a href="#product-variants">Product Variants (Attributes with Stock) Software</a></li>
+		<li><a href="#marketing">Marketing Modules</a></li>
+		<li><a href="#tax">Tax Modules</a></li>
+		<li><a href="#payment">Payment Modules</a></li>
+	</ul>
+</div>
+
+<div class="OtherCeonSoftwareIntroBox">
+	<h2>Take Credit/Debit Card Payments Online</h2>
+	<h3>Other Software from Ceon</h3>
+	<p>We don't just write great software for Zen Cart, our main focus is in fact on more general software, some of which is essential for any business...</p>
+	<p><a href="http://ceon.net/software/business/cardpay?doc=zc-um"><img src="_images/cardpay-sage-pay-edition-logo-w178.png" alt="CardPay - Sage Pay Edition" class="RightImage" id="other-ceon-software-card-pay-logo" /></a><a href="http://ceon.net/software/business/cardpay?doc=zc-um"><strong>CardPay</strong></a> - the Online Payment Form software <strong class="Underlined">no business should be without!</strong>.</p>
+	<p><strong>Accept card payments for invoices, orders... anything at all!</strong></p>
+</div>
+
+<div class="SpacerSmall"></div>
+
+<script type="text/javascript">
+<!-- 
+function otherReleasesShowDesc(id)
+{
+	if (document.getElementById) {
+		el = document.getElementById(id);
+		
+		if (el.style.display != 'block') {
+			el.style.display = 'block';
+		}
+		
+		document.getElementById(id + '-control').parentNode.removeChild(document.getElementById(id + '-control'));
+	}
+}
+// -->
+</script>
+
+<h3 class="OtherReleasesSectionTitle"><a name="uri" id="uri"></a>URI Mapping (SEO/SEF) Software</h3>
+
+<fieldset class="OtherReleases">
+	<legend><a href="http://ceon.net/software/business/zen-cart/uri-mappings-manager?doc=zc-um" target="_blank">Ceon URI Mappings Manager</a></legend>
+	
+	<h1 class="ExtraEmphasis">Easily manage URI Mappings (Static URLs/URIs) for existing/large stores.
+	<br />The intuitive interface makes generating and editing URIs quick and painless!</h1>
+	
+	<div class="ScreenshotsWithCaption">
+		<a href="_images/ceon-uri-mappings-manager-screenshots/create-manage-category-product-mappings-w680.png" rel="lightbox[ceon-umm]" title="Screenshot showing the Create/Manage Category/Product URIs section. Clicking auto-generate creates URI mappings for the selected categories and all their subcategories and products at once, with the URIs conforming to the format(s) specified in the URI Mapping Templates."><img src="_images/ceon-uri-mappings-manager-screenshots/create-manage-category-product-mappings-w250.png" alt="The Create/Manage Category/Product URIs section of Ceon URI Mappings Manager. Clicking auto-generate creates URI mappings for the selected categories and all their subcategories and products at once, with the URIs conforming to the format(s) specified in the URI Mapping Templates.." class="RightImage Screenshot" /></a>
+		
+		<a href="_images/ceon-uri-mappings-manager-screenshots/create-manage-other-pages-mappings-w680.png" rel="lightbox[ceon-umm]" title="The Create/Manage &ldquo;Other Page&rdquo; URIs section. URI mappings for &ldquo;other&rdquo; Zen Cart pages can be easily entered/changed en masse, or pages can be selected to use auto-generation. With auto-generation, the software smartly reads the defines for the pages, for every language the store uses, and the user can pick which define to use when creating the URI for a page!"></a>
+		
+		<a href="_images/ceon-uri-mappings-manager-screenshots/category-product-uris-import-w680.png" rel="lightbox[ceon-umm]" title="Screenshot showing the output of the Category/Product URIs Import process. The current URIs for the site's categories and products have been recorded as &ldquo;historical&rdquo; URIs. These old URIs will now be automatically redirected to the new URIs generated by/entered for Ceon URI Mapping, preventing broken links from search engines and other sites!"></a>
+		
+		<div class="SpacerSmall"></div>
+		<p class="JavaScriptOutput">Click the image above for some screenshots which show the great functionality this software offers to help stores manage their URIs quickly and effectively!</p>
+	</div>
+	
+	
+	<h4 class="Feature">Bulk-generate Static URIs for Pages</h4>
+	
+	<ul class="BulletedList">
+		<li>Generate URI Mappings for entire categories at once - including their subcategories and all their products.
+			<ul class="NoBullets">
+				<li class="FeatureExtraInfo">If the store uses software such as <b><i>Easy Populate</i></b>, or <strong><em>Apsona ShopAdmin</em></strong>, or other <strong><em>custom product feeds</em></strong>, Ceon URI Mappings Manager<strong> </strong>makes it easy to maintain the URIs, as they can be generated after products/categories are bulk-uploaded/updated.</li>
+			</ul>
+		</li>
+		
+		<li>Generate URI Mappings for all the standard &ldquo;other&rdquo; Zen Cart pages at once (Contact Us page, Shipping page, All Products listing page etc.), or for all Manufacturers or EZ-Pages at once.</li>
+	</ul>
+	
+	
+	<h4 class="Feature">Redirect the Store's Old/Current URIs - Prevent Broken Links</h4>
+	
+	<ul class="BulletedList TighterList">
+		<li>Stores that have URIs generated by other software, such as Ultimate SEO, Simple SEO, Magic SEO etc., can import these existing URIs as historical URI mappings.</li>
+		<li>The old SEO module's URIs will redirect to the new Ceon URI Mapping URIs, <strong>reducing the possibility of broken links from search engines and other sites!</strong></li>
+	</ul>
+	
+	
+	<h4 class="Feature">Set Auto-generation Templates</h4>
+	
+	<ul class="BulletedList">
+		<li>Define auto-generation &ldquo;templates&rdquo; for the entire store, or for individual categories, manufacturers, EZ-Pages or &ldquo;other&rdquo; pages. E.g. Products could have their model included in the generated URIs: /<span class="TextWithTooltipTitleNowrap" title="The full category path of all the parent categories for the product">{category-path}</span>/<span class="TextWithTooltipTitleNowrap" title="The name of the product">{product-name}</span>-<span class="TextWithTooltipTitleNowrap" title="The product's model code">{product-model}</span>.</li>
+	</ul>
+	
+	
+	<h4 class="Feature">Manage Current/Historical URI Mappings and Aliases</h4>
+	
+	<ul class="BulletedList TighterList">
+		<li>Add, edit and delete URI mappings for any Zen Cart page through its intuitive interface - there's no longer any need to manually edit the database!</li>
+		
+		<li>Examine, add and delete historical URI mappings - prevent broken links by redirecting the visitor to the current URI for any page.</li>
+		<li>Add, edit and delete URI mapping aliases for other pages - optimise the site's keywords further!</li>
+	</ul>
+	
+	<h2 class="ExtraEmphasis">Ceon URI Mappings Manager <span class="ExtraEmphasis2">can <strong>save hours of work</strong></span> generating/adding URI mappings for each category/product/page for an existing store!</h2>
+	
+	<p class="NoMarginBottom">Find out more <a href="http://ceon.net/software/business/zen-cart/uri-mappings-manager?doc=zc-um" target="_blank">by visiting its website</a>.</p>
+</fieldset>
+
+<p class="OtherReleasesBackToTop"><a href="#top">Back to top</a></p>
+
+
+
+<h3 class="OtherReleasesSectionTitle"><a name="shipping" id="shipping"></a>Advanced Shipping Software</h3>
+
+<fieldset class="OtherReleases">
+	<legend><a href="http://ceon.net/software/business/zen-cart/advanced-shipper?doc=zc-um" target="_blank">Advanced Shipper 5</a></legend>
+	<h1 class="ExtraEmphasis"><img src="_images/advanced-shipper-logo-w150.png" alt="Advanced Shipper" class="RightImage" />Save a Fortune on Postage/Courier Costs!</h1>
+	
+	<div class="Testimonial">
+		<blockquote>
+			<p>&ldquo;I think what you have done with the software is fantastic.  It really is the only shipping mod ever needed.</p>
+			<p>&ldquo;I don't know why people bother messing about with all the different shipping mods.</p>
+			<p>&ldquo;The cost of Advanced Shipper doesn't break the bank and it's more than worth it!&rdquo;</p>
+		</blockquote>
+		<p class="TestimonialAuthor">Shane Knight,
+		<br /><a href="http://www.1body1life.co.uk" target="_blank">1 Body 1 Life</a></p>
+	</div>
+		
+	<ul class="BulletedList">
+		<li class="ExtraEmphasis2">
+		<h2 class="NoMarginTop">Let the customers pay the actual shipping costs - not the store!</h2></li>
+		<li class="ExtraEmphasis">
+		<h2 class="NoMarginTop">Easily set rates for individual products, whole categories or even specific manufacturers - great for drop-shipping setups!</h2></li>
+		<li class="ExtraEmphasis2">
+		<h2 class="NoMarginTop">Don't spend hours hacking other shipping modules together - set up methods quickly and easily - time is money too!</h2></li>
+		<li class="ExtraEmphasis2">
+		<h2 class="NoMarginTop">No longer do shipping costs have to be built into the store's prices or set to a rate that puts customers off ordering!</h2></li>
+	</ul>
+	
+	<p class="JavaScriptOutput ShowHide"><a href="javascript:otherReleasesShowDesc('advanced-shipper-desc');" id="advanced-shipper-desc-control">Click here to show more info...</a></p>
+	
+	<div id="advanced-shipper-desc" class="NoscriptAndPrintOutputBlock">
+	
+	<h3>Product / Category / Manufacturer Rates</h3>
+	<p>The Advanced Shipper module allows <strong>individual products</strong> and/or <strong>entire product categories</strong> and/or <strong>all products from specific manufacturer(s)</strong> to have their own specific <em>shipping rates</em>!</p>
+	<p>There is no limit on the number of <em>method</em>s which can be defined, <em>products</em>/<em>categories</em>/<em>manufacturers</em>/<em>the whole store</em> can have multiple <em>shipping method</em>s if desired (E.g. &ldquo;Royal Mail 2nd Class&rdquo;, &ldquo;Royal Mail Next Day&rdquo; etc.)!</p>
+	<p>If there are various shipping options for the items within a customer's shopping cart, they are presented with all possible combinations of shipping methods for those items, so they can choose the method (combination) that best suits them!</p>
+	<p class="Example">For example, if a customer has a magazine in their cart as well as a bookcase, they can be offered the following options, which let them choose between normal or express delivery for the magazine while having the bookcase shipped via a pallet service:
+		<br /><img src="_images/advanced-shipper-screenshots/method-comb-example.png" alt="Example of Shipping Method Combinations being offered to customer at checkout." class="ExampleScreenshot NoMarginBottom" /></p>
+	<p>Being able to specify exactly which products/categories/manufacturers use which method(s) makes it very easy indeed to set up almost any type of shipping arrangement, including <strong>complex drop-shipping arrangements</strong> etc., something most/all other Zen Cart shipping modules can't do.</p>
+	<p>In fact, <strong>very few</strong> shopping cart software packages, commercial and/or open source, can match Advanced Shipper's functionality as integrated with Zen Cart, never mind its <strong>ease of use</strong>!</p>
+
+
+	<h3>Flexible Region Definitions</h3>
+	<p>There are multiple mechanisms for defining <em>Shipping Regions</em>, including <strong>Geolocation</strong> and <strong>Country/Postcode Matching</strong> - a hugely flexible option which allows you to set up <em>shipping regions</em> quickly and easily by matching against the customer's postcode/zipcode etc.!</p>
+
+	<p class="Note">With the extra <strong><a href="http://ceon.net/software/business/zen-cart/advanced-shipper-zones?doc=zc-um" target="_blank">Advanced Shipper Zones</a></strong> module, an additional option, <strong>Country/Zone Matching</strong>, can be used to match against addresses using Zen Cart <em>Zones</em>. Stores which already have a list of <em>Zones</em> set up for shipping purposes may find this module very handy indeed!</p>
+
+	<p class="Note">Another expansion module, the <strong><a href="http://ceon.net/software/business/zen-cart/advanced-shipper-localities?doc=zc-um" target="_blank">Advanced Shipper Localities</a></strong> module, also adds additional options, <strong>Country/State Matching</strong> and <strong>Country/City Matching</strong>, which can be used to ensure that customers are only able to use a set list of <em>States</em>/<em>Areas</em>/<em>Cities</em>, thereby restricting shipping to places on that list - very useful for local delivery stores etc.!</p>
+
+
+	<h3>Comprehensive Rate Definition Options</h3>
+	<p><em>Shipping rates</em> are defined based on a combination of the customer's shipping address - the &ldquo;<em>Shipping Region</em>&rdquo; it is in - and the details for the <em>applicable products</em>; their total <strong>Weight</strong>, total <strong>Price</strong> or the <strong>Number of Items</strong> of applicable products, or the <strong>Total Order Price</strong> of <em>all</em> the <em>products</em> for an <em>order</em> (not just the total price of the applicable products for the method!).</p>
+
+	<p>If rates have been defined for individual <em>products</em> and/or <em>categories</em> and/or <em>manufacturers</em>, the overall rate will be calculated based on the composition of their shopping cart.</p>
+
+	<p>Rates can be entered as <strong>flat rates</strong>, <strong>percentage rates</strong>, a <strong>joint percentage rate &amp; flat rate</strong>, as a <strong>block rate</strong>, as a <strong>series of combination rates</strong> or in several other ways...</p>
+
+	<p><strong class="FeatureTitle">Percentage Rates</strong> allow rates to be set up by <strong>weight</strong>/<strong>price</strong>/<strong>number of items</strong> quickly and easily, without having to enter long lists of <em>limits</em> &amp; <em>rates</em>!</p>
+	
+	<p class="Example">For Example, if a <em>shipping method</em> uses a courier service which charges by the Kg/lb, a &pound;1.25/Kg (or $1.25/lb) charge could be applied with the following rate definition:
+		<br /><br />&lt;weight&gt;*:125%&lt;/weight&gt;
+		<br /><br />For a 3.00Kg/lb order, this would be calculated as 125% x 3.00 = 3.75.
+	</p>
+	
+	<p><strong class="FeatureTitle">Block Rates</strong> provide for the charging of a set rate per &ldquo;block&rdquo; or <strong>part</strong> of a block of the <strong>weight</strong>/<strong>price</strong>/<strong>number of items</strong>. The <strong>weight</strong>/<strong>price</strong>/<strong>number of items</strong> is divided up according to a &ldquo;block size&rdquo;, which is rounded up to the nearest whole number of blocks, and multiplied by the specified rate.</p>
+	
+	<p class="Example">For Example, if a <em>shipping method</em> uses a courier service which charges &pound;1.50 (or $1.50) for each 0.5Kg/lb or part thereof, the following rate definition could be used:
+		<br /><br />&lt;weight&gt;*:[0.5:1.50]&lt;/weight&gt;
+		<br /><br />For a 1.25Kg/lb order, this would be calculated as 3 x 1.50 = 4.50.
+	</p>
+	
+	<p><strong class="FeatureTitle">Combination Rates</strong> allow orders to be priced using multiple rates at the same time!</p>
+	<p class="Example">For Example, the same bookcase as above could be sent for an International Order by a <em>method</em> which uses a <em>combination rate</em> that charges more per Kg for the first 10Kg than the second:
+		<br /><img src="_images/advanced-shipper-screenshots/combination-rate-example.png" alt="Example of Combination Rate being applied to a 20Kg product at checkout." class="ExampleScreenshot NoMarginBottom" /></p>
+	
+	<p><strong class="FeatureTitle">Minimum/Maximum Rates</strong> make setting up rates even simpler by allowing the specification of a <strong>minimum</strong> or <strong>maximum</strong> rate to be applied to any rate calculation. For example, it's easy to state that a rate should be based on a percentage of the weight of the applicable products in the cart, but should cost a <em>minimum</em> amount. This works independently of any <em>surcharge</em> which can also be added on!</p>
+	
+	<p><strong class="FeatureTitle">Nested Tables of Rates</strong> - Advanced Shipper even allows <strong>multiple calculation methods</strong> to be used per individual <em>shipping method</em>! A <strong>very</strong> powerful option which allows ever more flexible shipping rate rules to be set up. For example:</p>
+	<p class="Example">&lt;price&gt;0-250: &lt;weight&gt;0-10: 2.50, 10-30: 4.50&lt;/weight&gt;, 250-*: 0.00&lt;/price&gt;
+		<br /><br />For orders less than &pound;250 in value, shipping for orders weighing 0-10Kg will cost &pound;2.50 and for orders weighing 10-30Kg it will cost &pound;4.50.
+		<br /><br />For orders over &pound;250, shipping will be free.
+	</p>
+	
+	<p><strong class="FeatureTitle">UPS Rates Calculator</strong> - This can be used to have the module contact UPS for a custom set of shipping quotes for the applicable products. The <em>Source Country</em> and <em>Source Zipcode/Postcode</em> configuration options for each <em>region</em> of each <em>method</em> mean that it is easy to set up <strong>drop-shipping using UPS</strong> directly from a manufacturer or distribution centre etc., even for individual products/categories/manufacturers!</p>
+	
+	<p><strong class="FeatureTitle">USPS Rates Calculator</strong> - This can be used to have the module contact USPS for a custom set of shipping quotes for the applicable products. The <em>Source Country</em> and <em>Source Zipcode/Postcode</em> configuration options for each <em>region</em> of each <em>method</em> mean that it is easy to set up <strong>drop-shipping using USPS</strong> directly from a manufacturer or distribution centre etc., even for individual products/categories/manufacturers!</p>
+	
+	<p><strong class="FeatureTitle">FedEx Rates Calculator</strong> - This can be used to have the module contact FedEx for a custom set of shipping quotes for the applicable products. The <em>Source Country</em> and <em>Source Zipcode/Postcode</em> configuration options for each <em>region</em> of each <em>method</em> mean that it is easy to set up <strong>drop-shipping using FedEx</strong> directly from a manufacturer or distribution centre etc., even for individual products/categories/manufacturers!</p>
+
+	<p><strong class="FeatureTitle">Contact Store Message Rates</strong> can be used instead of a numerical rate for individual <em>methods</em>, to <strong>prevent customers from checking out</strong> with the particular item(s) they have in their cart and instead have the module display a message. (For example, a message such as <em>&ldquo;Please contact the store for a personal shipping arrangement&rdquo;</em> could be displayed).</p>
+	<p>This is a very handy option to have for awkward products/categories/manufacturers, or even to place limits on the number of a items a customer can order etc. (E.g. &ldquo;To order more than 50 units please contact us for a special shipping arrangement&rdquo;).</p>
+	
+	<p><strong class="FeatureTitle">Contact Store After Order Message Rates</strong> can be used to allow customers to check out with the particular item(s) they have in their cart but also to request that they <em>&ldquo;Contact the store for a personal shipping arrangement after completing your order&rdquo;</em> - so no potential sales are lost but the customer is still kept informed!</p>
+	
+	<p><strong class="FeatureTitle">Individual Rates Per Product</strong> - Advanced Shipper can even link to the products database to look up a rate for each applicable product. This allows the store to have specific rates for specific products! Multiple rates per product are supported, so it's possible to assign different rates to different delivery regions. (The individual rates should simply have been entered in a custom field in the products table).</p>
+	
+	
+	<div class="Testimonial" style="margin-top: 1.2em;">
+		<blockquote>
+			<p>&ldquo;Ceon have released the aspirin which will eventually cure all Zen Cart developers' headaches - Advanced Shipper.</p>
+			<p>&ldquo;Thanks to this module I can now ditch the half hearted solutions I was forced to provide my clients.</p>
+			<p>&ldquo;Thank you for saving me time, money and pain.&rdquo;</p>
+		</blockquote>
+		<p class="TestimonialAuthor">Tom Harding,<br />
+		Web Developer</p>
+	</div>	
+	
+	<h3>Multiple Packages Support</h3>
+	<p>If there is a <strong>maximum weight</strong> of applicable products which can be sent in a single package, and the ability to split the order into multiple packages is available to the store, the weight at which the products will be split into another package can be specified.</p>
+	<p>Advanced Shipper will automatically work out how to combine the applicable products into the least number of individual packages possible. It will also take into account any packaging weight that must be added on per package!</p>
+
+
+	<h3>Packaging Weights</h3>
+	<p>For rates being calculated using the <strong>weight</strong> of the applicable products, a table of <strong>packaging weights</strong> to be added on to the weight of the applicable products - before the rate for the weight is calculated - can be specified.</p>
+	<p>In a similar fashion to the rates themselves, the additional <em>packaging weights</em> can be specified using flat weights, percentage weights, flat &amp; percentage weights, block weights or combination weights!</p>
+	
+	
+	<h3>Surcharges/Discounts</h3>
+	<p>As if all of that wasn't enough, an additional <strong>surcharge</strong>, or a <strong>discount</strong> against the calculated shipping rate, can also be specified for <strong>each</strong> individual shipping method/region!</p>
+	<p>It is <strong>simple</strong> to <strong>add on charges for insurance</strong> (for example, based on the total price of the products), to <strong>add on a charge for handling a large order</strong> (for example, one having several packages) etc. or to <strong>apply a discount to the calculated shipping rate</strong> (for example, to reduce the rate returned by UPS/USPS by a certain percentage).</p>
+	<p>The surcharge/discount can be a simple flat rate, or can use its own, <strong>full table of rates</strong>, based on the total <strong>Price</strong> or the <strong>Number of Items</strong> of the applicable products, the <strong>Total Order Price</strong> of all products in the order (not just the total price of the applicable products for the method), the <strong>Shipping Rate</strong> calculated for the method, the total <strong>Weight</strong> of all the packages calculated for the method (all the applicable products plus the packaging) or the <strong>Number of Packages</strong> being used to ship the applicable products by this method!</p>
+
+	<h3>Method Availability Scheduling &amp; Shipping Scheduling</h3>
+	<p>Individual shipping methods can be set to be <strong>valid only for certain time periods</strong>, or a <strong>preferred shipping date</strong> (or selection of shipping dates) can be offered to the customer!</p>
+	
+	<p class="Example">For example, a &ldquo;Saturday Delivery&rdquo; Method could be configured to be available from Thursdays (at 16:00) until Fridays (at 16:00).
+	<br />
+	<br />The Shipping Method would then only be available as an option from 4PM on Thursday afternoon until 4PM on Friday afternoon.</p>
+	
+	<p class="Example">An example of offering a selection of shipping dates:
+		<br /><img src="_images/advanced-shipper-screenshots/recurring-methods-example.png" alt="Example of Offering Shipping Scheduling." class="ExampleScreenshot NoMarginBottom" /></p>
+
+	<p>In addition, it is also possible to set a <strong>limit on the number of orders which can make use of a particular shipping method</strong> within its availability period.</p>
+	
+	<p class="Example">For example, any stores offering delivery services can stop taking orders for Saturday delivery after the 20th order has come in!</p>
+	
+	<h3>Full Tax Support</h3>
+	<p>Each Region can have its own &ldquo;<em class="ConfigurationOption">Tax Class</em>&rdquo; setting and rates can be entered <strong>including</strong> or <strong>excluding</strong> tax, with an independent &ldquo;<em class="ConfigurationOption">Rates Include Tax</em>&rdquo; setting able to be configured for <strong>each</strong> Region for a Shipping Method.</p>
+
+	<h3>Intuitive Admin Configuration Utility</h3>
+	<p>It would be impossible to offer all the options that the Advanced Shipper module does using the standard Zen Cart configuration shipping module procedures so a complete Configuration Utility has been built from the ground up.</p>
+
+	<p>The JavaScript-powered Configuration Utility makes it easy to add, configure and delete <em>Shipping Method Configurations</em>, <em>Product/Category/Manufacturer Selections</em> and <em>Region Configurations</em>.</p>
+
+
+	<h1 class="ExtraEmphasis NoMarginBottom">Save Money Now!</h1>
+	<p class="NoMarginBottom">To cut the store's shipping bills, find out more about Advanced Shipper and try out a <a href="http://ceon.net/software/business/zen-cart/advanced-shipper/demo?doc=zc-um" target="_blank">demo</a> on <a href="http://ceon.net/software/business/zen-cart/advanced-shipper?doc=zc-um" target="_blank">the website</a>.</p>
+	
+	</div>
+</fieldset>
+
+
+<fieldset class="OtherReleases">
+	<legend><a href="http://ceon.net/software/business/zen-cart/advanced-shipper-zones?doc=zc-um" target="_blank">Advanced Shipper 5 Zones</a></legend>
+	<h1 class="ExtraEmphasis"><img src="_images/advanced-shipper-zones-extension-logo-w150.png" alt="Advanced Shipper Zones Extension" class="RightImage" />Match customers' addresses using Zones.</h1>
+	
+	<p class="JavaScriptOutput ShowHide"><a href="javascript:otherReleasesShowDesc('advanced-shipper-zones-desc');" id="advanced-shipper-zones-desc-control">Click here to show more info...</a></p>
+	
+	<div id="advanced-shipper-zones-desc" class="NoscriptAndPrintOutputBlock">
+	
+	<p>The Advanced Shipper Zones module is an extension to the Advanced Shipper 5 module which allows store owners to make use of the <em class="ConfigurationOption">Zones</em> that have been set up for the store.</p>
+
+	<p>Specific <em>shipping methods</em> can be made available for a <em>Zone</em> quickly and easily by choosing the <em class="ConfigurationOption">Country</em> and <em class="ConfigurationOption">Zone</em> to which the shipping method applies in the Advanced Shipper Configuration Utility.</p>
+
+	<p class="NoMarginBottom">The <a href="http://ceon.net/software/business/zen-cart/advanced-shipper/demo?doc=zc-um" target="_blank">Advanced Shipper demo</a> has this module installed... try it out!</p>
+	
+	</div>
+</fieldset>
+
+
+<fieldset class="OtherReleases">
+	<legend><a href="http://ceon.net/software/business/zen-cart/advanced-shipper-localities?doc=zc-um" target="_blank">Advanced Shipper 5 Localities</a></legend>
+	<h1 class="ExtraEmphasis"><img src="_images/advanced-shipper-localities-extension-logo-w150.png" alt="Advanced Shipper Localities Extension" class="RightImage" />Limit customers' addresses to a set list of States/Areas/Cities.
+	<br />(For stores which only deliver to specific destinations).</h1>
+	
+	<p class="JavaScriptOutput ShowHide"><a href="javascript:otherReleasesShowDesc('advanced-shipper-localities-desc');" id="advanced-shipper-localities-desc-control">Click here to show more info...</a></p>
+	
+	<div id="advanced-shipper-localities-desc" class="NoscriptAndPrintOutputBlock">
+	
+	<p>The Advanced Shipper Localities module is an extension to the Advanced Shipper 5 module which allows store owners to set up a list of <em class="ConfigurationOption">States</em> (e.g. &ldquo;California&rdquo;, &ldquo;Florida&rdquo; etc.), <em class="ConfigurationOption">Areas</em> (e.g. &ldquo;L.A. Metropolitan Area&rdquo;, &ldquo;North California&rdquo; etc.) and <em class="ConfigurationOption">Towns/Cities</em> (e.g. &ldquo;Los Angeles&rdquo;, &ldquo;Long Beach&rdquo; etc.) for a <em>country</em>, which customers can use when they create an account on the site or add an address to their address book.</p>
+
+	<p>Specific <em>shipping methods</em> can be made available to a <em>State</em>/<em>Area</em>/<em>City</em> quickly and easily by choosing the <em class="ConfigurationOption">Country</em> and <em class="ConfigurationOption">State</em>/<em class="ConfigurationOption">Area</em>/<em class="ConfigurationOption">City</em> to which the shipping method applies in the Advanced Shipper Configuration Utility.</p>
+	
+	<p>The <em class="ConfigurationOption">&ldquo;Terms&rdquo;</em> used for each <em class="ConfigurationOption">&ldquo;Locality&rdquo;</em> can be changed to a store's preferences (e.g. instead of &ldquo;State/Area/City&rdquo;, it could be &ldquo;Province/County/City&rdquo;).</p>
+	
+	<p>The module <strong>fully supports JavaScript remote loading</strong> so that, as a customer selects a <em>State</em>/<em>Area</em>, a dynamic list of <em>Cities</em> within that <em>Area</em>/<em>State</em> are displayed and able to be selected - <strong>there's no clicking &ldquo;Next&rdquo; and waiting on page reloads!</strong></p>
+	
+	<p class="Example">For Example, the counties of Northern Ireland, with an <em class="ConfigurationOption">area</em> &ldquo;Greater Belfast&rdquo; of &ldquo;County Antrim&rdquo; would appear as follows:
+		<br /><img src="_images/advanced-shipper-localities-screenshots/state-selection-example.png" alt="Example of State/Sub-locality Selection on the Create Account page." class="ExampleScreenshot" />
+		<br />Selecting &ldquo;Greater Belfast&rdquo; would display the <em class="ConfigurationOption">towns/cities</em> defined for that <em class="ConfigurationOption">area</em>:
+		<br /><img src="_images/advanced-shipper-localities-screenshots/city-selection-example.png" alt="Example of City Selection on the Create Account page." class="ExampleScreenshot" />
+	</p>
+	
+	<p>Now it couldn't be easier to limit shipping <strong>only</strong> to places the store actually ships, thereby avoiding unfulfilled, refunded or cancelled orders!</p>
+
+	<p>Of course, for 100% compatibility, the module <strong>fully supports any browser that doesn't have JavaScript enabled</strong> so every customer will find it easy to sign up or add an address!</p>
+
+	<p>The <a href="http://ceon.net/software/business/zen-cart/advanced-shipper/demo?doc=zc-um" target="_blank">Advanced Shipper demo</a> has this module installed... try it out!</p>
+
+	<p class="Note NoMarginBottom"><strong>Please note:</strong> Advanced Shipper 5 Localities is <strong>not</strong> likely to upgraded to be compatible with Zen Cart 2.0.x, it is for <strong>1.2.x/1.3.x/1.5.x only</strong>.</p>
+	
+	</div>
+</fieldset>
+
+<p class="OtherReleasesBackToTop"><a href="#top">Back to top</a></p>
+
+
+<h3 class="OtherReleasesSectionTitle"><a name="product-variants" id="product-variants"></a>Product Variants (Attributes with Stock) Software</h3>
+
+<fieldset class="OtherReleases">
+	<legend><a href="http://ceon.net/software/business/zen-cart/product-variants?doc=zc-um" target="_blank">Ceon Product Variants (inc. Attributes with Stock)</a></legend>
+	<h1 class="ExtraEmphasis">Zen Cart's most ESSENTIAL module!
+	<br />Increase Sales - Make it Easier for Customers to Pick Products to Buy.
+	<br />Track the Stock of Products with Attributes!</h1>
+	
+	<div class="ScreenshotsWithCaption">
+		<a href="_images/ceon-product-variants-screenshots/aarck-and-aawe-dropdown-1.png" rel="lightbox[product-variants-hires-580]" title="Screenshot showing the display of the list of variants for a T-Shirt in a dropdown gadget. This is a quick and easy way for the customer to pick the variant they want to purchase. <br />The label for the gadget, &ldquo;Select a Size and Colour&rdquo;, can be customised, as can the information displayed for each variant (the stock level info and/or the product's previous price if it is on sale/special offer)."><img src="_images/ceon-product-variants-screenshots/aarck-and-aawe-dropdown-1-w250.png" alt="Screenshot showing the display of the list of variants for a T-Shirt in a dropdown gadget. This is a quick and easy way for the customer to pick the variant they want to purchase. The label for the gadget, &ldquo;Select a Size and Colour&rdquo;, can be customised, as can the information displayed for each variant (the stock level info and/or the product's previous price if it is on sale/special offer)." class="RightImage Screenshot" /></a>
+		
+		<a href="_images/ceon-product-variants-screenshots/aarck-and-aawe-dropdown-2.png" rel="lightbox[product-variants-hires-580]" title="When a variant is selected from the dropdown gadget, the information on the product page is INSTANTLY UPDATED. Here the Title, Price, Model, Stock Level and the Product Image were all updated when the &ldquo;Black Small&rdquo; variant was selected. Custom templates can have full, instant-update support added in seconds, simply by specifying the IDs for the HTML elements which are to be updated on the page - easy!"></a>
+		
+		<a href="_images/ceon-product-variants-screenshots/aarck-and-aawe-attr-form-1.png" rel="lightbox[product-variants-hires-580]" title="Products with variants can either use a dropdown or the standard Zen Cart attributes selection form, with each product able to have its own individual &ldquo;Variant Display Mode&rdquo; setting. As with the dropdown option, the attributes form is fully dynamic. As the customer selects options, the page updates instantly, so the customer can see the price and whether the item is in stock, before they add it to the cart!"></a>
+		
+		<a href="_images/ceon-product-variants-screenshots/aarck-and-aawe-attr-form-2.png" rel="lightbox[product-variants-hires-580]" title="If a customer attempts to choose a combination of attribute values for which no variant is defined, then they cannot purchase the product. Here the store has no &ldquo;Green Large&rdquo; variant of the T-Shirt, so the customer is asked to choose different options, and the Add to Cart button is removed from the page until a valid variant is selected - a feature long missing from Zen Cart!"></a>
+		
+		<a href="_images/ceon-product-variants-screenshots/aarck-and-aawe-attr-form-3.png" rel="lightbox[product-variants-hires-580]" title="Ceon Product Variants fully supports Ceon Back In Stock Notifications. If a customer selects a variant which is out of stock, a link to the Back In Stock Notification form is displayed, so the customer can subscribe to the notification list for the variant there and then, maximising the store's sales by bringing the customer back to the store when the variant is back in stock!"></a>
+		
+		<a href="_images/ceon-product-variants-screenshots/product-listing-1.png" rel="lightbox[product-variants-hires-580]" title="On product listing pages, products with variants can have a dropdown displayed, allowing the customer to quickly and easily pick a variant to purchase, without even having to go to the product page! <br />The dynamic product variant info display is also shown here - the prices are calculated live, using the quantity entered! All pricing info is displayed using Ceon's incredibly flexible template functionality, for easy styling!"></a>
+		
+		<a href="_images/ceon-product-variants-screenshots/admin-utility-1.png" rel="lightbox[product-variants-hires-580]" title="The comprehensive, intuitive admin utility enables the store to set up the variants for a product in no time at all!"><img src="_images/ceon-product-variants-screenshots/admin-utility-1-w250.png" alt="The comprehensive, intuitive admin utility enables the store to set up the variants for a product in no time at all!" class="RightImage Screenshot NoMarginBottom" /></a>
+		
+		<a href="_images/ceon-product-variants-screenshots/admin-utility-2.png" rel="lightbox[product-variants-hires-580]" title="To keep things simple, store-wide defaults apply, but almost every aspect of the variants handling is customisable. This screenshot shows some of the options that can be set per individual product!"></a>
+		
+		<div class="SpacerSmall"></div>
+		<p class="JavaScriptOutput">Click either of the images above for a short slideshow showing how this module massively improves Zen Cart's products system!</p>
+	</div>
+	
+	<h4 class="Feature">Variant? What is a Variant?</h4>
+	
+	<ul class="BulletedList">
+		<li>If a store sells a T-Shirt which comes in different sizes and colours, then the individual T-shirts, &ldquo;Medium Blue&rdquo;, &ldquo;Large Black&rdquo; are &ldquo;variants&rdquo; of the &ldquo;main&rdquo; T-Shirt product.</li>
+	</ul>
+	
+	
+	<h4 class="Feature">Better than Zen Cart's Attributes Options/Values System!</h4>
+	
+	<ul class="BulletedList TighterList">
+		<li>Ceon Product Variants massively improves Zen Cart's products system, making it easier for customers to pick the specific product they want to buy.</li>
+		<li>
+			<p>Customers can buy exactly what they want with one click! The store can simply <strong>display a list of the variants of a product in a dropdown gadget</strong>, in product listings and on the product's info page, allowing customers to pick the product variant they want to buy with a single click!</p>
+			<p class="Example NoMarginBottom" id="ceon-pv-dropdown-example">E.g. pick the &ldquo;Medium&nbsp;Blue&rdquo; variant of the T-Shirt or the &ldquo;Large&nbsp;Black&rdquo; variant, straight from the dropdown gadget!</p>
+		</li>
+		<li>
+			<p>Or the store can make use of Zen Cart's <strong>attributes display form</strong> on the product's info page, so that customers can pick specific values for the various options for the product, e.g. pick the Size of the T-Shirt and the Colour of the T-Shirt.</p>
+			<p>With Ceon Product Variants the form is made dynamic, so as the user selects different options, the price, image, stock level info etc. are all updated on the page straight away - <strong>there is no longer a need to add a product to the cart to see the price!</strong></p>
+		</li>
+	</ul>
+	
+	
+	<h4 class="Feature">Track the Stock Level of Products with Attributes!</h4>
+	
+	<ul class="BulletedList TighterList">
+		<li>A store can now track the stock levels of their individual products.</li>
+		<li>At last, with Ceon Product Variants, Zen Cart store owners can prevent customers from purchasing products that are out of stock!</li>
+		<li>And with <strong>full Ceon Back In Stock Notifications Integration</strong>, customers can be offered the facility to subscribe to a notification list for, and/or ask a question about, any product variant that is out of stock, bringing them back to the store when the product variant is back in stock!</li>
+	</ul>
+	
+	
+	<h4 class="Feature">Instant, Dynamic Display of Price/Stock/Model etc. Information - inc Price x Quantity Calculation!</h4>
+	
+	<ul class="BulletedList TighterList">
+		<li>When a customer selects a variant from the dropdown gadget, or makes a selection from the product's attributes form (e.g. selects a Size and Colour), the product information on the page is updated instantly!</li>
+		<li>The <strong>price</strong> for the variant is displayed directly in a product listing or on the product page, and takes full account of the quantity being ordered!</li>
+		<li>Any variant-specific <strong>image</strong> is displayed, as is any information about the variant's <strong>stock level</strong>, its specific <strong>model</strong> code, its <strong>weight</strong> and even the <strong>date</strong> this variant of the product will become available to buy!</li>
+	</ul>
+	
+	
+	<h4 class="Feature">Too many features to list here!</h4>
+	
+	<ul class="BulletedList TighterList">
+		<li>
+			<p>Check out the <a href="http://ceon.net/software/business/zen-cart/product-variants/features-compatibility?doc=zc-um" target="_blank">full list of features</a>, including:</p></li>
+		<li>
+			<p><strong>Full Ceon URI Mapping Support</strong> - Create URIs for the Variants, e.g. for an "aarck and aawe" T-Shirt:</p>
+			<p class="Example NoMarginBottom" id="ceon-pv-uri-mappings-example">/t-shirts/aarck-and-aawe/medium-blue
+			<br />/t-shirts/aarck-and-aawe/large-black</p>
+		</li>
+		<li>An <strong>Intuitive, Comprehensive Admin Utility</strong>.</li>
+		<li><strong>Easy Creation/Updating</strong> of Variants in an <strong>Attributes Grid</strong> - create/update all of the variants for a product <strong>at once</strong>, <strong>on one page</strong> - it couldn't be quicker/easier!</li>
+		<li>..and more!</li>
+	</ul>
+	
+	<h2 class="ExtraEmphasis">Upgrade your Zen Cart store!</h2>
+	
+	<p class="NoMarginBottom">See the software in action now by checking out the <a href="http://ceon.net/software/business/zen-cart/product-variants/demo?doc=zc-um" target="_blank">demo</a>.</p>
+	
+</fieldset>
+
+<p class="OtherReleasesBackToTop"><a href="#top">Back to top</a></p>
+
+
+<h3 class="OtherReleasesSectionTitle"><a name="marketing" id="marketing"></a>Marketing Modules</h3>
+
+<fieldset class="OtherReleases">
+	<legend><a href="http://ceon.net/software/business/zen-cart/back-in-stock-notifications?doc=zc-um" target="_blank">Back In Stock Notifications</a></legend>
+	<h1 class="ExtraEmphasis">Don't miss any potential sales - bring customers back to the store!</h1>
+	
+	<div class="Testimonial">
+		<blockquote>
+			<p>&ldquo;Time once again to thank Ceon for this amazing contribution!&rdquo;</p>
+			<p>&ldquo;Folks who are curious to know if it's worth adding: We have many marketing tools but this is the <em class="Underlined">best</em> marketing tool we have.&rdquo;</p>
+			<p>&ldquo;We just had a record sales day yesterday thanks entirely to it!&rdquo;</p>
+		</blockquote>
+		<p class="TestimonialAuthor">Dan,<br />
+		<a href="http://www.gardenvines.com" target="_blank">Brushwood Nursery</a></p>
+	</div>
+	
+	<p>If a product goes out of stock, this module automatically offers customers the ability to subscribe to a &ldquo;Back In Stock Notification List&rdquo;. The store owner can then send a customised e-mail to the list of subscribed customers whenever the product(s) they are interested in are back in stock.</p>
+	<p class="NoMarginBottom"><img src="_images/back-in-stock-notifications-screenshots/notification-form-link.png" alt="Screenshot showing the link that is shown when a product is out of stock; it is placed where the Buy Now button would normally be." title="Screenshot showing the link that is shown when a product is out of stock; it is placed where the Buy Now button would normally be." class="Screenshot" /></p>
+	
+	<p>Customers can check their back in stock notification subscriptions and unsubscribe themselves if desired, for full compliance with data protection laws.</p>
+	<p>Many stores using the module have it said it <strong>greatly increases sales</strong> by bringing people back to the site!</p>
+	<p class="NoMarginBottom">Find out more and download the module from <a href="http://ceon.net/software/business/zen-cart/back-in-stock-notifications?doc=zc-um" target="_blank">its website</a>.</p>
+</fieldset>
+
+<p class="OtherReleasesBackToTop"><a href="#top">Back to top</a></p>
+
+
+<h3 class="OtherReleasesSectionTitle"><a name="tax" id="tax"></a>Tax Modules</h3>
+
+<fieldset class="OtherReleases">
+	<legend><a href="http://ceon.net/software/business/zen-cart/tax-declaration?doc=zc-um" target="_blank">Tax Declaration</a></legend>
+	
+	<p>The Tax Declaration module lets a store owner mark particular products as able to be exempt from tax if the customer signs a tax declaration upon checkout.</p>
+	<p>It allows the store to fully comply with Tax Declaration laws for people of special circumstance, for example those with disabilities in the UK.</p>
+	<p class="NoMarginBottom">Find out more and download the module from <a href="http://ceon.net/software/business/zen-cart/tax-declaration?doc=zc-um" target="_blank">its website</a>.</p>
+</fieldset>
+
+<p class="OtherReleasesBackToTop"><a href="#top">Back to top</a></p>
+
+
+<h3 class="OtherReleasesSectionTitle"><a name="payment" id="payment"></a>Payment Modules</h3>
+
+<fieldset class="OtherReleases">
+	<legend><a href="http://ceon.net/software/business/zen-cart/sage-pay?doc=zc-um" target="_blank">Sage Pay</a></legend>
+	<h1 class="ExtraEmphasis"><img src="_images/sage-pay-logo-w150.png" alt="Sage Pay" class="RightImage OtherReleasesLogo" style="margin-left: 120px" />Accept Credit/Debit Cards Quickly and Cost-Effectively!</h1>
+	<p><img src="_images/sage-pay-accepted-cards.png" alt="Accept Visa, MasterCard, Maestro, American Express, Visa Debit, Visa Electron, MasterCard Debit, Diners Club International, JCB and Laser cards!" class="RightImage" title="Accept Visa, MasterCard, Maestro, American Express, Visa Debit, Visa Electron, MasterCard Debit, Diners Club International, JCB and Laser cards!" />Sage Pay (formerly Protx) offers one of the most cost-effective solutions for accepting Credit Cards and Debit Cards for UK/Ireland stores - we even use them ourselves!</p>
+	<p>Stores wishing to accept cards online through Sage Pay only need to <a href="https://support.sagepay.com/apply/default.aspx?PartnerID=7BC749E2-E05D-4F9C-8C55-8E9D04BCAF07" target="_blank">sign up for a Sage Pay Go account</a> and to link it with a merchant account. (If the store doesn't yet have a merchant account, Sage Pay can provide a good deal with their partners, Bank of Scotland!).</p>
+	<p>Once the store has a Sage Pay Go account, it then has three options for taking payment via Sage Pay at checkout time, each of which has its unique plus points, and all of which have been specifically tailored to Zen Cart by Ceon. All three are extremely easy to install and fully comprehensive:</p>
+	<p>
+		<strong><a href="http://ceon.net/software/business/zen-cart/sage-pay-direct?doc=zc-um">Ceon Sage Pay Direct</a></strong> <span class="HorizontalSpacer">|</span>
+		<strong><a href="http://ceon.net/software/business/zen-cart/sage-pay-server?doc=zc-um">Ceon Sage Pay Server</a></strong> <span class="HorizontalSpacer">|</span>
+		<strong><a href="http://ceon.net/software/business/zen-cart/sage-pay-form?doc=zc-um">Ceon Sage Pay Form</a></strong>
+	</p>
+	
+	<div class="ScreenshotsWithCaption">
+		<a href="_images/ceon-sage-pay-direct-screenshots/checkout-payment-page-1-w545.png" rel="lightbox[sage-pay]" title="Screenshot showing streamlined integration of Ceon Sage Pay Direct payment form on the checkout payment page."><img src="_images/ceon-sage-pay-direct-screenshots/checkout-payment-page-1-w250.png" alt="Screenshot showing streamlined integration of Ceon Sage Pay Direct payment form on the checkout payment page." class="RightImage Screenshot" /></a>
+		
+		<a href="_images/ceon-sage-pay-server-screenshots/iframe-wrapper-with-card-details-page-w584.png" rel="lightbox[sage-pay]" title="Screenshot showing Ceon Sage Pay Server's professional integration with Zen Cart. An IFrame is used to display the Sage Pay Card Details page, which itself uses the clear and professional template designed by Ceon."></a>
+		
+		<a href="_images/ceon-sage-pay-direct-screenshots/transaction-admin/payment-main-no-actions-yet-w680.png" rel="lightbox[sage-pay]" title="Screenshot showing Transaction Admin functionality of Ceon Sage Pay modules integrated into the Zen Cart admin order page. &ldquo;Refund Partial Amount&rdquo; can be clicked..."><img src="_images/ceon-sage-pay-direct-screenshots/transaction-admin/payment-main-no-actions-yet-w250.png" alt="Screenshot showing Transaction Admin functionality of Ceon Sage Pay modules integrated into the Zen Cart admin order page." class="RightImage Screenshot NoMarginBottom" /></a>
+		
+		<a href="_images/ceon-sage-pay-direct-screenshots/transaction-admin/payment-refund-partial-amount-w680.png" rel="lightbox[sage-pay]" title="The amount to refund is entered, as well as an optional reason for the store's records, and a message for the customer's status history (which is normally also sent in an e-mail to them)."></a>
+		
+		<a href="_images/ceon-sage-pay-direct-screenshots/transaction-admin/payment-main-totals-after-partial-refund-w680.png" rel="lightbox[sage-pay]" title="Screenshot showing that the Zen Cart order has been updated, the refund recorded in both the History of Actions and the order status history, and the customer notified automatically by e-mail."></a>
+		
+		<a href="_images/ceon-sage-pay-direct-screenshots/transaction-admin/payment-summary-after-partial-refund-w680.png" rel="lightbox[sage-pay]" title="Screenshot showing the space-saving summary displayed on the order page by default. The order information is easily visible with minimum scrolling required. The entire panel is hidden when the order page is printed, making printouts of the order page clearer and neater!"></a>
+		
+		<div class="SpacerSmall"></div>
+		<p class="JavaScriptOutput">Click either of the images above for a short slideshow showing the fantastic level of integration these modules have with Zen Cart!</p>
+	</div>
+	
+	<h4>Streamlined Checkout Process</h4>
+	
+	<ul class="BulletedList TighterList">
+		<li>We think that <strong><a href="http://ceon.net/software/business/zen-cart/sage-pay-direct?doc=zc-um">Ceon Sage Pay Direct</a></strong> is the best solution, as the customer remains on the store's website, they are not redirected to an external site to enter their details as with many other payment solutions, making this <strong>as professional a payment solution as you could possibly use with Zen Cart</strong>!</li>
+		<li>The whole checkout process is completely streamlined, allowing store owners to have a store which works just as well as any of the large e-commerce websites - including <strong>full 3D-Secure support</strong> using slick IFrame technology.</li>
+	</ul>
+	
+	<h4>Transaction Admin</h4>
+	
+	<ul class="BulletedList">
+		<li>
+			<h1 class="ExtraEmphasis">Manage transactions directly within Zen Cart!</h1>
+			<p>All our Sage Pay modules come with a fantastic Transaction Admin, which integrates fluidly with the Zen Cart admin orders page, enabling stores to carry out many &ldquo;Transaction Actions&rdquo; <strong>directly within the Zen Cart admin</strong>:</p>
+			<ul class="BulletedList NoMarginBottom">
+				<li>Deferred transactions can be partially or fully <em>Released</em> or <em>Aborted</em>.</li>
+				<li>Authenticated transactions can be partially or fully <em>Authorised</em>, or <em>Cancelled</em>.</li>
+				<li>Orders which used &ldquo;Immediate Charge&rdquo; or &ldquo;Deferred&rdquo; can be <em>Refunded</em> in full or in part, or, if not yet settled, <em>Voided</em>. (At this time, Authenticated transactions can only be refunded through My Sage Pay).</li>
+			</ul>
+		</li>
+		<li>With all of the transaction actions, the <strong>Zen Cart totals</strong> for the order can be <strong>automatically updated</strong>, as can the overall Zen Cart order status - <span class="Underlined">a level of integration never before seen in Zen Cart</span>!</li>
+		<li>
+			<p><strong>Most stores should never need to use My Sage Pay again!</strong> The transaction admin is <span class="Underlined">almost a complete replacement for My Sage Pay</span>, having a live connection to Sage Pay which enables even more features:</p>
+			<ul class="BulletedList NoMarginBottom">
+				<li>Display of &ldquo;The 3rd Man&rdquo; fraud results for transactions.</li>
+				<li>Display of the up-to-the-moment status of transactions.</li>
+				<li>Automatic syncing of information about any transaction actions that have been performed against the initial transaction.</li>
+			</ul>
+		</li>
+	</ul>
+	
+	<h4>Easier PCI Compliance/Setup</h4>
+	
+	<ul class="BulletedList TighterList">
+		<li>The <strong><a href="http://ceon.net/software/business/zen-cart/sage-pay-server?doc=zc-um">Ceon Sage Pay Server</a></strong> and <strong><a href="http://ceon.net/software/business/zen-cart/sage-pay-form?doc=zc-um">Ceon Sage Pay Form</a></strong> modules both offer easier PCI compliance as the card details are handled on Sage Pay's PCI Level 1 Compliant server - the store never comes in contact with them.</li>
+		<li>Server is a little bit a nicer for the customer than Form, as Server uses IFrame technology, to allow the store to give the impression that the customer is staying on the store's website, whereas with Form the customer is redirected to Sage Pay's server.</li>
+		<li>Form is even simpler to set up than Direct or Server as no SSL certificate is required for it.</li>
+	</ul>
+	
+	<h4>Compare Options</h4>
+	
+	<p>To make it easier to determine which solution is best for you/your client's store, we have created a <a href="http://ceon.net/software/business/zen-cart/sage-pay/compare-options?doc=zc-um" target="_blank">comprehensive comparison</a> of the three different options.</p>
+	
+	<h1 class="ExtraEmphasis NoMarginBottom">Save Money - Get &pound;5.00 Off!</h1>
+	
+	<p class="NoMarginBottom">If you haven't already applied for a Sage Pay Go account, apply for one now (it's free to apply!) using <a href="https://support.sagepay.com/apply/default.aspx?PartnerID=7BC749E2-E05D-4F9C-8C55-8E9D04BCAF07" target="_blank"><strong>this link</strong></a> and <strong><span class="Underlined">get &pound;5.00 off</span> the cost of any of our Sage Pay distributions</strong>!</p>
+</fieldset>
+
+
+<fieldset class="OtherReleases">
+	<legend><a href="http://ceon.net/software/business/zen-cart/realex-remote?doc=zc-um" target="_blank">Realex Remote</a></legend>
+	<p><img src="_images/realex-logo-w150.png" alt="Realex" class="RightImage OtherReleasesLogo" />Realex Remote is an advanced payment module supporting the Realex Remote service from the UK/Ireland payment gateway <a href="http://www.realexpayments.com">Realex</a>, including full support for RealMPI (3D-Secure) for even more secure payments.</p>
+	<p>The customer remains on the store's website; they are not redirected to an external site to enter their details as with many other payment solutions, making this as professional a payment solution as you could possibly use with Zen Cart!</p>
+	<p class="NoMarginBottom">The whole checkout process is completely streamlined, therefore allowing store owners to have a store which works just as well as any of the large e-commerce websites!</p>
+</fieldset>
+
+
+<fieldset class="OtherReleases">
+	<legend><a href="http://ceon.net/software/business/zen-cart/cardsave-direct?doc=zc-um" target="_blank">Cardsave Direct</a></legend>
+	<p><img src="_images/cardsave-logo-w150.png" alt="Cardsave" class="RightImage OtherReleasesLogo" /><a href="http://ceon.net/software/business/zen-cart/cardsave-direct/sign-up?doc=zc-um" target="_blank">Cardsave</a> run one of the best value payment gateways in the UK.</p>
+	<p>For a small monthly fee they'll provide a payment gateway account and a <strong>FREE</strong> merchant account with Streamline. There are <strong>no setup fees</strong> and the Streamline account offers <strong>competitive card charges</strong>!</p>
+	<p>Our Cardsave Direct module for Zen Cart has been carefully written to be extremely easy to install and fully comprehensive. The customer remains on the store's website; they are not redirected to an external site to enter their details as with many other payment solutions, making this as professional a payment solution as you could possibly use with Zen Cart!</p>
+	<p>The whole checkout process is completely streamlined, allowing store owners to have a store which works just as well as any of the large e-commerce websites!</p>
+	
+	<h1 class="ExtraEmphasis NoMarginBottom">Get a FREE merchant account!</h1>
+	
+	<p class="NoMarginBottom">If you haven't already got a merchant account, <strong><a href="http://ceon.net/software/business/zen-cart/cardsave-direct/sign-up?doc=zc-um" target="_blank">sign up with Cardsave now</a></strong> and get a <strong>FREE</strong> merchant account with your Cardsave payment gateway account!</p>
+</fieldset>
+
+
+<fieldset class="OtherReleases">
+	<legend><a href="http://ceon.net/software/business/zen-cart/paymentsense-direct?doc=zc-um" target="_blank">PaymentSense Direct</a></legend>
+	<p><img src="_images/paymentsense-logo-w150.png" alt="PaymentSense" class="RightImage OtherReleasesLogo" /><a href="http://ceon.net/software/business/zen-cart/paymentsense-direct/sign-up?doc=zc-um" target="_blank">PaymentSense</a> guarantee the lowest cost for a payment gateway in the UK.</p>
+	<p>They can also provide a merchant services account. And they do this faster than any other UK provider.</p>
+	<p>PaymentSense <strong>guarantee unbeatable prices</strong> along with the highest levels of security and reliability.</p>
+	<p>Our PaymentSense Direct module for Zen Cart has been carefully written to be extremely easy to install and fully comprehensive. The customer remains on the store's website; they are not redirected to an external site to enter their details as with many other payment solutions, making this as professional a payment solution as you could possibly use with Zen Cart!</p>
+	<p>The whole checkout process is completely streamlined, allowing store owners to have a store which works just as well as any of the large e-commerce websites!</p>
+	
+	<h1 class="ExtraEmphasis NoMarginBottom">Get the lowest cost payment gateway service in the UK</h1>
+	
+	<p class="NoMarginBottom"><strong><a href="http://ceon.net/software/business/zen-cart/paymentsense-direct/sign-up?doc=zc-um" target="_blank">Sign up now</a></strong> and <strong>start accepting cards</strong> with PaymentSense <strong>within a few days</strong>!</p>
+</fieldset>
+
+
+<fieldset class="OtherReleases">
+	<legend><a href="http://ceon.net/software/business/zen-cart/iridium-direct?doc=zc-um" target="_blank">Iridium Direct</a></legend>
+	<p><img src="_images/iridium-logo-w150.png" alt="Iridium" class="RightImage OtherReleasesLogo" /><a href="https://mms.iridiumcorp.net/Pages/PublicPages/RegisterMerchantReseller.aspx?ResellerID=7A68EA5F-46A5-49F7-A4DD-04CAECCED404" target="_blank">Iridium</a> run one of the best value payment gateways in the UK.</p>
+	<p>Set-up for the gateway is free and there are no charges for trying out their systems. Registration is required but it doesn't commit you to a contract or incur any initial cost. You can even <a href="https://mms.iridiumcorp.net/Pages/PublicPages/RegisterMerchantReseller.aspx?ResellerID=7A68EA5F-46A5-49F7-A4DD-04CAECCED404" target="_blank">get a UK Merchant Account</a> through them with <strong>no setup fees (normally &pound;250!)</strong>.</p>
+	<p>Our Iridium Direct module for Zen Cart has been carefully written to be extremely easy to install and fully comprehensive. The customer remains on the store's website; they are not redirected to an external site to enter their details as with many other payment solutions, making this as professional a payment solution as you could possibly use with Zen Cart!</p>
+	<p class="NoMarginBottom">The whole checkout process is completely streamlined, allowing store owners to have a store which works just as well as any of the large e-commerce websites!</p>
+</fieldset>
+
+
+<fieldset class="OtherReleases">
+	<legend><a href="http://ceon.net/software/business/zen-cart/ceon-manual-card?doc=zc-um" target="_blank">Ceon Manual Card</a></legend>
+	<p>Ceon Manual Card provides everything a Zen Cart shop owner needs to accept Credit/Debit Card payments over the internet for inputting into a Manual/Offline Card Processing System.</p>
+	<p class="NoMarginBottom">It is reliable, capable and extremely easy to use, but is a very basic way to do business over the internet, and is therefore recommended for use by tiny stores only. Anyone serious about selling on the internet should look towards a professional gateway, such as that supported by our <a href="http://ceon.net/software/business/zen-cart/sage-pay?doc=zc-um" target="_blank">Sage Pay</a> payment modules.</p>
+</fieldset>
+
+<p class="OtherReleasesBackToTop"><a href="#top">Back to top</a></p>
+
+
+<h2><a name="other-ceon-software" id="other-ceon-software"></a>Other Software from Ceon</h2>
+<p>Here at Ceon we don't just write great software for Zen Cart, our main focus is in fact on more general software, some of which is essential for any business...</p>
+
+<fieldset class="OtherReleases">
+	<legend><a href="http://ceon.net/software/business/cardpay?doc=zc-um" target="_blank">CardPay - Sage Pay Edition</a></legend>
+	
+	<h1 class="ExtraEmphasis"><img src="_images/cardpay-sage-pay-edition-logo-w178.png" alt="CardPay - Sage Pay Edition" class="RightImage" style="margin-top: -6px" />Take Credit / Debit Card Payments Quickly and Easily!</h1>
+	
+	<ul class="BulletedList">
+		<li class="ExtraEmphasis2"><h2 class="NoMarginTop">Offer clients/customers the ability to pay for goods/services using a credit or debit card!</h2></li>
+	</ul>
+	
+	<ul class="BulletedList TighterList">
+		<li><h4 class="NoMarginTop">Create a Payment Request or set up a general Payment Request Template.</h4></li>
+		<li><h4 class="NoMarginTop">Send the client/customer the link for the Payment Request.</h4></li>
+		<li><h4 class="NoMarginTop">The client/customer browses to the link and enters their details.</h4></li>
+		<li><h4 class="NoMarginTop">Payment is received... <strong class="ExtraEmphasis">Simple!</strong></h4></li>
+	</ul>
+	
+	<p class="JavaScriptOutput ShowHide"><a href="javascript:otherReleasesShowDesc('cardpay-sage-pay-edition');" id="cardpay-sage-pay-edition-control">Click here to show more info and screenshots...</a></p>
+	
+	<div id="cardpay-sage-pay-edition" class="NoscriptAndPrintOutputBlock">
+		
+		<h3><a href="_images/cardpay-sage-pay-edition-screenshots/payment-form-1-w614.png" rel="lightbox[cardpay-sage-pay-edition]" title="Screenshot of Payment Form, where the client/customer can enter the amount (no tax) and extra information about the payment if desired."><img src="_images/cardpay-sage-pay-edition-screenshots/payment-form-1-w250.png" alt="Screenshot of Payment Form, where the client/customer can enter the amount (no tax) and extra information about the payment if desired." class="RightImage Screenshot" /></a>Flexible Payment Form Setups</h3>
+		
+		<ul class="BulletedList TighterList">
+			<li><strong>Either</strong> send clients/customers a link to a payment form with parts of it already filled in.</li>
+			<li><strong>Or</strong> let the client/customer fill in the necessary details themselves (<em>Amount</em>, what the <em>Payment is For</em>).</li>
+			<li>Specify whether the client/customer is allowed to adjust the payment amount!</li>
+			<li>Set specific tax rates and tax descriptions for payments.</li>
+		</ul>
+		
+		
+		<h3><a href="_images/cardpay-sage-pay-edition-screenshots/payment-form-2-tax-and-surcharge-w614.png" rel="lightbox[cardpay-sage-pay-edition]" title="Screenshot of Payment Form with Tax and Surcharges for individual card types - the tax and surcharge amounts are recalculated dynamically as and when the payment amount is changed."><img src="_images/cardpay-sage-pay-edition-screenshots/payment-form-2-tax-and-surcharge-w250.png" alt="Screenshot of Payment Details Form with Tax and Surcharges" class="RightImage Screenshot" /></a>Flexible Configuration Options</h3>
+		
+		<a href="_images/cardpay-sage-pay-edition-screenshots/payment-form-3-billing-and-email-addresses-w614.png" rel="lightbox[cardpay-sage-pay-edition]" title="Billing Address and E-mail Address Details sections of the Payment Form."></a>
+		
+		<a href="_images/cardpay-sage-pay-edition-screenshots/payment-form-4-errors-w614.png" rel="lightbox[cardpay-sage-pay-edition]" title="The software has comprehensive error support, making things as clear and easy as they can be for the payer. If problems occur they'll be told what to do."></a>
+		
+		<ul class="BulletedList TighterList">
+			<li>Set the list of card types which can be used.</li>
+			<li>Set specific <strong>surcharges/discounts</strong> for individual card types (percentage rates and/or flat rates).</li>
+			<li>Specify the <strong>currency</strong> to be used for a payment.</li>
+		</ul>
+		
+		
+		<h3>Maximum Security</h3>
+		
+		<ul class="BulletedList TighterList">
+			<li>Maximum security is assured with <strong>full 3D-Secure support</strong>, smoothly integrated using IFrame technology.</li>
+		</ul>
+		
+		
+		<h3>Easy to Install and Style</h3>
+		
+		<ul class="BulletedList TighterList">
+			<li>Installation takes just a few minutes.</li>
+			<li>All aspects of the software can be styled quickly and easily through the use of a simple but powerful template system.</li>
+		</ul>
+		
+		
+		<h3><a href="_images/cardpay-sage-pay-edition-screenshots/payment-confirmation-1-w614.png" rel="lightbox[cardpay-sage-pay-edition]" title="Screenshot of the Payment Details Confirmation Page."><img src="_images/cardpay-sage-pay-edition-screenshots/payment-confirmation-1-w250.png" alt="Screenshot of the Payment Details Confirmation Page." class="RightImage Screenshot" /></a>Easy to Use, Comprehensive Admin</h3>
+		
+		<ul class="BulletedList TighterList">
+			<li>Create Payment Requests/Payment Request Templates quickly and easily.</li>
+			<li>View all current/previous Payment Requests and re-issue requests.</li>
+			<li>View transaction information for completed requests.</li>
+		</ul>
+		
+		<h3>Editions for various Payment Gateways</h3>
+		
+		<ul class="BulletedList TighterList">
+			<li>Versions are available for Sage Pay, Cardsave, Realex and Iridium.</li>
+		</ul>
+		
+		<h1 class="ExtraEmphasis" style="margin-top: 1em;">Every business needs software like this!</h1>
+		
+		<p class="NoMarginBottom">Find out more.. <a href="http://ceon.net/software/business/cardpay?doc=zc-um" target="_blank">visit the CardPay website now</a>!</p>
+	</div>
+	
+</fieldset>
+
+<p class="BackToTop"><a href="#top">Back to top</a></p>
+
+<p id="footer"><a href="http://ceon.net/software/business/zen-cart?doc=zc-um" target="_blank"><img src="_images/ceon-button-logo.png" alt="Ceon" id="ceon-button-logo" /></a><a href="http://jked.net" target="_blank"><img src="_images/jked-logo.gif" alt="JKED" id="jked-logo" /></a>Module &amp; Documentation &copy; Copyright 2008-2012 <a href="http://ceon.net/software/business/zen-cart?doc=zc-um" target="_blank">Ceon</a></p>
+
+	</div>
+</div>
+
+<script type="text/javascript">
+<!-- // Output resizeable div end tag
+restrict_width.outputClosingTag();
+// -->
+</script>
+
+</body>
+</html>

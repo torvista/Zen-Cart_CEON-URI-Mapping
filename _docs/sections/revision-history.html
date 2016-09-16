@@ -1,0 +1,528 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>.:: Ceon :: Zen Cart :: Module :: Ceon URI Mapping ::.</title>
+	<link rel="stylesheet" href="../_css/inc.css.layout-styles.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="../_css/inc.css.styles.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="../_css/inc.css.layout-styles-print.css" type="text/css" media="print" />
+	<script src="../_javascript/inc.js.general-functions.js" type="text/javascript"></script>
+	<script src="../_javascript/inc.js.css-functions.js" type="text/javascript"></script>
+	<script src="../_javascript/inc.js.restrict-width.js" type="text/javascript"></script>
+	<script src="../_javascript/inc.js.crossfade.js" type="text/javascript"></script>
+</head>
+
+<body><a name="top" id="top"></a>
+
+<noscript>
+	<style type="text/css">
+	body { margin: 0 auto; max-width: 75em; padding-left: 5%; padding-right: 5%; }
+	.CrossFadeText { margin: 0 auto; max-width: 75em; right: auto; padding-left: 20em; }
+	</style>
+</noscript>
+
+<script type="text/javascript">
+<!-- 
+// Script resizes main div if client window is larger than a predefined variable
+var restrict_width = new CeonRestrictWidth(360, 900);
+
+// Initialise crossfade by hiding crossfade object first
+CeonAddLoadEvent(CeonCrossfadeInit);
+// -->
+</script>
+
+<div id="grad-horiz-left">
+	<div id="grad-horiz-right">
+
+<h1 class="Title">Ceon URI Mapping</h1>
+<div class="TitleByLineWrapper">&nbsp;
+	<div id="crossfade">
+		<p class="CrossFadeText" id="byline"><a href="http://ceon.net/software/business/zen-cart?doc=zc-um">probably the best Zen Cart URI Mapping/SEO Module in the world! ...ever!</a></p>
+		<p class="CrossFadeText" id="ceon-link"><a href="http://ceon.net/software/business/zen-cart?doc=zc-um">Click here to get more great software from Ceon</a></p>
+	</div>
+</div>
+<ul class="MainMenu">
+	<li><a href="../index.html">Overview</a><span> | </span></li>
+	<li><a href="installation.html">Installation</a><span> | </span></li>
+	<li><a href="configuration.html">Configuration</a><span> | </span></li>
+	<li><a href="faqs.html">FAQs</a><span> | </span></li>
+	<li><a href="support.html">Support</a><span> | </span></li>
+	<li><a href="revision-history.html">Revision History</a><span> | </span></li>
+	<li><a href="upgrading.html">Upgrading</a><span> | </span></li>
+	<li><a href="module-info.html">Module Info</a><span> | </span></li>
+	<li><a href="features.html">Module Features</a></li>
+</ul>
+
+<h2><a name="revision-history" id="revision-history"></a>Revision History</h2>
+<table width="100%" border="0" cellspacing="0" summary="The Complete Revision History of this module">
+	<tr>
+		<th>Date</th>
+		<th>Version</th>
+		<th>Release Information</th>
+	</tr>
+    <tr>
+      <td class="NoWrap">16th September 2016</td>
+      <td>4.5.3</td>
+      <td><p class="RevisionHistoryEntry">[UPDATED] Files updated for compatibility wih PHP7. Documentation.</p>
+       <p class="RevisionHistoryEntry RevisionHistoryLastEntry">[REMOVED] Obsolete files (pre ZC155)</p></td>
+    </tr>
+    <tr>
+		<td class="NoWrap"> 6th July 2016</td>
+		<td>4.5.2</td>
+		<td>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[ADDED] Sample modified core files for Zen Cart 1.5.5a added.</p>
+		</td>
+	</tr>
+    <tr>
+		<td class="NoWrap"> 26th March 2016</td>
+		<td>4.5.1</td>
+		<td>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[ADDED] Sample modified core files for Zen Cart 1.5.5 added.</p>
+		</td>
+	</tr>
+    	<tr>
+		<td class="NoWrap"> 4th February 2015</td>
+		<td>4.5.0</td>
+		<td>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[ADDED] Sample modified core files for Zen Cart 1.5.4 added.</p>
+            <p class="RevisionHistoryEntry">[UPDATED] Product Book files updated to include new admin logging</p>
+		</td>
+	</tr>
+        <tr>
+		<td class="NoWrap"> 4th September 2014</td>
+		<td>4.4.3</td>
+		<td>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[ADDED] Sample modified core files for Zen Cart 1.5.3 added.</p>
+		</td>
+	</tr>
+	<tr>
+	  <td class="NoWrap">16th May 2014</td>
+	  <td>4.4.2</td>
+	  <td>[BUGFIX] PHP5.4. - Issue with predefined SID constant causing PHP out-of-memory condition:</td>
+	  </tr>
+	<tr>
+		<td class="NoWrap"> 22nd September 2012</td>
+		<td>4.4.1</td>
+		<td>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[ADDED] Sample modified core files for Zen Cart 1.5.1 added.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">17th September 2012</td>
+		<td>4.4.0</td>
+		<td>
+			<p class="RevisionHistoryEntry">[ADDED] New core file modification added. The zen_catalog_href_link() function in the admin-side html_output.php file has been modified to make use of Ceon URI Mapping. This will mean that any properly written admin-side software will use static URIs instead of Zen Cart dynamic URIs when generating a link with this function!</p>
+			<p class="RevisionHistoryEntry">[UPDATED] Installation check updated to check for new core file modification of the zen_catalog_href_link() function in the admin-side version of the file html_output.php.</p>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[UPDATED] Updates to the installation and upgrading instructions, to make them even clearer and even easier to follow.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">10th September 2012</td>
+		<td>4.2.1</td>
+		<td>
+			<p class="RevisionHistoryEntry">[BUGFIX] A product review's page needs the ID included as part of the canonical URI, but this was not being set, meaning all product reviews were sharing the same canonical URI, breaking the functionality.</p>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[BUGFIX] When an auto-generated URI clashed with an existing URI, instead of notifying the user, it was simply being stated that no mapping was being applied. Updated to now display an informative message and a link about the clash, to help resolve it.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">18th July 2012</td>
+		<td>4.2.0</td>
+		<td>
+			<p class="RevisionHistoryEntry">[ADDED] List of product pages is now maintained in its own data file in the includes/extra_datafiles folder, making it easy to add support for additional product page types.</p>
+			<p class="RevisionHistoryEntry">[ADDED] Support for the nginx webserver added to the Installation Check. When an nginx webserver is detected, the example directive for the rewrite rule will be displayed.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] The filename define for the Tell A Friend page is no longer present in Zen Cart 1.5.x, so its use would cause PHP warnings in error logs on new installations. A check, included as part of the new additional product page type functionality, is now made to only use the define if it exists.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] All files updated to comply with Ceon Coding Guidelines (http://dev.ceon.net/software/coding-guidelines).</p>
+			<p class="RevisionHistoryEntry">[BUGFIX] Call to method to build a URL encoded string for an array query parameter was broken, it was calling the old deprecated function (must not have been much of a problem as has been present ever since the version 4.x rewrite but went unnoticed/unreported by anyone for almost two years!).</p>
+			<p class="RevisionHistoryEntry">[BUGFIX] Convenient link to select (and copy in IE) the content of the example rewrite rule text field was broken by removal of necessary tags in previous release's attempt for valid HTML output for the installation check interface.</p>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[UPDATED] Installation instructions updated to make the purpose of the functionality to Auto-manage URIs for Products' Reviews and Tell-A-Friend pages clearer, and to make the instructions on how to configure this functionality much easier to follow.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">24th February 2012</td>
+		<td>4.0.8</td>
+		<td>
+			<p class="RevisionHistoryEntry">[ADDED] The Installation Check now analyses the server's environment variables, to try and determine the type of server being used, so that the instructions for adding the example rewrite rule are relevant to the server on which the software is being used. Servers currently supported for analysis are Apache, IIS with URL Rewrite and IIS with ISAPI_Rewrite.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] The setting for automatically generating and adding URIs for Tell-A-Friend pages is now set to off on new installations of Ceon URI Mapping as this functionality has been removed from Zen Cart 1.5.x. It is still fine to be used on both Zen Cart 1.3.x and Zen Cart 1.5.x but will have no useful benefit on 1.5.x, just taking up space in the database unnecessarily.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] Check for valid value of PHP_SELF environment variable updated to cope with stores using the &lsquo;.php&rsquo; extension in URIs.</p>
+			<p class="RevisionHistoryEntry">[BUGFIX] Example Rewrite Rule generator in Installation Check updated to cope with directories that have strange characters, such as spaces, in their names. The invalid rewrite conditions previously generated would cause a server error, taking down the site altogether.</p>
+			<p class="RevisionHistoryEntry">[BUGFIX] Config Utility and Installation Check updated so their HTML output is fully valid.</p>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[UPDATED] Installation instructions updated with information about integration with latest version of Sitemap XML (formerly &ldquo;Google Sitemaps&rdquo;) module.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">24th October 2011</td>
+		<td>4.0.7</td>
+		<td>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[BUGFIX] Serious bug meant that when a static URI could not be matched, Ceon URI Mapping was simply displaying the store's home page, instead of the File Not Found 404 page.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">6th October 2011</td>
+		<td>4.0.6</td>
+		<td>
+			<p class="RevisionHistoryEntry">[BUGFIX] When the user was using a different language from the default and then accessed a page which had the same URI mapping for the current language and the default language, a typo meant that the software would mistakenly return to the store's default language.</p>
+			<p class="RevisionHistoryEntry">[BUGFIX] Sample modified core file admin/includes/modules/document_general/collect_info.php for Zen Cart versions 1.3.9h and 1.5.0beta had a line left in it from previous versions which shouldn't have been there, corrupting the PHP file and resulting in a blank page.</p>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[UPDATED] FAQ updated to make it clear how to fix any clashes/problems with other modules.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">29th September 2011</td>
+		<td>4.0.5</td>
+		<td>
+			<p class="RevisionHistoryEntry">[UPDATED] Support added for changing the capitalisation of product URI mappings. Previously solely changing the capitalisation of a product URI mapping would result in a clash being flagged, preventing the change being saved. Changing the capitalisation is now allowed, with the process making full use of the historical URI functionality.</p>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[UPDATED] The version Id header lines have been updated in some of the core modified files as they were out of sync with the lines in the equivalent fresh versions of Zen Cart. This has no effect whatsoever on anything other than to make the modification of files less ambiguous for those that don't have their comparison software configured to ignore version ID lines.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">22nd September 2011</td>
+		<td>4.0.4</td>
+		<td>
+			<p class="RevisionHistoryEntry">[ADDED] Installation check extended to check if old files from a previous version of the software remain. It attempts to deletes any files/folder which should have been removed when upgrading. If the attempt at deletion is unsuccessful, it will warn the user about the presence of the old files/folder as they can conflict or even break the new/updated functionality.</p>
+			<p class="RevisionHistoryEntry">[ADDED] Module will now make sure that its configuration group is added to the Zen Cart admin in 1.5.x.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] Styling of config utility interface improved with CSS3 graphical effects.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] Styling of fieldsets updated with code to fix problems with IE's rendering engine.</p>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[BUGFIX] The code to manually build the $PHP_SELF server environment variable had a mistake in it. This could result in the software mistakenly disabling itself on particular server setups.</p>	
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">13th August 2011</td>
+		<td>4.0.3</td>
+		<td>
+			<p class="RevisionHistoryEntry">[ADDED] Sample modified files and extra required new files added for Zen Cart 1.5.0beta.</p>
+			<p class="RevisionHistoryEntry">[ADDED] Information about, and the link to, the configuration checking functionality of Ceon URI Mapping added to the Installation Check section.</p>
+			<p class="RevisionHistoryEntry">[ADDED] Flag to override the database privileges check added to the installation/upgrade functionality.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] Installation check updated with compatibility for the multi-language EZ-Pages module.</p>
+			<p class="RevisionHistoryEntry">[BUGFIX] Character/String Replacement functionality of auto-generation wasn't working at all as the list of replacements wasn't being loaded by the software!</p>
+			<p class="RevisionHistoryEntry">[BUGFIX] The call to the EZ-Pages URI Mapping auto-generation method was renamed in 4.0.2, but the file containing the updated class with the new method name was mistakenly only included in the UMM edition of the distribution, with the file for 4.0.1 remaining in the standard edition. This broke the auto-generation functionality for EZ-Pages in 4.0.2, resulting in a blank white page and an error message in the debug cache! The correct file, with the correct version of the class and method, has been included in 4.0.3.</p>
+			<p class="RevisionHistoryEntry">[ADDED] FAQ about missing configuration group option added to the documentation.</p>
+			<p class="RevisionHistoryEntry">[ADDED] FAQ about missing Zen Cart admin menu item added to the documentation.</p>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[UPDATED] Documentation updated with up-to-date information for Zen Cart 1.5.0.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">22nd July 2011</td>
+		<td>4.0.2</td>
+		<td>
+			<p class="RevisionHistoryEntry">[UPDATED] When a product is having its URI mapping auto-generated, with an integer being auto-appended because the mapping clashes with an existing mapping, the auto-generation code now checks to see if the clash that is occurring is in fact simply with the product's own mapping. If so, no new URI mapping is generated.</p>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[BUGFIX] When a URI was being made into a historical mapping and an identical historical mapping already existed, the code was wrongly deleting both the original, duplicate mapping and the new historical mapping, instead of only deleting the duplicate mapping.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">19th July 2011</td>
+		<td>4.0.1</td>
+		<td>
+			<p class="RevisionHistoryEntry">[UPDATED] If auto-generation fails to generate a URI mapping (because a category/product/manufacturer/EZ-Page has no name), an informative error message is now displayed, instead of simply stating that no URI mapping was generated.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] The example rewrite rule generated by the software included a slash at the end of the admin exclusion. It has now been adjusted to remove this slash, so that the admin URI can be accessed without having to end it with a slash (http://store.com/admin can be used to access the admin, instead of insisting upon http://store.com/admin/ or http://store.com/admin/index.php etc.).</p>
+			<p class="RevisionHistoryEntry">[BUGFIX] Existing URI mappings for auto-managed product pages weren't being converted to historical URI mappings whenever a new URI mapping was entered/generated for a product.</p>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[REMOVED] Sample modified core files, and template override files, for Zen Cart versions 1.3.0 to 1.3.7 removed from the distribution. Every store should really upgrade to Zen Cart 1.3.9h as previous versions are bug-ridden!</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">14th July 2010</td>
+		<td>4.0.0</td>
+		<td>
+			<p class="RevisionHistoryEntry">[ADDED] Installation check and example rewrite rule functionality added.
+			<br />Once the Config Utility has been successfully installed, and the database &amp; configuration installed or brought up to date, the user can access the installation check/example rewrite rule functionality from the config utility. This smart and useful addition to the software will analyse the store's configuration files and warn the user if there are any mistakes in the files which they need to correct, and will even provide full information about what they should do. It will also check all the core files that must be modified for Ceon URI Mapping to work optimally, and warn the user if any of the modifications are missing or out of date, again giving information on what the user should do!
+			<br />A quick glance at this new admin page should help the user identify and fix any problems with the installation quickly and easily!
+			<br />Finally, the check will analyse the store's filesystem and build an example rewrite rule for the store, along with instructions on how to get the rule working. Adding the rewrite rule should now just be a simple matter of copying and pasting the rule built by this new functionality!</p>
+			<p class="RevisionHistoryEntry">[ADDED] Compatibility with IIS ISAPI_Rewrite 3 and IIS URL Rewrite added, in part by updating the sample rewrite rules. The example rules now use the &ldquo;QSA&rdquo; flag instead of appending the query string with &ldquo;?%{QUERY_STRING}&rdquo;. The updated rules remain compatible with all Apache versions, on any platform.</p>
+			<p class="RevisionHistoryEntry">[ADDED] Checks added throughout rewritten software to prevent any URI mappings being added that clash with an existing (current) URI mapping.
+			<br />
+			A setting has been added that lets the store choose whether they'd rather be notified about any such clashes, or (for products only at this time) whether they would rather the software automatically appends a number to the end of the mapping to make it unique and therefore stop it from clashing with the existing URI mapping.</p>
+			<p class="RevisionHistoryEntry">[ADDED] Checks added throughout rewritten software to prevent any duplicate historical URI mappings being created in the database.</p>
+			<p class="RevisionHistoryEntry">[ADDED] Messages are now displayed in the message stack whenever a URI mapping is added, updated or converted to a historical URI. Gives assurance that the desired change(s) was/were made, especially since any auto-generated/entered/updated URI mapping is displayed within the respective success message.
+			<br />Any newly added/updated mapping is clickable within this message, so the user can see it working straight away in a new browser tab/window.</p>
+			<p class="RevisionHistoryEntry">[ADDED] New settings added to allow the store to specify which &ldquo;pages related to a product&rdquo; should have their URIs auto-managed by the software.
+			<br />There are four page types which can be auto-managed: &ldquo;Products Reviews&rdquo;, &ldquo;Product Review Info&rdquo;, &ldquo;Write a Review&rdquo; and &ldquo;Tell A Friend&rdquo;.
+			<br />If a store doesn't use a particular page type, disabling its auto-management will mean that the URI mapping database isn't populated unnecessarily, making it smaller and therefore slightly more efficient/quicker.
+			<br />The page types which are to be auto-managed can be enabled/disabled in a new section in the config utility. The URI parts which are to be appended for the auto-managed URIs are now entered in another new section in the config utility, instead of being defined in language defines, as was the case previously, making it considerably easier to specify the desired URI parts.
+			<br />Also, as noted in a bugfix entry below, previous versions of the module didn't support multiple languages properly.</p>
+			<p class="RevisionHistoryEntry">[ADDED] Functionality added to the module to &ldquo;normalise&rdquo; the effects of using a rewrite rule. Previously, with some server configurations, the use of a rewrite rule would result in the $PHP_SELF variable value having a useless value. The new code attempts to circumvent this problem and provide a meaningful value for the variable.</p>
+			<p class="RevisionHistoryEntry">[ADDED] Ceon URI Mapping functionality implemented in product move and copy functionality for four more product types: document_general, document_product, product_free_shipping and product_music. Previously the Ceon URI mapping functionality for these product types was only available when adding or updating a product.</p>
+			<p class="RevisionHistoryEntry">[ADDED] Sample modified core files for Zen Cart 1.3.9g and 1.3.9h added to the distribution.</p>
+			<p class="RevisionHistoryEntry">[ADDED] Sample modified files for third party module &ldquo;Multilanguage EZ-Pages&rdquo; module added to the distribution.</p>
+			<p class="RevisionHistoryEntry">[ADDED] Support for Ceon Model Code and automatic version checking functionality added.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] Module restructured into using a class-based structure. A base class provides shared functionality. Subclasses can then be created which differ in how they run.
+			<br />The &ldquo;standard&rdquo; class is designed for maximum compatibility and flexibility, while remaining as lightweight and nimble as possible.
+			<br />Alternative versions can be created which are specific to certain server setups, skipping unnecessary configuration checks and/or using more efficient code to map URIs, for maximum speed.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] URI mappings now have any trailing slashes stripped. URIs can no longer end in a trailing slash. Auto-upgrade functionality will automatically remove trailing slashes for any URI existing mappings.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] Excluded Files functionality removed as the new, improved Ceon URI Mapping instantiation code can determine whether or not Ceon URI Mapping should attempt to analyse and map the current URI. This means the module should be 100% compatible with all other Zen Cart modules capable of working with static URIs, without the store having to adjust anything at all!</p>
+			<p class="RevisionHistoryEntry">[UPDATED] An alternate URI can now be as little as one character in length. Previously it could only be two characters or greater in length. This allows redirecting of URIs directly to the home page (/).</p>
+			<p class="RevisionHistoryEntry">[UPDATED] The canonical tag is no longer added using an auto-loaded JavaScript file. For Zen Cart 1.3.9 it is now added by using Zen Cart's built-in canonical output functionality (overriding the code to use the Ceon URI Mapping canonical URI). For earlier versions of Zen Cart a small core file modification is now needed to the template file common/html_header.php, to bring it up to date and make it compatible with the canonical URI functionality of the module.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] Extra core file override (init_sessions.php) included for Zen Cart 1.3.9 as it doesn't set the cookie path to the root of the site, which is what is required for sites that use static URIs. The override prevents the propagation of the session ID (zenid=xxxx) in the URI beyond the second page visited, when the visitor accepts cookies. The first page visited will still have the session ID at the end of all links as that is an unavoidable aspect of how Zen Cart must work when no cookie has been supplied (i.e. a fresh visit to the site). Override is not needed for versions of Zen Cart before 1.3.9 as those versions set the session cookie relative to the site's root.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] The words &ldquo;a&rdquo; and &ldquo;an&rdquo; are no longer part of the default list of words to be removed from a URI when auto-generation is taking place.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] zen_href_link() modifications for Ceon URI Mapping updated to use new class instead of procedural code. Number of modifications to html_output.php has been reduced from 4 to 1, making this core file's modification easier to make.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] Ceon URI Mapping will no longer attempt to redirect from a static URI when the static URI is a historical URI, or the language is being changed, and a form is being POSTed. Nor will it attempt to redirect if it detects a form being POSTed to a dynamic URI that has a current URI mapping, as could happen if the form didn't include the &ldquo;action&rdquo; parameter that was previously being checked against. Avoids problems with modules that don't use zen_href_link() properly.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] Core admin file modifications changed to simply instantiate classes and call methods. This is a great improvement as it means that the Ceon URI Mapping code blocks in the modified core files are much simpler, each change now being just a few commands surrounded by the marker comments. This should make the core file modifications much easier to make. Also, since the actual code has been abstracted to classes, it will be much easier to update the software as the core files themselves probably won't need to be changed, the class files can simply be overwritten instead.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] Ceon URI Mapping admin functionality is no longer loaded for all Zen Cart admin pages. The files containing the classes are loaded only when needed, as opposed to the previous method of having the functions loaded for every Zen Cart admin page. Avoids needlessly using system resources in sections of the admin that don't use the Ceon URI Mapping functionality.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] Auto-upgrade functionality now checks if the current database user has the necessary ALTER TABLE privileges.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] Code to remove duplicate mappings updated to match against the base product URI, rather than building a unique URI to check against, for each of the 4 product-related page types, and one to check against product URIs with a trailing slash. Reduces the number of queries for this functionality from 6 to 2. Remaining two queries have also been cut down in scope, increasing their efficiency.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] Some admin functionality changed from using the Ceon String class to standard PHP functions as the specific functionality is only ever going to handle ASCII strings, which the PHP functions can handle more quickly/efficiently.</p>
+			<p class="RevisionHistoryEntry">[BUGFIX] 303 and 307 redirects were using the wrong redirection code (both were using 302).</p>
+			<p class="RevisionHistoryEntry">[BUGFIX] Plus (+) symbols weren't being escaped in the regular expressions which handle the list of words to be removed from auto-generated URIs. Using a plus symbol therefore broke these expressions, meaning that the Remove Words functionality didn't work as expected.</p>
+			<p class="RevisionHistoryEntry">[BUGFIX] The list of words to be removed from auto-generated URIs wasn't being encoded properly for being output on the configuration page, breaking the encoding of certain characters.</p>
+			<p class="RevisionHistoryEntry">[BUGFIX] The URIs being auto-generated for &ldquo;pages related to a product&rdquo; only ever used the defines for the language being used in the admin, even if the store had multiple languages. This meant that, for languages other than the one being used in the admin, the product part of the URI would be in the correct language but the URI part for the related page would be in the wrong language!</p>
+			<p class="RevisionHistoryEntry">[BUGFIX] Ceon URI Mapping broke the Zen Cart functionality to automatically change the currency to the language's default currency whenever the language was changed. A new override file has been added for init_currencies so that the default language currency functionality works perfectly with static URIs.</p>
+			<p class="RevisionHistoryEntry">[ADDED] New FAQs added to describe what to do whenever the use of the module causes images not to load, layout issues to occur (e.g. because of unloaded CSS files) or other Zen Cart modules (including those with AJAX functionality (e.g. JavaScript menus)) to stop working.</p>
+			<p class="RevisionHistoryEntry">[ADDED] New FAQ added about how to deal with 404 errors being displayed.</p>
+			<p class="RevisionHistoryEntry">[ADDED] New FAQ added about problems with particular file types being &ldquo;blocked&rdquo; whenever the rewrite rule is added.</p>
+			<p class="RevisionHistoryEntry">[ADDED] Information added to the documentation on how to configure the Google Sitemap (XML) module to work properly with Ceon URI Mapping.</p>
+			<p class="RevisionHistoryEntry">[REMOVED] Documentation and FAQ about excluded files functionality removed as the functionality is no longer necessary!</p>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[BUGFIX] Documentation updated so that the dynamic functionality works when the documentation is being accessed from a local disk using Google Chrome.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">7th September 2010</td>
+		<td>3.8.0</td>
+		<td>
+			<p class="RevisionHistoryEntry">[UPDATED] Commas are now also converted to spaces before being replaced by the whitespace replacement character when auto-generating a URI.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] A dynamic Zen Cart URI with an empty main_page parameter, &ldquo;index.php?main_page=&rdquo;, is now redirected to the home page with a 301 permanent redirect.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] Mapped URIs are now deleted when the Zen Cart product or category deletion function is called. Previously the deletion code was called directly when a product/category was being deleted, but subcategories and products within a category being removed were not having their URIs deleted, wasting space in the database unnecessarily.</p>
+			<p class="RevisionHistoryEntry">[BUGFIX] String replacements weren't being used in EZ-Page and Manufacturer URI autogeneration functions.</p>
+			<p class="RevisionHistoryEntry">[ADDED] Exclusion for 3D-Secure IFrame wrapper file in new Ceon Cardsave Direct payment module added.</p>
+			<p class="RevisionHistoryEntry">[ADDED] Sample modified core files for Zen Cart 1.3.9e added to the distribution.</p>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[ADDED] Sample modified core files for Zen Cart 1.3.9f added to the distribution.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">16th June 2010</td>
+		<td>3.6.3</td>
+		<td>
+			<p class="RevisionHistoryEntry">[UPDATED] URI mapping lookup query updated to use a LIKE operator before the REGEXP operator. Limits the number of records that have to be examined by the REGEXP, resulting in vastly superior performance when the URI mappings table is large (especially if it is too large to be cached in memory by the SQL server software). Code update by Christian Pinder.</p>
+			<p class="RevisionHistoryEntry">[INTERMED] Index added to the database table, for categories/products/EZ-pages, to speed up URI mapping. Gives a noticeable improvement with very large sites with tens of thousands of products. Thanks for suggestion for index format goes to Christian Pinder. Database structure shall be changing entirely in 4.0.0 for further optimisations (As always all changes are managed by the auto-upgrade functionality of the software).</p>
+			<p class="RevisionHistoryEntry">[UPDATED] When URIs are being auto-generated, any forward slashes, pipe characters, plus symbols, colons, semicolons, brackets, square brackets or angle brackets in the name of a category/product/manufacturer/EZ-page will now be converted to a space, then replaced by the whitespace replacement character. This means that names with those characters in them will no longer have the words joined together.</p>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[ADDED] Sample modified core files for Zen Cart 1.3.9d added to the distribution.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">25th May 2010</td>
+		<td>3.6.2</td>
+		<td>
+			<p class="RevisionHistoryEntry">[BUGFIX] Modified version of breadcrumb core file was missing from the distribution.</p>
+			<p class="RevisionHistoryEntry">[BUGFIX] Modified version of canonical core file was in the wrong folder in the distribution - should have been in the init_includes overrides folder instead of the main init_includes folder.</p>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[UPDATED] Minor documentation updates (including the correction of the incorrect information regarding the canonical override file).</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">24th May 2010</td>
+		<td>3.6.1</td>
+		<td>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[ADDED] Sample modified core files for Zen Cart 1.3.9c added to the distribution.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">24th May 2010</td>
+		<td>3.6.0</td>
+		<td>
+			<p class="RevisionHistoryEntry">[ADDED] Support for filtered product listings having their own static URI added. Previously only a single unique set of query string parameters would allow a filter product listing to have its own static URI. The software can now extract the identifying query string parameters which allow product listing pages to have their own static URI.</p>
+			<p class="RevisionHistoryEntry">[ADDED] Modified template files added to distribution to enable support for static URIs in the Manufacturers sidebox, the Music Genres sidebox, the Record Company sidebox and all of the product listing filter forms. This would seem to complete the support for static URIs in a standard Zen Cart installation. There are no further files known to have code which does not support static URIs!</p>
+			<p class="RevisionHistoryEntry">[UPDATED] Software will now (once again) redirect to the static URI for a manufacturer's page, if it exists, when the index page is being accessed with the query string parameters identifying a manufacturer.</p>
+			<p class="RevisionHistoryEntry">[BUGFIX] The canonical URI for the root of a site was incorrectly having its trailing slash removed.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] Checks against the query string parameters being used to build links are now case insensitive.</p>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[UPDATED] Order of checks against query string parameters changed so that the check for the identifying parameter for a category is now the last check made. This has been done in case any other software uses links which have the category query string parameter in them, so that these [hypothetical] links won't have their static URIs incorrectly overridden by a static URI for the associated category.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">17th May 2010</td>
+		<td>3.4.3</td>
+		<td>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[BUGFIX] Code introduced in 3.4.0 to remove extra ampersands from the URI was being overzealous and removing an extra ampersand whenever the primary query string parameter for a mapped URI was not at the start of the query string, but was instead preceded by other query parameters. This broke the preceding and following query string parameters as the name of the following parameter was being appended to the preceding parameter's value.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">15th May 2010</td>
+		<td>3.4.2</td>
+		<td>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[BUGFIX] Auto-upgrade script was attempting to add the excluded_files column to the configuration database table when upgrading from version 3.2.4, even though this column is already present in the table.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">13th May 2010</td>
+		<td>3.4.1</td>
+		<td>
+			<p class="RevisionHistoryEntry">[ADDED] Check for link to index page added to link generation function. Saves having to call the database when linking to the index page, resulting in lighter usage of server resources.</p>
+			<p class="RevisionHistoryEntry">[ADDED] Automatic redirection of variants of index page URIs added (index.php, index.php?main_page=index). Instead of having a default URI mapping for the index page, all links to the index page are now handled in code, with all links automatically being redirected to the root of the store (i.e. the value of DIR_WS_CATALOG, e.g. / or /shop).</p>
+			<p class="RevisionHistoryEntry">[UPDATED] All canonical URIs are now absolute URIs. In 3.4.0 they were relative to the site's root, now they are full URIs (they include the http URI scheme and the site's domain name).</p>
+			<p class="RevisionHistoryEntry">[UPDATED] Any previously added mappings for the index page will be automatically made into historical URIs as they are no longer needed.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] New function added so that when Ceon URI Mapping is redirecting to another URI, the query string is rebuilt with any array or multi-dimensional array parameters intact. (Standard Zen Cart function doesn't support passing arrays). To minimise server impact the functions are only loaded if needed.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] Support added for building canonical URIs for pages which are loaded by posting a HTML form which uses the GET method. Filters on product listing pages etc. use a form to build their URIs; previously this would result in each filter creating a new URI without a canonical hint tag. Now all pages always have a canonical tag, regardless of how the URI is built, by populating the canonical URI variable even when the only things that have changed in the URI are the filtering parameters.</p>
+			<p class="RevisionHistoryEntry">[BUGFIX] The default index page mapping added in 3.4.0 meant that any manufacturer product listing page which didn't have a static URI mapping specified/generated redirected to the index page when trying to add a product to the cart directly from the listing, meaning that the add to cart functionality was broken. This redirection no longer takes place, so the add to cart functionality has been restored.</p>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[UPDATED] FAQ added to documentation to point to the information needed to get some third party modules working when Ceon URI Mapping is enabled. Information about what needs to be looked at made clearer and more comprehensive.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">8th May 2010</td>
+		<td>3.4.0</td>
+		<td>
+			<p class="RevisionHistoryEntry">[ADDED] Canonical URI support added! Any page with a static URI will now have a canonical URI tag added to the page's header. This will minimise &ldquo;duplicate content&rdquo; reports as it tells the search engines that multiple pages should be treated as one, without actually redirecting the visitor.</p>
+			<p class="RevisionHistoryEntry">The canonical URI hint causes any parameters added to the URI to be ignored, thereby preventing duplicate content reports when Zen Cart adds its session ID (?zenid=xxx) to the URI or when paged, sorted or filtered results listings add their parameters (e.g. if a page had a ?sort=2a parameter) etc.</p>
+			<p class="RevisionHistoryEntry">[ADDED] Module now tracks whether or not the user has just selected a different language. If so, then instead of simply appending &ldquo;&amp;language&rdquo; to the end of the URI, the module will automatically redirect to the specific URI mapping for the page for the newly selected language.</p>
+			<p class="RevisionHistoryEntry">[ADDED] If the URI uses a different language from the session, the session is switched to use the new language. This means that the page will display in the language that the URI is specifically defined for. I.e. if a site has a page in two different languages and each has a translated URI (E.g. /chairs and /chaises), the session language will correctly reflect the URI being displayed in the address bar. This greatly enhances the language handling of Zen Cart!</p>
+			<p class="RevisionHistoryEntry">[ADDED] Support for mapping hard-coded links containing &ldquo;index.php?main_page=&rdquo; added. EZ-Page alternative URLs use this format so they are now remapped to the appropriate static URI mappings.</p>
+			<p class="RevisionHistoryEntry">[ADDED] Improved support for IIS ISAPI rewrite module added. URI Mapping module tries to use the original URI the IIS ISAPI rewrite module provides.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] The &ldquo;cPath&rdquo; query string parameter is now removed from the URI if the current category is simply the product's master category, as the category path information can be regenerated when the static URI is loaded. Results in neater URIs, and less &ldquo;duplication&rdquo; of pages as seen by the search engines.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] main_page query string parameter is no longer part of the main check to see whether or not an attempt should be made to identify and map the URI as some forms using the GET method provide the main_page variable. Main check is now made against the name of the script being loaded (that it doesn't include index.php).</p>
+			<p class="RevisionHistoryEntry">[BUGFIX] Generated links to manufacturers weren't using the URI mapping entered for the manufacturer because of incorrect pattern matching in the zen_href_link function as modified for this module.</p>
+			<p class="RevisionHistoryEntry">[BUGFIX] Typo in code to look up current URI mappings for a product was breaking the product preview info admin page when it was accessed directly from the &ldquo;Preview&rdquo; icon in the Categories/Products admin section. All admin/includes/modules/*/preview_info.php files need updating!</p>
+			<p class="RevisionHistoryEntry">[BUGFIX] The product_id query string parameter is no longer removed if it includes attribute information, so that the attributes can be correctly pre-selected when clicking on a product in the shopping cart.</p>
+			<p class="RevisionHistoryEntry">[BUGFIX] Support for arrays (inc multidimensional arrays) in query string added using new Array Query Parameter function.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] Extraneous ampersand character could be left over in the URI when removing used query string parameters from the URI.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] Example rewrite rules updated to support up to 5 characters for file extensions, rather than 4. This fixes the problem of 404 error handling pages with .shtml file extensions being processed by the rewrite rule, which was then causing Zen Cart to run and record the URI that generated the 404 in Zen Cart's &ldquo;Who's online&rdquo; database. Paths to missing files on the server will no longer be processed by Zen Cart and so won't show up in the &ldquo;Who's online&rdquo; database.</p>
+			<p class="RevisionHistoryEntry">[ADDED] Sample modified core files for Zen Cart 1.3.9a added.</p>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[UPDATED] Improvements to the documentation to make a few things clearer and information easier to find.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">17th September 2009</td>
+		<td>3.2.4</td>
+		<td>
+			<p class="RevisionHistoryEntry">[BUGFIX] When a URI was being mapped to a page for a different language from the default/current session's language, the module wasn't changing the language for the session to the language being mapped to.</p>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[BUGFIX] Certain Zen Cart links to the product info page(s) don't use the category cPath variable like all the other links to these pages. Module updated to set this variable if it isn't set and therefore prevent these links breaking.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">27th June 2009</td>
+		<td>3.2.3</td>
+		<td>
+			<p class="RevisionHistoryEntry">[ADDED] Ability to exclude specific files added to ensure 100% compatibility with third party modules that have files which load up the Zen Cart system directly so they can process payment callbacks etc. To ensure that these files aren't adversely affected by the Ceon URI Mapping module, they should be excluded from being processed by the module by entering the file names in the configuration utility.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] Default URI Mapping is now added to map the dynamic URI for the store's home page (index.php?main_page=index) to its base static URI (e.g. / or /shop etc.) - avoids possible duplicated content issues with search engines.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] Extra checks added to minimise the number of situations in which the cPath query string parameter is appended to static URIs for products. The links to a product page for a product with a static URI are no longer checked against the cPath value for the global environment but are checked against the value the link function is called with. This should result in more matches and therefore the removal of the cPath variable more frequently, giving cleaner URIs.</p>
+			<p class="RevisionHistoryEntry">[BUGFIX] A 404 page was being incorrectly displayed when the store's base URI was accessed with a query string appended. The index page is now displayed as expected.</p>
+			<p class="RevisionHistoryEntry">[BUGFIX] Pagination, sorting and filtering functionality wasn't working when browsing by manufacturer as the module was clearing the query string parameters used to control this functionality.</p>
+			<p class="RevisionHistoryEntry">[BUGFIX] Fixed a problem wherein an endless redirection loop could occur if a static URI used the main_page query string parameter.</p>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[ADDED] Information about new Excluded Files functionality added to the documentation.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">31st March 2009</td>
+		<td>3.2.2</td>
+		<td>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[BUGFIX] Incorrect logic added in version 3.2.1 meant that some URIs for the index page were bringing up the page_not_found page, if the query string didn't have "main_page=index" in it and the store has Zen Cart installed in a subdirectory rather than the root directory of the site.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">27th March 2009</td>
+		<td>3.2.1</td>
+		<td>
+			<p class="RevisionHistoryEntry">[BUGFIX] The module was not compatible with Zen Cart's page_not_found/404 functionality.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] Default Whitespace Replacement Character for auto-generated URIs changed from a single underscore to a dash. (The primary reasons for this are that dashes are easier to find on the keyboard and type in for most people and dashes are more clearly read in underlined links).</p>
+			<p class="RevisionHistoryEntry">[UPDATED] Documentation updated to use a single dash as the Whitespace Replacement Character.</p>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[UPDATED] Documentation updated to make various information a little bit clearer and/or more specific.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">17th March 2009</td>
+		<td>3.2.0</td>
+		<td>
+			<p class="RevisionHistoryEntry">[ADDED] Ability to specify the current URI mapping for a manufacturer directly in the admin added.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] Support for mapping manufacturers to static URIs added to link generation and page identification functionality.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] Database format updated to use a separate field for query string parameters when setting up mappings for other Zen Cart pages.</p>
+			<p class="RevisionHistoryEntry">[BUGFIX] For versions 3.0.0 to 3.0.2, the links to the home page could go to a category or product page instead of the home page as the module was using an ambiguous SQL query.</p>
+			<p class="RevisionHistoryEntry">[BUGFIX] Static URIs for categories were overriding the manufacturer display functionality of Zen Cart as they have a similar dynamic URI structure. Fixed by new manufacturer handling code.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] Documentation completely rewritten. Installation documentation made simpler, layout of documentation made clearer, table of contents added to the configuration documentation.</p>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[ADDED] New section added to the configuration documentation to help with setting up a working rewrite rule for the server and information about the new format for setting query string parameters added.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">27th Feburary 2009</td>
+		<td>3.0.2</td>
+		<td>
+			<p class="RevisionHistoryEntry">[BUGFIX] Format specifier for seconds part of date component was the wrong case, causing an illegal time to be generated. This caused an SQL error in stricter versions of MySQL.</p>
+			<p class="RevisionHistoryEntry">[BUGFIX] Documentation regarding example rewrite rules updated to include a rule exclusion for the editors directory. Without this exclusion only the standard Zen Cart text editor could be used in the admin!</p>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[UPDATED] Code added to init script to set the value of $PHP_SELF in certain circumstances, to prevent the rewrite rules interfering with the zen_href_link function in some very particular cases.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">19th Feburary 2009</td>
+		<td>3.0.1</td>
+		<td>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[BUGFIX] The standard Zen Cart initsystem initialises the languages system at one of the later stages, meaning that the language ID is set too late in the initsystem process for this module to work correctly when a non-human visits the site. The languages init code is now run in the URI Mapping initsystem script to fix this (major) problem. ALL users should upgrade.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">16th Feburary 2009</td>
+		<td>3.0.0</td>
+		<td>
+			<p class="RevisionHistoryEntry">[UPDATED] Completely new database structure implemented.</p>
+			<p class="RevisionHistoryEntry">[ADDED] Idea of &ldquo;Current&rdquo; static URI made central concept behind handling of URIs in module. All admin URI functionality now inserts/updates mappings for the &ldquo;Current&rdquo; URI only.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] Ability to &ldquo;delete&rdquo; URI mappings removed. Instead, any &ldquo;old&rdquo; URI mappings are marked as no longer being current.</p>
+			<p class="RevisionHistoryEntry">[ADDED] Historical URI mapping support added. &ldquo;Deleted&rdquo; URI mappings still point towards their original subject, by redirecting the user to the &ldquo;Current&rdquo; URI for the subject. URI mappings being updated don't have their old URI mappings retained; however, they can be added [back in] to the database manually if necessary.</p>
+			<p class="RevisionHistoryEntry">[ADDED] Support for all Zen Cart pages added to the database, the module's code and its modifications to the zen_href_link function. Any Zen Cart page can now have a static URI, which will be linked to instead of the standard Zen Cart dynamic URI!</p>
+			<p class="RevisionHistoryEntry">[ADDED] Automatic redirection of dynamic URIs to their current, active URI mapping added to URI Mapping. Any attempt to use a dynamic URI for a page which has a current static URI will result in the user being redirected to the current (static) URI.</p>
+			<p class="RevisionHistoryEntry">[ADDED] Ability to specify the HTTP Status Code to be used for the redirection to an alternative URI added. Allows controlling of exact type of redirection (temporary/permanent etc.).</p>
+			<p class="RevisionHistoryEntry">[ADDED] Support for pages related to the product info pages added. Reviews and Tell-A-Friend sections are now automatically made &ldquo;subsections&rdquo; of the product's main info page, by appending some specific URI parts to the product info page's static URI. These specific URI parts are defined in the admin languages file.</p>
+			<p class="RevisionHistoryEntry">[UPDATED] Dynamic query string variable is no longer appended to static URI links for subcategories or links to product info pages (for those which aren't a link to a linked product). Results in cleaner, &ldquo;nicer&rdquo; URIs!</p>
+			<p class="RevisionHistoryEntry">[BUGFIX] Missing filename definitions added for several product types. Links to products of these types now correctly use any static URI defined for the product.</p>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[UPDATED] Documentation updated with information about new functionality and the methodology behind the new way the module works.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">13th Feburary 2009</td>
+		<td>2.0.3</td>
+		<td>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[BUGFIX] URIs being output for links on stores with a directory prefix other than &ldquo;/&rdquo; were incorrectly having the directory prefix prepended to the URIs!</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">21st January 2009</td>
+		<td>2.0.2</td>
+		<td>
+			<p class="RevisionHistoryEntry">[BUGFIX] Module wasn't being run on the store side on servers which have an unexpected SCRIPT_NAME value. Updated to only use value of REQUEST_URI, SCRIPT_NAME is no longer used.</p>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[BUGFIX] String class wasn't fully compatible with PHP 4.x.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">14th January 2009</td>
+		<td>2.0.1</td>
+		<td><p class="RevisionHistoryEntry">First public release!</p>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[UPDATED] Installation documentation updated.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">8th December 2008</td>
+		<td>2.0.0</td>
+		<td>
+			<p class="RevisionHistoryEntry">[UPDATED] Complete rewrite - released for testing.</p>
+			<p class="RevisionHistoryEntry">[ADDED] Multi-language support added. Each Product/Category/EZ-Page can now have a different URI mapping for each language used by the store.</p>
+			<p class="RevisionHistoryEntry">[ADDED] Support for auto-generation of URI mappings added. Includes support for UTF-8 and transliteration - wow!</p>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[ADDED] Full admin configuration utility added for URI mapping auto-generation functionality.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">10th November 2008</td>
+		<td>1.2.0</td>
+		<td>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[BUGFIX] Sometimes the session ID handling caused the URI parsing to fail as it left a trailing ampersand on the end of links.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">25th September 2008</td>
+		<td>1.0.0</td>
+		<td>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">[ADDED] Support for all standard product types added (previously all products were displayed using the standard product type page/template instead of their custom page/template). Supported types now include document_general, document_product, product, product_book, product_free_shipping and product_music.</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="NoWrap">30th August 2008</td>
+		<td>1.0.0alpha1</td>
+		<td>
+			<p class="RevisionHistoryEntry RevisionHistoryLastEntry">Initial Release to private client of JKED.</p>
+		</td>
+	</tr>
+</table>
+
+<p class="BackToTop"><a href="#top">Back to top</a></p>
+
+<p id="footer"><a href="http://ceon.net/software/business/zen-cart?doc=zc-um" target="_blank"><img src="../_images/ceon-button-logo.png" alt="Ceon" id="ceon-button-logo" /></a><a href="http://jked.net" target="_blank"><img src="../_images/jked-logo.gif" alt="JKED" id="jked-logo" /></a>Module &amp; Documentation &copy; Copyright 2008-2012 <a href="http://ceon.net/software/business/zen-cart?doc=zc-um" target="_blank">Ceon</a></p>
+
+	</div>
+</div>
+
+<script type="text/javascript">
+<!-- // Output resizeable div end tag
+restrict_width.outputClosingTag();
+// -->
+</script>
+
+</body>
+</html>

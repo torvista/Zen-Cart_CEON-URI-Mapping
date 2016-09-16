@@ -1,0 +1,597 @@
+/**
+ * Main CSS Stylesheet
+ */
+
+/* =General
+-----------------------------------------------------------------------------------------------------------------*/
+
+/* Put margin back on certain elements */
+h1, h2, h3, h4, h5, h6, p, pre, blockquote, form, fieldset, table, ul {
+	margin: 1em 0;
+}
+ul, ol { padding-left: 1.5em; margin-top: 0.8em; margin-bottom: 0.8em; }
+ul li { margin-bottom: 0.3em; }
+
+/* Remove border around linked images */
+a img {
+	border: 0;
+}
+
+hr { 
+	border: 0;
+	color: #777;
+	background-color: #777;
+	height: 2px;
+	margin-top: 0.7em;
+	margin-bottom: 0.7em;
+}
+
+/* Selective display according to JavaScript availability/Print output being used */ 
+.JavaScriptOutput, .JavaScriptAndPrintOutput {
+	display: none; /* Disable until JavaScript is confirmed or print output is being used */
+}
+.NoscriptAndPrintOutputBlock {
+	display: block;
+}
+
+
+/* =Forms
+-----------------------------------------------------------------------------------------------------------------*/
+
+form {
+	margin: 0;
+}
+
+fieldset {
+	background: #f6f6f8;
+	padding: 0.5em 0.5em 0.5em 0.5em;
+	margin: 0 0 1em 0;
+	border: 1px solid #ccc;
+}
+
+legend {
+	font-family : arial, helvetica, sans-serif;
+	font-weight: bold;
+}
+
+
+/* =Typography - General
+-----------------------------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: arial, helvetica, sans-serif;
+	font-size: 85%;
+	line-height: 1.25;
+}
+p {
+	margin-top: 0;
+	margin-bottom: 0.8em;
+	line-height: 1.3em;
+}
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+ul ul {
+	list-style: disc;
+	margin-left: 3em;
+}
+ul li {
+	margin: 0;
+	padding: 0;
+	margin-bottom: 1em;
+	padding-bottom: 0;
+}
+ul li ul li {
+	margin-bottom: 0;
+	padding-bottom: 0;
+	padding-top: 0.2em;
+} 
+
+
+/* =Headings - General
+-----------------------------------------------------------------------------------------------------------------*/
+h1 {
+	letter-spacing : -0.5mm;
+	font-size: 170%;
+	color : #999999;
+	font-weight: bold;
+	margin-top: 0;
+	margin-bottom: 0.5em;
+}
+h2 {
+	font-size: 1.3em;
+	margin-top: 1.4em;
+	margin-bottom: 0.3em;
+	font-family: tahoma;
+}
+h3 {
+	font-size: 1.2em;
+	margin-top: 1.5em;
+	margin-bottom: 0.2em;
+	padding: 0;
+	font-family: tahoma;
+}
+h4 {
+	font-size: 1.1em; 
+	margin-top: 1.3em; 
+	margin-bottom: 0.5em;
+	font-family: tahoma;
+}
+h5 {
+	font-size: 1.05em; 
+	margin-top: 1.8em; 
+	margin-bottom: 0.5em;
+	padding-bottom: 0.2em;
+	border-bottom: 0.1em solid #ccc;
+	font-family: tahoma;
+}
+h6 {
+	font-size: 1em; 
+	margin-top: 1.1em; 
+	margin-bottom: 0.2em;
+	font-family: tahoma;
+}
+
+
+/* =Links
+-----------------------------------------------------------------------------------------------------------------*/
+a:link {
+	text-decoration: none;
+	color: #1240b0;
+}
+
+a:visited {
+	text-decoration: none;
+	color: #1240b0;
+}
+
+a:hover {
+	text-decoration: underline;
+	color: #12b040;
+}
+
+a:active {
+	text-decoration: none;
+	color: #1240b0;
+}
+
+
+/* =Layout - Tables
+-----------------------------------------------------------------------------------------------------------------*/
+table {
+	border: 1px solid #999;
+	border-bottom: none;
+	border-right: none;
+	margin-bottom: 0.8em;
+}
+th {
+	text-align: left;
+	font-weight: normal;
+	font-size: 1.1em;
+	background: #ccc;
+}
+td {
+	vertical-align: top;
+}
+th, td {
+	padding: 0.3em;
+	border: 1px solid #999;
+	margin: 0;
+	border-left: none;
+	border-top: none;
+}
+table p {
+	margin-top: 0;
+}
+
+
+/* =Typography - General II
+-----------------------------------------------------------------------------------------------------------------*/
+.FloatLeft { float: left; }
+.FloatRight { float: right; }
+.ClearBoth { clear: both; }
+.ClearLeft { clear: left; }
+.ClearRight { clear: right; }
+.NoWrap { white-space: nowrap; }
+.NoMarginTop { margin-top: 0; }
+.NoMarginBottom { margin-bottom: 0 !important; }
+.WeightNormal { font-weight: normal; }
+.Underlined { text-decoration: underline; }
+.FontStyleNormal { font-style: normal; }
+.SpacerSmall { clear: both; font-size: 0.1em; line-height: 0.1em; height: 0.1em; }
+.HorizontalSpacer { margin-left: 0.5em; margin-right: 0.5em; color: #ddd; }
+.DoubleSpaceAbove {
+	margin-top: 2em;
+}
+.DoubleSpaceBelow {
+	margin-bottom: 2em;
+}
+.SpaceAbove {
+	margin-top: 1em;
+}
+.ExtraMarginLeft {
+	margin-left: 2em;
+}
+
+h1.Title { float: left; line-height: 1em; padding-bottom: 0; }
+
+.TitleByLineWrapper {
+	line-height: 1.5em;
+	padding-bottom: 0.5em;
+	border-bottom: 1px solid #999;
+	margin-bottom: 0.5em;
+}
+
+.CrossFadeText {
+	position: absolute;
+	top: 16px;
+	right: 0;
+	margin: 0 32px 0 0;
+	padding: 0;
+}
+#byline a {
+	color: #000;
+}
+#ceon-link a {
+	font-weight: bold;
+}
+#ceon-link a:visited {
+	color: #1240b0;
+}
+#ceon-link {
+	font-family: tahoma;
+	visibility: hidden;
+}
+
+.DonationRequest {
+	width: 30%;
+	float: right;
+	background: #eee;
+	padding: 0.5em 0.5em 0.5em 0.5em;
+	border: 1px solid #999;
+	margin: 0 0 1em 2em;
+}
+
+.OtherZenCartReleasesIntroBox {
+	width: 48%;
+	float: left;
+	background: #fafafa;
+	border: 1px solid #999;
+}
+
+.OtherCeonSoftwareIntroBox {
+	width: 48%;
+	float: right;
+	background: #fafafa;
+	border: 1px solid #999;
+}
+
+.OtherZenCartReleasesIntroBox, .OtherCeonSoftwareIntroBox {
+	margin-top: 1em;
+}
+
+.OtherZenCartReleasesIntroBox h2, .OtherCeonSoftwareIntroBox h2 {
+	margin: 0;
+	padding: 0;
+	font-family: tahoma;
+}
+.OtherZenCartReleasesIntroBox h2, .OtherCeonSoftwareIntroBox h2 {
+	background: #eee;
+	padding: 0.5em 0.5em 0.5em 0.5em;
+}
+.OtherZenCartReleasesIntroBox h3, .OtherCeonSoftwareIntroBox h3 {
+	font-size: 1.3em;
+	font-weight: normal;
+	margin: 0 0 0.4em 0;
+	padding: 0.3em 0.5em 0.3em 0.5em;
+	background: #ddd;
+}
+.OtherZenCartReleasesIntroBox p, .OtherCeonSoftwareIntroBox p {
+	padding: 0 0.65em 0 0.65em;
+}
+#other-ceon-software-card-pay-logo {
+	margin-top: -5px;
+	margin-right: -5px;
+}
+
+ul.OtherCeonReleasesMenu {
+	clear: left;
+	list-style: disc;
+	margin-left: 1em;
+	margin-top: 0.9em;
+	font-weight: bold;
+	padding: 0 0.65em 0.5em 0.65em; /* 0.5em x 1.3 */
+}
+ul.OtherCeonReleasesMenu li {
+	font-size: 1em;
+	line-height: 1.3;
+	margin: 0 0 0.55em 0;
+}
+
+h3.OtherReleasesSectionTitle {
+	margin-top: 2em;
+	border-bottom: 1px solid #999;
+	padding-bottom: 0.3em;
+	margin-bottom: 1.2em;
+	font-family: tahoma;
+}
+
+fieldset.OtherReleases, fieldset.ModuleOverview {
+	margin: 0 0 2.3em 0;
+	line-height: 1.3;
+}
+fieldset.OtherReleases legend, fieldset.ModuleOverview legend {
+	font-size: 1.4em;
+}
+fieldset.OtherReleases h3.Top, fieldset.ModuleOverview h3.Top {
+	margin-top: 0;
+}
+fieldset.OtherReleases h3, fieldset.ModuleOverview h3 {
+	margin-bottom: 0.3em;
+}
+fieldset.OtherReleases .Example, fieldset.ModuleOverview .Example {
+	border-top: 3px solid #d8d8e8;
+	background: #efefff;
+}
+fieldset.OtherReleases ul h1 {
+	margin-bottom: 0.2em;
+}
+
+#ceon-pv-dropdown-example { margin-right: 350px; margin-left: 65px; }
+#ceon-pv-uri-mappings-example { margin-right: 80px; margin-left: 65px; }
+
+.JavaScriptAndPrintOutput {
+	display: none;
+}
+
+ul.FeatureListMenu { list-style: disc; margin-left: 1.5em; }
+ul.FeatureListMenu li { margin: 0; margin-top: 0.4em; padding-left: 0.5em; font-size: 1.2em; }
+ul.FeatureListMenu li.MainFeature { font-weight: bold; }
+.MainFeatureSublist { font-size: 0.8em; font-weight: normal; }
+.ShowHide { margin-bottom: 0; }
+.ShowHideWithMarginBottom { margin-bottom: 0.8em; }
+
+ul.SystemRequirements, ul.BulletedList {
+	list-style: disc;
+	margin-left: 2em;
+	margin-bottom: 0.8em;
+}
+ul.Steps { list-style: none; }
+ul.SystemRequirements li, ul.TighterList li { margin-bottom: 0.5em; }
+ul ul.NoBullets { list-style: none }
+
+ol#configuration-submenu { margin-left: 2em; margin-bottom: 0.8em; margin-top: 0.8em; }
+ol#configuration-submenu li { margin-bottom: 0.5em; }
+
+ol#configuration-submenu ul { list-style: none; margin-left: 2em; margin-bottom: 0.5em; margin-top: 0.5em; }
+ol#configuration-submenu ul li { margin-top: 0em; margin-bottom: 0.5em; }
+
+ol#configuration-submenu ol { margin-bottom: 0.5em; margin-top: 0.4em; }
+ol#configuration-submenu ol li { margin-top: 0em; margin-bottom: 0.25em; }
+
+ol.TableOfContents { margin-left: 2em; margin-bottom: 2.5em; margin-top: 0.8em; }
+ol.TableOfContents li { margin-bottom: 0.5em; }
+
+ol.TableOfContents ol { margin-bottom: 0.5em; margin-top: 0.4em; }
+ol.TableOfContents ol li { margin-top: 0em; margin-bottom: 0.25em; }
+
+ol#installation-overview { margin-left: 2em; padding-left: 0em; }
+ol#installation-overview li, ol.IntegrationOverview li { margin-bottom: 0.5em; }
+
+ol.InstallationSteps { margin-left: 2em; padding-left: 0em; }
+ol.InstallationSteps li { margin-bottom: 2.2em; }
+
+ol.InstallationSteps ul.Steps { margin-left: 1em; }
+ol.InstallationSteps ul.Steps li, ol.InstallationSteps ul.BulletedList li { margin-bottom: 0.5em; }
+
+ol.InstallationSteps ol.TableOfContents li {
+	margin-bottom: 0.4em;
+	padding: 0;
+}
+
+p.Intro { clear: right; margin-top: 1em; }
+
+p.BackToTop, p.OtherReleasesBackToTop {
+	text-align: left;
+	font-size: 0.9em;
+	clear: both;
+	margin-top: 2em;
+}
+p.OtherReleasesBackToTop { margin: -1em 0 4em 0; }
+
+p.BackToTableOfContents { font-size: 0.9em; clear: both; margin: 1em 0 2.5em 0; }
+
+.FileName { font-style: italic; padding: 0 0.4em; white-space: nowrap; }
+
+.NewFeature { color: #3399ff; }
+
+.Steps, .Note {
+	background: #eee;
+	padding: 0.4em 0.5em 0.4em 0.5em;
+	border: 1px solid #999;
+	margin-bottom: 1em;
+}
+.Steps .FileName {
+	background: #e0e0e0;
+}
+.Steps p {
+	margin-top: 0;
+}
+.Steps h5 {
+	margin-top: 0;
+	border: none;
+	margin-bottom: 0.2em;
+}
+p.Note { padding-bottom: 0.5em; }
+p.FeatureNote { margin-left: 2em; margin-right: 2em; font-size: 0.85em; }
+
+.Tip { margin-left: 2em; }
+
+.Example, li.Example {
+	background: #f4f4f4;
+	padding: 0.5em 0.5em 0.5em 0.5em;
+	border-top: 3px solid #ddd;
+	margin-bottom: 1em;
+	margin-left: 7em;
+	margin-right: 3.5em;
+}
+
+li.Example { list-style: none; margin-top: 0.4em; margin-bottom: 0.4em; }
+
+.Testimonial {
+	float: right;
+	clear: right;
+	width: 13em;
+	margin: 0 0 1em 1.8em;
+	border: 1px solid #999;
+	padding: 0.5em;
+	background: #f4f4f4;
+	line-height: 1.3;
+}
+
+.Testimonial p {
+	margin: 0 0 0.5em 0;
+}
+.Testimonial blockquote {
+	margin: 0;
+}
+.Testimonial p.TestimonialAuthor { margin-top: 0.4em; margin-bottom: 0; }
+
+.Testimonial blockquote {
+	font-family: georgia, times, serif;
+	font-style: italic;
+}
+
+code { font-family: "Courier New", Courier, monospace; line-height: 1.3; }
+
+.CodeDifference { color: red; }
+
+ul.MerchantAccountsSupported { list-style: circle; padding-left: 2em; }
+
+img.Screenshot {
+	background: #eee;
+	padding: 0.5em;
+	border: 1px solid #999;
+	margin-bottom: 1em;
+	margin-left: 1em;
+}
+
+img.RightImage { float: right; margin: 0 0 1em 1em; clear: right; }
+
+img.OtherReleasesLogo { margin-left: 20px; margin-right: 11px; }
+
+img.ExampleScreenshot { margin: 0.8em 0; border: 1px solid #999; }
+
+#upgrade-older-versions { display: none; }
+
+.ExtraEmphasis {
+	color: #12b040;
+}
+.ExtraEmphasis2 {
+	color: #1240b0;
+}
+.Feature {
+	color: #062a80;
+}
+h1.ExtraEmphasis {
+	letter-spacing: -0.40mm;
+}
+h2.ExtraEmphasis {
+	font-family : arial, helvetica, sans-serif;
+	font-size: 170%;
+	color: #12b040;
+	letter-spacing: -0.38mm;
+	margin-top: 0.9em;
+	margin-bottom: 0.5em;
+	line-height: 1.2;
+}
+
+.FeatureTitle {
+	font-family: tahoma;
+}
+.FeatureExtraInfo {
+	font-size: 0.9em;
+	margin: 0.2em 0 0.6em 0;
+	line-height: 1.25;
+	color: #555
+}
+
+.Highlight1 {
+	background-color: #ffffd5
+}
+.Highlight2 {
+	background-color: #d5ffff
+}
+.Highlight3 {
+	background-color: #ffd5ff
+}
+
+ul.ExtraListItemSpacing li {
+	margin-bottom: 2.0em;
+}
+h4 em {
+	text-decoration: underline;
+	font-style: normal;
+}
+
+.UnderlinedTitle {
+	margin-top: 1.3em;
+	margin-bottom: 0.6em;
+	padding-bottom: 0.15em;
+	border-bottom: 0.1em solid #ccc;
+}
+em.ConfigurationOption {
+	font-style: italic;
+	font-weight: bold;
+}
+
+#faqs-content h4 {
+	font-family: arial, helvetica, sans-serif;
+}
+
+.RevisionHistoryEntry {
+	margin-bottom: 0.3em;
+}
+.RevisionHistoryLastEntry {
+	margin-bottom: 0;
+}
+
+.ScreenshotsWithCaption {
+	float: right;
+}
+.ScreenshotsWithCaption p {
+	width: 270px;
+	text-align: center;
+	font-size: 0.8em;
+	color: #999;
+	margin: 0.6em 0.2em 1em 1.4em;
+	padding: 0;
+}
+
+.ScreenshotDesc {
+	margin-right: 265px;
+}
+.ScreenshotImageLink {
+	width: 280px;
+	float: right;
+}
+
+.TextWithTooltipTitleNowrap {
+	cursor: help;
+	white-space: nowrap;
+}
+
+.DonationButton {
+	float: right;
+	margin: 3px 3px 1em 1.2em;
+}
+
+@media print 
+{
+	.Title, .TitleByLineWrapper, ul.MainMenu {
+		display: none;
+	}
+	.NoscriptAndPrintOutputBlock { display: block; }
+}

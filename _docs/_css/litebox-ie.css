@@ -1,0 +1,16 @@
+#overlay {
+	filter:alpha(opacity=60);
+}
+
+.clearfix {
+	/* Hides from IE-mac \*/
+	height: 1%;
+	/* End hide from IE-mac */
+}
+
+#prevLink:hover, #prevLink:visited:hover {
+	background: url(../_images/litebox/prevlabel-no-trans.png) left 15% no-repeat;
+}
+#nextLink:hover, #nextLink:visited:hover {
+	background: url(../_images/litebox/nextlabel-no-trans.png) right 15% no-repeat;
+}

@@ -1,0 +1,591 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>.:: Ceon :: Zen Cart :: Module :: Ceon URI Mapping ::.</title>
+	<link rel="stylesheet" href="../_css/inc.css.layout-styles.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="../_css/inc.css.styles.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="../_css/inc.css.layout-styles-print.css" type="text/css" media="print" />
+	<script src="../_javascript/inc.js.general-functions.js" type="text/javascript"></script>
+	<script src="../_javascript/inc.js.css-functions.js" type="text/javascript"></script>
+	<script src="../_javascript/inc.js.restrict-width.js" type="text/javascript"></script>
+	<script src="../_javascript/inc.js.crossfade.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="../_css/litebox.css" type="text/css" media="screen" />
+	<script src="../_javascript/litebox/prototype.lite.js" type="text/javascript"></script>
+	<script src="../_javascript/litebox/moo.fx.js" type="text/javascript"></script>
+	<script src="../_javascript/litebox/litebox-1.2.js" type="text/javascript"></script>
+	<!--[if gte IE 5]>
+	<link rel="stylesheet" href="../_css/litebox-ie.css" type="text/css" media="screen" />
+	<![endif]-->
+</head>
+
+<body><a name="top" id="top"></a>
+
+<noscript>
+	<style type="text/css">
+	body { margin: 0 auto; max-width: 75em; padding-left: 5%; padding-right: 5%; }
+	.CrossFadeText { margin: 0 auto; max-width: 75em; right: auto; padding-left: 20em; }
+	</style>
+</noscript>
+
+<script type="text/javascript">
+<!-- 
+// Script resizes main div if client window is larger than a predefined variable
+var restrict_width = new CeonRestrictWidth(360, 900);
+
+// Initialise crossfade by hiding crossfade object first
+CeonAddLoadEvent(CeonCrossfadeInit);
+// -->
+</script>
+
+<div id="grad-horiz-left">
+	<div id="grad-horiz-right">
+
+<h1 class="Title">Ceon URI Mapping</h1>
+<div class="TitleByLineWrapper">&nbsp;
+	<div id="crossfade">
+		<p class="CrossFadeText" id="byline"><a href="http://ceon.net/software/business/zen-cart?doc=zc-um">probably the best Zen Cart URI Mapping/SEO Module in the world! ...ever!</a></p>
+		<p class="CrossFadeText" id="ceon-link"><a href="http://ceon.net/software/business/zen-cart?doc=zc-um">Click here to get more great software from Ceon</a></p>
+	</div>
+</div>
+<ul class="MainMenu">
+	<li><a href="../index.html">Overview</a><span> | </span></li>
+	<li><a href="installation.html">Installation</a><span> | </span></li>
+	<li><a href="configuration.html">Configuration</a><span> | </span></li>
+	<li><a href="faqs.html">FAQs</a><span> | </span></li>
+	<li><a href="support.html">Support</a><span> | </span></li>
+	<li><a href="revision-history.html">Revision History</a><span> | </span></li>
+	<li><a href="upgrading.html">Upgrading</a><span> | </span></li>
+	<li><a href="module-info.html">Module Info</a><span> | </span></li>
+	<li><a href="features.html">Module Features</a></li>
+</ul>
+
+<h2><a name="configuration" id="configuration"></a>Configuration</h2>
+
+<h3 class="UnderlinedTitle">Essential Points - PLEASE READ!</h3>
+
+<ol class="ExtraListItemSpacing">
+	<li>
+		<h4 class="UnderlinedTitle" style="background: #eee;"><a name="uri-mappings-need-added" id="uri-mappings-need-added"></a>This module <em>DOES NOT</em> automatically add mappings for <em>EXISTING</em> Categories/Products/Manufacturers/EZ-Pages!</h4>
+		<p>If the site has <strong>existing</strong> Categories/Products/Manufacturers/EZ-Pages, <strong>they'll continue to use the standard Zen Cart dynamic URIs</strong>, until a URI has been entered or auto-generated for them, by editing the respective Category/Product/Manufacturer/EZ-Page in the admin.</p>
+		<p>This means going in and editing <strong>every</strong> Category/Product/Manufacturer/EZ-Page for which a static URI mapping is desired.</p>
+		<p>This gives you full control over all of the site's URIs, one of the main points of this module.</p>
+		<p>Our <a href="http://ceon.net/software/business/zen-cart/uri-mappings-manager?doc=zc-um" target="_blank">URI Mappings Manager</a> software has the ability to auto-generate URI mappings for all/selected Categories/Products/Manufacturers/EZ-Pages/Other Zen Cart Pages at once.</p>
+	</li>
+	<li>
+		<h4 class="UnderlinedTitle">All URI mappings entered must be relative to the site's root. For example:</h4>
+		
+		<p class="Example">/books/life-is-good
+		<br />/clothes/children/t-shirts
+		<br />/company/about-us</p>
+		
+		<p>This means that the same URIs will map correctly no matter what the actual domain name being used to access the site is (e.g. www.yourstore.com or yourstore.com).</p>
+		<p>If &ldquo;http://www.yourstore.com&rdquo; is entered for a URI mapping it will be stripped from the mapping.</p>
+	</li>
+	
+	<li>
+		<h4 class="UnderlinedTitle">It is recommended that all URI mappings for products and categories should use a full path. For example:</h4>
+		
+		<p class="Example">/category-one/subcategory-of-category-one
+		<br />/category-one/subcategory-of-category-one/product-three
+		<br />/category-one/subcategory-two-of-category-one
+		<br />/category-one/subcategory-two-of-category-one/product-fifteen</p>
+		
+		<p>This keeps the site organised and <strong>avoids conflicts</strong> between two pages which are trying to use the same URI (e.g. &ldquo;accessories&rdquo; within one category being seen as the same URI as &ldquo;accessories&rdquo; within another category! In this case one of the categories could never be visited!).</p>
+	</li>
+	
+	<li>
+		<h4 class="UnderlinedTitle">Any URI mappings created using the module's URI auto-generation functionality will comply with the above.</h4>
+		<p>Auto-generated URI mappings will use the full path to a category/product and the name of the category/product. Auto-generated URI mappings for manufacturers will use the name of the page. Auto-generated URI mappings for EZ-Pages will use the title of the page.</p>
+	</li>
+</ol>
+
+<h2><a name="toc" id="toc"></a>Table Of Contents</h2>
+<ol class="TableOfContents">
+	<li><a href="#rewrite-rule">Setting up a Rewrite Rule</a></li>
+	<li><a href="#rewrite-rule">Adjusting the Rewrite Rule (Apache/IIS webservers)</a>
+		<ol>
+			<li><a href="#adding-rewrite-rule-exceptions">Adding exceptions to the rule to prevent particular addresses (e.g. Control Panels etc.) from being handled by Zen Cart.</a></li>
+			<li><a href="#prevent-rewriting-of-file-extensions">Modifying the rule to prevent files with particular file extensions (particular file types) from being &ldquo;blocked&rdquo; by Ceon URI Mapping.</a></li>
+			<li><a href="#allow-rewriting-of-file-extensions">Modifying the rule to allow URI mappings to be used which end with a particular file extension (e.g. &ldquo;.html&rdquo;).</a></li>
+		</ol>
+	</li>
+	<li><a href="#autogen-config">Configuring the URI Mapping Auto-generation settings</a></li>
+	<li><a href="#adjusting-product-page-uri-parts-settings-text">Specifying Auto-manage Settings and URI Parts Text for standard Zen Cart pages related to a Product</a></li>
+	<li><a href="#specifying-uri-mapping-for-category">Specifying the current URI Mapping for a Category</a></li>
+	<li><a href="#specifying-uri-mapping-for-product">Specifying the current URI Mapping for a Product</a></li>
+	<li><a href="#specifying-uri-mapping-for-manufacturer">Specifying the current URI Mapping for a Manufacturer</a></li>
+	<li><a href="#specifying-uri-mapping-for-ez-page">Specifying the current URI Mapping for an EZ-Page</a></li>
+	<li><a href="#organise-ez-pages-into-sections">Organise EZ-Pages into Site Sections</a></li>
+	<li><a href="#uri-other-zen-cart-pages">Specifying the current URI Mapping for any other Zen Cart page</a></li>
+	<li><a href="#using-uri-as-alias">Using Static URIs as an Alias for another Static URI</a></li>
+	<li><a href="#enable-disable-module">Enabling/Disabling the Ceon URI Mapping module</a></li>
+</ol>
+
+
+<ol>
+	<li>
+		<h3 class="UnderlinedTitle"><a name="rewrite-rule" id="rewrite-rule"></a>Setting up a Rewrite Rule</h3>
+		
+		<p>The URI mapping provided by this module is made possible using a very simple URI rewrite rule.</p>
+		<p>This rule must be added to the webserver configuration for the site.</p>
+		
+		<ul class="BulletedList">
+			<li>This software comes with <a href="installation.html#example-rewrite-rule-functionality" target="_blank">&ldquo;Example Rewrite Rule&rdquo;</a> functionality, which does its best to create a &ldquo;base&rdquo; rule for the store.</li>
+			<li>Please follow the instructions given in this Example Rewrite Rule section of the software.</li>
+			<li>If an error is encountered, please consult <a href="faqs.html#rewrite-rule-error">the FAQs</a> for possible fixes or ask your webhost for help. Only after trying those two options should you request help from Ceon or the Zen Cart forum, as the problem is likely to be server-specific and therefore of no general interest to everyone else who needs to use the support thread!</li>
+			<li>Details of how to enable the rewrite functionality of the store's webserver (e.g. mod_rewrite for Apache, IIS ISAPI_Rewrite, IIS URL Rewrite) will not be given here. If information about that is required, please consult the webserver's documentation or search the internet for a guide, there are plenty of them.</li>
+			<li>Once you have a working rewrite rule you can customise the rule as necessary for the store, with the following instructions intended as a helpful reference...</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h3 class="UnderlinedTitle"><a name="adjusting-the-rewrite-rule" id="adjusting-the-rewrite-rule"></a>Adjusting the Rewrite Rule (Apache/IIS webservers)</h3>
+		
+		<ol class="TableOfContents" style="padding-left: 0; margin-bottom: 0;">
+			<li><a href="#adding-rewrite-rule-exceptions">Adding exceptions to the rule to prevent particular addresses (e.g. Control Panels etc.) from being handled by Zen Cart.</a></li>
+			<li><a href="#prevent-rewriting-of-file-extensions">Modifying the rule to prevent files with particular file extensions (particular file types) from being &ldquo;blocked&rdquo; by Ceon URI Mapping.</a></li>
+			<li><a href="#allow-rewriting-of-file-extensions">Modifying the rule to allow URI mappings to be used which end with a particular file extension (e.g. &ldquo;.html&rdquo;).</a></li>
+		</ol>
+		
+		<ol>
+			<li>
+				<h5><a name="adding-rewrite-rule-exceptions" id="adding-rewrite-rule-exceptions"></a>Adding exceptions to the rule to prevent particular addresses (e.g. Control Panels etc.) from being handled by Zen Cart.</h5>
+				
+				<p>If the rewrite rule is blocking access to particular addresses on the server, exclusions need to be added to the rule for any addresses that should not be handled by Zen Cart.</p>
+				<p>Adding an exclusion for a path on the site is fairly easy, simply requiring the addition of a <em>condition</em> to the rewrite rule:</p>
+				
+				<p class="Example"><code># Don't rewrite "cpanel" directory
+					<br />RewriteCond %{REQUEST_URI} !^/cpanel/ [NC]</code></p>
+				
+				<p>This stops any URI beginning with &ldquo;/cpanel/&rdquo; from being handled by Ceon URI Mapping.</p>
+				
+				<p>The <em>condition</em> should be placed before the <code>RewriteRule</code> line in the rule.</p>
+			</li>
+			
+			<li>
+				<h5><a name="prevent-rewriting-of-file-extensions" id="prevent-rewriting-of-file-extensions"></a>Modifying the rule to prevent files with particular file extensions (particular file types) from being &ldquo;blocked&rdquo; by Ceon URI Mapping.</h5>
+				
+				<p>The example rewrite rule by default does not rewrite URIs ending with a 2 to 5 letter file extension, nor does it rewrite URIs that end with some other popular file extensions that include numbers as well.</p>
+				<p>However, some stores may have files that use file extension(s) that the example rewrite rule may try to send to Ceon URI Mapping for mapping instead of being sent to the browser, therefore effectively &ldquo;blocking&rdquo; those files.</p>
+				<p>It's easy to prevent the Ceon URI Mapping module from handling URIs with particular file extensions by making a simple change to the rewrite rule.</p>
+				<p>Simply add exclusion(s) by adding a <em>condition</em> to the rewrite rule:</p>
+				
+				<div class="Example">
+					<p>For example, to prevent files with the extension &ldquo;3gp&rdquo; from being blocked:</p>
+					<p><code>RewriteCond %{REQUEST_URI} !\.3gp$</code></p>
+					<p>Or, instead of adding multiple <em>condition</em> lines (one per file extension), a shorthand way to prevent files with the extensions &ldquo;3gp&rdquo;, &ldquo;m4v&rdquo; or &ldquo;3dml&rdquo; from being blocked is:</p>
+					<p class="NoMarginBottom"><code>RewriteCond %{REQUEST_URI} !\.(3gp|m4v|3dml)$ [NC]</code></p>
+				</div>
+				
+				<p>The <em>condition</em>(s) should be placed before the <code>RewriteRule</code> line in the rule.</p>
+			</li>
+			
+			<li>
+				<h5><a name="allow-rewriting-of-file-extensions" id="allow-rewriting-of-file-extensions"></a>Modifying the rule to allow URI mappings to be used which end with a particular file extension (e.g. &ldquo;.html&rdquo;).</h5>
+				
+				<p>The example rewrite rule by default does not rewrite URIs ending with a 2 to 5 letter file extension, to avoid wasteful attempts by the later rules to check if image files, CSS files etc. should have their URIs rewritten, and for maximum compatibility with other software being used to run the site.</p>
+				<p>However, some stores may want to use particular extensions - for example &ldquo;.html&rdquo; or &ldquo;.php&rdquo; - at the end of its URIs, possibly to match up with advertising literature, or to re-map URIs from a previous site.</p>
+				<p>It's easy to let the Ceon URI Mapping module manage URIs with any file extension by making a simple change to the rewrite rule.</p>
+				
+				<div class="Example">
+					<p>For example, to allow the mapping of URIs ending in &ldquo;.html&rdquo;, the following <code>RewriteCond</code> from the example rule should be changed from:</p>
+					<p><code>RewriteCond %{REQUEST_URI} !\.[a-zA-Z]{2,5}$</code></p>
+					<p>to:</p>
+					<p class="NoMarginBottom"><code>RewriteCond %{REQUEST_URI} !\.[a-zA-Z]{2,5}$ [OR]</code>
+						<br /><code>RewriteCond %{REQUEST_URI} \.(html)$ [NC]</code></p>
+				</div>
+				
+				<p>Additional extensions can be added by adding them to the <code>RewriteCond</code> with a &lsquo;|&rsquo; in front of them.</p>
+				
+				<div class="Example">
+					<p>For example, to allow the mapping of URIs ending in &ldquo;.html&rdquo;, &ldquo;.htm&rdquo; and &ldquo;.php&rdquo;, the following <code>RewriteCond</code> from the example rule should be changed from:</p>
+					<p><code>RewriteCond %{REQUEST_URI} !\.[a-zA-Z]{2,5}$</code></p>
+					<p>to:</p>
+					<p class="NoMarginBottom"><code>RewriteCond %{REQUEST_URI} !\.[a-zA-Z]{2,5}$ [OR]</code>
+						<br /><code>RewriteCond %{REQUEST_URI} \.(html|htm|php)$ [NC]</code></p>
+				</div>
+			</li>
+		</ol>
+		<p class="BackToTableOfContents"><a href="#toc">Back to table of contents</a></p>
+	</li>
+	
+	<li>
+		<h3 class="UnderlinedTitle" style="margin-top: 3em;"><a name="autogen-config" id="autogen-config"></a>Configuring the URI Mapping Auto-generation settings</h3>
+		<p>The Auto-generation settings in the configuration utility can be used to:</p>
+		<ul class="BulletedList">
+			<li>Change the Capitalisation setting,</li>
+			<li>Change the Whitespace Replacement Character,</li>
+			<li>Edit the list of words which are automatically Removed when auto-generating the URIs and</li>
+			<li>Edit the list of characters/strings that will be Replaced when auto-generating URIs (along with their respective replacements).</li>
+			<li>Enable/disable the auto-appending of a number to product URI mappings that are clashing with existing mappings on the site.</li>
+		</ul>
+		
+		<ul class="Steps">
+			<li class="NoMarginBottom">Go to <em>Modules &gt; URI Mapping (SEO) Config</em> in the Zen Cart admin.</li>
+		</ul>
+		
+		<p class="BackToTableOfContents"><a href="#toc">Back to table of contents</a></p>
+	</li>
+	
+	<li>
+		<h3 class="UnderlinedTitle"><a name="adjusting-product-page-uri-parts-settings-text" id="adjusting-product-page-uri-parts-settings-text"></a>Specifying Auto-manage Settings and URI Parts Text for Products' &ldquo;Reviews&rdquo; and &ldquo;Tell-A-Friend&rdquo; pages</h3>
+		
+		<p>The various Reviews pages and the Tell-A-Friend pages can automatically be made &ldquo;subsections&rdquo; of products' info pages, by appending some specific URI parts to a product info page's static URI.</p>
+		
+		<p>Which pages have URI mappings &ldquo;auto-managed&rdquo; by the software, and what actual text to use, can be specified by adjusting the appropriate settings in the Config Utility.</p>
+		
+		<ul class="Steps">
+			<li>
+				<p>Go to <em>Modules &gt; Ceon URI Mapping (SEO) Config</em> in the Zen Cart Admin.</p>
+			</li>
+			<li class="NoMarginBottom">
+				<p class="NoMarginBottom">Then go to the <em>Auto-managed Product Page URIs</em> tab, adjust the settings appropriately for the store, and click &ldquo;Save&rdquo;.</p>
+			</li>
+		</ul>
+		
+		<p class="BackToTableOfContents"><a href="#toc">Back to table of contents</a></p>
+	</li>
+	
+	<li>
+		<h3 class="UnderlinedTitle"><a name="specifying-uri-mapping-for-category" id="specifying-uri-mapping-for-category"></a>Specifying the current URI Mapping for a Category</h3>
+		
+		<p>Specifying the current URI mapping for a Category, for each language used by the store, is easily accomplished:</p>
+		<ul class="Steps">
+			<li>Use <em>Catalog &gt; Categories/Products</em> to navigate to the category the desired category is within.</li>
+			<li class="NoMarginBottom">Click the (green) icon for &ldquo;Edit&rdquo; alongside the category's name or click the &ldquo;New Category&rdquo; button if adding a new category.</li>
+		</ul>
+		
+		<p>The URI mapping can be automatically generated using the store's <a href="#autogen-config">URI mapping auto-generation settings</a>:</p>
+		
+		<ul class="Steps">
+			<li>The URI mapping fields can be found at the bottom of the page.</li>
+			<li>Simply tick the URI mapping auto-generation text box and click &ldquo;Save&rdquo;.</li>
+			<li class="NoMarginBottom">The URI mapping will then be generated using the full path to the current category and the name of the category. For stores with multiple languages, a URI mapping will be generated for each language, using the respective category names entered for each language.</li>
+		</ul>
+		
+		<p><strong>Or</strong> the current URI mapping can be entered manually:</p>
+		
+		<ul class="Steps">
+			<li>The text field(s) for entering the URI mapping(s) which should map this category can be found at the bottom of the page.</li>
+			<li>If the URI mapping auto-generation text box is ticked, it must have the tick removed.</li>
+			<li>Simply enter the URI mappings for the category (for each language the store uses) in the text field(s) and click &ldquo;Save&rdquo;.</li>
+			<li class="NoMarginBottom"><strong>Please Remember:</strong> URI mappings entered manually must be relative to the root of the site (&ldquo;/&rdquo;), and must be the <strong>full</strong> path to the category. E.g. &ldquo;<em>/category-one/subcategory-of-category-one</em>&rdquo;</li>
+		</ul>
+		
+		
+		<h3>Changing the current URI Mapping for a Category</h3>
+		
+		<p>Changing the current URI mapping for a Category is easily accomplished by following the same steps as for specifying one in the first place.</p>
+		
+		<ul class="Steps">
+			<li>The URI mapping can be completely re-generated or a new URI mapping can be entered manually for each language the store is using.</li>
+			<li class="NoMarginBottom">If the store uses multiple languages and auto-generation is used to update the URI mappings, the URI mappings for <strong>all languages</strong> for the category will be updated, overwriting any previous values.</li>
+		</ul>
+		
+		<p class="Note"><strong>Please Note:</strong> The previous URI mapping will still point towards the category but anyone using it will be redirected to the current URI - this prevents broken links.</p>
+		
+		
+		<h3>Removing the current URI mapping for a Category</h3>
+		
+		<ul class="Steps">
+			<li>Use <em>Catalog &gt; Categories/Products</em> to navigate to the category the desired category is within.</li>
+			<li>Click the (green) icon for &ldquo;Edit&rdquo; alongside the category's name.</li>
+			<li>Clear the value entered in the text field for the appropriate language (or clear the values for all the languages!): Delete the text, leaving the text field blank.</li>
+			<li class="NoMarginBottom">Click &ldquo;Save&rdquo;</li>
+		</ul>
+		
+		<p class="Note"><strong>Please Note:</strong> The previous URI mapping will still point towards the category but anyone using it will be redirected to the standard Zen Cart dynamic URI for the category - this prevents broken links.</p>
+		
+		<p class="BackToTableOfContents"><a href="#toc">Back to table of contents</a></p>
+	</li>
+	
+	<li>
+		<h3 class="UnderlinedTitle"><a name="specifying-uri-mapping-for-product" id="specifying-uri-mapping-for-product"></a>Specifying the current URI Mapping for a Product</h3>
+		
+		<p>Specifying the current URI mapping for a Product, for each language used by the store, is easily accomplished:</p>
+		<ul class="Steps">
+			<li>Use <em>Catalog &gt; Categories/Products</em> to navigate to the product the desired product is within.</li>
+			<li class="NoMarginBottom">Click the (green) icon for &ldquo;Edit&rdquo; alongside the product's name or click the &ldquo;New Product&rdquo; button if adding a new product.</li>
+		</ul>
+		
+		<p>The URI mapping can be automatically generated using the store's <a href="#autogen-config">URI mapping auto-generation settings</a>:</p>
+		
+		<ul class="Steps">
+			<li>The URI mapping fields can be found at the bottom of the page.</li>
+			<li>Simply tick the URI mapping auto-generation text box and click &ldquo;Preview&rdquo;.</li>
+			<li>The URI mapping will then be generated using the full path to the current product and the name of the product. For stores with multiple languages, a URI mapping will be generated for each language, using the respective product names entered for each language.</li>
+			<li>The auto-generated URI mappings for each language the store is using will be displayed below the product's description.</li>
+			<li class="NoMarginBottom">Click &ldquo;Update&rdquo; to save the product's information, including its URI mapping(s).</li>
+		</ul>
+		
+		<p><strong>Or</strong> the current URI mapping can be entered manually:</p>
+		
+		<ul class="Steps">
+			<li>The text field(s) for entering the URI mapping(s) which should map this product can be found at the bottom of the page.</li>
+			<li>If the URI mapping auto-generation text box is ticked, it must have the tick removed.</li>
+			<li>Simply enter the URI mappings for the product (for each language the store uses) in the text field(s) and click &ldquo;Preview&rdquo;.</li>
+			<li><strong>Please Remember:</strong> URI mappings entered manually must be relative to the root of the site (&ldquo;/&rdquo;), and must be the <strong>full</strong> path to the product. E.g. &ldquo;<em>/category-one/subcategory-of-category-one/product-three</em>&rdquo;</li>
+			<li>The entered URI mapping(s), for each language the store is using, will be displayed below the product's description, properly formatted to remove any unusable characters.</li>
+			<li class="NoMarginBottom">If satisfied with the format of the URI click &ldquo;Update&rdquo;. To make changes click &ldquo;Back&rdquo;.</li>
+		</ul>
+		
+		
+		<h3>Changing the current URI Mapping for a Product</h3>
+		
+		<p>Changing the current URI mapping for a Product is easily accomplished by following the same steps as for specifying one in the first place.</p>
+		
+		<ul class="Steps">
+			<li>The URI mapping can be completely re-generated or a new URI mapping can be entered manually for each language the store is using.</li>
+			<li class="NoMarginBottom">If the store uses multiple languages and auto-generation is used to update the URI mappings, the URI mappings for <strong>all languages</strong> for the product will be updated, overwriting any previous values.</li>
+		</ul>
+		
+		<p class="Note"><strong>Please Note:</strong> The previous URI mapping will still point towards the product but anyone using it will be redirected to the current URI - this prevents broken links.</p>
+		
+		<h3>Removing the current URI mapping for a Product</h3>
+		
+		<ul class="Steps">
+			<li>Use <em>Catalog &gt; Categories/Products</em> to navigate to the product the desired product is within.</li>
+			<li>Click the (green) icon for &ldquo;Edit&rdquo; alongside the product's name.</li>
+			<li>Clear the value entered in the text field for the appropriate language (or clear the values for all the languages!): Delete the text, leaving the text field blank.</li>
+			<li>Click &ldquo;Preview&rdquo;.</li>
+			<li>The URI mapping(s) for the appropriate language(s), displayed below the product's description, should simply say &ldquo;No URI Mapping&rdquo;.</li>
+			<li class="NoMarginBottom">Click &ldquo;Update&rdquo; to save the product's details and delete the cleared URI mapping(s). To make changes click &ldquo;Back&rdquo;.</li>
+		</ul>
+		
+		<p class="Note"><strong>Please Note:</strong> The previous URI mapping will still point towards the product but anyone using it will be redirected to the standard Zen Cart dynamic URI for the product - this prevents broken links.</p>
+		
+		<p class="BackToTableOfContents"><a href="#toc">Back to table of contents</a></p>
+	</li>
+	
+	
+	<li>
+		<h3 class="UnderlinedTitle"><a name="specifying-uri-mapping-for-manufacturer" id="specifying-uri-mapping-for-manufacturer"></a>Specifying the current URI Mapping for a Manufacturer</h3>
+		
+		<p>Specifying the current URI mapping for a Manufacturer, for each language used by the store, is easily accomplished:</p>
+		
+		<ul class="Steps">
+			<li>Use <em>Catalog &gt; Manufacturers</em> to navigate to the desired manufacturer.</li>
+			<li class="NoMarginBottom">Click the (green) icon for &ldquo;Edit&rdquo; alongside the manufacturer's name or click the &ldquo;Insert&rdquo; button if adding a new manufacturer.</li>
+		</ul>
+		
+		<p>The URI mapping can be automatically generated using the store's <a href="#autogen-config">URI mapping auto-generation settings</a>:</p>
+		
+		<ul class="Steps">
+			<li>The URI mapping fields can be found at the bottom of the page.</li>
+			<li>Simply tick the URI mapping auto-generation text box and click &ldquo;Save&rdquo;.</li>
+			<li class="NoMarginBottom">The URI mapping will then be generated using the full path to the current manufacturer and the name of the manufacturer. For stores with multiple languages, a URI mapping will be generated for each language, using the respective manufacturer names entered for each language.</li>
+		</ul>
+		
+		<p><strong>Or</strong> the current URI mapping can be entered manually:</p>
+		
+		<ul class="Steps">
+			<li>The text field(s) for entering the URI mapping(s) which should map this manufacturer can be found at the bottom of the page.</li>
+			<li>If the URI mapping auto-generation text box is ticked, it must have the tick removed.</li>
+			<li>Simply enter the URI mappings for the manufacturer (for each language the store uses) in the text field(s) and click &ldquo;Save&rdquo;.</li>
+			<li class="NoMarginBottom"><strong>Please Remember:</strong> URI mappings entered manually must be relative to the root of the site (&ldquo;/&rdquo;), and must be the <strong>full</strong> path to the manufacturer. E.g. &ldquo;<em>/ceon</em>&rdquo;</li>
+		</ul>
+		
+		
+		<h3>Changing the current URI Mapping for a Manufacturer</h3>
+		
+		<p>Changing the current URI mapping for a Manufacturer is easily accomplished by following the same steps as for specifying one in the first place.</p>
+		
+		<ul class="Steps">
+			<li>The URI mapping can be completely re-generated or a new URI mapping can be entered manually for each language the store is using.</li>
+			<li class="NoMarginBottom">If the store uses multiple languages and auto-generation is used to update the URI mappings, the URI mappings for <strong>all languages</strong> for the manufacturer will be updated, overwriting any previous values.</li>
+		</ul>
+		
+		<p class="Note"><strong>Please Note:</strong> The previous URI mapping will still point towards the manufacturer but anyone using it will be redirected to the current URI - this prevents broken links.</p>
+		
+		
+		<h3>Removing the current URI mapping for a Manufacturer</h3>
+		
+		<ul class="Steps">
+			<li>Use <em>Catalog &gt; Manufacturers</em> to navigate to the desired manufacturer.</li>
+			<li>Click the (green) icon for &ldquo;Edit&rdquo; alongside the manufacturer's name.</li>
+			<li>Clear the value entered in the text field for the appropriate language (or clear the values for all the languages!): Delete the text, leaving the text field blank.</li>
+			<li class="NoMarginBottom">Click &ldquo;Save&rdquo;</li>
+		</ul>
+		
+		<p class="Note"><strong>Please Note:</strong> The previous URI mapping will still point towards the manufacturer but anyone using it will be redirected to the standard Zen Cart dynamic URI for the manufacturer - this prevents broken links.</p>
+		
+		<p class="BackToTableOfContents"><a href="#toc">Back to table of contents</a></p>
+	</li>
+	
+	
+	<li>
+		<h3 class="UnderlinedTitle"><a title="specifying-uri-mapping-for-ez-page" id="specifying-uri-mapping-for-ez-page"></a>Specifying the current URI Mapping for an EZ-Page</h3>
+		
+		<p>Specifying the current URI mapping for an EZ-Page, for each language used by the store, is easily accomplished:</p>
+		<ul class="Steps">
+			<li>Click <em>Tools &gt; EZ-Pages</em> and navigate to the page the desired EZ-Page is on.</li>
+			<li class="NoMarginBottom">Click the (green) icon for &ldquo;Edit&rdquo; alongside the EZ-Page's title or click the &ldquo;New File&rdquo; button if adding a new EZ-Page.</li>
+		</ul>
+		
+		<p>The URI mapping can be automatically generated using the store's <a href="#autogen-config">URI mapping auto-generation settings</a>:</p>
+		
+		<ul class="Steps">
+			<li>The URI mapping fields can be found at the bottom of the page.</li>
+			<li>Simply tick the URI mapping auto-generation text box and click &ldquo;Update&rdquo;/&ldquo;Insert&rdquo;.</li>
+			<li class="NoMarginBottom">The URI mapping will then be generated using the full path to the current EZ-Page and the title of the EZ-Page. As EZ-Pages only support one language, the same URI mapping will be generated for each language the store uses, using the EZ-Page title entered.</li>
+		</ul>
+		
+		<p><strong>Or</strong> the current URI mapping can be entered manually:</p>
+		
+		<ul class="Steps">
+			<li>The text field(s) for entering the URI mapping(s) which should map this EZ-Page can be found at the bottom of the page.</li>
+			<li>If the URI mapping auto-generation text box is ticked, it must have the tick removed.</li>
+			<li>Simply enter the URI mappings for the EZ-Page (for each language the store uses) in the text field(s) and click &ldquo;Update&rdquo;/&ldquo;Insert&rdquo;.</li>
+			<li class="NoMarginBottom"><strong>Please Remember:</strong> URI mappings entered manually must be relative to the root of the site (&ldquo;/&rdquo;), and must be the <strong>full</strong> path to the EZ-Page. E.g. &ldquo;<em>/about-us</em>&rdquo;</li>
+		</ul>
+		
+		
+		<h3>Changing the current URI Mapping for an EZ-Page</h3>
+		
+		<p>Changing the current URI mapping for an EZ-Page is easily accomplished by following the same steps as for specifying one in the first place.</p>
+		
+		<ul class="Steps">
+			<li>The URI mapping can be completely re-generated or a new URI mapping can be entered manually for each language the store is using.</li>
+			<li class="NoMarginBottom">If the store uses multiple languages and auto-generation is used to update the URI mappings, the URI mappings for <strong>all languages</strong> for the EZ-Page will be updated, overwriting any previous values.</li>
+		</ul>
+		
+		<p class="Note"><strong>Please Note:</strong> The previous URI mapping will still point towards the EZ-Page but anyone using it will be redirected to the current URI - this prevents broken links.</p>
+		
+		
+		<h3>Removing the current URI mapping for an EZ-Page</h3>
+		<ul class="Steps">
+			<li>Click <em>Tools &gt; EZ-Pages</em> and navigate to the page the desired EZ-Page is on.</li>
+			<li>Click the (green) icon for &ldquo;Edit&rdquo; alongside the EZ-Page's title.</li>
+			<li>Clear the value entered in the text field for the appropriate language (or clear the values for all the languages!): Delete the text, leaving the text field blank.</li>
+			<li class="NoMarginBottom">Click &ldquo;Update&rdquo;</li>
+		</ul>
+		
+		<p class="Note"><strong>Please Note:</strong> The previous URI mapping will still point towards the EZ-Page but anyone using it will be redirected to the standard Zen Cart dynamic URI for the EZ-Page - this prevents broken links.</p>
+		
+		<p class="BackToTableOfContents"><a href="#toc">Back to table of contents</a></p>
+	</li>
+	
+	<li>
+		<h3 class="UnderlinedTitle"><a name="organise-ez-pages-into-sections" id="organise-ez-pages-into-sections"></a>Organise EZ-Pages into Site Sections</h3>
+		
+		<p>EZ-Pages can be organised into logical sections by simply putting a bit of thought into the format of their URI mappings.</p>
+		<ul class="Steps">
+			<li>A main section should use the first part of the URI. For example:</li>
+			<li class="Example">An EZ-Page with the main information about a company could use the URI mapping:
+			<br /><br />/company</li>
+			<li>A subsection should use a combination of the URI mapping for its parent section and a new part of the URI. For example:</li>
+			<li class="Example">An EZ-Page with directions on how to get to a company's offices could use the URI mapping:
+			<br /><br />/company/how-to-find-us</li>
+			<li>Another main section would use different text for the first part of the URI. For example:</li>
+			<li class="Example NoMarginBottom">An EZ-Page with the main support information for a company could use the URI mapping:
+			<br /><br />/support</li>
+		</ul>
+		<p>Hard-coded menus (e.g. Javascript drop-down menus etc.) could then make use of these URIs to link directly to the appropriate section or page within a section, giving the illusion of a structured site with a logical hierarchy!</p>
+		
+		<p class="BackToTableOfContents"><a href="#toc">Back to table of contents</a></p>
+	</li>
+	
+	<li>
+		<h3 class="UnderlinedTitle"><a name="uri-other-zen-cart-pages" id="uri-other-zen-cart-pages"></a>Specifying the current URI Mapping for any other Zen Cart page</h3>
+		
+		<p>There are two ways to specify static URIs for a Zen Cart page.</p> 
+		
+		<ol>
+			<li>
+				<p>The first is the most useful as it results in all links on the site to that page using the static URI instead of the standard dynamic Zen Cart URI (just as with products etc. using URI mappings).</p>
+				<p class="Note"><strong>Please Note:</strong> Any query string parameters are still appended to the URI.</p>
+				<p>Basically, this first method can be used to replace the likes of:</p>
+				<p class="Example">index.php?main_page=products_all&amp;disp_order=3</p>
+				<p>with:</p>
+				<p class="Example">/our-products?disp_order=3.</p>
+				
+				<ul class="Steps">
+					<li>Use software such as PHPMyAdmin to add a new record to the ceon_uri_mapping table.</li>
+					<li>The URI mapping to be mapped from should be entered in the <em class="ConfigurationOption">uri</em> field. (Remember to begin the URI with a slash &lsquo;/&rsquo;).</li>
+					<li>The number representing the language ID this URI mapping applies for should be entered in the <em class="ConfigurationOption">language_id</em> field.</li>
+					<li>The <em class="ConfigurationOption">current_uri</em> field should be set to &ldquo;1&rdquo; to make this the &ldquo;current&rdquo; URI.</li>
+					<li>The Zen Cart page to be mapped to should be entered in the <em class="ConfigurationOption">main_page</em> field.</li>
+					<li>The date/time this URI mapping was added should be set in the <em class="ConfigurationOption">date_added</em> field (or just use the &ldquo;NOW()&rdquo; SQL function).</li>
+					<li class="NoMarginBottom">The <em class="ConfigurationOption">query_string_parameters</em>, <em class="ConfigurationOption">associated_db_id</em> and <em class="ConfigurationOption">alternate_uri</em> fields are <strong>not</strong> used, they must be left as &ldquo;NULL&rdquo;. The <em class="ConfigurationOption">redirection_type_code</em> is not used either so it doesn't matter what value it has (it can just be left at the default value of 301).</li>
+				</ul>
+			</li>
+			<li>
+				<p>The second is designed to allow data to be supplied to Zen Cart, by initialising the GET variables for the Zen Cart page when it is loaded.</p>
+				<div class="Note">
+					<p><strong>Please Note:</strong> Since the second method matches against the <strong>exact</strong> query string parameters entered, when generating links on the site, the <strong>query string parameters have to match exactly</strong> or the URI entered won't be used as the link to the Zen Cart page entered, the standard Zen Cart dynamic URI will.</p>
+					<p>Any other parameters in the query string will cause this URI not to be used as the static URI in links... even sort parameters (&ldquo;disp_order=3&rdquo;) will be enough to prevent the dynamic URI mapping to the URI entered here.</p>
+					<p>For this reason it's recommended in most cases just to match against the page's name using the first method, the second method really is only for very specific circumstances when data needs to be loaded for a page. For example:</p>
+					<p class="Example NoMarginBottom">When mapping a <em class="ConfigurationOption">uri</em> of &rdquo;/christmas-survey&ldquo; to a <em class="ConfigurationOption">main_page</em> of &rdquo;survey&ldquo; with <em class="ConfigurationOption">query_string_parameters</em> of &ldquo;survey_id=12&rdquo;.</p>
+				</div>
+				
+				<ul class="Steps">
+					<li>Use software such as PHPMyAdmin to add a new record to the ceon_uri_mapping table.</li>
+					<li>The URI mapping to be mapped from should be entered in the <em class="ConfigurationOption">uri</em> field. (Remember to begin the URI with a slash &lsquo;/&rsquo;).</li>
+					<li>The number representing the language ID this URI mapping applies for should be entered in the <em class="ConfigurationOption">language_id</em> field.</li>
+					<li>The <em class="ConfigurationOption">current_uri</em> field should be set to &ldquo;1&rdquo; to make this the &ldquo;current&rdquo; URI.</li>
+					<li>The Zen Cart page to be mapped to should be entered in the <em class="ConfigurationOption">main_page</em> field.</li>
+					<li>If any GET variables should be set, simply enter them in the <em class="ConfigurationOption">query_string_parameters</em> field, separating each pair with an ampersand (&lsquo;&amp;&rsquo;), but <strong>not</strong> starting the string with a question mark or an ampersand.</li>
+					<li>For example, to map to a custom <em>survey</em> page, with the necessary <em>survey_type</em> and <em>survey_id</em> for the survey to be shown, the <em class="ConfigurationOption">main_page</em> field would be set to:</li>
+					<li class="Example">survey</li>
+					<li>and the <em class="ConfigurationOption">query_string_parameters</em> field would be set to:</li>
+					<li class="Example">survey_type=4&amp;survey_id=23</li>
+					<li>The date/time this URI mapping was added should be set in the <em class="ConfigurationOption">date_added</em> field (or just use the &ldquo;NOW()&rdquo; SQL function).</li>
+					<li class="NoMarginBottom">The <em class="ConfigurationOption">associated_db_id</em> and <em class="ConfigurationOption">alternate_uri</em> fields are <strong>not</strong> used, they must be left as &ldquo;NULL&rdquo;. The <em class="ConfigurationOption">redirection_type_code</em> is not used either so it doesn't matter what value it has (it can just be left at the default value of 301).</li>
+				</ul>
+			</li>
+		</ol>
+		
+		<p class="BackToTableOfContents"><a href="#toc">Back to table of contents</a></p>
+	</li>
+	
+	
+	<li>
+		<h3 class="UnderlinedTitle"><a name="using-uri-as-alias" id="using-uri-as-alias"></a>Using Static URIs as an Alias for another Static URI</h3>
+		
+		<p>Redirecting from one URI mapping to another is easily done.</p>
+		
+		<ul class="Steps">
+			<li>Use software such as PHPMyAdmin to add a new record to the ceon_uri_mapping table.</li>
+			<li>The URI mapping to be mapped from should be entered in the <em class="ConfigurationOption">uri</em> field. (Remember to begin the URI with a slash &lsquo;/&rsquo;).</li>
+			<li>The number representing the language ID this URI mapping applies for should be entered in the <em class="ConfigurationOption">language_id</em> field.</li>
+			<li>The <em class="ConfigurationOption">current_uri</em> field should be set to &ldquo;1&rdquo; to make this the &ldquo;current&rdquo; URI.</li>
+			<li>The URI mapping to be mapped to should be entered in the <em class="ConfigurationOption">alternate_uri</em> field.</li>
+			<li>The type of redirection (temporary/permanent etc.) should be specified by entering the appropriate HTTP Status Code in the <em class="ConfigurationOption">redirection_type_code</em> field. Values supported by the module are: 301, 302, 303 &amp; 307.</li>
+			<li>The date/time this URI mapping was added should be set in the <em class="ConfigurationOption">date_added</em> field (or just use the &ldquo;NOW()&rdquo; SQL function).</li>
+			<li class="NoMarginBottom">The <em class="ConfigurationOption">main_page</em>, <em class="ConfigurationOption">query_string_parameters</em> and <em class="ConfigurationOption">associated_db_id</em> fields are <strong>not</strong> used, they must be left as &ldquo;NULL&rdquo;.</li>
+		</ul>
+		
+		<p class="BackToTableOfContents"><a href="#toc">Back to table of contents</a></p>
+	</li>
+	
+	<li>
+		<h3 class="UnderlinedTitle"><a name="enable-disable-module" id="enable-disable-module"></a>Enabling/Disabling the Ceon URI Mapping module</h3>
+		
+		<p>The URI mappings module is fully &ldquo;backwards compatible&rdquo; with Zen Cart's standard URIs so there's no realistic need ever to disable it. All of the store's existing Zen Cart URIs will continue to work as always (and will redirect to any current URI mapping which matches a particular page!).</p>
+		<p>However, some store owners may decide that they don't want the links in their site to use their newly-added static URIs until they've finished adding all the mappings.</p>
+		<p>The module can be disabled (and re-enabled again) easily through an option in the Zen Cart admin:</p>
+		
+		<ul class="Steps">
+			<li class="NoMarginBottom">Go to <em>Configuration &gt; URI Mapping (SEO)</em> in the Zen Cart admin, the option to disable/enable the module can be changed there.</li>
+		</ul>
+		
+		<p class="BackToTableOfContents"><a href="#toc">Back to table of contents</a></p>
+	</li>
+</ol>
+
+<p class="BackToTop"><a href="#top">Back to top</a></p>
+
+<p id="footer"><a href="http://ceon.net/software/business/zen-cart?doc=zc-um" target="_blank"><img src="../_images/ceon-button-logo.png" alt="Ceon" id="ceon-button-logo" /></a><a href="http://jked.net" target="_blank"><img src="../_images/jked-logo.gif" alt="JKED" id="jked-logo" /></a>Module &amp; Documentation &copy; Copyright 2008-2012 <a href="http://ceon.net/software/business/zen-cart?doc=zc-um" target="_blank">Ceon</a></p>
+
+	</div>
+</div>
+
+<script type="text/javascript">
+<!-- // Output resizeable div end tag
+restrict_width.outputClosingTag();
+// -->
+</script>
+
+</body>
+</html>
