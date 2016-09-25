@@ -1,6 +1,6 @@
 <?php
 
-/**
+/**steve merged html_output.php ZC155 changes
  * Ceon URI Mapping URI HREF Link Builder Class.
  *
  * @package     ceon_uri_mapping
@@ -373,34 +373,43 @@ class CeonURIMappingHREFLinkBuilder extends CeonURIMappingDBLookup
 			
 			// Perform standard Zen Cart functionality for links
 			
-			// Add the session ID when moving from different HTTP and HTTPS servers, or when SID is defined
-            if ($add_session_id == true && $session_started == true && SESSION_FORCE_COOKIE_USE == 'False') {
-                if (defined('SID') && zen_not_null(constant('SID'))) {
-				$sid = constant('SID');  
-				} else if (($request_type == 'NONSSL' && $connection == 'SSL' && ENABLE_SSL == 'true') ||
-						($request_type == 'SSL' && $connection == 'NONSSL')) {
-					if ($http_domain != $https_domain) {
-						$sid = zen_session_name() . '=' . zen_session_id();
-					}
-				}
-				
-				if (isset($sid)) {
-					$link .= $separator . zen_output_string($sid);
-				}
-			}
-			
-			// Clean up the link
-			while (strstr($link, '&&')) {
-				$link = str_replace('&&', '&', $link);
-			}
-			
-			while (strstr($link, '&amp;&amp;')) {
-				$link = str_replace('&amp;&amp;', '&amp;', $link);
-			}
-			
-			// Encode the link's ampersand entities
-			$link = preg_replace('/&/', '&amp;', $link);
-			
+//steve bof modified to match html_output.php zc155			
+// Add the session ID when moving from different HTTP and HTTPS servers, or when SID is defined
+    if ( ($add_session_id == true) && ($session_started == true) && (SESSION_FORCE_COOKIE_USE == 'False') ) {
+      if (defined('SID') && zen_not_null(constant('SID'))) {
+        $sid = constant('SID');
+//      } elseif ( ( ($request_type == 'NONSSL') && ($connection == 'SSL') && (ENABLE_SSL_ADMIN == 'true') ) || ( ($request_type == 'SSL') && ($connection == 'NONSSL') ) ) {
+      } elseif ( ( ($request_type == 'NONSSL') && ($connection == 'SSL') && (ENABLE_SSL == 'true') ) || ( ($request_type == 'SSL') && ($connection == 'NONSSL') ) ) {
+        if ($http_domain != $https_domain) {
+          $sid = zen_session_name() . '=' . zen_session_id();
+        }
+      }
+    }
+
+// clean up the link before processing
+    while (strstr($link, '&&')) $link = str_replace('&&', '&', $link);
+    while (strstr($link, '&amp;&amp;')) $link = str_replace('&amp;&amp;', '&amp;', $link);
+
+    if ( (SEARCH_ENGINE_FRIENDLY_URLS == 'true') && ($search_engine_safe == true) ) {
+      while (strstr($link, '&&')) $link = str_replace('&&', '&', $link);
+
+      $link = str_replace('&amp;', '/', $link);
+      $link = str_replace('?', '/', $link);
+      $link = str_replace('&', '/', $link);
+      $link = str_replace('=', '/', $link);
+
+      $separator = '?';
+    }
+
+    if (isset($sid)) {
+      $link .= $separator . zen_output_string($sid);
+    }
+
+// clean up the link after processing
+    while (strstr($link, '&amp;&amp;')) $link = str_replace('&amp;&amp;', '&amp;', $link);
+
+    $link = preg_replace('/&/', '&amp;', $link);
+//steve eof from html_output.php
 			// Have got the link to be used, store it in this instance
 			$this->_href_link = $link;
 		}
