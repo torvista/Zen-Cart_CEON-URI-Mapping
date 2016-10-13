@@ -54,23 +54,21 @@ require(DIR_WS_MODULES . zen_get_module_directory('meta_tags.php'));
   if (!isset($lng) || (isset($lng) && !is_object($lng))) {
     $lng = new language;
   }
-//steve bof CEON uri mapping
-//CEON uri mapping produces a canonical link with no extra parameters: so no "?" after the url.
-//To create the alternate urls for hreflang use, for all pages (apart from the home page), '&amp;language=' is appended to the canonical url. This gets a page not found (in the Google Search Console) as the "&amp;" needs to be a "?" as there are no other parameters.
-//Since the $canonicalLink is already created, it needs to be checked for the presence of a "?". If so, ok, if not use the "?" instead of "&amp;".
-$url_parts = parse_url($canonicalLink);
-$separator = ( isset($url_parts['query']) ?  "&amp;" : "?" );
-//eof
   reset($lng->catalog_languages);
+if ( sizeof($lng->catalog_languages) > 1) {//alternate hreflang not required for single language site
   while (list($key, $value) = each($lng->catalog_languages)) {
-    //if ($value['id'] == $_SESSION['languages_id']) continue;//steve a self-link is also required
-    //echo '<link rel="alternate" href="' . ($this_is_home_page ? zen_href_link(FILENAME_DEFAULT, 'language=' . $key, $request_type) : $canonicalLink . '&amp;language=' . $key) . '" hreflang="' . $key . '" />' . "\n";
-    echo '<link rel="alternate" href="' . ($this_is_home_page ? zen_href_link(FILENAME_DEFAULT, 'language=' . $key, $request_type) : $canonicalLink . $separator  . 'language=' . $key) . '" hreflang="' . $key . '" />' . "\n";//steve changed separator
+        //if ($value['id'] == $_SESSION['languages_id']) continue;//steve a self-link is also required https://www.zen-cart.com/showthread.php?214746-Implementing-hreflang-in-a-multilanguage-store&p=1319742#post1319742
 
+        //steve bof CEON uri mapping
+        //CEON uri mapping produces a canonical link with no extra parameters: so no "?" after the url.
+        //To create the alternate urls for hreflang use, for all pages (apart from the home page), '&amp;language=' is appended to the canonical url. This gets a page not found (in the Google Search Console) as the "&amp;" needs to be a "?" as there are no other parameters.
+        //Since the $canonicalLink is already created, it needs to be checked for the presence of a "?". If so, ok, if not use the "?" instead of "&amp;".
+        //echo '<link rel="alternate" href="' . ($this_is_home_page ? zen_href_link(FILENAME_DEFAULT, 'language=' . $key, $request_type) : $canonicalLink . '&amp;language=' . $key) . '" hreflang="' . $key . '" />' . "\n";
+        echo '<link rel="alternate" href="' . ($this_is_home_page ? zen_href_link(FILENAME_DEFAULT, 'language=' . $key, $request_type) : $canonicalLink . (strpos($canonicalLink, '?') ? '&amp;' : '?') . 'language=' . $key) . '" hreflang="' . $key . '" />' . "\n";//steve as per https://github.com/zencart/zencart/pull/1314/files
   }
   // EOF hreflang for multilingual sites
- //steve eof CEON uri mapping
- ?>
+}
+?>
 
 <?php
 /**
