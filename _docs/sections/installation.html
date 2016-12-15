@@ -95,7 +95,6 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 		<p>These are the new files which make up this module. Copy them all into their respective folders in the Zen Cart installation.</p>
 		
 		<p>Most files are used by all Zen Cart versions.</p>
-		<p>There is an additional file which is used only by Zen Cart 1.3.x; if the store uses Zen Cart 1.3.x, be sure to copy this extra file across from the folder <span class="FileName">files/additional_file_for_1.3.x</span>.</p>
 		
 		<h5>New files for the Admin directory</h5>
 		
@@ -147,9 +146,9 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 		<p class="Note"><strong>Warning</strong>: Be careful <em class="Underlined FontStyleNormal">NOT</em> to copy the files from the <span class="FileName">files/includes</span> folder into the store's <span class="FileName">admin/includes</span> directory, they go in the <span class="FileName">includes</span> directory which is <strong>alongside, not inside</strong> the store's admin directory.</p>
 		
 		<ul class="Steps">
-			<li>includes/auto_loaders/config.ceon_uri_mapping.php (2016 12 torvista: modified for observer)</li>
+		  <li></li>
 			<li>includes/classes/transliteration (* This directory and ALL files in it!)</li>
-			<li>includes/classes/observers/class.CeonURIMappingLinkBuild.php (2016 12 torvista: added for observer)</li>
+			<li>includes/classes/observers/auto.ceon_uri_mapping_link_build.php (2016 12 torvista: added for observer)</li>
 			<li>includes/classes/class.CeonURIMappingAdmin.php</li>
 			<li>includes/classes/class.CeonURIMappingAdminCategories.php</li>
 			<li>includes/classes/class.CeonURIMappingAdminCategoriesProducts.php</li>

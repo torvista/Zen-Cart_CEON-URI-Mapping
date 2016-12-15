@@ -28,12 +28,3 @@ $autoLoadConfig[99][] = array(
 	'className' => 'CeonURIMappingHandler',
 	'objectName' => 'ceon_uri_mapping'
 	);
-
-//steve added to use an observer with html_output.php function zen_href_link
-$autoLoadConfig[10][] = array('autoType' => 'class',
-    'loadFile' => '/observers/class.CeonURIMappingLinkBuild.php');
-
-$autoLoadConfig[90][] = array('autoType' => 'classInstantiate',
-    'className' => 'CeonURIMappingLinkBuild',
-    'objectName' => 'ceon_uri_mapping_link_build');
-?>

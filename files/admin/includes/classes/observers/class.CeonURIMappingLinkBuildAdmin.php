@@ -18,9 +18,7 @@ class CeonURIMappingLinkBuildAdmin extends base
 {
     function __construct()
     {
-        $this->attach($this, array('NOTIFY_SEFU_INTERCEPT_ADMCATHREF'));//OOP
-        //global $zco_notifier;//if notifier is in procedural code
-        //$zco_notifier->attach($this, array('NOTIFY_SEFU_INTERCEPT__ADMCATHREF'));
+        $this->attach($this, array('NOTIFY_SEFU_INTERCEPT_ADMCATHREF'));
     }
 
     function update(&$callingClass, $notifier, $p1, &$link, $page, $parameters, $connection)//can use "update" or camelized notifier name. & required for &$link to modify it inside here

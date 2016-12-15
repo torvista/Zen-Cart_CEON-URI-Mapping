@@ -27,15 +27,3 @@ $autoLoadConfig[10][] = array('autoType' => 'class',
 $autoLoadConfig[90][] = array('autoType' => 'classInstantiate',
     'className' => 'CeonURIMappingLinkBuildAdmin',
     'objectName' => 'ceon_uri_mapping_link_build_admin');
-
-/*POSM example
-$autoLoadConfig[200][] = array ('autoType' => 'init_script',
-    'loadFile' => 'init_products_options_stock_admin.php');
-
-$autoLoadConfig[200][] = array ('autoType' => 'class',
-    'loadFile' => 'observers/class.products_options_stock_admin_observer.php',
-    'classPath' => DIR_WS_CLASSES);
-$autoLoadConfig[200][] = array ('autoType' => 'classInstantiate',
-    'className' => 'products_options_stock_observer',
-    'objectName' => 'posObserver');
-*/
