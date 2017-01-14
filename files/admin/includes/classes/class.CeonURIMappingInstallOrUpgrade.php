@@ -219,7 +219,7 @@ class CeonURIMappingInstallOrUpgrade
 					`associated_db_id` INT(11) UNSIGNED DEFAULT NULL,
 					`alternate_uri` VARCHAR(255) DEFAULT NULL,
 					`redirection_type_code` VARCHAR(3) DEFAULT '301',
-					`date_added` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+					`date_added` DATETIME NOT NULL DEFAULT '0001-01-01 00:00:00',
 					INDEX `assoc_db_id_idx` (`language_id`, `current_uri`, `main_page`, `associated_db_id`)
 					);";
 			
