@@ -126,6 +126,7 @@ switch (true) {
     $zco_notifier->notify ('NOTIFY_INIT_CANONICAL_DEFAULT', $current_page, $excludeParams, $canonicalLink);
 }
 $zco_notifier->notify ('NOTIFY_INIT_CANONICAL_FINAL', $current_page, $excludeParams, $canonicalLink);
+
 unset($excludeParams, $includeCPath, $rogues);
 // BEGIN CEON URI MAPPING 2 of 2
 }

@@ -416,7 +416,8 @@ class CeonURIMappingHandlerBase extends CeonURIMappingDBLookup
 				$ceon_uri_mapping_canonical_uri = DIR_WS_CATALOG;
 				
 				// Remove any trailing slash(es) from the canonical URI, unless the URI is the root of the site
-				while (strlen($ceon_uri_mapping_canonical_uri) > 1 &&
+				//steve added $this_is_home_page or it strips closing slash from index (which breaks facebook Open Graph Debugger for the homepage)
+                while ($this_is_home_page && strlen($ceon_uri_mapping_canonical_uri) > 1 &&
 					   substr($ceon_uri_mapping_canonical_uri, -1) == '/') {
 					$ceon_uri_mapping_canonical_uri =
 						substr($ceon_uri_mapping_canonical_uri, 0, strlen($ceon_uri_mapping_canonical_uri) - 1);
