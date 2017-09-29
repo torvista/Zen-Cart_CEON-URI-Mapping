@@ -13,7 +13,7 @@
  * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version     2016
  */
-class zcObserverCeonUriMappingLinkBuild extends base
+class CeonUriMappingLinkBuild extends base
 {
     function __construct()
     {
@@ -26,7 +26,7 @@ class zcObserverCeonUriMappingLinkBuild extends base
     function update(&$callingClass, $notifier, $p1, &$link, $page, $parameters, $connection, $add_session_id, $static, &$use_dir_ws_catalog)//& required for &$link to modify it inside here
 
     {
-        if (defined('CEON_URI_MAPPING_ENABLED') && CEON_URI_MAPPING_ENABLED == 1 && $static == false) {
+        if (defined('CEON_URI_MAPPING_ENABLED') && CEON_URI_MAPPING_ENABLED === '1' && $static == false) {
 
             if (!isset($ceon_uri_mapping_href_link_builder)) {
                 //static $ceon_uri_mapping_href_link_builder;//steve not needed/overwritten immediately
