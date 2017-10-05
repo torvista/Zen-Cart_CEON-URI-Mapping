@@ -308,7 +308,7 @@ class CeonURIMappingHREFLinkBuilder extends CeonURIMappingDBLookup
 				}
 			}
 		} else {
-			// This link is some other Zen Cart page
+			// This link is some other Zen Cart page like popup coupon help
 			
 			// Attempt to match a page with the exact same parameters first
 			$columns_to_retrieve = array(

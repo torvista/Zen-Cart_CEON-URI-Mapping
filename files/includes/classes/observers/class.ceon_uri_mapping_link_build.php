@@ -1,6 +1,6 @@
 <?php
 
-/**
+/**torvista: changed from auto as not loaded soon enough for breadcrumbs
  * Observer for Ceon URI Mapping link creation. Watches html_output.php function zen_href_link
  *
  * @package     ceon_uri_mapping
@@ -13,11 +13,11 @@
  * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version     2016
  */
-class zcObserverCeonUriMappingLinkBuild extends base
+class CeonUriMappingLinkBuild extends base
 {
     function __construct()
     {
-        $this->attach($this, array('NOTIFY_SEFU_INTERCEPT'));//OOP
+        $this->attach($this, array('NOTIFY_SEFU_INTERCEPT'));//OOP. Called from function zen_href_link (html_output.php)
         //global $zco_notifier;//if notifier is in procedural code
         //$zco_notifier->attach($this, array('NOTIFY_SEFU_INTERCEPT'));
 

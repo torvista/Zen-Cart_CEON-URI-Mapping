@@ -1,5 +1,5 @@
 <?php
-
+//steve added spaces to the sql query builder. The query can be seen in the page by using Super Globals and searching for zf_sql
 /**
  * Ceon URI Mapping URI DB Lookup Class.
  *
@@ -110,7 +110,7 @@ class CeonURIMappingDBLookup
 					}
 					
 					if ($column_value_i < ($num_column_values - 1)) {
-						$selection_string .= "OR\n";
+						$selection_string .= " OR\n";//steve added leading space
 					}
 				}
 				
@@ -135,7 +135,7 @@ class CeonURIMappingDBLookup
 			}
 			
 			if ($column_name_i < ($num_selection_columns - 1)) {
-				$selection_string .= "AND\n";
+				$selection_string .= " AND\n";//steve added leading space
 			}
 			
 			$column_name_i++;
@@ -150,15 +150,15 @@ class CeonURIMappingDBLookup
 				" . $selection_string;
 		
 		if (!is_null($order_by)) {
-			$sql .= "\n" . 'ORDER BY ' . $order_by;
+			$sql .= "\n" . ' ORDER BY ' . $order_by;//steve added leading space
 		}
 		
 		if (!is_null($limit)) {
-			$sql .= "\n" . 'LIMIT ' . $limit;
+			$sql .= "\n" . ' LIMIT ' . $limit;//steve added leading space
 		}
 		
 		if (!is_null($group_by)) {
-			$sql .= "\n" . 'GROUP_BY ' . $group_by;
+			$sql .= "\n" . ' GROUP_BY ' . $group_by;//steve added leading space
 		}
 		
 		$sql .= ';';

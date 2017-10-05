@@ -28,3 +28,13 @@ $autoLoadConfig[99][] = array(
 	'className' => 'CeonURIMappingHandler',
 	'objectName' => 'ceon_uri_mapping'
 	);
+//torvista added this "manual" autoload to instantiate earlier than using auto.ceon_uri_mapping_link_build.php, for breadcrumbs
+$autoLoadConfig[0][] = array(
+    'autoType' => 'class',
+    'loadFile' => 'observers/class.ceon_uri_mapping_link_build.php'
+     );
+$autoLoadConfig[165][] = array(
+    'autoType' => 'classInstantiate',
+    'className' => 'CeonUriMappingLinkBuild',
+    'objectName' => 'ceon_uri_mapping_link_build'
+     );

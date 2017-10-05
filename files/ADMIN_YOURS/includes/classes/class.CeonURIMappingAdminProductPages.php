@@ -1,5 +1,5 @@
 <?php
-//steve changed field length 60->125
+//steve changed field length from size=60 t0 css 100%
 /**
  * Ceon URI Mapping Zen Cart Products Admin Functionality.
  *
@@ -217,7 +217,7 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 			$uri_mapping_input_fields .= zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] .
 				'/images/' . $languages[$i]['image'], $languages[$i]['name']) . '&nbsp;' .
 				zen_draw_input_field('uri-mappings[' . $languages[$i]['id'] . ']',
-				$this->_uri_mappings[$languages[$i]['id']], 'size="125"');//steve changed from 60
+				$this->_uri_mappings[$languages[$i]['id']], 'style="width:100%"');//steve removed size, added css width (WAS'size="60"')
 			
 			$uri_mapping_input_fields .= "</p>\n";
 		}
