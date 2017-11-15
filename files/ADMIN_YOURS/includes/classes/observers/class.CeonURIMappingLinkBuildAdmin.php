@@ -27,7 +27,7 @@ class CeonURIMappingLinkBuildAdmin extends base
         if (defined('CEON_URI_MAPPING_ENABLED') && CEON_URI_MAPPING_ENABLED == 1) {
 
             if (!isset($ceon_uri_mapping_href_link_builder)) {
-                //static $ceon_uri_mapping_href_link_builder;//steve not required
+                static $ceon_uri_mapping_href_link_builder;
 
                 require_once(DIR_FS_CATALOG . DIR_WS_CLASSES . 'class.CeonURIMappingHREFLinkBuilder.php');
 
