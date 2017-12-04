@@ -37,8 +37,8 @@ if (!defined('IS_ADMIN_FLAG')) {
           
           $ceon_uri_mapping_admin = new CeonURIMappingAdminProductPages();
           
-          $ceon_uri_mapping_admin->moveProductConfirmHandler($products_id, $product_type,
-            $zc_products->get_handler($product_type), $new_parent_id);
+          $ceon_uri_mapping_admin->moveProductConfirmHandler($products_id, zen_get_products_type($products_id),
+            $zc_products->get_handler(zen_get_products_type($products_id)), $new_parent_id);
           
           // END CEON URI MAPPING 1 of 1
           // reset products_price_sorter for searches etc.
