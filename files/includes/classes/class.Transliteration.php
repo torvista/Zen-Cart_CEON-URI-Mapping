@@ -11,7 +11,7 @@
  * @author      Conor Kerr <zen-cart.uri-mapping@ceon.net>
  * @author      Stefan M. Kudwien (smk-ka) - dev@unleashedmind.com
  * @author      Daniel F. Kudwien (sun) - dev@unleashedmind.com
- * @copyright   Copyright 2008-2012 Ceon
+ * @copyright   Copyright 2008-2019 Ceon
  * @link        http://ceon.net/software/business/zen-cart/uri-mapping
  * @link        http://drupal.org/project/transliteration
  * @link        http://www.mediawiki.org
@@ -45,7 +45,7 @@ $GLOBALS['transliteration_library_path'] = DIR_FS_CATALOG . DIR_WS_CLASSES . 'tr
  *
  * @package     ceon_uri_mapping
  * @author      Conor Kerr <zen-cart.uri-mapping@ceon.net>
- * @copyright   Copyright 2008-2012 Ceon
+ * @copyright   Copyright 2008-2019 Ceon
  * @link        http://ceon.net/software/business/zen-cart/uri-mapping
  * @link        http://drupal.org/project/transliteration
  * @link        http://www.mediawiki.org
@@ -70,7 +70,7 @@ class Transliteration
 	 *                                     replacements. Defaults to the current display language.
 	 * @return  string    Plain ASCII output.
 	 */
-	static function transliterate($string, $unknown = '?', $language_code = null)//steve added static
+	static function transliterate($string, $unknown = '?', $language_code = null)
 	{
 		// Screen out some characters that eg won't be allowed in XML
 		$string = preg_replace('/[\x00-\x08\x0b\x0c\x0e-\x1f]/', $unknown, $string);
@@ -220,7 +220,7 @@ class Transliteration
 	 *                                     specific replacements. Defaults to the current display language.
 	 * @return  string    Plain ASCII replacement character.
 	 */
-	static function _replace($ord, $unknown = '?', $language_code = null)//steve added static
+	static function _replace($ord, $unknown = '?', $language_code = null)
 	{
 		if (!isset($language_code)) {
 			$language_code = $GLOBALS['string_language'];

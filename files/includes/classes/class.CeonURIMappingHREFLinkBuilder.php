@@ -1,12 +1,12 @@
 <?php
 
-/**steve merged html_output.php ZC155 changes
+/**
  * Ceon URI Mapping URI HREF Link Builder Class.
  *
  * @package     ceon_uri_mapping
  * @author      Conor Kerr <zen-cart.uri-mapping@ceon.net>
- * @copyright   Copyright 2008-2012 Ceon
- * @copyright   Copyright 2003-2007 Zen Cart Development Team
+ * @copyright   Copyright 2008-2019 Ceon
+ * @copyright   Copyright 2003-2019 Zen Cart Development Team
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        http://ceon.net/software/business/zen-cart/uri-mapping
  * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
@@ -31,7 +31,7 @@ require_once(DIR_FS_CATALOG . DIR_WS_CLASSES . 'class.CeonURIMappingDBLookup.php
  *
  * @package     ceon_uri_mapping
  * @author      Conor Kerr <zen-cart.uri-mapping@ceon.net>
- * @copyright   Copyright 2008-2012 Ceon
+ * @copyright   Copyright 2008-2019 Ceon
  * @copyright   Copyright 2003-2007 Zen Cart Development Team
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        http://ceon.net/software/business/zen-cart/uri-mapping
@@ -47,7 +47,7 @@ class CeonURIMappingHREFLinkBuilder extends CeonURIMappingDBLookup
 	 * @var     string
 	 * @access  protected
 	 */
-	var $_href_link = '';
+	protected $_href_link = '';
 	
 	// }}}
 	
@@ -59,9 +59,9 @@ class CeonURIMappingHREFLinkBuilder extends CeonURIMappingDBLookup
 	 * 
 	 * @access  public
 	 */
-	function __construct()
+	public function __construct()
 	{
-		
+		parent::__construct();
 	}
 	
 	// }}}
@@ -83,7 +83,7 @@ class CeonURIMappingHREFLinkBuilder extends CeonURIMappingDBLookup
 	 * @param   boolean   $add_session_id   Whether or not to add the session ID to the link.
 	 * @return  boolean   Whether or not a static URI was successfully built for the Zen Cart page.
 	 */
-	function buildHREFLink($base_link, $main_page, $parameters, $connection, $add_session_id)
+	public function buildHREFLink($base_link, $main_page, $parameters, $connection, $add_session_id)
 	{
 		global $request_type, $session_started, $http_domain, $https_domain, $ceon_uri_mapping_product_pages,
 			$ceon_uri_mapping_product_related_pages;
@@ -98,7 +98,7 @@ class CeonURIMappingHREFLinkBuilder extends CeonURIMappingDBLookup
 			// Link isn't to a page's filename but to a specific URI (e.g. an EZ-Page alt url)
 			// Extract the page ID and any parameters from the string
 			$main_page = $matches[1];
-			
+			$page = '';
 			$temp = str_replace($matches[0], '', $page);
 			
 			$parameters = $parameters . $temp;
@@ -199,7 +199,7 @@ class CeonURIMappingHREFLinkBuilder extends CeonURIMappingDBLookup
 				$category_parts = explode('_', $matches[2]);
 				
 				// Category ID to be linked to is the last part of the specification
-				$category_id = $category_parts[sizeof($category_parts) - 1];
+				$category_id = $category_parts[count($category_parts) - 1];
 				
 				$columns_to_retrieve = array(
 					'uri'
@@ -373,43 +373,40 @@ class CeonURIMappingHREFLinkBuilder extends CeonURIMappingDBLookup
 			
 			// Perform standard Zen Cart functionality for links
 			
-//steve bof modified to match html_output.php zc155			
-// Add the session ID when moving from different HTTP and HTTPS servers, or when SID is defined
-    if ( ($add_session_id == true) && ($session_started == true) && (SESSION_FORCE_COOKIE_USE == 'False') ) {
-      if (defined('SID') && zen_not_null(constant('SID'))) {
-        $sid = constant('SID');
-//      } elseif ( ( ($request_type == 'NONSSL') && ($connection == 'SSL') && (ENABLE_SSL_ADMIN == 'true') ) || ( ($request_type == 'SSL') && ($connection == 'NONSSL') ) ) {
-      } elseif ( ( ($request_type == 'NONSSL') && ($connection == 'SSL') && (ENABLE_SSL == 'true') ) || ( ($request_type == 'SSL') && ($connection == 'NONSSL') ) ) {
-        if ($http_domain != $https_domain) {
-          $sid = zen_session_name() . '=' . zen_session_id();
-        }
-      }
-    }
-
-// clean up the link before processing
-    while (strstr($link, '&&')) $link = str_replace('&&', '&', $link);
-    while (strstr($link, '&amp;&amp;')) $link = str_replace('&amp;&amp;', '&amp;', $link);
-
-    if ( (SEARCH_ENGINE_FRIENDLY_URLS == 'true') && ($search_engine_safe == true) ) {
-      while (strstr($link, '&&')) $link = str_replace('&&', '&', $link);
-
-      $link = str_replace('&amp;', '/', $link);
-      $link = str_replace('?', '/', $link);
-      $link = str_replace('&', '/', $link);
-      $link = str_replace('=', '/', $link);
-
-      $separator = '?';
-    }
-
-    if (isset($sid)) {
-      $link .= $separator . zen_output_string($sid);
-    }
-
-// clean up the link after processing
-    while (strstr($link, '&amp;&amp;')) $link = str_replace('&amp;&amp;', '&amp;', $link);
-
-    $link = preg_replace('/&/', '&amp;', $link);
-//steve eof from html_output.php
+			// Add the session ID when moving from different HTTP and HTTPS servers, or when SID is defined
+			if (($add_session_id == true) && ($session_started == true) && (SESSION_FORCE_COOKIE_USE == 'False')) {
+				if (defined('SID') && zen_not_null(constant('SID'))) {
+					$sid = constant('SID');
+				} elseif ( ( ($request_type == 'NONSSL') && ($connection == 'SSL') && (ENABLE_SSL == 'true') ) || ( ($request_type == 'SSL') && ($connection == 'NONSSL') ) ) {
+					if ($http_domain != $https_domain) {
+						$sid = zen_session_name() . '=' . zen_session_id();
+					}
+				}
+			}
+			
+			// Clean up the link
+			while (strstr($link, '&&')) $link = str_replace('&&', '&', $link);
+			while (strstr($link, '&amp;&amp;')) $link = str_replace('&amp;&amp;', '&amp;', $link);
+			
+			if ( (SEARCH_ENGINE_FRIENDLY_URLS == 'true') && (false/*@TODO $search_engine_safe*/ == true) ) {
+				while (strstr($link, '&&')) $link = str_replace('&&', '&', $link);
+				
+				$link = str_replace('&amp;', '/', $link);
+				$link = str_replace('?', '/', $link);
+				$link = str_replace('&', '/', $link);
+				$link = str_replace('=', '/', $link);
+				
+				$separator = '?';
+			}
+			
+			if (isset($sid)) {
+				$link .= $separator . zen_output_string($sid);
+			}
+			// Encode the link's ampersand entities
+			while (strstr($link, '&amp;&amp;')) $link = str_replace('&amp;&amp;', '&amp;', $link);
+			
+			$link = preg_replace('/&/', '&amp;', $link);
+			
 			// Have got the link to be used, store it in this instance
 			$this->_href_link = $link;
 		}
@@ -428,7 +425,7 @@ class CeonURIMappingHREFLinkBuilder extends CeonURIMappingDBLookup
 	 * @access  public
 	 * @return  string    The HREF link built by this instance.
 	 */
-	function getHREFLink()
+	public function getHREFLink()
 	{
 		return $this->_href_link;
 	}
