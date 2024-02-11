@@ -233,6 +233,9 @@ class CeonURIMappingHREFLinkBuilder extends CeonURIMappingDBLookup
 			
 			// Get the product ID
 			$pattern = '/[&\?]?(products_id=([0-9]+)[^&]*)/i';
+			if ($main_page == FILENAME_ASK_A_QUESTION) {
+				$pattern = '/[&\?]?(pid=([0-9]+)[^&]*)/i';
+			}
 			
 			if (preg_match($pattern, $parameters, $matches)) {
 				$product_query_pair = $matches[1];
@@ -308,7 +311,7 @@ class CeonURIMappingHREFLinkBuilder extends CeonURIMappingDBLookup
 				}
 			}
 		} else {
-			// This link is some other Zen Cart page like popup coupon help
+			// This link is some other Zen Cart page
 			
 			// Attempt to match a page with the exact same parameters first
 			$columns_to_retrieve = array(

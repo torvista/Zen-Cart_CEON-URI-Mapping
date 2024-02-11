@@ -8,8 +8,8 @@
  *
  * @package     ceon_uri_mapping
  * @author      Conor Kerr <zen-cart.uri-mapping@ceon.net>
- * @copyright   Copyright 2008-2012 Ceon
- * @copyright   Copyright 2003-2007 Zen Cart Development Team
+ * @copyright   Copyright 2008-2019 Ceon
+ * @copyright   Copyright 2003-2019 Zen Cart Development Team
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        http://ceon.net/software/business/zen-cart/uri-mapping
  * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
@@ -41,8 +41,8 @@ define('CEON_URI_MAPPING_GENERATION_ATTEMPT_FOR_CATEGORY_PATH_PART_WITH_NO_NAME'
  *
  * @package     ceon_uri_mapping
  * @author      Conor Kerr <zen-cart.uri-mapping@ceon.net>
- * @copyright   Copyright 2008-2012 Ceon
- * @copyright   Copyright 2003-2007 Zen Cart Development Team
+ * @copyright   Copyright 2008-2019 Ceon
+ * @copyright   Copyright 2003-2008 Zen Cart Development Team
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        http://ceon.net/software/business/zen-cart/uri-mapping
  * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
@@ -56,7 +56,7 @@ class CeonURIMappingAdminCategoriesProducts extends CeonURIMappingAdmin
 	 * 
 	 * @access  public
 	 */
-	function __construct()
+	public function __construct()
 	{
 		parent::__construct();
 	}
@@ -81,10 +81,10 @@ class CeonURIMappingAdminCategoriesProducts extends CeonURIMappingAdmin
 	 * @param   integer   $language_id     The Zen Cart language ID for the language.
 	 * @return  string    The auto-generated URI for the category/product and language.
 	 */
-	function autogenCategoryOrProductURIMapping($id, $type, $parent_category_id, $name, $language_code,
+	public function autogenCategoryOrProductURIMapping($id, $type, $parent_category_id, $name, $language_code,
 		$language_id)
 	{
-		global $db;
+		//global $db;
 		
 		// Get the complete path to this category/product, or the parent category if this is a new category/product
 		if (is_null($name)) {
@@ -96,14 +96,14 @@ class CeonURIMappingAdminCategoriesProducts extends CeonURIMappingAdmin
 		
 		$category_and_product_path_array = array_reverse($category_and_product_path_array);
 		
-		if (!is_null($name) || sizeof($category_and_product_path_array) == 0) {
+		if (!is_null($name) || count($category_and_product_path_array) == 0) {
 			// Must add the new category/product's name to the path array
 			$category_and_product_path_array[] = $name;
 		}
 		
 		// Must not generate URIs for any category or product which has no name.. would conflict with parent
 		// category (manual mapping can be used if that behaviour is required).
-		$num_categories_products = sizeof($category_and_product_path_array);
+		$num_categories_products = count($category_and_product_path_array);
 		
 		for ($i = 0; $i < $num_categories_products; $i++) {
 			if (strlen($category_and_product_path_array[$i]) == 0 || $category_and_product_path_array[$i] == '/' ||
@@ -120,9 +120,14 @@ class CeonURIMappingAdminCategoriesProducts extends CeonURIMappingAdmin
 			}
 		}
 		
-		for ($i = 0, $n = sizeof($category_and_product_path_array); $i < $n; $i++) {
+		for ($i = 0, $n = count($category_and_product_path_array); $i < $n; $i++) {
 			$category_and_product_path_array[$i] = $this->_convertStringForURI(
 				$category_and_product_path_array[$i], $language_code);
+		}
+		
+		// Language code to be auto-included, then push to the beginning of the URI
+		if ($this->_autoLanguageCodeAdd()) {
+			array_unshift($category_and_product_path_array, $language_code);
 		}
 		
 		// Implode the path array into a URI
@@ -154,7 +159,7 @@ class CeonURIMappingAdminCategoriesProducts extends CeonURIMappingAdmin
 	 * @return  array     A hierarchical array of the parent categories (if any) for the given category/product,
 	 *                    from the "leaf" product/category back to the "root/top" category.
 	 */
-	function getCategoryOrProductPath($id, $for, $language_id, $categories_array = '')
+	public function getCategoryOrProductPath($id, $for, $language_id, $categories_array = '')
 	{
 		global $db;
 		

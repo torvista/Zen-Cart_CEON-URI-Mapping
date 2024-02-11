@@ -7,7 +7,7 @@
  * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_add_crumbs.php 18697 2011-05-04 14:35:20Z wilt $
+ * @version $Id: init_add_crumbs.php 18697 2011-05-04 14:35:20Z wilt CEON URI Mapping 5.1.1 $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -50,24 +50,19 @@ while (!$get_terms->EOF) {
 		$get_term_breadcrumb = $db->execute($sql);
     if ($get_term_breadcrumb->RecordCount() > 0) {
 // BEGIN CEON URI MAPPING 1 of 2
-	  // Set the required parameters so that an attempt can be made to map the link to any static URI for the
-	  // filtered page
-	  $typefilter_parameters = '';
-	  
-	  if ($get_terms->fields['get_term_name'] != 'manufacturers_id') {
-		$typefilter_parameters = 'typefilter=' . str_replace('_id', '', $get_terms->fields['get_term_name']) . '&';
-	  }
-	  
-	  $typefilter_parameters .=
-		$get_terms->fields['get_term_name'] . '=' . $_GET[$get_terms->fields['get_term_name']];
-	  
-      $breadcrumb->add($get_term_breadcrumb->fields[$get_terms->fields['get_term_name_field']],
-		zen_href_link(FILENAME_DEFAULT, $typefilter_parameters));
-	  /*
+			// -----
+			// Enable a watching observer to modify the parameters to a breadcrumb link.
+			//
+			$link_parameters = $get_terms->fields['get_term_name'] . '=' . $_GET[$get_terms->fields['get_term_name']];
+			$zco_notifier->notify('NOTIFY_INIT_ADD_CRUMBS_GET_TERMS_LINK_PARAMETERS', $get_terms->fields, $link_parameters);
+			
+			$breadcrumb->add($get_term_breadcrumb->fields[$get_terms->fields['get_term_name_field']],
+				zen_href_link(FILENAME_DEFAULT, $link_parameters));
+			/*
 // END CEON URI MAPPING 1 of 2
       $breadcrumb->add($get_term_breadcrumb->fields[$get_terms->fields['get_term_name_field']], zen_href_link(FILENAME_DEFAULT, $get_terms->fields['get_term_name'] . "=" . $_GET[$get_terms->fields['get_term_name']]));
 // BEGIN CEON URI MAPPING 2 of 2
-	  */
+			*/
 // END CEON URI MAPPING 2 of 2
     }
 	}

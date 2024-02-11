@@ -6,12 +6,12 @@
  * 
  * @package     ceon_uri_mapping
  * @author      Conor Kerr <zen-cart.uri-mapping@ceon.net>
- * @copyright   Copyright 2008-2012 Ceon
- * @copyright   Copyright 2003-2007 Zen Cart Development Team
+ * @copyright   Copyright 2008-2024 Ceon
+ * @copyright   Copyright 2003-2019 Zen Cart Development Team
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        http://ceon.net/software/business/zen-cart/uri-mapping
  * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version     $Id: config.ceon_uri_mapping.php 1027 2012-07-17 20:31:10Z conor $
+ * @version     $Id: config.ceon_uri_mapping.php 1027 2024-01-04 20:31:10Z conor updated 5.1.1$
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -20,21 +20,26 @@ if (!defined('IS_ADMIN_FLAG')) {
 
 $autoLoadConfig[0][] = array(
 	'autoType' => 'class',
-	'loadFile' => 'class.CeonURIMappingHandler.php'
+	'loadFile' => 'class.CeonURIMappingHandler.php',
 	);
 
-$autoLoadConfig[99][] = array(
+$autoLoadConfig[95][] = array(
 	'autoType' => 'classInstantiate',
 	'className' => 'CeonURIMappingHandler',
-	'objectName' => 'ceon_uri_mapping'
+	'objectName' => 'ceon_uri_mapping',
 	);
-//torvista added this "manual" autoload to instantiate earlier than using auto.ceon_uri_mapping_link_build.php, for breadcrumbs
+//autoload to instantiate earlier than using auto.ceon_uri_mapping_link_build.php, for breadcrumbs
 $autoLoadConfig[0][] = array(
     'autoType' => 'class',
-    'loadFile' => 'observers/class.ceon_uri_mapping_link_build.php'
+    'loadFile' => 'observers/class.ceon_uri_mapping_link_build.php',
      );
-$autoLoadConfig[165][] = array(
+$autoLoadConfig[99][] = array(
     'autoType' => 'classInstantiate',
     'className' => 'CeonUriMappingLinkBuild',
-    'objectName' => 'ceon_uri_mapping_link_build'
+    'objectName' => 'ceon_uri_mapping_link_build',
      );
+
+$autoLoadConfig[45][] = array(
+	'autoType' => 'init_script',
+	'loadFile' => 'init_ceon_uri_mapping_sessions.php',
+);

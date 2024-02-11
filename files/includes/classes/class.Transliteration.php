@@ -11,13 +11,13 @@
  * @author      Conor Kerr <zen-cart.uri-mapping@ceon.net>
  * @author      Stefan M. Kudwien (smk-ka) - dev@unleashedmind.com
  * @author      Daniel F. Kudwien (sun) - dev@unleashedmind.com
- * @copyright   Copyright 2008-2019 Ceon
+ * @copyright   Copyright 2008-2024 Ceon
  * @link        http://ceon.net/software/business/zen-cart/uri-mapping
  * @link        http://drupal.org/project/transliteration
  * @link        http://www.mediawiki.org
  * @link        http://search.cpan.org/~sburke/Text-Unidecode-0.04/lib/Text/Unidecode.pm
  * @license     http://www.fsf.org/copyleft/lgpl.html Lesser GNU Public License
- * @version     $Id: class.Transliteration.php 1027 2012-07-17 20:31:10Z conor $
+ * @version     $Id: class.Transliteration.php 1027 2024-01-04 20:31:10Z conor updated 5.1.1$
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -115,7 +115,7 @@ class Transliteration
 		$result = '';
 		
 		foreach($matches[0] as $str) {
-			if ($str{0} < "\x80") {
+			if ($str[0] < "\x80") {
 				// ASCII chunk: guaranteed to be valid UTF-8  and in normal form C, so skip over it
 				$result .= $str;
 				continue;
@@ -132,7 +132,7 @@ class Transliteration
 			$len = $chunk + 1; // Counting down is faster. I'm *so* sorry
 			
 			for ($i = -1; --$len;) {
-				$c = $str{++$i};
+				$c = $str[++$i];
 				
 				if ($remaining = $tailBytes[$c]) {
 					// UTF-8 head byte!
@@ -140,7 +140,7 @@ class Transliteration
 					
 					do {
 						// Look for the defined number of tail bytes...
-						if (--$len && ($c = $str{++$i}) >= "\x80" && $c < "\xc0") {
+						if (--$len && ($c = $str[++$i]) >= "\x80" && $c < "\xc0") {
 							// Legal tail bytes are nice
 							$sequence .= $c;
 						} else {
@@ -164,19 +164,19 @@ class Transliteration
 					$n = ord($head);
 					
 					if ($n <= 0xdf) {
-						$ord = ($n-192)*64 + (ord($sequence{1})-128);
+						$ord = ($n-192)*64 + (ord($sequence[1])-128);
 					} else if ($n <= 0xef) {
-						$ord = ($n-224)*4096 + (ord($sequence{1})-128)*64 + (ord($sequence{2})-128);
+						$ord = ($n-224)*4096 + (ord($sequence[1])-128)*64 + (ord($sequence[2])-128);
 					} else if ($n <= 0xf7) {
-						$ord = ($n-240)*262144 + (ord($sequence{1})-128)*4096 +
-							(ord($sequence{2})-128)*64 + (ord($sequence{3})-128);
+						$ord = ($n-240)*262144 + (ord($sequence[1])-128)*4096 +
+							(ord($sequence[2])-128)*64 + (ord($sequence[3])-128);
 					} else if ($n <= 0xfb) {
-						$ord = ($n-248)*16777216 + (ord($sequence{1})-128)*262144 +
-							(ord($sequence{2})-128)*4096 + (ord($sequence{3})-128)*64 + (ord($sequence{4})-128);
+						$ord = ($n-248)*16777216 + (ord($sequence[1])-128)*262144 +
+							(ord($sequence[2])-128)*4096 + (ord($sequence[3])-128)*64 + (ord($sequence[4])-128);
 					} else if ($n <= 0xfd) {
-						$ord = ($n-252)*1073741824 + (ord($sequence{1})-128)*16777216 +
-							(ord($sequence{2})-128)*262144 + (ord($sequence{3})-128)*4096 +
-							(ord($sequence{4})-128)*64 + (ord($sequence{5})-128);
+						$ord = ($n-252)*1073741824 + (ord($sequence[1])-128)*16777216 +
+							(ord($sequence[2])-128)*262144 + (ord($sequence[3])-128)*4096 +
+							(ord($sequence[4])-128)*64 + (ord($sequence[5])-128);
 					}
 					
 					$result .= Transliteration::_replace($ord, $unknown, $language_code);

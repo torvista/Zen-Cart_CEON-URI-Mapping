@@ -7,8 +7,8 @@
  *
  * @package     ceon_uri_mapping
  * @author      Conor Kerr <zen-cart.uri-mapping@ceon.net>
- * @copyright   Copyright 2008-2012 Ceon
- * @copyright   Copyright 2003-2007 Zen Cart Development Team
+ * @copyright   Copyright 2008-2019 Ceon
+ * @copyright   Copyright 2003-2019 Zen Cart Development Team
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        http://ceon.net/software/business/zen-cart/uri-mapping
  * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
@@ -35,12 +35,12 @@ define('CEON_URI_MAPPING_GENERATION_ATTEMPT_FOR_MANUFACTURER_WITH_NO_NAME', -5);
 // {{{ CeonURIMappingAdminManufacturers
 
 /**
- * Handles the URI mappings for EZ-pages.
+ * Handles the URI mappings for Manufacturers.
  *
  * @package     ceon_uri_mapping
  * @author      Conor Kerr <zen-cart.uri-mapping@ceon.net>
- * @copyright   Copyright 2008-2012 Ceon
- * @copyright   Copyright 2003-2007 Zen Cart Development Team
+ * @copyright   Copyright 2008-2019 Ceon
+ * @copyright   Copyright 2003-2019 Zen Cart Development Team
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        http://ceon.net/software/business/zen-cart/uri-mapping
  * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
@@ -54,7 +54,7 @@ class CeonURIMappingAdminManufacturers extends CeonURIMappingAdmin
 	 * 
 	 * @access  public
 	 */
-	function __construct()
+	public function __construct()
 	{
 		parent::__construct();
 	}
@@ -75,7 +75,7 @@ class CeonURIMappingAdminManufacturers extends CeonURIMappingAdmin
 	 * @param   integer   $language_id     The Zen Cart language ID for the language.
 	 * @return  string    The auto-generated URI for the manufacturer and language.
 	 */
-	function autogenManufacturerURIMapping($id, $name, $language_code, $language_id)
+	public function autogenManufacturerURIMapping($id, $name, $language_code, $language_id)
 	{
 		global $db;
 		
@@ -87,7 +87,7 @@ class CeonURIMappingAdminManufacturers extends CeonURIMappingAdmin
 				FROM
 					" . TABLE_MANUFACTURERS . "
 				WHERE
-					manufacturers_id = '" . (int) $id . "';");
+					manufacturers_id = " . (int) $id . ";");
 			
 			$manufacturer_name = $manufacturer_name_result->fields['manufacturers_name'];
 			
@@ -99,6 +99,11 @@ class CeonURIMappingAdminManufacturers extends CeonURIMappingAdmin
 		// Must not generate URIs for any manufacturer which has no name!
 		if (strlen($manufacturer_name) == 0 || $manufacturer_name == '/' || $manufacturer_name == '\\') {
 			return CEON_URI_MAPPING_GENERATION_ATTEMPT_FOR_MANUFACTURER_WITH_NO_NAME;
+		}
+		
+		// Language code to be auto-included, then push to the beginning of the URI
+		if ($this->_autoLanguageCodeAdd()) {
+			$manufacturer_name = $language_code . '/' . $manufacturer_name;
 		}
 		
 		$uri = $this->_convertStringForURI($manufacturer_name, $language_code);

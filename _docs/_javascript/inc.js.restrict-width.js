@@ -13,7 +13,7 @@
  *
  * @class       CeonRestrictWidth
  * @author      Conor Kerr
- * @copyright   2008-2012 Ceon (http://ceon.net)
+ * @copyright   2008-2020 Ceon (http://ceon.net)
  * @version     2.0.1
  * @param       min_width_val   {integer}   The minimum width the div can be (in pixels).
  * @param       max_width_val   {integer}   The maximum width the div can be (in pixels).

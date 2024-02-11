@@ -1,4 +1,3 @@
 # CEON-URI-Mapping
-2019 05: Since CEON URI Mapping is again available from Ceon.net, this fork will not receive any further updates.
+11/01/2024: version 5.1.1
 
-This version was based on version 4.5.2. from Zen Cart Plugins but modified for PHP7 compatibility.

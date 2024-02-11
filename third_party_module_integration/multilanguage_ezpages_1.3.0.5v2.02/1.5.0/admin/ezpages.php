@@ -4,7 +4,7 @@
  * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ezpages.php 19294 2011-07-28 18:15:46Z drbyte $
+ * @version $Id: ezpages.php 19330 2011-08-07 06:32:56Z drbyte $
  */
 
 // Sets the status of a page
@@ -28,7 +28,7 @@
   if (!isset($_GET['reset_ez_sort_order'])) {
     $reset_ez_sort_order = $_SESSION['ez_sort_order'];
   }
-  
+
   if ($_GET['action'] == 'set_editor') {
     // Reset will be done by init_html_editor.php. Now we simply redirect to refresh page properly.
     $action='';
@@ -38,14 +38,13 @@
   $action = (isset($_GET['action']) ? $_GET['action'] : '');
   
   // section inserted for logical page headings
-  if (zen_not_null($action)) {
-  $heading_trailer = ($_GET['ezID'] != '' ? TEXT_INFO_PAGES_ID . $_GET['ezID'] : TEXT_INFO_EZPAGES_CREATE);
-  } else {
   $heading_trailer = TEXT_INFO_PAGES_ID_SELECT;
-  }
   // end inserted section
   
   if (zen_not_null($action)) {
+  // section inserted for logical page headings
+    $heading_trailer = (isset($_GET['ezID']) && $_GET['ezID'] != '' ? TEXT_INFO_PAGES_ID . $_GET['ezID'] : TEXT_INFO_EZPAGES_CREATE);
+  // end inserted section
     switch ($action) {
       case 'set_ez_sort_order':
         $_SESSION['ez_sort_order'] = $_GET['reset_ez_sort_order'];
@@ -94,8 +93,8 @@
         break;
       case 'insert':
       case 'update':
-// start modification for multi-language support
-		if (isset($_POST['pages_id'])) $pages_id = zen_db_prepare_input($_POST['pages_id']);
+        if (isset($_POST['pages_id'])) $pages_id = zen_db_prepare_input($_POST['pages_id']);
+        $pages_title = zen_db_prepare_input($_POST['pages_title']);
         $page_open_new_window = (int)$_POST['page_open_new_window'];
         $page_is_ssl  = (int)$_POST['page_is_ssl'];
 
@@ -116,20 +115,21 @@
        	$status_footer = ($pages_footer_sort_order == 0 ? 0 : (int)$_POST['status_footer']);
        	$status_toc = ($pages_toc_sort_order == 0 ? 0 : (int)$_POST['status_toc']);
 
-		$pages_html_url_flag = false;
+// start modification for multi-language support
+        $pages_html_url_flag = false;
         $languages = zen_get_languages();
         for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
-          if ($_POST['pages_html_text'][$languages[$i]['id']] !='' and strlen(trim($_POST['pages_html_text'][$languages[$i]['id']])) > 6) {
-		  $pages_html_url_flag = true;
-		  }
+          if ($pages_html_text[$languages[$i]['id']] !='' and strlen(trim($pages_html_text[$languages[$i]['id']])) > 6) {
+            $pages_html_url_flag = true; // What is this for?
+          }
           $page_error = false;
-          if (empty($_POST['pages_title'][$languages[$i]['id']])) {
+          if (empty($pages_title[$languages[$i]['id']])) {
             $messageStack->add(ERROR_PAGE_TITLE_REQUIRED . ' (' . $languages[$i]['name'] . ')', 'error');
             $page_error = true;
           }
-          if (empty($pages_html_text)) {
+          if (empty($pages_html_text) || empty($pages_html_text[$i])) {
           }
-		}
+        }
         $zv_link_method_cnt = 0;
         if ($alt_url !='') {
           $zv_link_method_cnt++;
@@ -144,6 +144,7 @@
           $messageStack->add(ERROR_MULTIPLE_HTML_URL, 'error');
           $page_error = true;
         }
+
         if ($page_error == false) {
           $sql_data_array = array('pages_title' => $pages_title,
                                   'page_open_new_window' => $page_open_new_window,
@@ -164,31 +165,31 @@
           if ($action == 'insert') {
             zen_db_perform(TABLE_EZPAGES, $sql_data_array);
             $pages_id = $db->insert_ID();
-			$languages = zen_get_languages();
+            $languages = zen_get_languages();
             $pages_title_array = zen_db_prepare_input($_POST['pages_title']);
             $pages_html_text_array = zen_db_prepare_input($_POST['pages_html_text']);
-			for ($i=0, $n = sizeof($languages); $i<$n; $i++) {
+            for ($i=0, $n = sizeof($languages); $i<$n; $i++) {
               $language_id = $languages[$i]['id'];
               $sql_data_array = array('pages_title' => $pages_title_array[$language_id],
                                       'pages_html_text' => $pages_html_text_array[$language_id],
-									  'languages_id' => $language_id,
-									  'pages_id' => $pages_id);
-			  
-			  zen_db_perform(TABLE_EZPAGES_TEXT, $sql_data_array);
-			}		
+                                      'languages_id' => $language_id,
+                                      'pages_id' => $pages_id);
+
+              zen_db_perform(TABLE_EZPAGES_TEXT, $sql_data_array);
+            }
             $messageStack->add(SUCCESS_PAGE_INSERTED, 'success');
           } elseif ($action == 'update') {
             zen_db_perform(TABLE_EZPAGES, $sql_data_array, 'update', "pages_id = '" . (int)$pages_id . "'");
-			$languages = zen_get_languages();
+            $languages = zen_get_languages();
             $pages_title_array = zen_db_prepare_input($_POST['pages_title']);
             $pages_html_text_array = zen_db_prepare_input($_POST['pages_html_text']);
-			for ($i=0, $n = sizeof($languages); $i<$n; $i++) {
+            for ($i=0, $n = sizeof($languages); $i<$n; $i++) {
               $language_id = $languages[$i]['id'];
               $sql_data_array = array('pages_title' => $pages_title_array[$language_id],
                                       'pages_html_text' => $pages_html_text_array[$language_id]);
-			  
-			  zen_db_perform(TABLE_EZPAGES_TEXT, $sql_data_array, 'update', "pages_id = '" . (int)$pages_id . "' and languages_id = '" . $language_id . "'");
-			}		
+  
+              zen_db_perform(TABLE_EZPAGES_TEXT, $sql_data_array, 'update', "pages_id = '" . (int)$pages_id . "' and languages_id = '" . $language_id . "'");
+            }		
             $messageStack->add(SUCCESS_PAGE_UPDATED, 'success');
           }
 // end modification for multi-language support
@@ -196,9 +197,9 @@
           // BEGIN CEON URI MAPPING 1 of 4
           require_once(DIR_WS_CLASSES . 'class.CeonURIMappingAdminEZPagePages.php');
 		  
-		  $ceon_uri_mapping_admin = new CeonURIMappingAdminEZPagePages();
+		      $ceon_uri_mapping_admin = new CeonURIMappingAdminEZPagePages();
 		  
-		  $ceon_uri_mapping_admin->insertUpdateHandler($pages_id, '', $pages_title_array);
+		      $ceon_uri_mapping_admin->insertUpdateHandler($pages_id, '', $pages_title_array);
 		  
           // END CEON URI MAPPING 1 of 4
 
@@ -222,11 +223,11 @@
         $messageStack->add(SUCCESS_PAGE_REMOVED, 'success');
         
         // BEGIN CEON URI MAPPING 2 of 4
-		require_once(DIR_WS_CLASSES . 'class.CeonURIMappingAdminEZPagePages.php');
+    		require_once(DIR_WS_CLASSES . 'class.CeonURIMappingAdminEZPagePages.php');
 		
-		$ceon_uri_mapping_admin = new CeonURIMappingAdminEZPagePages();
+    		$ceon_uri_mapping_admin = new CeonURIMappingAdminEZPagePages();
 		
-		$ceon_uri_mapping_admin->deleteConfirmHandler($pages_id);
+    		$ceon_uri_mapping_admin->deleteConfirmHandler($pages_id);
 		
         // END CEON URI MAPPING 2 of 4
         
@@ -333,7 +334,6 @@
 
       $ezID = zen_db_prepare_input($_GET['ezID']);
 
-// query modified for multilanguage support
       $page_query = "select * from " . TABLE_EZPAGES . " where pages_id = '" . (int)$_GET['ezID'] . "'";
       $page = $db->Execute($page_query);
       $ezInfo->objectInfo($page->fields);
@@ -411,21 +411,21 @@
 <?php
 // modified code for multi-language support
     $languages = zen_get_languages();
-	$pages_title = '';
+    $pages_title = '';
     for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
       if (isset($_GET['ezID']) and zen_not_null($_GET['ezID'])) {
-	  $title_query_sql = "select pages_title from " . TABLE_EZPAGES_TEXT . " where pages_id = '" . $_GET['ezID'] . "' and languages_id = '" . $languages[$i]['id'] . "'";
-	  $title_query = $db->Execute($title_query_sql);
-	  $pages_title = $title_query->fields['pages_title'];
-	  } else {
-	  $pages_title = '';
-	  }
-	  echo '<br />' . zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']) . '&nbsp;';
-      echo zen_draw_input_field('pages_title[' . $languages[$i]['id'] . ']', htmlspecialchars($pages_title), zen_set_field_length(TABLE_EZPAGES_TEXT, 'pages_title'), true);
+        $title_query_sql = "select pages_title from " . TABLE_EZPAGES_TEXT . " where pages_id = " . (int)$_GET['ezID'] . " and languages_id = " . (int)$languages[$i]['id'];
+        $title_query = $db->Execute($title_query_sql);
+        $pages_title = $title_query->fields['pages_title'];
+      } else {
+        $pages_title = '';
+      }
+      echo '<br />' . zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']) . '&nbsp;';
+      echo zen_draw_input_field('pages_title[' . $languages[$i]['id'] . ']', htmlspecialchars($pages_title, ENT_COMPAT, CHARSET, TRUE), zen_set_field_length(TABLE_EZPAGES_TEXT, 'pages_title'), true);
     }
 // end modified code for multi-language support
 ?>
-</td>
+            </td>
           </tr>
           <tr>
             <td colspan="2"><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
@@ -521,7 +521,7 @@
 
     for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
       if (isset($_GET['ezID']) and zen_not_null($_GET['ezID'])) {
-        $text_query_sql = "select pages_html_text from " . TABLE_EZPAGES_TEXT . " where pages_id = '" . $_GET['ezID'] . "' and languages_id = '" . $languages[$i]['id'] . "'";
+        $text_query_sql = "select pages_html_text from " . TABLE_EZPAGES_TEXT . " where pages_id = " . (int)$_GET['ezID'] . " and languages_id = " . (int)$languages[$i]['id'];
 	    $text_query = $db->Execute($text_query_sql);
 	    $pages_html_text = $text_query->fields['pages_html_text'];
 	  } else {
@@ -637,7 +637,7 @@
                         e.toc_sort_order, e.toc_chapter, e.status_header, e.status_sidebox, e.status_footer, status_toc, et.pages_title, 
 					    et.pages_html_text  from  " . TABLE_EZPAGES . " e, " . TABLE_EZPAGES_TEXT . " et 
 					    where e.pages_id = et.pages_id 
-	                    and et.languages_id = '" . (int)$_SESSION['languages_id'] . "'" . $ez_order_by;
+	                    and et.languages_id = " . (int)$_SESSION['languages_id'] . $ez_order_by;
 // end of modification							 
 
 // Split Page

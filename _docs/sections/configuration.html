@@ -152,7 +152,7 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 			<li>
 				<h5><a name="adding-rewrite-rule-exceptions" id="adding-rewrite-rule-exceptions"></a>Adding exceptions to the rule to prevent particular addresses (e.g. Control Panels etc.) from being handled by Zen Cart.</h5>
 				
-				<p>If the rewrite rule is blocking access to particular addresses on the server, exclusions need to be added to the rule for any addresses that should not be handled by Zen Cart.</p>
+				<p>If the rewrite rule is blocking access to particular addresses on the server (e.g., zc_install), exclusions need to be added to the rule for any addresses that should not be handled by Zen Cart.</p>
 				<p>Adding an exclusion for a path on the site is fairly easy, simply requiring the addition of a <em>condition</em> to the rewrite rule:</p>
 				
 				<p class="Example"><code># Don't rewrite "cpanel" directory
@@ -216,8 +216,9 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 		<ul class="BulletedList">
 			<li>Change the Capitalisation setting,</li>
 			<li>Change the Whitespace Replacement Character,</li>
-			<li>Edit the list of words which are automatically Removed when auto-generating the URIs and</li>
+			<li>Edit the list of words which are automatically Removed when auto-generating the URIs</li>
 			<li>Edit the list of characters/strings that will be Replaced when auto-generating URIs (along with their respective replacements).</li>
+			<li>Change the auto-addition of the language code (2-letter identifier) to the beginning of the URI when auto-generating the URIs and</li>
 			<li>Enable/disable the auto-appending of a number to product URI mappings that are clashing with existing mappings on the site.</li>
 		</ul>
 		
@@ -229,9 +230,9 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 	</li>
 	
 	<li>
-		<h3 class="UnderlinedTitle"><a name="adjusting-product-page-uri-parts-settings-text" id="adjusting-product-page-uri-parts-settings-text"></a>Specifying Auto-manage Settings and URI Parts Text for Products' &ldquo;Reviews&rdquo; and &ldquo;Tell-A-Friend&rdquo; pages</h3>
+		<h3 class="UnderlinedTitle"><a name="adjusting-product-page-uri-parts-settings-text" id="adjusting-product-page-uri-parts-settings-text"></a>Specifying Auto-manage Settings and URI Parts Text for Products' &ldquo;Reviews&rdquo;, &ldquo;Tell-A-Friend&rdquo; and &ldquo;Ask-A-Question&rdquo; pages</h3>
 		
-		<p>The various Reviews pages and the Tell-A-Friend pages can automatically be made &ldquo;subsections&rdquo; of products' info pages, by appending some specific URI parts to a product info page's static URI.</p>
+		<p>The various Reviews pages, the Tell-A-Friend pages and the Ask-A-Question pages can automatically be made &ldquo;subsections&rdquo; of products' info pages, by appending some specific URI parts to a product info page's static URI.</p>
 		
 		<p>Which pages have URI mappings &ldquo;auto-managed&rdquo; by the software, and what actual text to use, can be specified by adjusting the appropriate settings in the Config Utility.</p>
 		
@@ -576,7 +577,7 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 
 <p class="BackToTop"><a href="#top">Back to top</a></p>
 
-<p id="footer"><a href="http://ceon.net/software/business/zen-cart?doc=zc-um" target="_blank"><img src="../_images/ceon-button-logo.png" alt="Ceon" id="ceon-button-logo" /></a><a href="http://jked.net" target="_blank"><img src="../_images/jked-logo.gif" alt="JKED" id="jked-logo" /></a>Module &amp; Documentation &copy; Copyright 2008-2012 <a href="http://ceon.net/software/business/zen-cart?doc=zc-um" target="_blank">Ceon</a></p>
+<p id="footer"><a href="http://ceon.net/software/business/zen-cart?doc=zc-um" target="_blank"><img src="../_images/ceon-button-logo.png" alt="Ceon" id="ceon-button-logo" /></a><a href="http://jked.net" target="_blank"><img src="../_images/jked-logo.gif" alt="JKED" id="jked-logo" /></a>Module &amp; Documentation &copy; Copyright 2008-2024 <a href="http://ceon.net/software/business/zen-cart?doc=zc-um" target="_blank">Ceon</a></p>
 
 	</div>
 </div>

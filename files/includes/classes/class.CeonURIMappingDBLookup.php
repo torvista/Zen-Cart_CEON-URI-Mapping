@@ -1,12 +1,11 @@
 <?php
-//steve added spaces to the sql query builder. The query can be seen in the page by using Super Globals and searching for zf_sql
 /**
  * Ceon URI Mapping URI DB Lookup Class.
  *
  * @package     ceon_uri_mapping
  * @author      Conor Kerr <zen-cart.uri-mapping@ceon.net>
- * @copyright   Copyright 2008-2012 Ceon
- * @copyright   Copyright 2003-2007 Zen Cart Development Team
+ * @copyright   Copyright 2008-2019 Ceon
+ * @copyright   Copyright 2003-2019 Zen Cart Development Team
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        http://ceon.net/software/business/zen-cart/uri-mapping
  * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
@@ -27,8 +26,8 @@ if (!defined('IS_ADMIN_FLAG')) {
  * @package     ceon_uri_mapping
  * @abstract
  * @author      Conor Kerr <zen-cart.uri-mapping@ceon.net>
- * @copyright   Copyright 2008-2012 Ceon
- * @copyright   Copyright 2003-2007 Zen Cart Development Team
+ * @copyright   Copyright 2008-2019 Ceon
+ * @copyright   Copyright 2003-2019 Zen Cart Development Team
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        http://ceon.net/software/business/zen-cart/uri-mapping
  * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
@@ -43,7 +42,7 @@ class CeonURIMappingDBLookup
 	 * 
 	 * @access  public
 	 */
-	function __construct()
+	public function __construct()
 	{
 		
 	}
@@ -68,7 +67,7 @@ class CeonURIMappingDBLookup
 	 * @param   string    $group_by   A SQL string to be used to group the resultset.
 	 * @return  resultset   A Zen Cart database resultset.
 	 */
-	function getURIMappingsResultset($columns_to_retrieve, $selections, $order_by = null, $limit = null,
+	public function getURIMappingsResultset($columns_to_retrieve, $selections, $order_by = null, $limit = null,
 		$group_by = null)
 	{
 		global $db;
@@ -79,14 +78,14 @@ class CeonURIMappingDBLookup
 		
 		$selection_string = '';
 		
-		$num_selection_columns = sizeof($selections);
+		$num_selection_columns = count($selections);
 		
 		$column_name_i = 0;
 		
 		foreach ($selections as $column_name => $column_value) {
 			if (is_array($column_value)) {
 				// The value is an array of values so create an ORed group
-				$num_column_values = sizeof($column_value);
+				$num_column_values = count($column_value);
 				
 				$selection_string .= '(' . "\n";
 				
@@ -110,7 +109,7 @@ class CeonURIMappingDBLookup
 					}
 					
 					if ($column_value_i < ($num_column_values - 1)) {
-						$selection_string .= " OR\n";//steve added leading space
+						$selection_string .= " OR\n";
 					}
 				}
 				
@@ -135,7 +134,7 @@ class CeonURIMappingDBLookup
 			}
 			
 			if ($column_name_i < ($num_selection_columns - 1)) {
-				$selection_string .= " AND\n";//steve added leading space
+				$selection_string .= " AND\n";
 			}
 			
 			$column_name_i++;
@@ -150,15 +149,15 @@ class CeonURIMappingDBLookup
 				" . $selection_string;
 		
 		if (!is_null($order_by)) {
-			$sql .= "\n" . ' ORDER BY ' . $order_by;//steve added leading space
+			$sql .= "\n" . ' ORDER BY ' . $order_by;
 		}
 		
 		if (!is_null($limit)) {
-			$sql .= "\n" . ' LIMIT ' . $limit;//steve added leading space
+			$sql .= "\n" . ' LIMIT ' . $limit;
 		}
 		
 		if (!is_null($group_by)) {
-			$sql .= "\n" . ' GROUP_BY ' . $group_by;//steve added leading space
+			$sql .= "\n" . ' GROUP_BY ' . $group_by;
 		}
 		
 		$sql .= ';';

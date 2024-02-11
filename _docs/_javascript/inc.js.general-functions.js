@@ -15,7 +15,7 @@ function d(text)
  * the page has been loaded.
  *
  * @author      Conor Kerr
- * @copyright   2008-2012 Ceon (http://ceon.net)
+ * @copyright   2008-2020 Ceon (http://ceon.net)
  * @param       func      {string}   The name of a function to run.
  * @param       obj       {object}   An object from which a method should be run.
  * @param       method    {string}   The name of the method within the specified object to run.
@@ -54,7 +54,7 @@ function CeonAddLoadEvent(func, obj, method)
  * the page has been resized.
  *
  * @author      Conor Kerr
- * @copyright   2008-2012 Ceon (http://ceon.net)
+ * @copyright   2008-2020 Ceon (http://ceon.net)
  * @param       func      {string}   The name of a function to run.
  * @param       obj       {object}   An object from which a method should be run.
  * @param       method    {string}   The name of the method within the specified object to run.

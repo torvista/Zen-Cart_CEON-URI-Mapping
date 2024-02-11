@@ -55,42 +55,26 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 
 
 <h2><a name="downloads" id="downloads"></a>Downloading the Latest Version</h2>
-<p><s>The latest version of the module distribution can always be found on its website, <a href="http://ceon.net/software/business/zen-cart/uri-mapping/downloads?doc=zc-um">http://ceon.net/software/business/zen-cart/uri-mapping/downloads</a>.</s></p>
+<p>The latest version of the module distribution can always be found on its website, <a href="http://ceon.net/software/business/zen-cart/uri-mapping/downloads?doc=zc-um">http://ceon.net/software/business/zen-cart/uri-mapping/downloads</a>.</p>
 
-<p>2017 09 28: 4.5.3 for PHP7 Only available on Github: <a href="https://github.com/torvista/CEON-URI-Mapping" target="_blank">https://github.com/torvista/CEON-URI-Mapping</a></p>
-<p><a name="upgrading" id="upgrading"></a></p>
-<h2>Upgrading</h2>
-<p>Simply follow the instructions for the version of Ceon URI Mapping already installed...</p>
+<a name="upgrading" id="upgrading"></a><h2>Upgrading</h2>
+<p>Simply follow the instructions for the version of Ceon URI Mapping already installed..</p>
 
 <ol class="TableOfContents">
-	<li><a href="#upgrading-from-version-4-4-0">Upgrading to Version 4.4.1 from Version 4.4.0</a></li>
-	<li><a href="#upgrading-from-version-4-2-x">Upgrading to Version 4.4.1 from Version 4.2.x</a></li>
-	<li><a href="#upgrading-from-version-4-0-6-4-0-8">Upgrading to Version 4.4.1 from Version 4.0.6 - 4.0.8</a></li>
-	<li><a href="#upgrading-from-version-4-0-0-4-0-5">Upgrading to Version 4.4.1 from Version 4.0.0 - 4.0.5</a></li>
-	<li><a href="#upgrading-from-version-2-or-3">Upgrading to Version 4.4.1 from Version 2.x/3.x</a></li>
+	<li><a href="#upgrading-from-version-5-1-0">Upgrading to Version 5.1.1 from Version 5.1.0</a></li>
+	<li><a href="#upgrading-from-version-5-0-1">Upgrading to Version 5.1.1 from Version 5.0.1</a></li>
+	<li><a href="#upgrading-from-version-5-0-x">Upgrading to Version 5.1.1 from Version 5.0.0</a></li>
+	<li><a href="#upgrading-from-version-4-5-x">Upgrading to Version 5.1.1 from Version 4.5.x</a></li>
+	<li><a href="#upgrading-from-version-4-4-0">Upgrading to Version 5.1.1 from Version 4.4.x</a></li>
+	<li><a href="#upgrading-from-version-4-2-x">Upgrading to Version 5.1.1 from Version 4.2.x</a></li>
+	<li><a href="#upgrading-from-version-4-0-6-4-0-8">Upgrading to Version 5.1.1 from Version 4.0.6 - 4.0.8</a></li>
+	<li><a href="#upgrading-from-version-4-0-0-4-0-5">Upgrading to Version 5.1.1 from Version 4.0.0 - 4.0.5</a></li>
+	<li><a href="#upgrading-from-version-2-or-3">Upgrading to Version 5.1.1 from Version 2.x/3.x</a></li>
 </ol>
 
 
-<h2><a name="upgrading-from-version-4-4-0" id="upgrading-from-version-4-4-0"></a>Upgrading to Ceon URI Mapping 4.4.1 from Ceon URI Mapping 4.4.0</h2>
-<p>Nothing has actually changed from 4.4.0 to 4.4.1, except the version number!</p>
-
-<ol class="InstallationSteps">
-	<li>
-		<h4>Automatically update the version number in the database</h4>
-		
-		<ul class="Steps">
-			<li class="NoMarginBottom">
-				<p class="NoMarginBottom">Go to <em>Modules &gt; Ceon URI Mapping (SEO) Config</em> in the Zen Cart Admin and the module will be updated automagically!</p>
-			</li>
-		</ul>
-	</li>
-</ol>
-
-<p class="BackToTop"><a href="#top">Back to top</a></p>
-
-
-<h2><a name="upgrading-from-version-4-2-x" id="upgrading-from-version-4-2-x"></a>Upgrading to Ceon URI Mapping 4.4.1 from Ceon URI Mapping 4.2.x</h2>
-<p>It's simple to upgrade to version 4.4.1 from 4.2.x.</p>
+<h2><a name="upgrading-from-version-5-1-0" id="upgrading-from-version-5-1-0"></a>Upgrading to Ceon URI Mapping 5.1.1 from Ceon URI Mapping 5.1.0</h2>
+<p>It's simple to upgrade to version 5.1.1 from 5.1.0.</p>
 
 <ol class="InstallationSteps">
 	<li>
@@ -106,10 +90,407 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 		<p><strong>Please do not copy the files individually</strong> - there's simply no need - doing so often results in files being missed out!</p>
 		
 		<ul class="Steps">
-			<li>admin/images/ceon-button-logo.png</li>
-			<li>admin/images/ceon-input-fade-tb-gray-white.png</li>
-			<li>admin/images/ceon-tab-background.png</li>
-			<li>admin/images/ceon-tab-background-selected.png</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingLinkBuildAdmin.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingAdminProductPages.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingConfigUtility.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingInstallationCheck.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingInstallOrUpgrade.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingTabbedPanelAdminInterface.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingVersion.php</li>
+			<li>admin/includes/ceon_uri_mapping_javascript.php</li>
+			<li class="NoMarginBottom">admin/includes/languages/english/ceon_uri_mapping_installation_check.php</li>
+		</ul>
+		
+		
+		<h5>Updated files for the main store directory</h5>
+		
+		<p>Copy the <span class="FileName">includes</span> folder from the <span class="FileName">files</span> folder into the store's main directory.</p>
+		<p>The files are already in the correct directory structure, so a single drag-and-drop of the folder into the root directory for the store will put the files in the correct locations.</p>
+		<p><strong>Please do not copy the files individually</strong> - there's simply no need - doing so often results in files being missed out!</p>
+		<p class="Note"><strong>Warning</strong>: Be careful <em class="Underlined FontStyleNormal">NOT</em> to copy the files from the <span class="FileName">files/includes</span> folder into the store's <span class="FileName">admin/includes</span> directory, they go in the <span class="FileName">includes</span> directory which is <strong>alongside, not inside</strong> the store's admin directory.</p>
+		
+		<ul class="Steps">
+			<li>includes/classes/observers/class.ceon_uri_mapping_link_build.php</li>
+			<li>includes/classes/class.CeonString.php</li>
+			<li>includes/classes/class.CeonURIMappingHandler.php</li>
+			<li>includes/classes/class.Transliteration.php</li>
+			<li class="NoMarginBottom">includes/auto_loaders/config.ceon_uri_mapping.php</li>
+		</ul>
+		
+		
+		<h5>Installing to Zen Cart 1.5.7 and above</h5>
+		
+		<p>Copy all of the folders and files from the <span class="FileName">files/zen_cart_version_specific/v1.5.7/admin</span> folder into the store's &ldquo;admin&rdquo; directory, whatever it is called.</p>
+		<p>The files are already in the correct directory structure, so a single drag-and-drop of the folders/files in the <span class="FileName">files/admin</span> folder into the &ldquo;admin&rdquo; directory for the store will put the files in the correct locations.</p>
+		<p><strong>Please do not copy the files individually</strong> - there's simply no need - doing so often results in files being missed out!</p>
+		
+		<ul class="Steps">
+			<li>admin/includes/classes/observers/class.CeonURIMappingJavaScriptLoader.php</li>
+			<li class="NoMarginBottom">admin/includes/auto_loaders/config.ceon_uri_mapping_admin_javascript_loader.php</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4>Remove the old file used by the previously installed version of the module</h4>
+		
+		<p>Since the module had been rewritten (for Zen Cart Version 1.5.5 and above) to minimize core file modification, many of the old files were no longer used and <strong>needed to be removed/modified</strong>.  The installer will also advise of file modifications that are to be removed in support of this version of the module.</p>
+		
+		<h5>File to be deleted from the main store directory</h5>
+		
+		<ul class="Steps">
+			<li class="NoMarginBottom">includes/extra_datafiles/ceon_uri_mapping_sessions_define.php&nbsp;&nbsp;&nbsp;&nbsp;(Zen Cart 1.3.9c and above)</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4>Automatically update the database and configuration</h4>
+		
+		<p>This software comes with some intelligent upgrade and error checking functionality which makes it easy to keep the database and configuration up to date.</p>
+		
+		<ul class="Steps">
+			<li class="NoMarginBottom">
+				<p class="NoMarginBottom">Go to <em>Modules &gt; Ceon URI Mapping (SEO) Config</em> in the Zen Cart Admin and the module will be updated automagically!</p>
+			</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4>Run the Installation Check</h4>
+		
+		<p>The installation check will examine all the core files that must be modified for Ceon URI Mapping to work optimally, and warn you if any of the modifications are present that should be removed, missing or out-of-date, again giving information on what you should do!</p>
+		
+		<p>A quick glance at this admin page should help you identify and fix any problems with the installation quickly and easily!</p>
+		
+		<ul class="Steps">
+			<li>
+				<p>Go to <em>Modules &gt; Ceon URI Mapping (SEO) Config</em> in the Zen Cart Admin.</p>
+			</li>
+			<li>
+				<p>Then go to the <em>Installation Check</em> tab and click on the link to open the Installation Check utility page.</p>
+			</li>
+			<li>
+				<p>The module will now automatically carry out the installation check.</p>
+			</li>
+			<li class="NoMarginBottom">
+				<p class="NoMarginBottom">If any errors are listed, follow the instructions given by the software.</p>
+			</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4>That's it!</h4>
+		
+		<p>Told you it was simple to upgrade!</p>
+	</li>
+</ol>
+
+<p class="BackToTop"><a href="#top">Back to top</a></p>
+
+
+<h2><a name="upgrading-from-version-5-0-1" id="upgrading-from-version-5-0-1"></a>Upgrading to Ceon URI Mapping 5.1.1 from Ceon URI Mapping 5.0.1</h2>
+<p>It's simple to upgrade to version 5.1.1 from 5.0.1.</p>
+
+<ol class="InstallationSteps">
+	<li>
+		<h4>Copy the New/Updated Files across</h4>
+		
+		<p>These are the new/updated files which make up this module. Copy them all into their respective folders in the Zen Cart installation, overwriting the files from the previously installed version.</p>
+		
+		<h5>New/Updated files for the Admin directory</h5>
+		
+		<p>Most Zen Cart stores have their admin directory renamed from the default of &ldquo;admin&rdquo;.</p>
+		<p>Copy all of the folders and files from the <span class="FileName">files/admin</span> folder into the store's &ldquo;admin&rdquo; directory, whatever it is called.</p>
+		<p>The files are already in the correct directory structure, so a single drag-and-drop of the folders/files in the <span class="FileName">files/admin</span> folder into the &ldquo;admin&rdquo; directory for the store will put the files in the correct locations.</p>
+		<p><strong>Please do not copy the files individually</strong> - there's simply no need - doing so often results in files being missed out!</p>
+		
+		<ul class="Steps">
+			<li>admin/includes/classes/observers/class.CeonURIMappingAdminCopyObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingAdminProductsObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingDeleteCategoriesObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingDeleteProductsObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingLinkBuildAdmin.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingAdminCategoryPages.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingAdminProductPages.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingConfigUtility.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingInstallationCheck.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingInstallOrUpgrade.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingTabbedPanelAdminInterface.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingVersion.php</li>
+			<li>admin/includes/ceon_uri_mapping_javascript.php</li>
+			<li>admin/includes/languages/english/ceon_uri_mapping_installation_check.php</li>
+			<li>admin/includes/init_includes/init_ceon_product_collect_info.php</li>
+			<li class="NoMarginBottom">admin/includes/auto_loaders/config.ceon_uri_mapping_admin_copy_observer.php</li>
+		</ul>
+		
+		
+		<h5>Updated files for the main store directory</h5>
+		
+		<p>Copy the <span class="FileName">includes</span> folder from the <span class="FileName">files</span> folder into the store's main directory.</p>
+		<p>The files are already in the correct directory structure, so a single drag-and-drop of the folder into the root directory for the store will put the files in the correct locations.</p>
+		<p><strong>Please do not copy the files individually</strong> - there's simply no need - doing so often results in files being missed out!</p>
+		<p class="Note"><strong>Warning</strong>: Be careful <em class="Underlined FontStyleNormal">NOT</em> to copy the files from the <span class="FileName">files/includes</span> folder into the store's <span class="FileName">admin/includes</span> directory, they go in the <span class="FileName">includes</span> directory which is <strong>alongside, not inside</strong> the store's admin directory.</p>
+		
+		<ul class="Steps">
+			<li>includes/classes/observers/class.ceon_ask_a_question.php</li>
+			<li>includes/classes/observers/class.ceon_canonical.php</li>
+			<li>includes/classes/observers/class.ceon_uri_mapping_link_build.php</li>
+			<li>includes/classes/transliteration/x00.php</li>
+			<li>includes/classes/transliteration/x03.php</li>
+			<li>includes/classes/transliteration/x04.php</li>
+			<li>includes/classes/transliteration/x4e.php</li>
+			<li>includes/classes/transliteration/x06.php</li>
+			<li>includes/classes/transliteration/x14.php</li>
+			<li>includes/classes/transliteration/x15.php</li>
+			<li>includes/classes/transliteration/x21.php</li>
+			<li>includes/classes/class.CeonString.php</li>
+			<li>includes/classes/class.CeonURIMappingAdminEZPages.php</li>
+			<li>includes/classes/class.CeonURIMappingHandler.php</li>
+			<li>includes/classes/class.CeonURIMappingHandlerBase.php</li>
+			<li>includes/classes/class.CeonURIMappingHREFLinkBuilder.php</li>
+			<li>includes/classes/class.Transliteration.php</li>
+			<li>includes/auto_loaders/config.ceon_ask_a_question.php</li>
+			<li class="NoMarginBottom">includes/auto_loaders/config.ceon_uri_mapping.php</li>
+		</ul>
+		
+		
+		<h5>Installing to Zen Cart 1.5.7 and above</h5>
+		
+		<p>Copy all of the folders and files from the <span class="FileName">files/zen_cart_version_specific/v1.5.7/admin</span> folder into the store's &ldquo;admin&rdquo; directory, whatever it is called.</p>
+		<p>The files are already in the correct directory structure, so a single drag-and-drop of the folders/files in the <span class="FileName">files/admin</span> folder into the &ldquo;admin&rdquo; directory for the store will put the files in the correct locations.</p>
+		<p><strong>Please do not copy the files individually</strong> - there's simply no need - doing so often results in files being missed out!</p>
+		
+		<ul class="Steps">
+			<li>admin/includes/classes/observers/class.CeonURIMappingJavaScriptLoader.php</li>
+			<li class="NoMarginBottom">admin/includes/auto_loaders/config.ceon_uri_mapping_admin_javascript_loader.php</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4>Remove the old file used by the previously installed version of the module</h4>
+		
+		<p>Since the module had been rewritten (for Zen Cart Version 1.5.5 and above) to minimize core file modification, many of the old files were no longer used and <strong>needed to be removed/modified</strong>.  The installer will also advise of file modifications that are to be removed in support of this version of the module.</p>
+		
+		<h5>File to be deleted from the main store directory</h5>
+		
+		<ul class="Steps">
+			<li class="NoMarginBottom">includes/extra_datafiles/ceon_uri_mapping_sessions_define.php&nbsp;&nbsp;&nbsp;&nbsp;(Zen Cart 1.3.9c and above)</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4>Automatically update the database and configuration</h4>
+		
+		<p>This software comes with some intelligent upgrade and error checking functionality which makes it easy to keep the database and configuration up to date.</p>
+		
+		<ul class="Steps">
+			<li class="NoMarginBottom">
+				<p class="NoMarginBottom">Go to <em>Modules &gt; Ceon URI Mapping (SEO) Config</em> in the Zen Cart Admin and the module will be updated automagically!</p>
+			</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4>Run the Installation Check</h4>
+		
+		<p>The installation check will examine all the core files that must be modified for Ceon URI Mapping to work optimally, and warn you if any of the modifications are present that should be removed, missing or out-of-date, again giving information on what you should do!</p>
+		
+		<p>A quick glance at this admin page should help you identify and fix any problems with the installation quickly and easily!</p>
+		
+		<ul class="Steps">
+			<li>
+				<p>Go to <em>Modules &gt; Ceon URI Mapping (SEO) Config</em> in the Zen Cart Admin.</p>
+			</li>
+			<li>
+				<p>Then go to the <em>Installation Check</em> tab and click on the link to open the Installation Check utility page.</p>
+			</li>
+			<li>
+				<p>The module will now automatically carry out the installation check.</p>
+			</li>
+			<li class="NoMarginBottom">
+				<p class="NoMarginBottom">If any errors are listed, follow the instructions given by the software.</p>
+			</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4>That's it!</h4>
+		
+		<p>Told you it was simple to upgrade!</p>
+	</li>
+</ol>
+
+<p class="BackToTop"><a href="#top">Back to top</a></p>
+
+
+<h2><a name="upgrading-from-version-5-0-x" id="upgrading-from-version-5-0-x"></a>Upgrading to Ceon URI Mapping 5.1.1 from Ceon URI Mapping 5.0.0</h2>
+<p>It's simple to upgrade to version 5.1.1 from 5.0.x.</p>
+
+<ol class="InstallationSteps">
+	<li>
+		<h4>Copy the New/Updated Files across</h4>
+		
+		<p>These are the new/updated files which make up this module. Copy them all into their respective folders in the Zen Cart installation, overwriting the files from the previously installed version.</p>
+		
+		<h5>New/Updated files for the Admin directory</h5>
+		
+		<p>Most Zen Cart stores have their admin directory renamed from the default of &ldquo;admin&rdquo;.</p>
+		<p>Copy all of the folders and files from the <span class="FileName">files/admin</span> folder into the store's &ldquo;admin&rdquo; directory, whatever it is called.</p>
+		<p>The files are already in the correct directory structure, so a single drag-and-drop of the folders/files in the <span class="FileName">files/admin</span> folder into the &ldquo;admin&rdquo; directory for the store will put the files in the correct locations.</p>
+		<p><strong>Please do not copy the files individually</strong> - there's simply no need - doing so often results in files being missed out!</p>
+		
+		<ul class="Steps">
+			<li>admin/includes/classes/observers/class.CeonURIMappingAdminCopyObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingAdminProductsObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingDeleteCategoriesObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingDeleteProductsObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingLinkBuildAdmin.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingAdminCategoryPages.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingAdminProductPages.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingConfigUtility.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingInstallationCheck.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingInstallOrUpgrade.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingTabbedPanelAdminInterface.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingVersion.php</li>
+			<li>admin/includes/languages/english/ceon_uri_mapping_installation_check.php</li>
+			<li>admin/includes/init_includes/init_ceon_product_collect_info.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_copy_observer.php</li>
+			<li class="NoMarginBottom">admin/includes/ceon_uri_mapping_javascript.php</li>
+		</ul>
+		
+		
+		<h5>Updated files for the main store directory</h5>
+		
+		<p>Copy the <span class="FileName">includes</span> folder from the <span class="FileName">files</span> folder into the store's main directory.</p>
+		<p>The files are already in the correct directory structure, so a single drag-and-drop of the folder into the root directory for the store will put the files in the correct locations.</p>
+		<p><strong>Please do not copy the files individually</strong> - there's simply no need - doing so often results in files being missed out!</p>
+		<p class="Note"><strong>Warning</strong>: Be careful <em class="Underlined FontStyleNormal">NOT</em> to copy the files from the <span class="FileName">files/includes</span> folder into the store's <span class="FileName">admin/includes</span> directory, they go in the <span class="FileName">includes</span> directory which is <strong>alongside, not inside</strong> the store's admin directory.</p>
+		
+		<ul class="Steps">
+			<li>includes/classes/observers/class.ceon_ask_a_question.php</li>
+			<li>includes/classes/observers/class.ceon_canonical.php</li>
+			<li>includes/classes/observers/class.ceon_uri_mapping_link_build.php</li>
+			<li>includes/classes/transliteration/x00.php</li>
+			<li>includes/classes/transliteration/x03.php</li>
+			<li>includes/classes/transliteration/x04.php</li>
+			<li>includes/classes/transliteration/x4e.php</li>
+			<li>includes/classes/transliteration/x06.php</li>
+			<li>includes/classes/transliteration/x14.php</li>
+			<li>includes/classes/transliteration/x15.php</li>
+			<li>includes/classes/transliteration/x21.php</li>
+			<li>includes/classes/class.CeonString.php</li>
+			<li>includes/classes/class.CeonURIMappingHandlerBase.php</li>
+			<li>includes/classes/class.CeonURIMappingHREFLinkBuilder.php</li>
+			<li>includes/classes/class.CeonURIMappingAdminEZPages.php</li>
+			<li>includes/classes/class.CeonURIMappingHandler.php</li>
+			<li>includes/classes/class.Transliteration.php</li>
+			<li>includes/init_includes/init_ceon_uri_mapping_sessions.php</li>
+			<li>includes/extra_datafiles/ceon_uri_mapping_sessions_define.php (removed below)</li>
+			<li>includes/auto_loaders/config.ceon_ask_a_question.php</li>
+			<li class="NoMarginBottom">includes/auto_loaders/config.ceon_uri_mapping.php</li>
+		</ul>
+		
+		
+		<h5>Installing to Zen Cart 1.5.7 and above</h5>
+		
+		<p>Copy all of the folders and files from the <span class="FileName">files/zen_cart_version_specific/v1.5.7/admin</span> folder into the store's &ldquo;admin&rdquo; directory, whatever it is called.</p>
+		<p>The files are already in the correct directory structure, so a single drag-and-drop of the folders/files in the <span class="FileName">files/admin</span> folder into the &ldquo;admin&rdquo; directory for the store will put the files in the correct locations.</p>
+		<p><strong>Please do not copy the files individually</strong> - there's simply no need - doing so often results in files being missed out!</p>
+		
+		<ul class="Steps">
+			<li>admin/includes/classes/observers/class.CeonURIMappingJavaScriptLoader.php</li>
+			<li class="NoMarginBottom">admin/includes/auto_loaders/config.ceon_uri_mapping_admin_javascript_loader.php</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4>Remove the old file used by the previously installed version of the module</h4>
+		
+		<p>Since the module had been rewritten (for Zen Cart Version 1.5.5 and above) to minimize core file modification, many of the old files were no longer used and <strong>needed to be removed/modified</strong>.  The installer will also advise of file modifications that are to be removed in support of this version of the module.</p>
+		
+		<h5>File to be deleted from the main store directory</h5>
+		
+		<ul class="Steps">
+			<li class="NoMarginBottom">includes/extra_datafiles/ceon_uri_mapping_sessions_define.php&nbsp;&nbsp;&nbsp;&nbsp;(Zen Cart 1.3.9c and above)</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4>Automatically update the database and configuration</h4>
+		
+		<p>This software comes with some intelligent upgrade and error checking functionality which makes it easy to keep the database and configuration up to date.</p>
+		
+		<ul class="Steps">
+			<li class="NoMarginBottom">
+				<p class="NoMarginBottom">Go to <em>Modules &gt; Ceon URI Mapping (SEO) Config</em> in the Zen Cart Admin and the module will be updated automagically!</p>
+			</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4>Run the Installation Check</h4>
+		
+		<p>The installation check will examine all the core files that must be modified for Ceon URI Mapping to work optimally, and warn you if any of the modifications are present that should be removed, missing or out-of-date, again giving information on what you should do!</p>
+		
+		<p>A quick glance at this admin page should help you identify and fix any problems with the installation quickly and easily!</p>
+		
+		<ul class="Steps">
+			<li>
+				<p>Go to <em>Modules &gt; Ceon URI Mapping (SEO) Config</em> in the Zen Cart Admin.</p>
+			</li>
+			<li>
+				<p>Then go to the <em>Installation Check</em> tab and click on the link to open the Installation Check utility page.</p>
+			</li>
+			<li>
+				<p>The module will now automatically carry out the installation check.</p>
+			</li>
+			<li class="NoMarginBottom">
+				<p class="NoMarginBottom">If any errors are listed, follow the instructions given by the software.</p>
+			</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4>That's it!</h4>
+		
+		<p>Told you it was simple to upgrade!</p>
+	</li>
+</ol>
+
+<p class="BackToTop"><a href="#top">Back to top</a></p>
+
+
+<h2><a name="upgrading-from-version-4-5-x" id="upgrading-from-version-4-5-x"></a>Upgrading to Ceon URI Mapping 5.1.1 from Ceon URI Mapping 4.5.x</h2>
+<p>It's simple to upgrade to version 5.1.1 from 4.5.x.</p>
+
+<ol class="InstallationSteps">
+	<li>
+		<h4>Remove the old files used by the previously installed version of the module</h4>
+		
+		<p>Since the module has been rewritten (for Zen Cart Version 1.5.5 and above) to minimize core file modification, many of the old files are no longer used and <strong>need to be removed/modified</strong>.  The installer will advise of file modifications that are to be removed in support of this version of the module.</p>
+		
+		<h5>Files to be deleted from the main store directory</h5>
+		
+		<ul class="Steps">
+			<li>includes/auto_loaders/overrides/init_canonical.php&nbsp;&nbsp;(Zen Cart 1.5.4 and above)</li>
+			<li>includes/auto_loaders/overrides/init_sessions.php&nbsp;&nbsp;&nbsp;&nbsp;(Zen Cart 1.3.9c and above)</li>
+			<li>includes/auto_loaders/overrides/init_currencies.php&nbsp;&nbsp;(Zen Cart 1.3.8a and above)</li>
+			<li class="NoMarginBottom">includes/classes/class.String.php</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4>Copy the New/Updated Files across</h4>
+		
+		<p>These are the new/updated files which make up this module. Copy them all into their respective folders in the Zen Cart installation, overwriting the files from the previously installed version.</p>
+		
+		<h5>New/Updated files for the Admin directory</h5>
+		
+		<p>Most Zen Cart stores have their admin directory renamed from the default of &ldquo;admin&rdquo;.</p>
+		<p>Copy all of the folders and files from the <span class="FileName">files/admin</span> folder into the store's &ldquo;admin&rdquo; directory, whatever it is called.</p>
+		<p>The files are already in the correct directory structure, so a single drag-and-drop of the folders/files in the <span class="FileName">files/admin</span> folder into the &ldquo;admin&rdquo; directory for the store will put the files in the correct locations.</p>
+		<p><strong>Please do not copy the files individually</strong> - there's simply no need - doing so often results in files being missed out!</p>
+		
+		<ul class="Steps">
 			<li>admin/includes/classes/class.CeonURIMappingAdminCategoryPages.php</li>
 			<li>admin/includes/classes/class.CeonURIMappingAdminEZPagePages.php</li>
 			<li>admin/includes/classes/class.CeonURIMappingAdminManufacturerPages.php</li>
@@ -119,9 +500,18 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 			<li>admin/includes/classes/class.CeonURIMappingInstallOrUpgrade.php</li>
 			<li>admin/includes/classes/class.CeonURIMappingTabbedPanelAdminInterface.php</li>
 			<li>admin/includes/classes/class.CeonURIMappingVersion.php</li>
-			<li>admin/includes/extra_datafiles/ceon_uri_mapping_database_tables.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingAdminCategoriesObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingAdminCopyObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingAdminProductsObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingDeleteCategoriesObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingDeleteProductsObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingLinkBuildAdmin.php</li>
 			<li>admin/includes/extra_datafiles/ceon_uri_mapping_filenames.php</li>
 			<li>admin/includes/extra_datafiles/ceon_uri_mapping_product_pages.php</li>
+			<li>admin/includes/init_includes/init_ceon_category_collect_info.php</li>
+			<li>admin/includes/init_includes/init_ceon_ezpages_collect_info.php</li>
+			<li>admin/includes/init_includes/init_ceon_manufacturers_collect_info.php</li>
+			<li>admin/includes/init_includes/init_ceon_product_collect_info.php</li>
 			<li>admin/includes/functions/extra_functions/ceon_uri_mapping_admin_page_reg.php</li>
 			<li>admin/includes/languages/english/extra_definitions/ceon_uri_mapping.php</li>
 			<li>admin/includes/languages/english/ceon_uri_mapping_admin_pages.php</li>
@@ -133,6 +523,17 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 			<li>admin/includes/languages/english/ceon_uri_mapping_manufacturer_pages.php</li>
 			<li>admin/includes/languages/english/ceon_uri_mapping_product_pages.php</li>
 			<li>admin/includes/languages/english/ceon_uri_mapping_tabbed_panel_admin_interface.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_categories_observer.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_category_delete_observer.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_category_info.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_copy_observer.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_ezpages_info.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_manufacturers_info.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_product_delete_observer.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_product_info.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_products_observer.php</li>
+			<li>admin/includes/ceon_uri_mapping_javascript.php</li>
 			<li>admin/ceon_uri_mapping_config.php</li>
 			<li class="NoMarginBottom">admin/ceon_uri_mapping_installation_check.php</li>
 		</ul>
@@ -154,7 +555,444 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 		<p class="Note"><strong>Warning</strong>: Be careful <em class="Underlined FontStyleNormal">NOT</em> to copy the files from the <span class="FileName">files/includes</span> folder into the store's <span class="FileName">admin/includes</span> directory, they go in the <span class="FileName">includes</span> directory which is <strong>alongside, not inside</strong> the store's admin directory.</p>
 		
 		<ul class="Steps">
-			<li>includes/auto_loaders/config.ceon_uri_mapping.php</li>
+			<li>includes/classes/transliteration/x00.php</li>
+			<li>includes/classes/transliteration/x03.php</li>
+			<li>includes/classes/transliteration/x04.php</li>
+			<li>includes/classes/transliteration/x4e.php</li>
+			<li>includes/classes/transliteration/x06.php</li>
+			<li>includes/classes/transliteration/x14.php</li>
+			<li>includes/classes/transliteration/x15.php</li>
+			<li>includes/classes/transliteration/x21.php</li>
+			<li>includes/classes/class.CeonString.php</li>
+			<li>includes/classes/class.CeonURIMappingAdmin.php</li>
+			<li>includes/classes/class.CeonURIMappingAdminCategories.php</li>
+			<li>includes/classes/class.CeonURIMappingAdminCategoriesProducts.php</li>
+			<li>includes/classes/class.CeonURIMappingAdminEZPages.php</li>
+			<li>includes/classes/class.CeonURIMappingAdminManufacturers.php</li>
+			<li>includes/classes/class.CeonURIMappingAdminProducts.php</li>
+			<li>includes/classes/class.CeonURIMappingDBLookup.php</li>
+			<li>includes/classes/class.CeonURIMappingHandler.php</li>
+			<li>includes/classes/class.CeonURIMappingHandlerBase.php</li>
+			<li>includes/classes/class.CeonURIMappingHREFLinkBuilder.php</li>
+			<li>includes/classes/class.Transliteration.php</li>
+			<li>includes/classes/observers/class.ceon_ask_a_question.php</li>
+			<li>includes/classes/observers/class.ceon_uri_mapping_link_build.php</li>
+			<li>includes/classes/observers/class.ceon_canonical.php</li>
+			<li>includes/extra_datafiles/ceon_uri_mapping_filenames.php</li>
+			<li>includes/extra_datafiles/ceon_uri_mapping_product_pages.php</li>
+			<li>includes/init_includes/init_ceon_currencies.php</li>
+			<li>includes/init_includes/init_ceon_uri_mapping_sessions.php</li>
+			<li>includes/auto_loaders/config.ceon_ask_a_question.php</li>
+			<li>includes/auto_loaders/config.ceon_canonical.php</li>
+			<li>includes/auto_loaders/config.ceon_currencies.php</li>
+			<li class="NoMarginBottom">includes/auto_loaders/config.ceon_uri_mapping.php</li>
+		</ul>
+		
+		
+		<h5>Installing to Zen Cart 1.5.7 and above</h5>
+		
+		<p>Copy all of the folders and files from the <span class="FileName">files/zen_cart_version_specific/v1.5.7/admin</span> folder into the store's &ldquo;admin&rdquo; directory, whatever it is called.</p>
+		<p>The files are already in the correct directory structure, so a single drag-and-drop of the folders/files in the <span class="FileName">files/admin</span> folder into the &ldquo;admin&rdquo; directory for the store will put the files in the correct locations.</p>
+		<p><strong>Please do not copy the files individually</strong> - there's simply no need - doing so often results in files being missed out!</p>
+		
+		<ul class="Steps">
+			<li>admin/includes/classes/observers/class.CeonURIMappingJavaScriptLoader.php</li>
+			<li class="NoMarginBottom">admin/includes/auto_loaders/config.ceon_uri_mapping_admin_javascript_loader.php</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4>Modify an additional Zen Cart Core File</h4>
+		
+		<p>Based on your Zen Cart Version (1.5.4 and below) an additional core Zen Cart file should be modified, to add the new support for outputting static URIs instead of dynamic URIs in Zen Cart's admin.</p>
+		
+		<ul class="BulletedList">
+			<li>
+				<p>It is likely that this file has not been modified for the store already, in which case it should be possible to simply <em class="Underlined">back up the file</em> and then overwrite the file with the pre-modified sample file from this distribution, for the version of Zen Cart being used by the store.</p>
+			</li>
+			<li>
+				<p>However, if the core file has also been modified for the store <strong class="Underlined">for other third party modules</strong>, the changes within the sample file included in this distribution must be applied <strong>carefully</strong> to the core file.</p>
+				
+				<p>The changes are clearly marked within the sample file in the distribution and should be easy enough to copy across, especially if a &ldquo;diff&rdquo; software package (such as the free WinMerge or the excellent, commercial, Beyond Compare) is used.</p>
+				
+				<p>Instructions on how to copy across the modifications necessary for this module - to the core file which has previously been modified - can be found <a href="faqs.html#modifying-core-files">in this FAQ</a>.</p>
+				
+			</li>
+		</ul>
+		
+		<h5>Modified core file for the Admin directory in Zen Cart 1.5.4 and below</h5>
+		
+		<p class="Note"><strong>Please Note</strong>: If copying the file across, and the admin folder for the store is not named &ldquo;admin&rdquo;, then care must be taken to place the file from within the <span class="FileName">modified_core_files/ZC-version/admin</span> folder into the <strong>store's</strong> admin folder.</p>
+		
+		<ul class="Steps">
+			<li class="NoMarginBottom">admin/includes/functions/html_output.php</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4>Automatically update the database and configuration</h4>
+		
+		<p>This software comes with some intelligent upgrade and error checking functionality which makes it easy to keep the database and configuration up to date.</p>
+		
+		<ul class="Steps">
+			<li class="NoMarginBottom">
+				<p class="NoMarginBottom">Go to <em>Modules &gt; Ceon URI Mapping (SEO) Config</em> in the Zen Cart Admin and the module will be updated automagically!</p>
+			</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4>Run the Installation Check</h4>
+		
+		<p>The installation check will examine all the core files that must be modified for Ceon URI Mapping to work optimally, and warn you if any of the modifications are present that should be removed, missing or out-of-date, again giving information on what you should do!</p>
+		
+		<p>A quick glance at this admin page should help you identify and fix any problems with the installation quickly and easily!</p>
+		
+		<ul class="Steps">
+			<li>
+				<p>Go to <em>Modules &gt; Ceon URI Mapping (SEO) Config</em> in the Zen Cart Admin.</p>
+			</li>
+			<li>
+				<p>Then go to the <em>Installation Check</em> tab and click on the link to open the Installation Check utility page.</p>
+			</li>
+			<li>
+				<p>The module will now automatically carry out the installation check.</p>
+			</li>
+			<li class="NoMarginBottom">
+				<p class="NoMarginBottom">If any errors are listed, follow the instructions given by the software.</p>
+			</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4>That's it!</h4>
+		
+		<p>Told you it was simple to upgrade!</p>
+	</li>
+</ol>
+
+<p class="BackToTop"><a href="#top">Back to top</a></p>
+
+
+<h2><a name="upgrading-from-version-4-4-x" id="upgrading-from-version-4-4-x"></a>Upgrading to Ceon URI Mapping 5.1.1 from Ceon URI Mapping 4.4.x</h2>
+<p>It's simple to upgrade to version 5.1.1 from 4.4.x.</p>
+
+<ol class="InstallationSteps">
+	<li>
+		<h4>Remove the old files used by the previously installed version of the module</h4>
+		
+		<p>Since the module has been rewritten (for Zen Cart Version 1.5.5 and above) to minimize core file modification, many of the old files are no longer used and <strong>need to be removed/modified</strong>.</p>
+		
+		<h5>File to be deleted from the main store directory</h5>
+		
+		<ul class="Steps">
+			<li>includes/auto_loaders/overrides/init_canonical.php&nbsp;&nbsp;(Zen Cart 1.5.4 and above)</li>
+			<li>includes/auto_loaders/overrides/init_sessions.php&nbsp;&nbsp;&nbsp;&nbsp;(Zen Cart 1.3.9c and above)</li>
+			<li>includes/auto_loaders/overrides/init_currencies.php&nbsp;&nbsp;(Zen Cart 1.3.8a and above)</li>
+			<li class="NoMarginBottom">includes/classes/class.String.php</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4>Copy the New/Updated Files across</h4>
+		
+		<p>These are the new/updated files which make up this module. Copy them all into their respective folders in the Zen Cart installation, overwriting the files from the previously installed version.</p>
+		
+		<h5>New/Updated files for the Admin directory</h5>
+		
+		<p>Most Zen Cart stores have their admin directory renamed from the default of &ldquo;admin&rdquo;.</p>
+		<p>Copy all of the folders and files from the <span class="FileName">files/admin</span> folder into the store's &ldquo;admin&rdquo; directory, whatever it is called.</p>
+		<p>The files are already in the correct directory structure, so a single drag-and-drop of the folders/files in the <span class="FileName">files/admin</span> folder into the &ldquo;admin&rdquo; directory for the store will put the files in the correct locations.</p>
+		<p><strong>Please do not copy the files individually</strong> - there's simply no need - doing so often results in files being missed out!</p>
+		
+		<ul class="Steps">
+			<li>admin/includes/classes/class.CeonURIMappingAdminCategoryPages.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingAdminEZPagePages.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingAdminManufacturerPages.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingAdminProductPages.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingConfigUtility.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingInstallationCheck.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingInstallOrUpgrade.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingTabbedPanelAdminInterface.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingVersion.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingAdminCategoriesObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingAdminCopyObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingAdminProductsObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingDeleteCategoriesObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingAdminCategoryPages.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingDeleteProductsObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingLinkBuildAdmin.php</li>
+			<li>admin/includes/extra_datafiles/ceon_uri_mapping_database_tables.php</li>
+			<li>admin/includes/extra_datafiles/ceon_uri_mapping_filenames.php</li>
+			<li>admin/includes/extra_datafiles/ceon_uri_mapping_product_pages.php</li>
+			<li>admin/includes/functions/extra_functions/ceon_uri_mapping_admin_page_reg.php</li>
+			<li>admin/includes/init_includes/init_ceon_category_collect_info.php</li>
+			<li>admin/includes/init_includes/init_ceon_ezpages_collect_info.php</li>
+			<li>admin/includes/init_includes/init_ceon_manufacturers_collect_info.php</li>
+			<li>admin/includes/init_includes/init_ceon_product_collect_info.php</li>
+			<li>admin/includes/languages/english/extra_definitions/ceon_uri_mapping.php</li>
+			<li>admin/includes/languages/english/ceon_uri_mapping_admin_pages.php</li>
+			<li>admin/includes/languages/english/ceon_uri_mapping_category_pages.php</li>
+			<li>admin/includes/languages/english/ceon_uri_mapping_config.php</li>
+			<li>admin/includes/languages/english/ceon_uri_mapping_default_uri_parts.php</li>
+			<li>admin/includes/languages/english/ceon_uri_mapping_ezpage_pages.php</li>
+			<li>admin/includes/languages/english/ceon_uri_mapping_installation_check.php</li>
+			<li>admin/includes/languages/english/ceon_uri_mapping_manufacturer_pages.php</li>
+			<li>admin/includes/languages/english/ceon_uri_mapping_product_pages.php</li>
+			<li>admin/includes/languages/english/ceon_uri_mapping_tabbed_panel_admin_interface.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_categories_observer.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_category_delete_observer.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_category_info.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_copy_observer.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_ezpages_info.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_manufacturers_info.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_product_delete_observer.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_product_info.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_products_observer.php</li>
+			<li>admin/includes/ceon_uri_mapping_javascript.php</li>
+			<li>admin/ceon_uri_mapping_config.php</li>
+			<li class="NoMarginBottom">admin/ceon_uri_mapping_installation_check.php</li>
+		</ul>
+		
+		<h6><a name="additional-file-for-zc-1-3-x" id="additional-file-for-zc-1-3-x"></a>Additional File for Zen Cart 1.3.x</h6>
+		
+		<p>Copy the file from the <span class="FileName">files/additional_file_for_1.3.x/admin</span> folder into the store's &ldquo;admin&rdquo; directory, whatever it is called.</p>
+		
+		<ul class="Steps">
+			<li class="NoMarginBottom">admin/includes/boxes/extra_boxes/ceon_uri_mapping_modules_dhtml.php</li>
+		</ul>
+		
+		
+		<h5>Updated files for the main store directory</h5>
+		
+		<p>Copy the <span class="FileName">includes</span> folder from the <span class="FileName">files</span> folder into the store's main directory.</p>
+		<p>The files are already in the correct directory structure, so a single drag-and-drop of the folder into the root directory for the store will put the files in the correct locations.</p>
+		<p><strong>Please do not copy the files individually</strong> - there's simply no need - doing so often results in files being missed out!</p>
+		<p class="Note"><strong>Warning</strong>: Be careful <em class="Underlined FontStyleNormal">NOT</em> to copy the files from the <span class="FileName">files/includes</span> folder into the store's <span class="FileName">admin/includes</span> directory, they go in the <span class="FileName">includes</span> directory which is <strong>alongside, not inside</strong> the store's admin directory.</p>
+		
+		<ul class="Steps">
+			<li>includes/classes/transliteration/x00.php</li>
+			<li>includes/classes/transliteration/x03.php</li>
+			<li>includes/classes/transliteration/x04.php</li>
+			<li>includes/classes/transliteration/x4e.php</li>
+			<li>includes/classes/transliteration/x06.php</li>
+			<li>includes/classes/transliteration/x14.php</li>
+			<li>includes/classes/transliteration/x15.php</li>
+			<li>includes/classes/transliteration/x21.php</li>
+			<li>includes/classes/class.CeonURIMappingAdmin.php</li>
+			<li>includes/classes/class.CeonURIMappingAdminCategories.php</li>
+			<li>includes/classes/class.CeonURIMappingAdminCategoriesProducts.php</li>
+			<li>includes/classes/class.CeonURIMappingAdminEZPages.php</li>
+			<li>includes/classes/class.CeonURIMappingAdminManufacturers.php</li>
+			<li>includes/classes/class.CeonURIMappingAdminProducts.php</li>
+			<li>includes/classes/class.CeonURIMappingDBLookup.php</li>
+			<li>includes/classes/class.CeonURIMappingHandler.php</li>
+			<li>includes/classes/class.CeonURIMappingHandlerBase.php</li>
+			<li>includes/classes/class.CeonURIMappingHREFLinkBuilder.php</li>
+			<li>includes/classes/class.CeonString.php</li>
+			<li>includes/classes/class.Transliteration.php</li>
+			<li>includes/classes/observers/class.ceon_ask_a_question.php</li>
+			<li>includes/classes/observers/class.ceon_canonical.php</li>
+			<li>includes/classes/observers/class.ceon_uri_mapping_link_build.php</li>
+			<li>includes/extra_datafiles/ceon_uri_mapping_filenames.php</li>
+			<li>includes/extra_datafiles/ceon_uri_mapping_product_pages.php</li>
+			<li>includes/init_includes/init_ceon_currencies.php</li>
+			<li>includes/init_includes/init_ceon_uri_mapping_sessions.php</li>
+			<li>includes/auto_loaders/config.ceon_ask_a_question.php</li>
+			<li>includes/auto_loaders/config.ceon_canonical.php</li>
+			<li>includes/auto_loaders/config.ceon_currencies.php</li>
+			<li class="NoMarginBottom">includes/auto_loaders/config.ceon_uri_mapping.php</li>
+		</ul>
+		
+		
+		<h5>Installing to Zen Cart 1.5.7 and above</h5>
+		
+		<p>Copy all of the folders and files from the applicable <span class="FileName">files/zen_cart_version_specific/v1.5.X/admin</span> folder into the store's &ldquo;admin&rdquo; directory, whatever it is called.</p>
+		<p>The files are already in the correct directory structure, so a single drag-and-drop of the folders/files in the <span class="FileName">files/admin</span> folder into the &ldquo;admin&rdquo; directory for the store will put the files in the correct locations.</p>
+		<p><strong>Please do not copy the files individually</strong> - there's simply no need - doing so often results in files being missed out!</p>
+		
+		<ul class="Steps">
+			<li>admin/includes/classes/observers/class.CeonURIMappingJavaScriptLoader.php</li>
+			<li class="NoMarginBottom">admin/includes/auto_loaders/config.ceon_uri_mapping_admin_javascript_loader.php</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4>Modify an additional Zen Cart Core File</h4>
+		
+		<p>Based on your Zen Cart Version (1.5.4 and below) an additional core Zen Cart file should be modified, to add the new support for outputting static URIs instead of dynamic URIs in Zen Cart's admin.</p>
+		
+		<ul class="BulletedList">
+			<li>
+				<p>It is likely that this file has not been modified for the store already, in which case it should be possible to simply <em class="Underlined">back up the file</em> and then overwrite the file with the pre-modified sample file from this distribution, for the version of Zen Cart being used by the store.</p>
+			</li>
+			<li>
+				<p>However, if the core file has also been modified for the store <strong class="Underlined">for other third party modules</strong>, the changes within the sample file included in this distribution must be applied <strong>carefully</strong> to the core file.</p>
+				
+				<p>The changes are clearly marked within the sample file in the distribution and should be easy enough to copy across, especially if a &ldquo;diff&rdquo; software package (such as the free WinMerge or the excellent, commercial, Beyond Compare) is used.</p>
+				
+				<p>Instructions on how to copy across the modifications necessary for this module - to the core file which has previously been modified - can be found <a href="faqs.html#modifying-core-files">in this FAQ</a>.</p>
+				
+			</li>
+		</ul>
+		
+		<h5>Modified core file for the Admin directory in Zen Cart 1.5.4 and below</h5>
+		
+		<p class="Note"><strong>Please Note</strong>: If copying the file across, and the admin folder for the store is not named &ldquo;admin&rdquo;, then care must be taken to place the file from within the <span class="FileName">modified_core_files/ZC-version/admin</span> folder into the <strong>store's</strong> admin folder.</p>
+		
+		<ul class="Steps">
+			<li class="NoMarginBottom">admin/includes/functions/html_output.php</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4>Automatically update the database and configuration</h4>
+		
+		<p>This software comes with some intelligent upgrade and error checking functionality which makes it easy to keep the database and configuration up to date.</p>
+		
+		<ul class="Steps">
+			<li class="NoMarginBottom">
+				<p class="NoMarginBottom">Go to <em>Modules &gt; Ceon URI Mapping (SEO) Config</em> in the Zen Cart Admin and the module will be updated automagically!</p>
+			</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4>Run the Installation Check</h4>
+		
+		<p>The installation check will examine all the core files that must be modified for Ceon URI Mapping to work optimally, and warn you if any of the modifications are present that should be removed, missing or out-of-date, again giving information on what you should do!</p>
+		
+		<p>A quick glance at this admin page should help you identify and fix any problems with the installation quickly and easily!</p>
+		
+		<ul class="Steps">
+			<li>
+				<p>Go to <em>Modules &gt; Ceon URI Mapping (SEO) Config</em> in the Zen Cart Admin.</p>
+			</li>
+			<li>
+				<p>Then go to the <em>Installation Check</em> tab and click on the link to open the Installation Check utility page.</p>
+			</li>
+			<li>
+				<p>The module will now automatically carry out the installation check.</p>
+			</li>
+			<li class="NoMarginBottom">
+				<p class="NoMarginBottom">If any errors are listed, follow the instructions given by the software.</p>
+			</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4>That's it!</h4>
+		
+		<p>Told you it was simple to upgrade!</p>
+	</li>
+</ol>
+
+<p class="BackToTop"><a href="#top">Back to top</a></p>
+
+
+<h2><a name="upgrading-from-version-4-2-x" id="upgrading-from-version-4-2-x"></a>Upgrading to Ceon URI Mapping 5.1.1 from Ceon URI Mapping 4.2.x</h2>
+<p>It's simple to upgrade to version 5.1.1 from 4.2.x.</p>
+
+<ol class="InstallationSteps">
+	<li>
+		<h4>Remove the old files used by the previously installed version of the module</h4>
+		
+		<p>Since the module has been rewritten (for Zen Cart Version 1.5.5 and above) to minimize core file modification, many of the old files are no longer used and <strong>need to be removed/modified</strong>.</p>
+		
+		<h5>File to be deleted from the main store directory</h5>
+		
+		<ul class="Steps">
+			<li>includes/auto_loaders/overrides/init_canonical.php&nbsp;&nbsp;(Zen Cart 1.5.4 and above)</li>
+			<li>includes/auto_loaders/overrides/init_sessions.php&nbsp;&nbsp;&nbsp;&nbsp;(Zen Cart 1.3.9c and above)</li>
+			<li>includes/auto_loaders/overrides/init_currencies.php&nbsp;&nbsp;(Zen Cart 1.3.8a and above)</li>
+			<li class="NoMarginBottom">includes/classes/class.String.php</li>
+		</ul>
+	</li>
+	
+	<li>
+		<h4>Copy the New/Updated Files across</h4>
+		
+		<p>These are the new/updated files which make up this module. Copy them all into their respective folders in the Zen Cart installation, overwriting the files from the previously installed version.</p>
+		
+		<h5>New/Updated files for the Admin directory</h5>
+		
+		<p>Most Zen Cart stores have their admin directory renamed from the default of &ldquo;admin&rdquo;.</p>
+		<p>Copy all of the folders and files from the <span class="FileName">files/admin</span> folder into the store's &ldquo;admin&rdquo; directory, whatever it is called.</p>
+		<p>The files are already in the correct directory structure, so a single drag-and-drop of the folders/files in the <span class="FileName">files/admin</span> folder into the &ldquo;admin&rdquo; directory for the store will put the files in the correct locations.</p>
+		<p><strong>Please do not copy the files individually</strong> - there's simply no need - doing so often results in files being missed out!</p>
+		
+		<ul class="Steps">
+			<li>admin/images/ceon-button-logo.png</li>
+			<li>admin/images/ceon-input-fade-tb-gray-white.png</li>
+			<li>admin/images/ceon-tab-background.png</li>
+			<li>admin/images/ceon-tab-background-selected.png</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingAdminCategoriesObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingAdminCopyObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingAdminProductsObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingDeleteCategoriesObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingAdminCategoryPages.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingAdminCategoryPages.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingAdminCategoryPages.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingAdminCategoryPages.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingAdminEZPagePages.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingAdminManufacturerPages.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingAdminProductPages.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingConfigUtility.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingInstallationCheck.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingInstallOrUpgrade.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingTabbedPanelAdminInterface.php</li>
+			<li>admin/includes/classes/class.CeonURIMappingVersion.php</li>
+			<li>admin/includes/extra_datafiles/ceon_uri_mapping_database_tables.php</li>
+			<li>admin/includes/extra_datafiles/ceon_uri_mapping_filenames.php</li>
+			<li>admin/includes/extra_datafiles/ceon_uri_mapping_product_pages.php</li>
+			<li>admin/includes/functions/extra_functions/ceon_uri_mapping_admin_page_reg.php</li>
+			<li>admin/includes/init_includes/init_ceon_category_collect_info.php</li>
+			<li>admin/includes/init_includes/init_ceon_ezpages_collect_info.php</li>
+			<li>admin/includes/init_includes/init_ceon_manufacturers_collect_info.php</li>
+			<li>admin/includes/init_includes/init_ceon_product_collect_info.php</li>
+			<li>admin/includes/languages/english/extra_definitions/ceon_uri_mapping.php</li>
+			<li>admin/includes/languages/english/ceon_uri_mapping_admin_pages.php</li>
+			<li>admin/includes/languages/english/ceon_uri_mapping_category_pages.php</li>
+			<li>admin/includes/languages/english/ceon_uri_mapping_config.php</li>
+			<li>admin/includes/languages/english/ceon_uri_mapping_default_uri_parts.php</li>
+			<li>admin/includes/languages/english/ceon_uri_mapping_ezpage_pages.php</li>
+			<li>admin/includes/languages/english/ceon_uri_mapping_installation_check.php</li>
+			<li>admin/includes/languages/english/ceon_uri_mapping_manufacturer_pages.php</li>
+			<li>admin/includes/languages/english/ceon_uri_mapping_product_pages.php</li>
+			<li>admin/includes/languages/english/ceon_uri_mapping_tabbed_panel_admin_interface.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_categories_observer.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_category_delete_observer.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_category_info.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_copy_observer.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_ezpages_info.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_manufacturers_info.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_product_delete_observer.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_product_info.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_products_observer.php</li>
+			<li>admin/includes/ceon_uri_mapping_javascript.php</li>
+			<li>admin/ceon_uri_mapping_config.php</li>
+			<li class="NoMarginBottom">admin/ceon_uri_mapping_installation_check.php</li>
+		</ul>
+		
+		<h6><a name="additional-file-for-zc-1-3-x" id="additional-file-for-zc-1-3-x"></a>Additional File for Zen Cart 1.3.x</h6>
+		
+		<p>Copy the file from the <span class="FileName">files/additional_file_for_1.3.x/admin</span> folder into the store's &ldquo;admin&rdquo; directory, whatever it is called.</p>
+		
+		<ul class="Steps">
+			<li class="NoMarginBottom">admin/includes/boxes/extra_boxes/ceon_uri_mapping_modules_dhtml.php</li>
+		</ul>
+		
+		
+		<h5>Updated files for the main store directory</h5>
+		
+		<p>Copy the <span class="FileName">includes</span> folder from the <span class="FileName">files</span> folder into the store's main directory.</p>
+		<p>The files are already in the correct directory structure, so a single drag-and-drop of the folder into the root directory for the store will put the files in the correct locations.</p>
+		<p><strong>Please do not copy the files individually</strong> - there's simply no need - doing so often results in files being missed out!</p>
+		<p class="Note"><strong>Warning</strong>: Be careful <em class="Underlined FontStyleNormal">NOT</em> to copy the files from the <span class="FileName">files/includes</span> folder into the store's <span class="FileName">admin/includes</span> directory, they go in the <span class="FileName">includes</span> directory which is <strong>alongside, not inside</strong> the store's admin directory.</p>
+		
+		<ul class="Steps">
 			<li>includes/classes/transliteration (* This directory and ALL files in it!)</li>
 			<li>includes/classes/class.CeonURIMappingAdmin.php</li>
 			<li>includes/classes/class.CeonURIMappingAdminCategories.php</li>
@@ -166,11 +1004,32 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 			<li>includes/classes/class.CeonURIMappingHandler.php</li>
 			<li>includes/classes/class.CeonURIMappingHandlerBase.php</li>
 			<li>includes/classes/class.CeonURIMappingHREFLinkBuilder.php</li>
-			<li>includes/classes/class.String.php</li>
+			<li>includes/classes/class.CeonString.php</li>
 			<li>includes/classes/class.Transliteration.php</li>
+			<li>includes/classes/observers/class.ceon_ask_a_question.php</li>
+			<li>includes/classes/observers/class.ceon_uri_mapping_link_build.php</li>
+			<li>includes/classes/observers/class.ceon_canonical.php</li>
 			<li>includes/extra_datafiles/ceon_uri_mapping_database_tables.php</li>
 			<li>includes/extra_datafiles/ceon_uri_mapping_filenames.php</li>
-			<li class="NoMarginBottom">includes/extra_datafiles/ceon_uri_mapping_product_pages.php</li>
+			<li>includes/extra_datafiles/ceon_uri_mapping_product_pages.php</li>
+			<li>includes/init_includes/init_ceon_currencies.php</li>
+			<li>includes/init_includes/init_ceon_uri_mapping_sessions.php</li>
+			<li>includes/auto_loaders/config.ceon_ask_a_question.php</li>
+			<li>includes/auto_loaders/config.ceon_canonical.php</li>
+			<li>includes/auto_loaders/config.ceon_currencies.php</li>
+			<li class="NoMarginBottom">includes/auto_loaders/config.ceon_uri_mapping.php</li>
+		</ul>
+		
+		
+		<h5>Installing to Zen Cart 1.5.7 and above</h5>
+		
+		<p>Copy all of the folders and files from the <span class="FileName">files/zen_cart_version_specific/v1.5.7/admin</span> folder into the store's &ldquo;admin&rdquo; directory, whatever it is called.</p>
+		<p>The files are already in the correct directory structure, so a single drag-and-drop of the folders/files in the <span class="FileName">files/admin</span> folder into the &ldquo;admin&rdquo; directory for the store will put the files in the correct locations.</p>
+		<p><strong>Please do not copy the files individually</strong> - there's simply no need - doing so often results in files being missed out!</p>
+		
+		<ul class="Steps">
+			<li>admin/includes/classes/observers/class.CeonURIMappingJavaScriptLoader.php</li>
+			<li class="NoMarginBottom">admin/includes/auto_loaders/config.ceon_uri_mapping_admin_javascript_loader.php</li>
 		</ul>
 	</li>
 	
@@ -217,7 +1076,7 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 	<li>
 		<h4>Run the Installation Check</h4>
 		
-		<p>The installation check will examine all the core files that must be modified for Ceon URI Mapping to work optimally, and warn you if any of the modifications are missing or out of date, again giving information on what you should do!</p>
+		<p>The installation check will examine all the core files that must be modified for Ceon URI Mapping to work optimally, and warn you if any of the modifications are present that should be removed, missing or out-of-date, again giving information on what you should do!</p>
 		
 		<p>A quick glance at this admin page should help you identify and fix any problems with the installation quickly and easily!</p>
 		
@@ -247,10 +1106,25 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 <p class="BackToTop"><a href="#top">Back to top</a></p>
 
 
-<h2><a name="upgrading-from-version-4-0-6-4-0-8" id="upgrading-from-version-4-0-6-4-0-8"></a>Upgrading to Ceon URI Mapping 4.4.1 from Ceon URI Mapping 4.0.6 - 4.0.8</h2>
-<p>It's simple to upgrade to version 4.4.1 from 4.0.6 - 4.0.8.</p>
+<h2><a name="upgrading-from-version-4-0-6-4-0-8" id="upgrading-from-version-4-0-6-4-0-8"></a>Upgrading to Ceon URI Mapping 5.1.1 from Ceon URI Mapping 4.0.6 - 4.0.8</h2>
+<p>It's simple to upgrade to version 5.1.1 from 4.0.6 - 4.0.8.</p>
 
 <ol class="InstallationSteps">
+	<li>
+		<h4>Remove the old files used by the previously installed version of the module</h4>
+		
+		<p>Since the module has been rewritten (for Zen Cart Version 1.5.5 and above) to minimize core file modification, many of the old files are no longer used and <strong>need to be removed/modified</strong>.</p>
+		
+		<h5>File to be deleted from the main store directory</h5>
+		
+		<ul class="Steps">
+			<li>includes/auto_loaders/overrides/init_canonical.php&nbsp;&nbsp;(Zen Cart 1.5.4 and above)</li>
+			<li>includes/auto_loaders/overrides/init_sessions.php&nbsp;&nbsp;&nbsp;&nbsp;(Zen Cart 1.3.9c and above)</li>
+			<li>includes/auto_loaders/overrides/init_currencies.php&nbsp;&nbsp;(Zen Cart 1.3.8a and above)</li>
+			<li class="NoMarginBottom">includes/classes/class.String.php</li>
+		</ul>
+	</li>
+	
 	<li>
 		<h4>Copy the New/Updated Files across</h4>
 		
@@ -277,9 +1151,19 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 			<li>admin/includes/classes/class.CeonURIMappingInstallOrUpgrade.php</li>
 			<li>admin/includes/classes/class.CeonURIMappingTabbedPanelAdminInterface.php</li>
 			<li>admin/includes/classes/class.CeonURIMappingVersion.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingAdminCategoriesObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingAdminCopyObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingAdminProductsObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingDeleteCategoriesObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingDeleteProductsObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingLinkBuildAdmin.php</li>
 			<li>admin/includes/extra_datafiles/ceon_uri_mapping_database_tables.php</li>
 			<li>admin/includes/extra_datafiles/ceon_uri_mapping_filenames.php</li>
 			<li>admin/includes/extra_datafiles/ceon_uri_mapping_product_pages.php</li>
+			<li>admin/includes/init_includes/init_ceon_category_collect_info.php</li>
+			<li>admin/includes/init_includes/init_ceon_ezpages_collect_info.php</li>
+			<li>admin/includes/init_includes/init_ceon_manufacturers_collect_info.php</li>
+			<li>admin/includes/init_includes/init_ceon_product_collect_info.php</li>
 			<li>admin/includes/functions/extra_functions/ceon_uri_mapping_admin_page_reg.php</li>
 			<li>admin/includes/languages/english/extra_definitions/ceon_uri_mapping.php</li>
 			<li>admin/includes/languages/english/ceon_uri_mapping_admin_pages.php</li>
@@ -291,6 +1175,17 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 			<li>admin/includes/languages/english/ceon_uri_mapping_manufacturer_pages.php</li>
 			<li>admin/includes/languages/english/ceon_uri_mapping_product_pages.php</li>
 			<li>admin/includes/languages/english/ceon_uri_mapping_tabbed_panel_admin_interface.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_categories_observer.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_category_delete_observer.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_category_info.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_copy_observer.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_ezpages_info.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_manufacturers_info.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_product_delete_observer.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_product_info.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_products_observer.php</li>
+			<li>admin/includes/ceon_uri_mapping_javascript.php</li>
 			<li>admin/ceon_uri_mapping_config.php</li>
 			<li class="NoMarginBottom">admin/ceon_uri_mapping_installation_check.php</li>
 		</ul>
@@ -312,7 +1207,6 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 		<p class="Note"><strong>Warning</strong>: Be careful <em class="Underlined FontStyleNormal">NOT</em> to copy the files from the <span class="FileName">files/includes</span> folder into the store's <span class="FileName">admin/includes</span> directory, they go in the <span class="FileName">includes</span> directory which is <strong>alongside, not inside</strong> the store's admin directory.</p>
 		
 		<ul class="Steps">
-			<li>includes/auto_loaders/config.ceon_uri_mapping.php</li>
 			<li>includes/classes/transliteration (* This directory and ALL files in it!)</li>
 			<li>includes/classes/class.CeonURIMappingAdmin.php</li>
 			<li>includes/classes/class.CeonURIMappingAdminCategories.php</li>
@@ -324,11 +1218,32 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 			<li>includes/classes/class.CeonURIMappingHandler.php</li>
 			<li>includes/classes/class.CeonURIMappingHandlerBase.php</li>
 			<li>includes/classes/class.CeonURIMappingHREFLinkBuilder.php</li>
-			<li>includes/classes/class.String.php</li>
+			<li>includes/classes/class.CeonString.php</li>
 			<li>includes/classes/class.Transliteration.php</li>
+			<li>includes/classes/observers/class.ceon_ask_a_question.php</li>
+			<li>includes/classes/observers/class.ceon_uri_mapping_link_build.php</li>
+			<li>includes/classes/observers/class.ceon_canonical.php</li>
 			<li>includes/extra_datafiles/ceon_uri_mapping_database_tables.php</li>
 			<li>includes/extra_datafiles/ceon_uri_mapping_filenames.php</li>
-			<li class="NoMarginBottom">includes/extra_datafiles/ceon_uri_mapping_product_pages.php</li>
+			<li>includes/extra_datafiles/ceon_uri_mapping_product_pages.php</li>
+			<li>includes/init_includes/init_ceon_currencies.php</li>
+			<li>includes/init_includes/init_ceon_uri_mapping_sessions.php</li>
+			<li>includes/auto_loaders/config.ceon_ask_a_question.php</li>
+			<li>includes/auto_loaders/config.ceon_canonical.php</li>
+			<li>includes/auto_loaders/config.ceon_currencies.php</li>
+			<li class="NoMarginBottom">includes/auto_loaders/config.ceon_uri_mapping.php</li>
+		</ul>
+		
+		
+		<h5>Installing to Zen Cart 1.5.7 and above</h5>
+		
+		<p>Copy all of the folders and files from the <span class="FileName">files/zen_cart_version_specific/v1.5.7/admin</span> folder into the store's &ldquo;admin&rdquo; directory, whatever it is called.</p>
+		<p>The files are already in the correct directory structure, so a single drag-and-drop of the folders/files in the <span class="FileName">files/admin</span> folder into the &ldquo;admin&rdquo; directory for the store will put the files in the correct locations.</p>
+		<p><strong>Please do not copy the files individually</strong> - there's simply no need - doing so often results in files being missed out!</p>
+		
+		<ul class="Steps">
+			<li>admin/includes/classes/observers/class.CeonURIMappingJavaScriptLoader.php</li>
+			<li class="NoMarginBottom">admin/includes/auto_loaders/config.ceon_uri_mapping_admin_javascript_loader.php</li>
 		</ul>
 	</li>
 	
@@ -431,10 +1346,25 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 
 <p class="BackToTop"><a href="#top">Back to top</a></p>
 
-<h2><a name="upgrading-from-version-4-0-0-4-0-5" id="upgrading-from-version-4-0-0-4-0-5"></a>Upgrading to Ceon URI Mapping 4.4.1 from Ceon URI Mapping 4.0.0 - 4.0.5</h2>
-<p>It's simple to upgrade to version 4.4.1 from 4.0.0 - 4.0.5.</p>
+<h2><a name="upgrading-from-version-4-0-0-4-0-5" id="upgrading-from-version-4-0-0-4-0-5"></a>Upgrading to Ceon URI Mapping 5.1.1 from Ceon URI Mapping 4.0.0 - 4.0.5</h2>
+<p>It's simple to upgrade to version 5.1.1 from 4.0.0 - 4.0.5.</p>
 
 <ol class="InstallationSteps">
+	<li>
+		<h4>Remove the old files used by the previously installed version of the module</h4>
+		
+		<p>Since the module has been rewritten (for Zen Cart Version 1.5.5 and above) to minimize core file modification, many of the old files are no longer used and <strong>need to be removed/modified</strong>.</p>
+		
+		<h5>File to be deleted from the main store directory</h5>
+		
+		<ul class="Steps">
+			<li>includes/auto_loaders/overrides/init_canonical.php&nbsp;&nbsp;(Zen Cart 1.5.4 and above)</li>
+			<li>includes/auto_loaders/overrides/init_sessions.php&nbsp;&nbsp;&nbsp;&nbsp;(Zen Cart 1.3.9c and above)</li>
+			<li>includes/auto_loaders/overrides/init_currencies.php&nbsp;&nbsp;(Zen Cart 1.3.8a and above)</li>
+			<li class="NoMarginBottom">includes/classes/class.String.php</li>
+		</ul>
+	</li>
+	
 	<li>
 		<h4>Copy the Updated Files across</h4>
 		
@@ -461,9 +1391,19 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 			<li>admin/includes/classes/class.CeonURIMappingInstallOrUpgrade.php</li>
 			<li>admin/includes/classes/class.CeonURIMappingTabbedPanelAdminInterface.php</li>
 			<li>admin/includes/classes/class.CeonURIMappingVersion.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingAdminCategoriesObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingAdminCopyObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingAdminProductsObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingDeleteCategoriesObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingDeleteProductsObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingLinkBuildAdmin.php</li>
 			<li>admin/includes/extra_datafiles/ceon_uri_mapping_database_tables.php</li>
 			<li>admin/includes/extra_datafiles/ceon_uri_mapping_filenames.php</li>
 			<li>admin/includes/extra_datafiles/ceon_uri_mapping_product_pages.php</li>
+			<li>admin/includes/init_includes/init_ceon_category_collect_info.php</li>
+			<li>admin/includes/init_includes/init_ceon_ezpages_collect_info.php</li>
+			<li>admin/includes/init_includes/init_ceon_manufacturers_collect_info.php</li>
+			<li>admin/includes/init_includes/init_ceon_product_collect_info.php</li>
 			<li>admin/includes/functions/extra_functions/ceon_uri_mapping_admin_page_reg.php</li>
 			<li>admin/includes/languages/english/extra_definitions/ceon_uri_mapping.php</li>
 			<li>admin/includes/languages/english/ceon_uri_mapping_admin_pages.php</li>
@@ -475,6 +1415,17 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 			<li>admin/includes/languages/english/ceon_uri_mapping_manufacturer_pages.php</li>
 			<li>admin/includes/languages/english/ceon_uri_mapping_product_pages.php</li>
 			<li>admin/includes/languages/english/ceon_uri_mapping_tabbed_panel_admin_interface.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_categories_observer.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_category_delete_observer.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_category_info.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_copy_observer.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_ezpages_info.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_manufacturers_info.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_product_delete_observer.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_product_info.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_products_observer.php</li>
+			<li>admin/includes/ceon_uri_mapping_javascript.php</li>
 			<li>admin/ceon_uri_mapping_config.php</li>
 			<li class="NoMarginBottom">admin/ceon_uri_mapping_installation_check.php</li>
 		</ul>
@@ -496,7 +1447,6 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 		<p class="Note"><strong>Warning</strong>: Be careful <em class="Underlined FontStyleNormal">NOT</em> to copy the files from the <span class="FileName">files/includes</span> folder into the store's <span class="FileName">admin/includes</span> directory, they go in the <span class="FileName">includes</span> directory which is <strong>alongside, not inside</strong> the store's admin directory.</p>
 		
 		<ul class="Steps">
-			<li>includes/auto_loaders/config.ceon_uri_mapping.php</li>
 			<li>includes/classes/transliteration (* This directory and ALL files in it!)</li>
 			<li>includes/classes/class.CeonURIMappingAdmin.php</li>
 			<li>includes/classes/class.CeonURIMappingAdminCategories.php</li>
@@ -508,12 +1458,32 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 			<li>includes/classes/class.CeonURIMappingHandler.php</li>
 			<li>includes/classes/class.CeonURIMappingHandlerBase.php</li>
 			<li>includes/classes/class.CeonURIMappingHREFLinkBuilder.php</li>
-			<li>includes/classes/class.String.php</li>
+			<li>includes/classes/class.CeonString.php</li>
 			<li>includes/classes/class.Transliteration.php</li>
+			<li>includes/classes/observers/class.ceon_ask_a_question.php</li>
+			<li>includes/classes/observers/class.ceon_uri_mapping_link_build.php</li>
+			<li>includes/classes/observers/class.ceon_canonical.php</li>
 			<li>includes/extra_datafiles/ceon_uri_mapping_database_tables.php</li>
 			<li>includes/extra_datafiles/ceon_uri_mapping_filenames.php</li>
 			<li>includes/extra_datafiles/ceon_uri_mapping_product_pages.php</li>
-			<li class="NoMarginBottom">includes/languages/english/ceon_uri_mapping_admin.php</li>
+			<li>includes/init_includes/init_ceon_currencies.php</li>
+			<li>includes/init_includes/init_ceon_uri_mapping_sessions.php</li>
+			<li>includes/auto_loaders/config.ceon_ask_a_question.php</li>
+			<li>includes/auto_loaders/config.ceon_canonical.php</li>
+			<li>includes/auto_loaders/config.ceon_currencies.php</li>
+			<li class="NoMarginBottom">includes/auto_loaders/config.ceon_uri_mapping.php</li>
+		</ul>
+		
+		
+		<h5>Installing to Zen Cart 1.5.7 and above</h5>
+		
+		<p>Copy all of the folders and files from the <span class="FileName">files/zen_cart_version_specific/v1.5.7/admin</span> folder into the store's &ldquo;admin&rdquo; directory, whatever it is called.</p>
+		<p>The files are already in the correct directory structure, so a single drag-and-drop of the folders/files in the <span class="FileName">files/admin</span> folder into the &ldquo;admin&rdquo; directory for the store will put the files in the correct locations.</p>
+		<p><strong>Please do not copy the files individually</strong> - there's simply no need - doing so often results in files being missed out!</p>
+		
+		<ul class="Steps">
+			<li>admin/includes/classes/observers/class.CeonURIMappingJavaScriptLoader.php</li>
+			<li class="NoMarginBottom">admin/includes/auto_loaders/config.ceon_uri_mapping_admin_javascript_loader.php</li>
 		</ul>
 	</li>
 	
@@ -646,11 +1616,11 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 <p class="BackToTop"><a href="#top">Back to top</a></p>
 
 
-<h2><a name="upgrading-from-version-2-or-3" id="upgrading-from-version-2-or-3"></a>Upgrading to Ceon URI Mapping 4.4.1 from Ceon URI Mapping 2.x/3.x</h2>
-<p>Ceon URI Mapping 4.x is a complete rewrite of the software.</p>
-<p>Upgrading from an earlier version to 4.4.1 will take a little bit of time, but is easy to do.</p>
-<p>The great thing is that once you've upgraded, not only will the software be better, but version 4.4.1 has a completely new file structure, and auto-upgrading functionality, which means that any subsequent upgrades (to 4.4.1, 4.2.2 etc.) will take just a few <strong class="Underlined">seconds</strong>!</p>
-<p>So once v4.4.1 is installed, it'll be simple to keep up to date and to keep getting all the extra features new versions provide!</p>
+<h2><a name="upgrading-from-version-2-or-3" id="upgrading-from-version-2-or-3"></a>Upgrading to Ceon URI Mapping 5.1.1 from Ceon URI Mapping 2.x/3.x</h2>
+<p>Ceon URI Mapping 5.x is a complete rewrite of the software.</p>
+<p>Upgrading from an earlier version to 5.1.1 will take a little bit of time, but is easy to do.</p>
+<p>The great thing is that once you've upgraded, not only will the software be better, but version 5.1.1 has a completely new file structure, and auto-upgrading functionality, which means that any subsequent upgrades (to 5.1.1, 4.2.2 etc.) will take just a few <strong class="Underlined">seconds</strong>!</p>
+<p>So once v5.1.1 is installed, it'll be simple to keep up to date and to keep getting all the extra features new versions provide!</p>
 
 <ol class="InstallationSteps">
 	<li>
@@ -679,6 +1649,7 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 			<li>includes/extra_datafiles/ceon_uri_mapping_config.php</li>
 			<li>includes/functions/ceon_uri_mapping_functions.php</li>
 			<li>includes/init_includes/init_ceon_uri_mapping.php</li>
+			<li>includes/classes/class.String.php</li>
 			<li class="NoMarginBottom">includes/templates/template_default/jscript/jscript_ceon_uri_mapping_canonical_link_header_tag.php</li>
 		</ul>
 	</li>
@@ -712,9 +1683,19 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 			<li>admin/includes/classes/class.CeonURIMappingInstallOrUpgrade.php</li>
 			<li>admin/includes/classes/class.CeonURIMappingTabbedPanelAdminInterface.php</li>
 			<li>admin/includes/classes/class.CeonURIMappingVersion.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingAdminCategoriesObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingAdminCopyObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingAdminProductsObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingDeleteCategoriesObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingDeleteProductsObserver.php</li>
+			<li>admin/includes/classes/observers/class.CeonURIMappingLinkBuildAdmin.php</li>
 			<li>admin/includes/extra_datafiles/ceon_uri_mapping_database_tables.php</li>
 			<li>admin/includes/extra_datafiles/ceon_uri_mapping_filenames.php</li>
 			<li>admin/includes/extra_datafiles/ceon_uri_mapping_product_pages.php</li>
+			<li>admin/includes/init_includes/init_ceon_category_collect_info.php</li>
+			<li>admin/includes/init_includes/init_ceon_ezpages_collect_info.php</li>
+			<li>admin/includes/init_includes/init_ceon_manufacturers_collect_info.php</li>
+			<li>admin/includes/init_includes/init_ceon_product_collect_info.php</li>
 			<li>admin/includes/functions/extra_functions/ceon_uri_mapping_admin_page_reg.php</li>
 			<li>admin/includes/languages/english/extra_definitions/ceon_uri_mapping.php</li>
 			<li>admin/includes/languages/english/ceon_uri_mapping_admin_pages.php</li>
@@ -726,6 +1707,17 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 			<li>admin/includes/languages/english/ceon_uri_mapping_manufacturer_pages.php</li>
 			<li>admin/includes/languages/english/ceon_uri_mapping_product_pages.php</li>
 			<li>admin/includes/languages/english/ceon_uri_mapping_tabbed_panel_admin_interface.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_categories_observer.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_category_delete_observer.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_category_info.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_copy_observer.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_ezpages_info.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_manufacturers_info.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_product_delete_observer.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_product_info.php</li>
+			<li>admin/includes/auto_loaders/config.ceon_uri_mapping_admin_products_observer.php</li>
+			<li>admin/includes/ceon_uri_mapping_javascript.php</li>
 			<li>admin/ceon_uri_mapping_config.php</li>
 			<li class="NoMarginBottom">admin/ceon_uri_mapping_installation_check.php</li>
 		</ul>
@@ -747,7 +1739,6 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 		<p class="Note"><strong>Warning</strong>: Be careful <em class="Underlined FontStyleNormal">NOT</em> to copy the files from the <span class="FileName">files/includes</span> folder into the store's <span class="FileName">admin/includes</span> directory, they go in the <span class="FileName">includes</span> directory which is <strong>alongside, not inside</strong> the store's admin directory.</p>
 		
 		<ul class="Steps">
-			<li>includes/auto_loaders/config.ceon_uri_mapping.php</li>
 			<li>includes/classes/transliteration (* This directory and ALL files in it!)</li>
 			<li>includes/classes/class.CeonURIMappingAdmin.php</li>
 			<li>includes/classes/class.CeonURIMappingAdminCategories.php</li>
@@ -759,11 +1750,32 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 			<li>includes/classes/class.CeonURIMappingHandler.php</li>
 			<li>includes/classes/class.CeonURIMappingHandlerBase.php</li>
 			<li>includes/classes/class.CeonURIMappingHREFLinkBuilder.php</li>
-			<li>includes/classes/class.String.php</li>
+			<li>includes/classes/class.CeonString.php</li>
 			<li>includes/classes/class.Transliteration.php</li>
+			<li>includes/classes/observers/class.ceon_ask_a_question.php</li>
+			<li>includes/classes/observers/class.ceon_uri_mapping_link_build.php</li>
+			<li>includes/classes/observers/class.ceon_canonical.php</li>
 			<li>includes/extra_datafiles/ceon_uri_mapping_database_tables.php</li>
 			<li>includes/extra_datafiles/ceon_uri_mapping_filenames.php</li>
-			<li class="NoMarginBottom">includes/extra_datafiles/ceon_uri_mapping_product_pages.php</li>
+			<li>includes/extra_datafiles/ceon_uri_mapping_product_pages.php</li>
+			<li>includes/init_includes/init_ceon_currencies.php</li>
+			<li>includes/init_includes/init_ceon_uri_mapping_sessions.php</li>
+			<li>includes/auto_loaders/config.ceon_ask_a_question.php</li>
+			<li>includes/auto_loaders/config.ceon_canonical.php</li>
+			<li>includes/auto_loaders/config.ceon_currencies.php</li>
+			<li class="NoMarginBottom">includes/auto_loaders/config.ceon_uri_mapping.php</li>
+		</ul>
+		
+		
+		<h5>Installing to Zen Cart 1.5.7 and above</h5>
+		
+		<p>Copy all of the folders and files from the <span class="FileName">files/zen_cart_version_specific/v1.5.7/admin</span> folder into the store's &ldquo;admin&rdquo; directory, whatever it is called.</p>
+		<p>The files are already in the correct directory structure, so a single drag-and-drop of the folders/files in the <span class="FileName">files/admin</span> folder into the &ldquo;admin&rdquo; directory for the store will put the files in the correct locations.</p>
+		<p><strong>Please do not copy the files individually</strong> - there's simply no need - doing so often results in files being missed out!</p>
+		
+		<ul class="Steps">
+			<li>admin/includes/classes/observers/class.CeonURIMappingJavaScriptLoader.php</li>
+			<li class="NoMarginBottom">admin/includes/auto_loaders/config.ceon_uri_mapping_admin_javascript_loader.php</li>
 		</ul>
 	</li>
 	
@@ -801,7 +1813,7 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 			</li>
 		</ul>
 		
-		<h5>Modified core files for the Admin directory</h5>
+		<h5>Modified core files for the Admin directory (Primarily for Zen Cart Version 1.5.4 and below)</h5>
 		
 		<p class="Note"><strong>Please Note</strong>: If copying the files across, and the admin folder for the store is not named &ldquo;admin&rdquo;, then care must be taken to place the files from within the <span class="FileName">modified_core_files/ZC-version/admin</span> folder into the <strong>store's</strong> admin folder. Simply copying across the <span class="FileName">modified_core_files/ZC-version/admin</span> folder won't work!</p>
 		
@@ -848,11 +1860,11 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 		
 		<ul class="Steps">
 			<li>includes/auto_loaders/config.canonical.php (Zen Cart 1.3.0 - 1.3.8)</li>
-			<li>includes/functions/html_output.php (Zen Cart 1.3.0 - 1.5.0)</li>
-			<li>includes/init_includes/overrides/init_add_crumbs.php  (Zen Cart 1.3.5 - 1.5.0)</li>
-			<li>includes/init_includes/overrides/init_canonical.php (Zen Cart 1.3.0 - 1.5.0)</li>
-			<li>includes/init_includes/overrides/init_currencies.php  (Zen Cart 1.3.0 - 1.5.0)</li>
-			<li class="NoMarginBottom">includes/init_includes/overrides/init_sessions.php  (Zen Cart 1.3.9/1.5.0)</li>
+			<li>includes/functions/html_output.php (Zen Cart 1.3.0 - 1.5.4)</li>
+			<li>includes/init_includes/overrides/init_add_crumbs.php  (Zen Cart 1.3.5 - 1.5.x)</li>
+			<li>includes/init_includes/overrides/init_canonical.php (Zen Cart 1.3.0 - 1.5.4)</li>
+			<li>includes/init_includes/overrides/init_currencies.php  (Zen Cart 1.3.0 - 1.3.7)</li>
+			<li class="NoMarginBottom">includes/init_includes/overrides/init_sessions.php  (Zen Cart 1.3.9/1.3.9b)</li>
 		</ul>
 	</li>
 	
@@ -1053,7 +2065,7 @@ CeonAddLoadEvent(CeonCrossfadeInit);
 
 <p class="BackToTop"><a href="#top">Back to top</a></p>
 
-<p id="footer"><a href="http://ceon.net/software/business/zen-cart?doc=zc-um" target="_blank"><img src="../_images/ceon-button-logo.png" alt="Ceon" id="ceon-button-logo" /></a><a href="http://jked.net" target="_blank"><img src="../_images/jked-logo.gif" alt="JKED" id="jked-logo" /></a>Module &amp; Documentation &copy; Copyright 2008-2012 <a href="http://ceon.net/software/business/zen-cart?doc=zc-um" target="_blank">Ceon</a></p>
+<p id="footer"><a href="http://ceon.net/software/business/zen-cart?doc=zc-um" target="_blank"><img src="../_images/ceon-button-logo.png" alt="Ceon" id="ceon-button-logo" /></a><a href="http://jked.net" target="_blank"><img src="../_images/jked-logo.gif" alt="JKED" id="jked-logo" /></a>Module &amp; Documentation &copy; Copyright 2008-2024 <a href="http://ceon.net/software/business/zen-cart?doc=zc-um" target="_blank">Ceon</a></p>
 
 	</div>
 </div>

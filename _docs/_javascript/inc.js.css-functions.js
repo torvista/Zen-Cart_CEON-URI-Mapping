@@ -6,7 +6,7 @@
  * limit the search to that media type only.
  *
  * @author      Conor Kerr
- * @copyright   2008-2012 Ceon (http://ceon.net)
+ * @copyright   2008-2020 Ceon (http://ceon.net)
  * @param       selector  {string}   The selector for the style.
  * @param       media     {string}   The optional media type for the style.
  * @returns     {CSSStyle,boolean}   The CSSStyle object matching or false if not found.
@@ -149,7 +149,7 @@ function CeonSearchStyleSheetForCSSStyleRule(ss, selector, media)
  * Creates a new stylesheet of the specified media type and adds it to the current document.
  *
  * @author      Conor Kerr
- * @copyright   2008-2012 Ceon (http://ceon.net)
+ * @copyright   2008-2019 Ceon (http://ceon.net)
  * @param       media     {string}   The optional media type to assign to the newly created stylesheet.
  */
 function CeonAddStyleSheet(media)

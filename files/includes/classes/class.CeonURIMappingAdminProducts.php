@@ -7,8 +7,8 @@
  *
  * @package     ceon_uri_mapping
  * @author      Conor Kerr <zen-cart.uri-mapping@ceon.net>
- * @copyright   Copyright 2008-2012 Ceon
- * @copyright   Copyright 2003-2007 Zen Cart Development Team
+ * @copyright   Copyright 2008-2019 Ceon
+ * @copyright   Copyright 2003-2019 Zen Cart Development Team
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        http://ceon.net/software/business/zen-cart/uri-mapping
  * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
@@ -28,6 +28,7 @@ require_once(DIR_FS_CATALOG . DIR_WS_CLASSES . 'class.CeonURIMappingAdminCategor
 // {{{ constants
 
 define('CEON_URI_MAPPING_GENERATION_ATTEMPT_FOR_PRODUCT_WITH_NO_NAME', -3);
+define('CEON_URI_MAPPING_GENERATION_ATTEMPT_FOR_PRODUCT_WITH_NO_MODEL', -4);
 
 // }}}
 
@@ -39,8 +40,8 @@ define('CEON_URI_MAPPING_GENERATION_ATTEMPT_FOR_PRODUCT_WITH_NO_NAME', -3);
  *
  * @package     ceon_uri_mapping
  * @author      Conor Kerr <zen-cart.uri-mapping@ceon.net>
- * @copyright   Copyright 2008-2012 Ceon
- * @copyright   Copyright 2003-2007 Zen Cart Development Team
+ * @copyright   Copyright 2008-2019 Ceon
+ * @copyright   Copyright 2003-2019 Zen Cart Development Team
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        http://ceon.net/software/business/zen-cart/uri-mapping
  * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
@@ -54,7 +55,7 @@ class CeonURIMappingAdminProducts extends CeonURIMappingAdminCategoriesProducts
 	 * 
 	 * @access  public
 	 */
-	function __construct()
+	public function __construct()
 	{
 		parent::__construct();
 	}
@@ -71,7 +72,7 @@ class CeonURIMappingAdminProducts extends CeonURIMappingAdminCategoriesProducts
 	 * @param   string    $page_type   The type of the page.
 	 * @return  boolean   Whether auto-managing of the page's URI is enabled or disabled.
 	 */
-	function autoManageProductRelatedPageURI($page_type)
+	public function autoManageProductRelatedPageURI($page_type)
 	{
 		global $db;
 		
@@ -84,7 +85,8 @@ class CeonURIMappingAdminProducts extends CeonURIMappingAdminCategoriesProducts
 					manage_product_reviews_mappings,
 					manage_product_reviews_info_mappings,
 					manage_product_reviews_write_mappings,
-					manage_tell_a_friend_mappings
+					manage_tell_a_friend_mappings,
+					manage_ask_a_question_mappings
 				FROM
 					" . TABLE_CEON_URI_MAPPING_CONFIGS . "
 				WHERE
@@ -101,7 +103,9 @@ class CeonURIMappingAdminProducts extends CeonURIMappingAdminCategoriesProducts
 					'product_reviews_write' =>
 						$automanage_enabled_result->fields['manage_product_reviews_write_mappings'],
 					'tell_a_friend' =>
-						$automanage_enabled_result->fields['manage_tell_a_friend_mappings']
+						$automanage_enabled_result->fields['manage_tell_a_friend_mappings'],
+					'ask_a_question' =>
+						$automanage_enabled_result->fields['manage_ask_a_question_mappings']
 					);
 			}
 		}
@@ -127,7 +131,7 @@ class CeonURIMappingAdminProducts extends CeonURIMappingAdminCategoriesProducts
 	 * @return  string|false   The product related page's URI part or false if there is no URI part for the
 	 *                         specified page type and language code.
 	 */
-	function getProductRelatedPageURIPart($page_type, $language_code)
+	public function getProductRelatedPageURIPart($page_type, $language_code)
 	{
 		global $db;
 		
@@ -141,7 +145,8 @@ class CeonURIMappingAdminProducts extends CeonURIMappingAdminCategoriesProducts
 				'product_reviews',
 				'product_reviews_info',
 				'product_reviews_write',
-				'tell_a_friend'
+				'tell_a_friend',
+				'ask_a_question'
 				);
 			
 			$page_types_sql_string = '';
@@ -211,7 +216,7 @@ class CeonURIMappingAdminProducts extends CeonURIMappingAdminCategoriesProducts
 	 * @param   string    $mapping_template   The mapping template for this product.
 	 * @return  string    The auto-generated URI for the product and language.
 	 */
-	function autogenProductURIMapping($id, $parent_category_id, $name, $language_code, $language_id, $model = null)
+	public function autogenProductURIMapping($id, $parent_category_id, $name, $language_code, $language_id, $model = null)
 	{
 		return $this->autogenCategoryOrProductURIMapping($id, 'product', $parent_category_id, $name,
 			$language_code, $language_id);

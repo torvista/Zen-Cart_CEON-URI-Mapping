@@ -1,12 +1,12 @@
 <?php
-//steve added a clause to the canonical generation
+
 /**
  * Ceon URI Mapping URI Handler Base Class.
  *
  * @package     ceon_uri_mapping
  * @author      Conor Kerr <zen-cart.uri-mapping@ceon.net>
- * @copyright   Copyright 2008-2012 Ceon
- * @copyright   Copyright 2003-2007 Zen Cart Development Team
+ * @copyright   Copyright 2008-2019 Ceon
+ * @copyright   Copyright 2003-2019 Zen Cart Development Team
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        http://ceon.net/software/business/zen-cart/uri-mapping
  * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
@@ -37,7 +37,7 @@ require_once(DIR_FS_CATALOG . DIR_WS_CLASSES . 'class.CeonURIMappingDBLookup.php
  * @package     ceon_uri_mapping
  * @abstract
  * @author      Conor Kerr <zen-cart.uri-mapping@ceon.net>
- * @copyright   Copyright 2008-2012 Ceon
+ * @copyright   Copyright 2008-2019 Ceon
  * @copyright   Copyright 2003-2007 Zen Cart Development Team
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        http://ceon.net/software/business/zen-cart/uri-mapping
@@ -53,7 +53,7 @@ class CeonURIMappingHandlerBase extends CeonURIMappingDBLookup
 	 * @var     boolean
 	 * @access  protected
 	 */
-	var $_request_uri_value_identified = null;
+	protected $_request_uri_value_identified = null;
 	
 	/**
 	 * The URI being used to access the current page.
@@ -61,7 +61,7 @@ class CeonURIMappingHandlerBase extends CeonURIMappingDBLookup
 	 * @var     string
 	 * @access  protected
 	 */
-	var $_request_uri = null;
+	protected $_request_uri = null;
 	
 	/**
 	 * The query parameters string for the current page.
@@ -69,7 +69,7 @@ class CeonURIMappingHandlerBase extends CeonURIMappingDBLookup
 	 * @var     string
 	 * @access  protected
 	 */
-	var $_query_string = null;
+	protected $_query_string = null;
 	
 	/**
 	 * Flag to say whether the language is currently being changed by the user.
@@ -77,7 +77,7 @@ class CeonURIMappingHandlerBase extends CeonURIMappingDBLookup
 	 * @var     boolean
 	 * @access  protected
 	 */
-	var $_language_changed = false;
+	protected $_language_changed = false;
 	
 	/**
 	 * The original language ID this page was run with.
@@ -85,7 +85,7 @@ class CeonURIMappingHandlerBase extends CeonURIMappingDBLookup
 	 * @var     integer
 	 * @access  protected
 	 */
-	var $_original_language_id = null;
+	protected $_original_language_id = null;
 	
 	// }}}
 	
@@ -98,7 +98,7 @@ class CeonURIMappingHandlerBase extends CeonURIMappingDBLookup
 	 * 
 	 * @access  public
 	 */
-	function __construct()
+	public function __construct()
 	{
 		global $PHP_SELF, $messageStack;
 		
@@ -119,6 +119,8 @@ class CeonURIMappingHandlerBase extends CeonURIMappingDBLookup
 		if ($PHP_SELF != (DIR_WS_CATALOG . 'index.php')) {
 			return;
 		}
+		
+		parent::__construct();
 		
 		// If the check to make sure that a value exists for the request URI variable has not yet been run, run it
 		// now
@@ -159,7 +161,7 @@ class CeonURIMappingHandlerBase extends CeonURIMappingDBLookup
 	 * @access  protected
 	 * @return  boolean   True if PHP_SELF environment variable has a reasonable value, false otherwise.
 	 */
-	function _normaliseServerEnvironment()
+	protected function _normaliseServerEnvironment()
 	{
 		global $PHP_SELF;
 		
@@ -178,7 +180,7 @@ class CeonURIMappingHandlerBase extends CeonURIMappingDBLookup
 			
 			$PHP_SELF = preg_replace('/(\?.*)?$/', '', $_SERVER['REQUEST_URI']);
 			
-		} else if (isset($_SERVER['DOCUMENT_ROOT']) && strpos($PHP_SELF, $_SERVER['DOCUMENT_ROOT']) !== false) {
+		} else if (!empty($_SERVER['DOCUMENT_ROOT']) && strpos($PHP_SELF, $_SERVER['DOCUMENT_ROOT']) !== false) {
 			// Server has incorrectly built the full path to the file for the value of PHP_SELF, must correct it by
 			// removing the root path part
 			$PHP_SELF = str_replace($_SERVER['DOCUMENT_ROOT'], '', $PHP_SELF);
@@ -224,7 +226,7 @@ class CeonURIMappingHandlerBase extends CeonURIMappingDBLookup
 	 * @access  protected
 	 * @return  boolean   True if request URI environment variable is found/built, false otherwise.
 	 */
-	function _checkRequestURI()
+	protected function _checkRequestURI()
 	{
 		if (!isset($_SERVER['REQUEST_URI'])) {
 			$_SERVER['REQUEST_URI'] = '';
@@ -290,7 +292,7 @@ class CeonURIMappingHandlerBase extends CeonURIMappingDBLookup
 	 * @access  protected
 	 * @return  none
 	 */
-	function _parseURI()
+	protected function _parseURI()
 	{
 		$this->_request_uri = $_SERVER['REQUEST_URI'];
 		
@@ -324,7 +326,7 @@ class CeonURIMappingHandlerBase extends CeonURIMappingDBLookup
 	 * @access  protected
 	 * @return  none
 	 */
-	function _initLanguageSystem()
+	protected function _initLanguageSystem()
 	{
 		if (isset($_SESSION['languages_id'])) {
 			$this->_original_language_id = $_SESSION['languages_id'];
@@ -379,13 +381,13 @@ class CeonURIMappingHandlerBase extends CeonURIMappingDBLookup
 	 * @access  protected
 	 * @return  boolean   Whether or not the current URI is the index page.
 	 */
-	function _checkForAndHandleIndexPage()
+	protected function _checkForAndHandleIndexPage()
 	{
 		$request_uri = strtolower($this->_request_uri);
 		
 		// Handle variations of the index page URI
 		if ((isset($_GET['main_page']) &&
-				(strlen($_GET['main_page']) == 0 || $_GET['main_page'] == FILENAME_DEFAULT) &&
+				(is_array($_GET['main_page']) || strlen($_GET['main_page']) == 0 || $_GET['main_page'] == FILENAME_DEFAULT) &&
 				!isset($_GET['cPath']) && !isset($_GET['manufacturers_id']) && !isset($_GET['typefilter'])) ||
 				(!isset($_GET['main_page']) && $request_uri == strtolower(DIR_WS_CATALOG) . 'index.php')) {
 			// URI is DIR_WS_CATALOG/index.php?main_page=index, DIR_WS_CATALOG/index.php or
@@ -418,8 +420,8 @@ class CeonURIMappingHandlerBase extends CeonURIMappingDBLookup
 				// Remove any trailing slash(es) from the canonical URI, unless the URI is the root of the site
 				//steve added $this_is_home_page or it strips closing slash from index (which breaks facebook Open Graph Debugger for the homepage). $this_is_home_page sometimes not set.
 
-                while ( (isset($this_is_home_page) && $this_is_home_page) && strlen($ceon_uri_mapping_canonical_uri) > 1 &&
-					   substr($ceon_uri_mapping_canonical_uri, -1) == '/') {
+				while (!empty($this_is_home_page) && strlen($ceon_uri_mapping_canonical_uri) > 1 &&
+						 substr($ceon_uri_mapping_canonical_uri, -1) == '/') {
 					$ceon_uri_mapping_canonical_uri =
 						substr($ceon_uri_mapping_canonical_uri, 0, strlen($ceon_uri_mapping_canonical_uri) - 1);
 				}
@@ -446,7 +448,7 @@ class CeonURIMappingHandlerBase extends CeonURIMappingDBLookup
 	 * @access  protected
 	 * @return  none
 	 */
-	function _handleURI()
+	protected function _handleURI()
 	{
 		if (!isset($_GET['main_page'])) {
 			// Standard Zen Cart URI isn't being used, attempt to identify and map URI
@@ -456,7 +458,7 @@ class CeonURIMappingHandlerBase extends CeonURIMappingDBLookup
 			// Ceon URI Mapping redirected the customer here so there's no need for any further checks
 			unset($_SESSION['ceon_uri_mapping_redirected']);
 			
-		} else if (isset($_GET['main_page']) && !isset($_GET['action']) && sizeof($_POST) == 0 &&
+		} else if (isset($_GET['main_page']) && !isset($_GET['action']) && count($_POST) == 0 &&
 				!($_GET['main_page'] == FILENAME_DEFAULT && !isset($_GET['cPath']) &&
 				!isset($_GET['manufacturers_id']) &&
 				(!isset($_GET['typefilter']) || $_GET['typefilter'] == '') &&
@@ -481,7 +483,7 @@ class CeonURIMappingHandlerBase extends CeonURIMappingDBLookup
 	 * @access  protected
 	 * @return  none
 	 */
-	function _handleStaticURI() {}
+	protected function _handleStaticURI() {}
 	
 	// }}}
 	
@@ -496,7 +498,7 @@ class CeonURIMappingHandlerBase extends CeonURIMappingDBLookup
 	 * @access  protected
 	 * @return  none
 	 */
-	function _handleZCDynamicURI() {}
+	protected function _handleZCDynamicURI() {}
 	
 	// }}}
 	
@@ -513,7 +515,7 @@ class CeonURIMappingHandlerBase extends CeonURIMappingDBLookup
 	 * @param   integer   $query_string_parameters   The query string parameters for the URI.
 	 * @return  none
 	 */
-	function _handleHistoricalURIWithNoCurrentMapping($main_page, $associated_db_id, $query_string_parameters) {}
+	protected function _handleHistoricalURIWithNoCurrentMapping($main_page, $associated_db_id, $query_string_parameters) {}
 	
 	// }}}
 	
@@ -530,7 +532,7 @@ class CeonURIMappingHandlerBase extends CeonURIMappingDBLookup
 	 * @param   integer   $query_string_parameters   The query string parameters for the URI.
 	 * @return  none
 	 */
-	function _handleUnmappedURI($main_page, $associated_db_id, $query_string_parameters) {}
+	protected function _handleUnmappedURI($main_page, $associated_db_id, $query_string_parameters) {}
 	
 	// }}}
 	
@@ -547,7 +549,7 @@ class CeonURIMappingHandlerBase extends CeonURIMappingDBLookup
 	 * @param   integer   $language_id               The ID of the language.
 	 * @return  string|false   The current URI for the specified language.
 	 */
-	function _getCurrentURI($main_page, $associated_db_id, $query_string_parameters, $language_id)
+	protected function _getCurrentURI($main_page, $associated_db_id, $query_string_parameters, $language_id)
 	{
 		global $db;
 		
@@ -604,7 +606,7 @@ class CeonURIMappingHandlerBase extends CeonURIMappingDBLookup
 	 * @access  public
 	 * @return  none
 	 */
-	function checkLanguageChangedCurrencyChangeRequired()
+	public function checkLanguageChangedCurrencyChangeRequired()
 	{
 		if (isset($_SESSION['ceon_uri_mapping_language_changed'])) {
 			$this->_language_changed = $_SESSION['ceon_uri_mapping_language_changed'];
@@ -629,7 +631,7 @@ class CeonURIMappingHandlerBase extends CeonURIMappingDBLookup
 	 * @access  protected
 	 * @return  string    A URL encoded query parameters string.
 	 */
-	function _buildQueryString()
+	protected function _buildQueryString()
 	{
 		$query_string = '';
 		
@@ -658,10 +660,10 @@ class CeonURIMappingHandlerBase extends CeonURIMappingDBLookup
 	 *
 	 * @access  protected
 	 * @param   string    $key     The key for the query string parameter.
-	 * @param   string    $value   The value for the query string parameter.
+	 * @param   array     $value   The value for the query string parameter.
 	 * @return  string    A URL encoded string representation of the query parameter.
 	 */
-	function _buildArrayQueryParameter($key, $value)
+	protected function _buildArrayQueryParameter($key, $value)
 	{
 		$parameter_string = '';
 		

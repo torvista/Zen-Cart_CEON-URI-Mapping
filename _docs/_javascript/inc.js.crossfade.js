@@ -5,7 +5,7 @@
  *               (absolutely) positioned on a page within an identifiable container.
  *
  * @author      Conor Kerr <zen-cart@ceon.net>
- * @copyright   2010-2012 Ceon (http://ceon.net)
+ * @copyright   2010-2020 Ceon (http://ceon.net)
  */
 
 var crossfade_id = 'crossfade'; // The ID of the crossfade list

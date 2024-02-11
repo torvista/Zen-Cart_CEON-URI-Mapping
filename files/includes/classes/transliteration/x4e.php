@@ -1,8 +1,9 @@
 <?php
 // $Id: x4e.php 262 2008-12-22 23:59:44Z Bob $
+// Updated 2019-10-21 for https://www.drupal.org/project/transliteration/issues/1448060
 
 return array(
-  'en' => array(NULL, 'Ding ', 'Kao ', 'Qi ', 'Shang ', 'Xia ', NULL, 'Mo ', 'Zhang ', 'San ', 'Shang ', 'Xia ', 'Ji ', 'Bu ', 'Yu ', 'Mian ',
+  'en' => array('Yi ', 'Ding ', 'Kao ', 'Qi ', 'Shang ', 'Xia ', NULL, 'Mo ', 'Zhang ', 'San ', 'Shang ', 'Xia ', 'Ji ', 'Bu ', 'Yu ', 'Mian ',
     'Gai ', 'Chou ', 'Chou ', 'Zhuan ', 'Qie ', 'Pi ', 'Shi ', 'Shi ', 'Qiu ', 'Bing ', 'Ye ', 'Cong ', 'Dong ', 'Si ', 'Cheng ', 'Diu ',
     'Qiu ', 'Liang ', 'Diu ', 'You ', 'Liang ', 'Yan ', 'Bing ', 'Sang ', 'Gun ', 'Jiu ', 'Ge ', 'Ya ', 'Qiang ', 'Zhong ', 'Ji ', 'Jie ',
     'Feng ', 'Guan ', 'Chuan ', 'Chan ', 'Lin ', 'Zhuo ', 'Zhu ', 'Ha ', 'Wan ', 'Dan ', 'Wei ', 'Zhu ', 'Jing ', 'Li ', 'Ju ', 'Pie ',

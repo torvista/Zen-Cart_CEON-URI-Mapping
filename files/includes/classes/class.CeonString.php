@@ -1,17 +1,17 @@
 <?php
 
-/** steve renamed from class.String for php7: String is a reserved class
+/** renamed from class.String for php7: String is a reserved class
  * String class provides methods for charset and locale-safe string manipulation. Included as a library used by the
  * Ceon URI Mapping module.
  *
  * @package     ceon_uri_mapping
  * @author      Conor Kerr <zen-cart.uri-mapping@ceon.net>
  * @author      Jan Schneider <jan@horde.org>
- * @copyright   Copyright 2008-2012 Ceon
+ * @copyright   Copyright 2008-2024 Ceon
  * @copyright   Copyright 2003-2008 The Horde Project (http://www.horde.org/)
  * @link        http://ceon.net/software/business/zen-cart/uri-mapping
  * @license     http://www.fsf.org/copyleft/lgpl.html Lesser GNU Public License
- * @version     $Id: class.String.php 1027 2012-07-17 20:31:10Z conor $
+ * @version     $Id: class.CeonString.php 1027 2024-01-04 20:31:10Z conor updated 5.1.1$
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -41,15 +41,15 @@ $GLOBALS['string_language'] = null;
 // }}}
 
 
-// {{{ String
+// {{{ CeonString
 
 /** 
- * String class provides methods for charset and locale-safe string manipulation.
+ * CeonString class provides methods for charset and locale-safe string manipulation.
  *
  * @package     ceon_uri_mapping
  * @author      Conor Kerr <zen-cart.uri-mapping@ceon.net>
  * @author      Jan Schneider <jan@horde.org>
- * @copyright   Copyright 2008-2012 Ceon
+ * @copyright   Copyright 2008-2024 Ceon
  * @copyright   Copyright 2003-2008 The Horde Project (http://www.horde.org/)
  * @link        http://ceon.net/software/business/zen-cart/uri-mapping
  * @license     http://www.fsf.org/copyleft/lgpl.html Lesser GNU Public License
@@ -65,7 +65,7 @@ class CeonString
 	 * @static
 	 * @param  string     $charset   The charset to use as the default.
 	 */
-	static function setDefaultCharset($charset)//steve added static
+	public static function setDefaultCharset($charset)
 	{
 		$GLOBALS['string_charset'] = $charset;
 		
@@ -96,7 +96,7 @@ class CeonString
 	 *                                  will be used.
 	 * @return  string|array   The converted input data.
 	 */
-	static function convertCharset($input, $from, $to = null)//steve added static
+	public static function convertCharset($input, $from, $to = null)
 	{
 		if (is_null($GLOBALS['string_charset'])) {
 			$GLOBALS['string_charset'] = CHARSET;
@@ -149,7 +149,7 @@ class CeonString
 	 * @param   string    $to      See CeonString::convertCharset().
 	 * @return  string    The converted string.
 	 */
-	static function _convertCharset($input, $from, $to)//steve added static
+	protected static function _convertCharset($input, $from, $to)
 	{
 		$output = null;
 		$from_ascii = (($from == 'iso-8859-1') || ($from == 'us-ascii'));
@@ -160,11 +160,11 @@ class CeonString
 		if (strlen($input) < 16777216 ||
 				(!CeonString::extensionExists('iconv') && !CeonString::extensionExists('mbstring'))) {
 			if ($from_ascii && ($to == 'utf-8')) {
-				return utf8_encode($input);
+				return $input;
 			}
 			
 			if (($from == 'utf-8') && $to_ascii) {
-				return utf8_decode($input);
+				return $input;
 			}
 		}
 		
@@ -230,7 +230,7 @@ class CeonString
 	 *                                         transliterations to be used for particular characters.
 	 * @return  string|array   The converted input data.
 	 */
-	static function transliterate($input, $from_charset = null, $to_language = null)//steve added static
+	public static function transliterate($input, $from_charset = null, $to_language = null)
 	{
 		if (is_null($GLOBALS['string_charset'])) {
 			$GLOBALS['string_charset'] = CHARSET;
@@ -282,7 +282,7 @@ class CeonString
 		// Convert the characterset to UTF-8 if necessary
 		$input = CeonString::convertCharset($input, $from_charset, 'utf-8');
 		
-		//steve uses 5 parameters but method uses only 2 return CeonString::_transliterate($input, $from_charset, $from_language, $to_charset, $to_language);
+		//there are 5 parameters available but method uses only 2. return CeonString::_transliterate($input, $from_charset, $from_language, $to_charset, $to_language);
 		return CeonString::_transliterate($input, $to_language);
 	}
 	
@@ -301,7 +301,7 @@ class CeonString
 	 *                                   transliterations to be used for particular  characters.
 	 * @return  string    The transliterated string.
 	 */
-	static function _transliterate($input, $to_language)//steve added static
+	protected static function _transliterate($input, $to_language)
 	{
 		$output = null;
 		
@@ -335,7 +335,7 @@ class CeonString
 	 *                               current charset is used.
 	 * @return  string    The string converted to lowercase.
 	 */
-	static function toLowercase($string, $locale = false, $charset = null)//steve added static
+	public static function toLowercase($string, $locale = false, $charset = null)
 	{
 		static $lowers;
 		
@@ -397,7 +397,7 @@ class CeonString
 	 *                               current charset is used.
 	 * @return  string    The string converted to uppercase.
 	 */
-	static function toUppercase($string, $locale = false, $charset = null)//steve added static
+	public static function toUppercase($string, $locale = false, $charset = null)
 	{
 		static $uppers;
 		
@@ -457,7 +457,7 @@ class CeonString
 	 * @param   string    $charset   The charset to use, defaults to current charset.
 	 * @return  string    The capitalised string.
 	 */
-	static function toUCFirst($string, $locale = false, $charset = null)//steve added static
+	public static function toUCFirst($string, $locale = false, $charset = null)
 	{
 		if (is_null($GLOBALS['string_charset'])) {
 			$GLOBALS['string_charset'] = CHARSET;
@@ -496,7 +496,7 @@ class CeonString
 	 * @param   string    $charset   The charset to use, defaults to current charset.
 	 * @return  string    The capitalised string.
 	 */
-	static function toUCWords($string, $locale = false, $charset = null)//steve added static
+	public static function toUCWords($string, $locale = false, $charset = null)
 	{
 		if (is_null($GLOBALS['string_charset'])) {
 			$GLOBALS['string_charset'] = CHARSET;
@@ -566,7 +566,7 @@ class CeonString
 	 *                               to current charset.
 	 * @return  string    The string's part.
 	 */
-	static function substr($string, $start, $length = null, $charset = null)//steve added static
+	public static function substr($string, $start, $length = null, $charset = null)
 	{
 		if (is_null($GLOBALS['string_charset'])) {
 			$GLOBALS['string_charset'] = CHARSET;
@@ -623,7 +623,7 @@ class CeonString
 	 * @param   string    $charset   The charset to use when calculating the string's length.
 	 * @return  integer   The string's length.
 	 */
-	static function length($string, $charset = null)//steve added static
+	public static function length($string, $charset = null)
 	{
 		if (is_null($GLOBALS['string_charset'])) {
 			$GLOBALS['string_charset'] = CHARSET;
@@ -677,7 +677,7 @@ class CeonString
 	 * @param   string    $charset    The charset to use when searching.
 	 * @return  integer   The position of first occurrence.
 	 */
-	static function pos($haystack, $needle, $offset = 0, $charset = null)//steve added static
+	public static function pos($haystack, $needle, $offset = 0, $charset = null)
 	{
 		if (is_null($GLOBALS['string_charset'])) {
 			$GLOBALS['string_charset'] = CHARSET;
@@ -729,7 +729,7 @@ class CeonString
 	 * @param   string    $charset   The charset to use when testing the string.
 	 * @return  boolean   True if the string consists solely of alphabetic characters.
 	 */
-	static function isAlpha($string, $charset = null)//steve added static
+	public static function isAlpha($string, $charset = null)
 	{
 		if (is_null($GLOBALS['string_charset'])) {
 			$GLOBALS['string_charset'] = CHARSET;
@@ -780,7 +780,7 @@ class CeonString
 	 * @param   string    $charset   The charset to use when testing the string.
 	 * @return  boolean   True if the string is lowercase.
 	 */
-	static function isLower($string, $charset = null)//steve added static
+	public static function isLower($string, $charset = null)
 	{
 		return ((CeonString::toLowercase($string, true, $charset) === $string) &&
 			CeonString::isAlpha($string, $charset));
@@ -801,7 +801,7 @@ class CeonString
 	 * @param   string    $charset   The charset to use when testing the string.
 	 * @return  boolean   True if the string is uppercase.
 	 */
-	static function isUpper($string, $charset = null)//steve added static
+	public static function isUpper($string, $charset = null)
 	{
 		return ((CeonString::toUppercase($string, true, $charset) === $string) &&
 			CeonString::isAlpha($string, $charset));
@@ -825,7 +825,7 @@ class CeonString
 	 * @param   string    $charset   The character set of the text.
 	 * @return  boolean   Whether the regexp matched or not.
 	 */
-	static function regexpMatch($text, $regexp, &$matches, $charset = null)//steve added static
+	public static function regexpMatch($text, $regexp, &$matches, $charset = null)
 	{
 		if (is_null($GLOBALS['string_charset'])) {
 			$GLOBALS['string_charset'] = CHARSET;
@@ -866,7 +866,7 @@ class CeonString
 	 * @return  string|array|boolean   The updated text or array or false if a problem occurred
 	 *                                 parsing the regular expression.
 	 */
-	static function regexpReplace($text, $regexp, $replace, $charset = null)//steve added static
+	public static function regexpReplace($text, $regexp, $replace, $charset = null)
 	{
 		if (is_null($GLOBALS['string_charset'])) {
 			$GLOBALS['string_charset'] = CHARSET;
@@ -928,7 +928,7 @@ class CeonString
 	 * @return  boolean   Whether or not the regexp is valid.
 	 * @TODO Have this throw exceptions
 	 */
-	static function validateRegexp($regexp)//steve added static
+	public static function validateRegexp($regexp)
 	{
 		$matches = null;
 		if (CeonString::length($regexp) == 0 ||
@@ -957,7 +957,7 @@ class CeonString
 	 * @param   string    $charset   The original charset.
 	 * @return  string    The charset to use with mbstring functions.
 	 */
-	static function _mbstringCharset($charset)//steve added static
+	protected static function _mbstringCharset($charset)
 	{
 		// mbstring functions do not handle the 'ks_c_5601-1987' & 'ks_c_5601-1989' charsets. However, these
 		// charsets are used, for example, by various versions of Outlook to send Korean characters. Use UHC
@@ -983,7 +983,7 @@ class CeonString
 	 * @param   string    $extension   The extension's name.
 	 * @return  boolean   Whether the extension is loaded in PHP.
 	 */
-	static function extensionExists($extension)//steve added static
+	protected static function extensionExists($extension)
 	{
 		static $cache = array();
 		

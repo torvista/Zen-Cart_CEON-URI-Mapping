@@ -70,13 +70,13 @@ document.write('.NoscriptAndPrintOutputBlock { display: none; }<' + '/style>');
 	<li><a href="#uri-mappings-need-added">The software is installed and working but the store's URIs still use dynamic Zen Cart ones (like <code>index.php?main_page=xx</code>).</a></li>
 	<li><a href="#rewrite-rule-missing-error">A 404 server error is being displayed (e.g. a 404 error).</a></li>
 	<li><a href="#rewrite-rule-error">A server error is being displayed (e.g. a &ldquo;500 Bad Request&rdquo; error).</a></li>
-	<li><a href="#relative-path-issues">When Ceon URI Mapping is enabled images stop appearing on the site!</a></li>
-	<li><a href="#relative-path-issues-layout">When Ceon URI Mapping is enabled the site's layout is messed up!</a></li>
-	<li><a href="#relative-path-issues-modules">When Ceon URI Mapping is enabled a module on the site doesn't work properly! (E.g. Dynamic menus/popups etc. stop working).</a></li>
+	<li><a href="#relative-path-issues">When Ceon URI Mapping is enabled, images stop appearing on the site!</a></li>
+	<li><a href="#relative-path-issues-layout">When Ceon URI Mapping is enabled, the site's layout is messed up!</a></li>
+	<li><a href="#relative-path-issues-modules">When Ceon URI Mapping is enabled, a module on the site doesn't work properly! (E.g. Dynamic menus/popups etc. stop working).</a></li>
 	<li><a href="#file-extensions-blocked">When the rewrite rule for Ceon URI Mapping is added, some file types on the site are blocked or showing up as 404s!</a></li>
 	<li><a href="#session-id">A session parameter (like &ldquo;<code>?zenid=XXXX</code>&rdquo;) is being added to the end of the store's URIs.</a></li>
 	<li><a href="#linked-products">A string beginning with &ldquo;<code>?cPath</code>&rdquo; is being added to the end of a product's URI.</a></li>
-	<li><a href="#rewrite-rule-blocking-addresses">After adding the rewrite rule access to part of the site (e.g. the site's control panel) is being blocked.</a></li>
+	<li><a href="#rewrite-rule-blocking-addresses">After adding the rewrite rule, access to part of the site (e.g. the site's control panel) is being blocked.</a></li>
 	<li><a href="#modifying-core-files">Some of the core files have already been modified for the site. How can the Ceon URI Mapping code be added?</a></li>
 	<li><a href="#modifying-template-files">Some of the template files for the site have already been modified. How can the Ceon URI Mapping code be added?</a></li>
 	<li><a href="#missing-config-group-option">The software is installed but there is no &ldquo;Ceon URI Mapping (SEO)&rdquo; option in the store's &ldquo;Configuration&rdquo; menu.</a></li>
@@ -187,7 +187,7 @@ document.write('.NoscriptAndPrintOutputBlock { display: none; }<' + '/style>');
 				<p>If the store uses a custom template, it may be using a file <span class="FileName">includes/templates/STORE-TEMPLATE/common/html_header.php</span>.</p>
 			</li>
 			<li class="NoMarginBottom">
-				<p class="NoMarginBottom">Make sure that the <code>&lt;base href=&quot;...</code> tag is present in which of these files the store uses - unfortunately some template creators, unprofessionally, accidentally leave out this essential tag.</p>
+				<p class="NoMarginBottom">Make sure that the <code>&lt;base href=&quot;...</code> tag is present in one of the files the store uses - unfortunately some template creators, unprofessionally, accidentally leave out this essential tag.</p>
 			</li>
 		</ul>
 		
@@ -208,7 +208,7 @@ document.write('.NoscriptAndPrintOutputBlock { display: none; }<' + '/style>');
 	</li>
 	
 	<li>
-		<h4><a name="relative-path-issues-layout" id="relative-path-issues-layout"></a>When Ceon URI Mapping is enabled the site's layout is messed up!</h4>
+		<h4><a name="relative-path-issues-layout" id="relative-path-issues-layout"></a>When Ceon URI Mapping is enabled, the site's layout is messed up!</h4>
 		
 		<p>This is the same issue that is covered in <a href="#relative-path-issues">this FAQ</a>.</p>
 		
@@ -216,7 +216,7 @@ document.write('.NoscriptAndPrintOutputBlock { display: none; }<' + '/style>');
 	</li>
 	
 	<li>
-		<h4><a name="relative-path-issues-modules" id="relative-path-issues-modules"></a>When Ceon URI Mapping is enabled a module on the site doesn't work properly! (E.g. Dynamic menus/popups etc. stop working)</h4>
+		<h4><a name="relative-path-issues-modules" id="relative-path-issues-modules"></a>When Ceon URI Mapping is enabled, a module on the site doesn't work properly! (E.g. Dynamic menus/popups etc. stop working)</h4>
 		
 		<p>This is <strong>quite likely</strong> to be a similar issue to that covered in <a href="#relative-path-issues">this FAQ</a>.</p>
 		
@@ -334,9 +334,9 @@ document.write('.NoscriptAndPrintOutputBlock { display: none; }<' + '/style>');
 	</li>
 	
 	<li>
-		<h4><a name="missing-config-group-option" id="missing-config-group-option"></a>The software is installed abut there is no &ldquo;Ceon URI Mapping (SEO)&rdquo; option in the store's &ldquo;Configuration&rdquo; menu.</h4>
+		<h4><a name="missing-config-group-option" id="missing-config-group-option"></a>The software is installed but there is no &ldquo;Ceon URI Mapping (SEO)&rdquo; option in the store's &ldquo;Configuration&rdquo; menu.</h4>
 		
-		<p>It essential that there is a section in the &ldquo;Configuration&rdquo; menu of the store's Zen Cart admin called &ldquo;Ceon URI Mapping (SEO)&rdquo;.</p>
+		<p>It is essential that there is a section in the &ldquo;Configuration&rdquo; menu of the store's Zen Cart admin called &ldquo;Ceon URI Mapping (SEO)&rdquo;.</p>
 		
 		<p>If this configuration group and option is missing Ceon URI Mapping will show and work within the Zen Cart admin but will <strong>not be enabled in the store</strong> - standard Zen Cart dynamic URIs will be used!</p>
 		
@@ -415,7 +415,7 @@ document.write('.NoscriptAndPrintOutputBlock { display: none; }<' + '/style>');
 
 <p class="BackToTop"><a href="#top">Back to top</a></p>
 
-<p id="footer"><a href="http://ceon.net/software/business/zen-cart?doc=zc-um" target="_blank"><img src="../_images/ceon-button-logo.png" alt="Ceon" id="ceon-button-logo" /></a><a href="http://jked.net" target="_blank"><img src="../_images/jked-logo.gif" alt="JKED" id="jked-logo" /></a>Module &amp; Documentation &copy; Copyright 2008-2012 <a href="http://ceon.net/software/business/zen-cart?doc=zc-um" target="_blank">Ceon</a></p>
+<p id="footer"><a href="http://ceon.net/software/business/zen-cart?doc=zc-um" target="_blank"><img src="../_images/ceon-button-logo.png" alt="Ceon" id="ceon-button-logo" /></a><a href="http://jked.net" target="_blank"><img src="../_images/jked-logo.gif" alt="JKED" id="jked-logo" /></a>Module &amp; Documentation &copy; Copyright 2008-2024 <a href="http://ceon.net/software/business/zen-cart?doc=zc-um" target="_blank">Ceon</a></p>
 
 	</div>
 </div>
