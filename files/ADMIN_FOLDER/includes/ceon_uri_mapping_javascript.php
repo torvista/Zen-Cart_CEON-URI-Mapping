@@ -295,6 +295,10 @@ window.onload = function(){
 	
 	$ceon_uri_mapping_admin = new CeonURIMappingAdminProductPages();
 	
+	$contents_start = 0;
+	if (!empty($GLOBALS['contents'])) {
+		$contents_start = count($GLOBALS['contents']) - 1;
+	}
 	$ceon_uri_mapping_admin->addURIMappingFieldsToProductMoveFieldsArray((int)$_GET['pID']);
 	
 	// END CEON URI MAPPING 1 of 1
@@ -302,7 +306,7 @@ window.onload = function(){
 	$ceonUriMappingMoveProduct = '';
 	$contents = $GLOBALS['contents'];
 	
-	for ($i = 0, $n = count($contents); $i < $n; $i++) {
+	for ($i = $contents_start, $n = count($contents); $i < $n; $i++) {
 		$ceonUriMappingMoveProduct .= $contents[$i]['text'];
 	}
 	echo json_encode(/*utf8_encode*/($ceonUriMappingMoveProduct));
