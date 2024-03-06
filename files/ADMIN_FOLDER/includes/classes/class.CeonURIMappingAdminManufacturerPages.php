@@ -257,7 +257,7 @@ class CeonURIMappingAdminManufacturerPages extends CeonURIMappingAdminManufactur
 		// New manufacturer doesn't have any previous URI mappings
 		$prev_uri_mappings = array();
 		
-		$uri_mapping_input_fields = $this->buildManufacturerURIMappingFields($prev_uri_mappings);
+		$uri_mapping_input_fields = $this->buildManufacturerURIMappingFormFields($prev_uri_mappings);
 		
 		$contents[] = array('text' => $uri_mapping_input_fields);
 	}

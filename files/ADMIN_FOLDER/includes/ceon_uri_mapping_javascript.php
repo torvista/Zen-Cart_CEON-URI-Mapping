@@ -104,9 +104,9 @@ window.onload = function(){
 if (defined('FILENAME_MANUFACTURERS') && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!strstr(FILENAME_MANUFACTURERS, '.php') ? FILENAME_MANUFACTURERS . '.php' : FILENAME_MANUFACTURERS) && isset($_GET['action']) && $_GET['action'] == 'edit') {
 	$ceon_class_name = 'row infoBoxContent';
 ?>
-	<script title="ceon_uri_mapping_javascript(<?php echo __LINE__; ?>)">
+	<script title="ceon_uri_mapping_javascript(<?= __LINE__ ?>)">
 window.onload = function(){
-	var ceonUriMappingGeneratedURI = document.createElement("div");
+	let ceonUriMappingGeneratedURI = document.createElement("div");
 	ceonUriMappingGeneratedURI.setAttribute("class", "<?php echo $ceon_class_name; ?>");
 	ceonUriMappingGeneratedURI.innerHTML = <?php
 	require_once(DIR_WS_CLASSES . 'class.CeonURIMappingAdminManufacturerPages.php');
@@ -136,44 +136,30 @@ window.onload = function(){
 if (defined('FILENAME_MANUFACTURERS') && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!strstr(FILENAME_MANUFACTURERS, '.php') ? FILENAME_MANUFACTURERS . '.php' : FILENAME_MANUFACTURERS) && isset($_GET['action']) && $_GET['action'] == 'new') {
 	$ceon_class_name = 'row infoBoxContent';
 ?>
-	<script title="ceon_uri_mapping_javascript(<?php echo __LINE__; ?>)">
+	<script title="ceon_uri_mapping_javascript(<?= __LINE__ ?>)">
 window.onload = function(){
-	var ceonUriMappingGeneratedURI = document.createElement("div");
+	let ceonUriMappingGeneratedURI = document.createElement("div");
 	ceonUriMappingGeneratedURI.setAttribute("class", "<?php echo $ceon_class_name; ?>");
-	
 	ceonUriMappingGeneratedURI.innerHTML = <?php
-
-	$languages = zen_get_languages();
-
-	// BEGIN CEON URI MAPPING 3 of 4
-	require_once(DIR_WS_CLASSES . 'class.CeonURIMappingAdminManufacturerPages.php');
-	
+    $languages = zen_get_languages();
+    require_once(DIR_WS_CLASSES . 'class.CeonURIMappingAdminManufacturerPages.php');
 	$ceon_uri_mapping_admin = new CeonURIMappingAdminManufacturerPages();
-	
+    $GLOBALS['contents'] = [];
 	$ceon_uri_mapping_admin->addURIMappingFieldsToAddManufacturerFieldsArray();
-	
-	// END CEON URI MAPPING 3 of 4
-	
-	$text_str = '';
-	foreach ($GLOBALS['contents'] as $key => $value) {
-		$text_str .= $value['text'];
-	}
-	
-	echo json_encode(/*utf8_encode*/($text_str));
-	// END CEON URI MAPPING 3 of 3
-	 ?>;
-	
-	var classList = document.getElementsByClassName("<?php echo $ceon_class_name; ?>");
-	var place = classList[classList.length - 1];
-	
+    $ceonUriMappingDiv = '';
+    $contents = $GLOBALS['contents'];
+    for ($i = 0; $i < count($contents); $i++) {
+        $ceonUriMappingDiv .= $contents[$i]['text'];
+    }
+	echo json_encode($ceonUriMappingDiv);
+	?>;
+	let classList = document.getElementsByClassName("<?=$ceon_class_name; ?>");
+	let place = classList[classList.length - 1];
 	if (!classList.length) {
-		var formList = document.forms;
+        let formList = document.forms;
 		place = formList[formList.length - 1][formList[formList.length - 1].length - 1];
 	}
-	
 	place.parentElement.insertBefore(ceonUriMappingGeneratedURI, place);
-
-//   ?>;
 };
 	</script>
 <?php }
