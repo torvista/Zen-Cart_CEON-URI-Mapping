@@ -244,10 +244,8 @@ window.onload = function(){
 	
 	$ceon_uri_mapping_admin = new CeonURIMappingAdminProductPages();
 
-	$contents_start = 0;
-	if (!empty($GLOBALS['contents'])) {
-		$contents_start = count($GLOBALS['contents']) - 1;
-	}
+	$GLOBALS['contents'] = [];
+
 	$ceon_uri_mapping_admin->addURIMappingFieldsToProductCopyFieldsArray((int) $_GET['pID']);
 	
 	// END CEON URI MAPPING 1 of 1
@@ -255,7 +253,7 @@ window.onload = function(){
 	$ceonUriMappingCopyProduct = '';
 	$contents = $GLOBALS['contents'];
 
-	for ($i = $contents_start, $n = count($contents) - 1; $i < $n; $i++) {
+	for ($i = 0; $i < count($contents); $i++) {
 		$ceonUriMappingCopyProduct .= $contents[$i]['text'];
 	}
 	echo json_encode(/*utf8_encode*/($ceonUriMappingCopyProduct));
@@ -295,10 +293,8 @@ window.onload = function(){
 	
 	$ceon_uri_mapping_admin = new CeonURIMappingAdminProductPages();
 	
-	$contents_start = 0;
-	if (!empty($GLOBALS['contents'])) {
-		$contents_start = count($GLOBALS['contents']) - 1;
-	}
+	$GLOBALS['contents'] = [];
+
 	$ceon_uri_mapping_admin->addURIMappingFieldsToProductMoveFieldsArray((int)$_GET['pID']);
 	
 	// END CEON URI MAPPING 1 of 1
@@ -306,7 +302,7 @@ window.onload = function(){
 	$ceonUriMappingMoveProduct = '';
 	$contents = $GLOBALS['contents'];
 	
-	for ($i = $contents_start, $n = count($contents); $i < $n; $i++) {
+	for ($i = 0; $i < count($contents); $i++) {
 		$ceonUriMappingMoveProduct .= $contents[$i]['text'];
 	}
 	echo json_encode(/*utf8_encode*/($ceonUriMappingMoveProduct));
