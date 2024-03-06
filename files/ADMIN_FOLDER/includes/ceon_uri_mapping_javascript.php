@@ -109,35 +109,24 @@ window.onload = function(){
 	var ceonUriMappingGeneratedURI = document.createElement("div");
 	ceonUriMappingGeneratedURI.setAttribute("class", "<?php echo $ceon_class_name; ?>");
 	ceonUriMappingGeneratedURI.innerHTML = <?php
-
-	// BEGIN CEON URI MAPPING 4 of 4
 	require_once(DIR_WS_CLASSES . 'class.CeonURIMappingAdminManufacturerPages.php');
-	
 	$ceon_uri_mapping_admin = new CeonURIMappingAdminManufacturerPages();
-	
-	$ceon_uri_mapping_admin->addURIMappingFieldsToEditManufacturerFieldsFormArray((int) $_GET['mID']);
-	
-	// END CEON URI MAPPING 4 of 4
-	
-	$text_str = '';
-	foreach ($GLOBALS['contents'] as $key => $value) {
-		$text_str .= isset($value['text']) ? $value['text'] : '';
-	}
-	
-	echo json_encode(/*utf8_encode*/($text_str));
-	// END CEON URI MAPPING 3 of 3
+    $GLOBALS['contents'] = []; 
+    $ceon_uri_mapping_admin->addURIMappingFieldsToEditManufacturerFieldsFormArray((int) $_GET['mID']);
+    $ceonUriMappingDiv = '';
+    $contents = $GLOBALS['contents'];
+    for ($i = 0; $i < count($contents); $i++) {
+        $ceonUriMappingDiv .= $contents[$i]['text'];
+    }
+	echo json_encode($ceonUriMappingDiv);
 ?>;
-
-	var classList = document.getElementsByClassName("row infoBoxContent");
-	var place = classList[classList.length - 1];
-	
+	let classList = document.getElementsByClassName("row infoBoxContent");
+	let place = classList[classList.length - 1];
 	if (!classList.length) {
-		var formList = document.forms;
+		let formList = document.forms;
 		place = formList[formList.length - 1][formList[formList.length - 1].length - 1];
 	}
-	
 	place.parentElement.insertBefore(ceonUriMappingGeneratedURI, place);
-
 };
 	</script>
 <?php }
@@ -451,5 +440,3 @@ window.onload = function(){
 };
 	</script>
 <?php }
-	
-	
