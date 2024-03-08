@@ -211,7 +211,7 @@ if (defined('FILENAME_CATEGORY_PRODUCT_LISTING') && $_SERVER['SCRIPT_NAME'] == D
 	<script title="ceon_uri_mapping_javascript(<?php echo __LINE__; ?>)">
 window.onload = function(){
 	var ceonUriMappingGeneratedURI = document.createElement("div");
-	ceonUriMappingGeneratedURI.setAttribute('class', 'row infoBoxContent');
+	ceonUriMappingGeneratedURI.setAttribute('class', 'row infoBoxContent duplicate-only hiddenField');
 	ceonUriMappingGeneratedURI.innerHTML = <?php
 
 	// BEGIN CEON URI MAPPING 1 of 1
