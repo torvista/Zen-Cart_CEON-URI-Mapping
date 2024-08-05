@@ -28,7 +28,11 @@ You should get a "Congratulations" Message...if not, sorry, you'll have to read 
 
 1. [OPTIONAL but RECOMMENDED] Take a note of the FAQs in the original documentation.
 
-1. Set up the URI mappings for categories, products, manufacturers and EZ-Pages.
+1. Set up the URI mappings for categories, products, manufacturers and EZ-Pages.  
+Note this "free" version of URI Mapping does not automatically generate static urls for the products/categories/pages that already exist (for example when browsing the storefront). The static urls are only generated when those items are edited in the Admin, one by one...
+
+To add auto-generation, generate the urls en masse and define the structure of the static url as a template per category/manufacturer/product, you need the (paid) add-on: https://ceon.net/seo-modules/ceon-uri-mapping-manager  
+Don't waste your time, just buy it (say I). You'll have lots of merging fun adding it into the files from this repository, but that's just the way it is while there is no real-time CEON-managed bug-fixing process.
 
 ## Forum Support:
 https://www.zen-cart.com/showthread.php?225478-Ceon-URI-Mapping-V5-0
@@ -41,4 +45,3 @@ removed ceon_uri_mapping_sessions_define.php: not needed anymore
 11/02/2024: Simplify directory structure for comparisons/remove obsolete files
 
 11/02/2024: Upload of version 5.1.1
-
