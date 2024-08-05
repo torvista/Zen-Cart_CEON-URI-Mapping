@@ -17,7 +17,7 @@ As the template folders have their own names, there is no danger of overwriting 
 
 1. [Zen Cart Versions 1.3.0 - 1.3.8 Only] Enable Canonical URI Support.
 
-1. In the Admin, Browse to Modules > URI Mapping Config to auto- install the database tables. 
+1. In the Admin, Browse to Modules > URI Mapping Config to auto-install the database tables. 
 
 1. Browse to Ceon URI Mapping (SEO) Config->Installation Check->Installation Check->Click here to go to the Ceon URI Mapping Installation Check page.  
 You should get a "Congratulations" Message...if not, sorry, you'll have to read the error message and figure it out.
