@@ -38,6 +38,8 @@ Don't waste your time, just buy it (say I). You'll have lots of merging fun addi
 https://www.zen-cart.com/showthread.php?225478-Ceon-URI-Mapping-V5-0
 
 ## Changelog
+31/12/2025: remove includes\init_includes\overrides\init_add_crumbs.php. Not necessary ZC158+
+
 07/08/2024:  
 update template RC header for mobile_detect  
 removed ceon_uri_mapping_sessions_define.php: not needed anymore
