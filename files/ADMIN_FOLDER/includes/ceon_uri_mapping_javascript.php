@@ -55,7 +55,7 @@ window.onload = function(){
 
 	$languages = zen_get_languages();
 	
-	$ceonUriMappingPreview = '';
+	$ceonUriMappingPreview = '<p class="control-label">' . CEON_URI_MAPPING_TEXT_PRODUCT_URI . '</p>';
 	
 	if (empty($ceon_uri_mapping_admin) || !is_object($ceon_uri_mapping_admin)) {
 		if (!class_exists('CeonURIMappingAdminProductPages')) {
@@ -71,7 +71,7 @@ window.onload = function(){
 	echo json_encode(/*utf8_encode*/($ceonUriMappingPreview));
 	 ?>;
 	var classList = document.getElementsByClassName("row");
-	var place = classList[classList.length - 4];
+	var place = classList[classList.length - 1];
 	
 	if (!classList.length) {
 		formList = document.forms;

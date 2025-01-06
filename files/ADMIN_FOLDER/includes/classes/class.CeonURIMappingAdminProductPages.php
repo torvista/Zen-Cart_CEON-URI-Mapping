@@ -730,9 +730,6 @@ $autogen_selected = true;
 	public function productPreviewExportURIMappingInfo($language_info): string
     {
 		$contents = '
-			<div>
-				<span>' . zen_draw_separator('pixel_trans.gif', '1', '10') . '</span>
-			</div>
 				<table>
 				<tr>
 					<td style="width: 18em; vertical-align: top;">
