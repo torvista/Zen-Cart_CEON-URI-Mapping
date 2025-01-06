@@ -293,7 +293,7 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 
 		$uri_mapping_input_fields = zen_draw_separator('pixel_trans.gif', '1', '10') . '
 				' . zen_draw_separator('pixel_black.gif', '100%', '2') .
-				zen_draw_label(CEON_URI_MAPPING_TEXT_PRODUCT_URI, 'uri-mappings', 'class ="col-sm-3 control-label"') . '
+				'<p class="col-sm-3 control-label">' . CEON_URI_MAPPING_TEXT_PRODUCT_URI . '</p>' . '
 				<div class="col-sm-9 col-md-6">' . "\n";
 
 		for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
@@ -346,7 +346,7 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 				$autogen_selected = true;
 			}
 
-			$uri_mapping_input_fields .= zen_draw_checkbox_field('uri-mapping-autogen', '1', $autogen_selected) .
+			$uri_mapping_input_fields .= '<label>' . zen_draw_checkbox_field('uri-mapping-autogen', '1', $autogen_selected) .
 				' ' . $autogen_message;
 		} else {
 			$uri_mapping_input_fields .= CEON_URI_MAPPING_TEXT_URI_AUTOGEN_DISABLED;
