@@ -40,7 +40,7 @@ require_once(DIR_FS_CATALOG . DIR_WS_CLASSES . 'class.CeonURIMappingAdminProduct
 class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 {
 	// {{{ properties
-	
+
 	/**
 	 * Maintains a copy of the current URI mappings entered/generated for the product.
 	 *
@@ -48,7 +48,7 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 	 * @access  protected
 	 */
 	protected $_uri_mappings = array();
-	
+
 	/**
 	 * Maintains a copy of any previous URI mappings for the product.
 	 *
@@ -56,7 +56,7 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 	 * @access  protected
 	 */
 	protected $_prev_uri_mappings = array();
-	
+
 	/**
 	 * Flag indicates whether or not auto-generation of URI mappings has been selected for the product.
 	 *
@@ -64,7 +64,7 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 	 * @access  protected
 	 */
 	protected $_uri_mapping_autogen = false;
-	
+
 	/**
 	 * Maintains a list of any URI mappings for the product which clash with existing mappings.
 	 *
@@ -72,7 +72,7 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 	 * @access  protected
 	 */
 	protected $_clashing_mappings = array();
-	
+
 	/**
 	 * Maintains a list of any URI mappings for the product for which auto-generation failed to produce a valid
 	 * mapping.
@@ -81,35 +81,35 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 	 * @access  protected
 	 */
 	protected $_autogeneration_errors = array();
-	
+
 	// }}}
-	
-	
+
+
 	// {{{ Class Constructor
-	
+
 	/**
 	 * Creates a new instance of the CeonURIMappingAdminProductPages class.
-	 * 
+	 *
 	 * @access  public
 	 */
 	public function __construct()
 	{
 		// Load the language definition file for the current language
 		@include_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . 'ceon_uri_mapping_product_pages.php');
-		
+
 		if (!defined('CEON_URI_MAPPING_TEXT_PRODUCT_URI') && $_SESSION['language'] != 'english') {
 			// Fall back to english language file
 			@include_once(DIR_WS_LANGUAGES . 'english/' . 'ceon_uri_mapping_product_pages.php');
 		}
-		
+
 		parent::__construct();
 	}
-	
+
 	// }}}
-	
-	
+
+
 	// {{{ collectInfoHandler()
-	
+
 	/**
 	 * Handles the Ceon URI Mapping functionality when the product admin page is being displayed.
 	 *
@@ -119,7 +119,7 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 	public function collectInfoHandler()
 	{
 		global $db;
-		
+
 		// Get any current product URI mappings from the database
 		if (isset($_GET['pID']) && empty($_POST)) {
 			// Get the product's type handler
@@ -134,52 +134,52 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 					pt.type_id = p.products_type
 				WHERE
 					p.products_id = '" . (int) $_GET['pID'] . "';";
-			
+
 			$product_type_handler_result = $db->Execute($product_type_handler_query);
-			
+
 			if (!$product_type_handler_result->EOF) {
 				$product_type_handler = $product_type_handler_result->fields['type_handler'];
-				
+
 				$columns_to_retrieve = array(
 					'language_id',
 					'uri'
 					);
-				
+
 				$selections = array(
 					'main_page' => $product_type_handler . '_info',
 					'associated_db_id' => (int) $_GET['pID'],
 					'current_uri' => 1
 					);
-				
+
 				$prev_uri_mappings_result = $this->getURIMappingsResultset($columns_to_retrieve, $selections);
-				
+
 				while (!$prev_uri_mappings_result->EOF) {
 					$this->_prev_uri_mappings[$prev_uri_mappings_result->fields['language_id']] =
 						$prev_uri_mappings_result->fields['uri'];
-					
+
 					$prev_uri_mappings_result->MoveNext();
 				}
 			} else {
 				// Product does not exist and therefore not expected to have previous mappings.
 				$this->_prev_uri_mappings = array();
 			}
-			
+
 			$this->_uri_mappings = $this->_prev_uri_mappings;
-			
+
 		} else {
 			// Use the URI mappings passed in the POST variables
 			$this->_prev_uri_mappings = isset($_POST['prev-uri-mappings']) ? $_POST['prev-uri-mappings'] : array();
 			$this->_uri_mappings = isset($_POST['uri-mappings']) ? $_POST['uri-mappings'] : array();
-			
+
 			$this->_uri_mapping_autogen = (isset($_POST['uri-mapping-autogen']) ? true : false);
 		}
 	}
-	
+
 	// }}}
-	
-	
+
+
 	// {{{ collectInfoBuildURIMappingFields()
-	
+
 	/**
 	 * Builds the input fields for adding/editing URI mappings for products.
 	 *
@@ -189,13 +189,13 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 	public function collectInfoBuildURIMappingFields()
 	{
 		global $languages;
-		
+
 		$num_uri_mappings = count($this->_uri_mappings);
-		
+
 		$num_languages = count($languages);
-		
+
 		$uri_mapping_input_fields = '';
-		
+
 		$uri_mapping_input_fields .= '<tr>
 				<td colspan="2">' . zen_draw_separator('pixel_trans.gif', '1', '10') . '</td>
 				</tr>
@@ -206,42 +206,42 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 				<td class="main" valign="top" style="padding-top: 0.5em;">' .
 				CEON_URI_MAPPING_TEXT_PRODUCT_URI . '</td>
 				<td class="main" style="padding-top: 0.5em; padding-bottom: 0.5em;">' . "\n";
-		
+
 		for ($i = 0, $n = count($languages); $i < $n; $i++) {
 			$uri_mapping_input_fields .= "<p>";
-			
+
 			if (!isset($this->_prev_uri_mappings[$languages[$i]['id']])) {
 				$this->_prev_uri_mappings[$languages[$i]['id']] = '';
 			}
 			if (!isset($this->_uri_mappings[$languages[$i]['id']])) {
 				$this->_uri_mappings[$languages[$i]['id']] = '';
 			}
-			
+
 			$uri_mapping_input_fields .= zen_draw_hidden_field('prev-uri-mappings[' . $languages[$i]['id'] . ']',
 				$this->_prev_uri_mappings[$languages[$i]['id']]);
-			
+
 			$uri_mapping_input_fields .= zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] .
 				'/images/' . $languages[$i]['image'], $languages[$i]['name']) . '&nbsp;' .
 				zen_draw_input_field('uri-mappings[' . $languages[$i]['id'] . ']',
 				$this->_uri_mappings[$languages[$i]['id']], 'style="width:100%"');
-			
+
 			$uri_mapping_input_fields .= "</p>\n";
 		}
-		
+
 		$uri_mapping_input_fields .= "<p>";
-		
+
 		if ($this->_autogenEnabled()) {
 			if ($num_languages == 1) {
 				$autogen_message = CEON_URI_MAPPING_TEXT_PRODUCT_URI_AUTOGEN;
 			} else {
 				$autogen_message = CEON_URI_MAPPING_TEXT_PRODUCT_URIS_AUTOGEN;
 			}
-			
+
 			if ($num_uri_mappings == 0) {
 				$autogen_selected = true;
 			} else {
 				$autogen_selected = false;
-				
+
 				if ($num_uri_mappings == 1) {
 					$autogen_message .= '<br />' . CEON_URI_MAPPING_TEXT_URI_AUTOGEN_ONE_EXISTING_MAPPING;
 				} else if ($num_uri_mappings == $num_languages) {
@@ -250,33 +250,33 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 					$autogen_message .= '<br />' . CEON_URI_MAPPING_TEXT_URI_AUTOGEN_SOME_EXISTING_MAPPINGS;
 				}
 			}
-			
+
 			if (!$autogen_selected && $this->_uri_mapping_autogen) {
 				$autogen_selected = true;
 			}
-			
+
 			$uri_mapping_input_fields .= zen_draw_checkbox_field('uri-mapping-autogen', '1', $autogen_selected) .
 				' ' . $autogen_message;
 		} else {
 			$uri_mapping_input_fields .= CEON_URI_MAPPING_TEXT_URI_AUTOGEN_DISABLED;
 		}
-		
+
 		$uri_mapping_input_fields .= "</p>";
-		
+
 		$uri_mapping_input_fields .= "\n\t\t</td>\n\t</tr>";
-		
+
 		$uri_mapping_input_fields .= '<tr>
 				<td colspan="2">' . zen_draw_separator('pixel_black.gif', '100%', '2') . '</td>
 				</tr>';
-		
+
 		return $uri_mapping_input_fields;
 	}
-	
+
 	/// }}}
-	
-	
+
+
 	// {{{ collectInfoBuildURIMappingForm()
-	
+
 	/**
 	 * Builds the input fields for adding/editing URI mappings for products.
 	 *
@@ -286,57 +286,53 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 	public function collectInfoBuildURIMappingForm()
 	{
 		global $languages;
-		
+
 		$num_uri_mappings = sizeof($this->_uri_mappings);
-		
+
 		$num_languages = sizeof($languages);
-		/*
-	<div class="form-group">
-			<?php echo zen_draw_label(TEXT_PRODUCTS_SORT_ORDER, 'products_sort_order', 'class="col-sm-3 control-label"'); ?>
-		<div class="col-sm-9 col-md-6">
-			<?php echo zen_draw_input_field('products_sort_order', $pInfo->products_sort_order, 'class="form-control"'); ?>
-		</div>
-*/
+
 		$uri_mapping_input_fields = zen_draw_separator('pixel_trans.gif', '1', '10') . '
-				' . zen_draw_separator('pixel_black.gif', '100%', '2') . 
+				' . zen_draw_separator('pixel_black.gif', '100%', '2') .
 				zen_draw_label(CEON_URI_MAPPING_TEXT_PRODUCT_URI, 'uri-mappings', 'class ="col-sm-3 control-label"') . '
 				<div class="col-sm-9 col-md-6">' . "\n";
-		
+
 		for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
 			$uri_mapping_input_fields .= '<div class="input-group">' . "\n" . '<span class="input-group-addon">';
-			
+
 			if (!isset($this->_prev_uri_mappings[$languages[$i]['id']])) {
 				$this->_prev_uri_mappings[$languages[$i]['id']] = '';
 			}
 			if (!isset($this->_uri_mappings[$languages[$i]['id']])) {
 				$this->_uri_mappings[$languages[$i]['id']] = '';
 			}
-			
+
 			$uri_mapping_input_fields .= zen_draw_hidden_field('prev-uri-mappings[' . $languages[$i]['id'] . ']',
 				$this->_prev_uri_mappings[$languages[$i]['id']]);
-			
+
 			$uri_mapping_input_fields .= '' . zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] .
 				'/images/' . $languages[$i]['image'], $languages[$i]['name']) . '</span>' .
 				zen_draw_input_field('uri-mappings[' . $languages[$i]['id'] . ']',
 				$this->_uri_mappings[$languages[$i]['id']], 'style="width:100%" class="form-control"');//steve removed size, added css width (WAS'size="60"')
-			
+
 			$uri_mapping_input_fields .= "</div>\n";
 		}
-		
+
 		$uri_mapping_input_fields .= '<br><div class="input-group">';
-		
+
 		if ($this->_autogenEnabled()) {
 			if ($num_languages == 1) {
 				$autogen_message = CEON_URI_MAPPING_TEXT_PRODUCT_URI_AUTOGEN;
 			} else {
 				$autogen_message = CEON_URI_MAPPING_TEXT_PRODUCT_URIS_AUTOGEN;
 			}
-			
+//steve todo maybe need to add /label
+//            $autogen_message .= '</label>';
+
 			if ($num_uri_mappings == 0) {
 				$autogen_selected = true;
 			} else {
 				$autogen_selected = false;
-				
+
 				if ($num_uri_mappings == 1) {
 					$autogen_message .= '<br />' . CEON_URI_MAPPING_TEXT_URI_AUTOGEN_ONE_EXISTING_MAPPING;
 				} else if ($num_uri_mappings == $num_languages) {
@@ -345,33 +341,33 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 					$autogen_message .= '<br />' . CEON_URI_MAPPING_TEXT_URI_AUTOGEN_SOME_EXISTING_MAPPINGS;
 				}
 			}
-			
+
 			if (!$autogen_selected && $this->_uri_mapping_autogen) {
 				$autogen_selected = true;
 			}
-			
+
 			$uri_mapping_input_fields .= zen_draw_checkbox_field('uri-mapping-autogen', '1', $autogen_selected) .
 				' ' . $autogen_message;
 		} else {
 			$uri_mapping_input_fields .= CEON_URI_MAPPING_TEXT_URI_AUTOGEN_DISABLED;
 		}
-		
+
 		$uri_mapping_input_fields .= "</div><br>";
-		
+
 		$uri_mapping_input_fields .= "\n\t\t</div>";
-		
+
 		$uri_mapping_input_fields .= "
 				" . zen_draw_separator('pixel_black.gif', '100%', '2') . "
 				";
-		
+
 		return $uri_mapping_input_fields;
 	}
-	
+
 	/// }}}
-	
-	
+
+
 	// {{{ productPreviewProcessSubmission()
-	
+
 	/**
 	 * Handles the Ceon URI Mapping functionality when a product page has been submitted for preview.
 	 *
@@ -382,16 +378,16 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 	public function productPreviewProcessSubmission($current_category_id)
 	{
 		//global $db;
-		
+
 		$this->_prev_uri_mappings = isset($_POST['prev-uri-mappings']) ? $_POST['prev-uri-mappings'] : array();
 		$this->_uri_mappings = isset($_POST['uri-mappings']) ? $_POST['uri-mappings'] : array();
-		
+
 		$languages = zen_get_languages();
-		
+
 		// Are any supplied URIs to be overridden with generated URIs? If so, build a preview of these URIs to be
 		// displayed
 		$this->_uri_mapping_autogen = (isset($_POST['uri-mapping-autogen']) ? true : false);
-		
+
 		if ($this->_uri_mapping_autogen) {
 			// Is a linked product having its master category changed?
 			if (isset($_POST['master_category']) && $_POST['master_category'] > 0) {
@@ -400,17 +396,17 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 				// Find out where this product is being added/updated
 				$master_categories_id = (int) $current_category_id;
 			}
-			
+
 			// Need to store names so they can be appended to the URI being generated for the product
 			$names = isset($_POST['products_name']) ? $_POST['products_name'] : '';
-			
+
 			for ($i = 0, $n = count($languages); $i < $n; $i++) {
 				$product_id = (isset($_GET['pID']) ? (int) $_GET['pID'] : null);
-				
+
 				$uri_mapping = $this->autogenProductURIMapping($product_id, $master_categories_id,
 					$names[$languages[$i]['id']], $languages[$i]['code'], $languages[$i]['id'],
 					$_POST['products_model']);
-				
+
 				if ($uri_mapping == CEON_URI_MAPPING_GENERATION_ATTEMPT_FOR_PRODUCT_WITH_NO_NAME ||
 						$uri_mapping == CEON_URI_MAPPING_GENERATION_ATTEMPT_FOR_PRODUCT_WITH_NO_MODEL) {
 					// Can't generate the URI because of missing "uniqueness" data
@@ -419,25 +415,25 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 					} else {
 						$message = CEON_URI_MAPPING_TEXT_PREVIEW_PRODUCT_ERROR_PRODUCT_HAS_NO_MODEL;
 					}
-					
+
 					$this->_autogeneration_errors[$languages[$i]['id']] = $message;
-					
+
 					// Set the "new" mapping back to the previous, so it won't be updated
 					$this->_uri_mappings[$languages[$i]['id']] = $this->_prev_uri_mappings[$languages[$i]['id']];
-				
+
 				} else if ($uri_mapping ==
 						CEON_URI_MAPPING_GENERATION_ATTEMPT_FOR_CATEGORY_PATH_PART_WITH_NO_NAME) {
 					// Can't generate the URI because of invalid data
 					$this->_autogeneration_errors[$languages[$i]['id']] =
 						CEON_URI_MAPPING_TEXT_PREVIEW_PRODUCT_ERROR_CATEGORY_HAS_NO_NAME;
-					
+
 					// Set the "new" mapping back to the previous, so it won't be updated
 					$this->_uri_mappings[$languages[$i]['id']] = $this->_prev_uri_mappings[$languages[$i]['id']];
-					
+
 				} else {
 					// Auto-generated URI is fine to use
 					$uri_mapping = $this->_cleanUpURIMapping($uri_mapping);
-					
+
 					$this->_uri_mappings[$languages[$i]['id']] = $uri_mapping;
 				}
 			}
@@ -447,7 +443,7 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 					$this->_cleanUpURIMapping($this->_uri_mappings[$languages[$i]['id']]);
 			}
 		}
-		
+
 		// Check that the mapping(s) just entered/generated doesn't/don't clash with any existing mapping(s), so
 		// the user can be notified
 		for ($i = 0, $n = count($languages); $i < $n; $i++) {
@@ -455,26 +451,26 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 				// Don't check for a clash with the previous mapping!
 				continue;
 			}
-			
+
 			$mapping_clashed = false;
-			
+
 			$columns_to_retrieve = array(
 				'main_page',
 				'associated_db_id',
 				'query_string_parameters'
 				);
-			
+
 			$selections = array(
 				'uri' => zen_db_prepare_input($this->_uri_mappings[$languages[$i]['id']]),
 				'current_uri' => 1,
 				'language_id' => $languages[$i]['id']
 				);
-			
+
 			$order_by = 'current_uri DESC';
-			
+
 			$existing_uri_mapping_result =
 				$this->getURIMappingsResultset($columns_to_retrieve, $selections, $order_by, 1);
-			
+
 			// If the existing mapping is simply having some capitalisation changed then a case insensitive
 			// comparison might result in a false positive for a mapping clash, so prevent that by checking the
 			// mapping's settings don't match
@@ -486,38 +482,38 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 				// This mapping clashes with an existing mapping
 				$mapping_clashed = true;
 			}
-			
+
 			if ($mapping_clashed) {
 				// Take a copy of the mapping which clashed
 				$this->_clashing_mappings[$languages[$i]['id']] = $this->_uri_mappings[$languages[$i]['id']];
-				
+
 				if ($this->_mappingClashAutoAppendInteger()) {
 					// Attempt to find a unique variation of the mapping by appending an auto-incrementing integer
 					$uniqueness_integer = 1;
-					
+
 					$base_uri = $this->_uri_mappings[$languages[$i]['id']];
-					
+
 					$unique_mapping_found = false;
-					
+
 					while (!$unique_mapping_found) {
 						$uri = $base_uri . $uniqueness_integer;
-						
+
 						$columns_to_retrieve = array(
 							'main_page',
 							'associated_db_id'
 							);
-						
+
 						$selections = array(
 							'uri' => zen_db_prepare_input($uri),
 							'current_uri' => 1,
 							'language_id' => $languages[$i]['id']
 							);
-						
+
 						$order_by = 'current_uri DESC';
-						
+
 						$existing_uri_mapping_result =
 							$this->getURIMappingsResultset($columns_to_retrieve, $selections, $order_by, 1);
-						
+
 						if (!$existing_uri_mapping_result->EOF) {
 							// Perform a sanity check to see if this matches the product's current
 							// URI. If so, can take it that it was previously auto-appended
@@ -528,9 +524,9 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 									(int) $_GET['pID']) {
 								// Match found so assuming that the URI hasn't actually changed
 								unset($this->_clashing_mappings[$languages[$i]['id']]);
-								
+
 								$this->_uri_mappings[$languages[$i]['id']] = $uri;
-								
+
 								// Break out of this loop and advance to next URI language
 								continue 2;
 							}
@@ -539,29 +535,29 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 							// mapping, use it!
 							$unique_mapping_found = true;
 						}
-						
+
 						$uniqueness_integer++;
 					}
-					
+
 					// A unique URI has been generated, store it for use later
 					$this->_uri_mappings[$languages[$i]['id']] = $uri;
-					
+
 				} else {
 					// No attempt should be made to create a unique variation of the mapping, instead the user must
 					// be warned that the mapping was not created for this product
-					
+
 					// Set the "new" mapping back to the previous, so it won't be updated
 					$this->_uri_mappings[$languages[$i]['id']] = $this->_prev_uri_mappings[$languages[$i]['id']];
 				}
 			}
 		}
 	}
-	
+
 	// }}}
-	
-	
+
+
 	// {{{ productPreviewInitialLoad()
-	
+
 	/**
 	 * Handles the Ceon URI Mapping functionality when a product page is loaded for preview.
 	 *
@@ -574,36 +570,36 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 	{
 		$this->_prev_uri_mappings = array();
 		$this->_uri_mappings = array();
-		
+
 		$this->_uri_mapping_autogen = false;
-		
+
 		// Get any current product URI mappings from the database
 		$columns_to_retrieve = array(
 			'language_id',
 			'uri'
 			);
-		
+
 		$selections = array(
 			'main_page' => zen_db_prepare_input($product_type . '_info'),
 			'associated_db_id' => $product_id,
 			'current_uri' => 1
 			);
-		
+
 		$uri_mappings_result = $this->getURIMappingsResultset($columns_to_retrieve, $selections);
-		
+
 		while (!$uri_mappings_result->EOF) {
 			$this->_uri_mappings[$uri_mappings_result->fields['language_id']] =
 				$uri_mappings_result->fields['uri'];
-			
+
 			$uri_mappings_result->MoveNext();
 		}
 	}
-	
+
 	// }}}
-	
-	
+
+
 	// {{{ productPreviewOutputURIMappingInfo()
-	
+
 	/**
 	 * Outputs the information about the product's URI mapping(s) on the product preview page.
 	 *
@@ -635,7 +631,7 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 				echo '<p style="float: left;">' . zen_image(DIR_WS_CATALOG_LANGUAGES .
 					$language_info['directory'] . '/images/' . $language_info['image'], $language_info['name']) .
 				'</p>';
-				
+
 				if ((isset($this->_uri_mappings[$language_info['id']]) &&
 						strlen($this->_uri_mappings[$language_info['id']]) > 0) ||
 						($this->_uri_mapping_autogen &&
@@ -647,25 +643,25 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 								// A new unique URI will have been generated
 								echo '<p style="margin: 0 0 0 50px; color: #f00;">' .
 									CEON_URI_MAPPING_TEXT_URI_ORIGINALLY_GENERATED . '</p>';
-								
+
 								echo '<p style="margin-left: 50px;"><a href="' . HTTP_SERVER .
 									$this->_uri_mappings[$language_info['id']] . '" target="_blank">' .
 									$this->_clashing_mappings[$language_info['id']] . '</a></p>';
-								
+
 								echo '<p style="margin-left: 50px;">' .
 									CEON_URI_MAPPING_TEXT_URI_GENERATED_AUTO_APPENDED . '</p>';
-								
+
 								echo '<p style="margin-left: 50px;">' .
 									$this->_uri_mappings[$language_info['id']] . '</p>';
-								
+
 								echo '<p style="margin-left: 50px;">' .
 									CEON_URI_MAPPING_TEXT_UPDATE_WILL_USE_AUTO_APPENDED_MAPPING;
-								
+
 							} else {
 								// User is simply to be warned about the clash
 								echo '<p style="margin: 0 0 0 50px; color: #f00;">' .
 									CEON_URI_MAPPING_TEXT_URI_GENERATED_WHICH_IS_CLASHING . '</p>';
-								
+
 								echo '<p style="margin-left: 50px;"><a href="' . HTTP_SERVER .
 									$this->_uri_mappings[$language_info['id']] .
 									'" target="_blank">' .
@@ -676,26 +672,26 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 								// A new unique URI will have been generated
 								echo '<p style="margin: 0 0 0 50px; color: #f00;">' .
 									CEON_URI_MAPPING_TEXT_URI_ORIGINALLY_ENTERED . '</p>';
-								
+
 								echo '<p style="margin-left: 50px;"><a href="' . HTTP_SERVER .
 									$this->_uri_mappings[$language_info['id']] .
 									'" target="_blank">' .
 									$this->_clashing_mappings[$language_info['id']] . '</a></p>';
-								
+
 								echo '<p style="margin-left: 50px;">' .
 									CEON_URI_MAPPING_TEXT_URI_ENTERED_AUTO_APPENDED . '</p>';
-								
+
 								echo '<p style="margin-left: 50px;">' .
 									$this->_uri_mappings[$language_info['id']] . '</p>';
-								
+
 								echo '<p style="margin-left: 50px;">' .
 									CEON_URI_MAPPING_TEXT_UPDATE_WILL_USE_AUTO_APPENDED_MAPPING;
-								
+
 							} else {
 								// User is simply to be warned about the clash
 								echo '<p style="margin: 0 0 0 50px; color: #f00;">' .
 									CEON_URI_MAPPING_TEXT_URI_ENTERED_WHICH_IS_CLASHING . '</p>';
-								
+
 								echo '<p style="margin-left: 50px;">' .
 									$this->_clashing_mappings[$language_info['id']] . '</p>';
 							}
@@ -705,14 +701,14 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 							$this->_uri_mappings[$language_info['id']] . '</p>';
 					}
 				} else if (isset($this->_autogeneration_errors[$language_info['id']])) {
-					// The attempt to auto-generate a mapping failed 
+					// The attempt to auto-generate a mapping failed
 					echo '<p style="margin: 0 0 0 50px; color: #f00;">' .
 						$this->_autogeneration_errors[$language_info['id']] . '</p>';
 				} else {
 					echo '<p style="margin: 0 0 0 50px;">' .
 						CEON_URI_MAPPING_TEXT_PRODUCT_NO_URI_ENTERED . '</p>';
 				}
-				
+
 				echo "</p>\n";
 				?>
 					</td>
@@ -722,10 +718,10 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 			</tr>
 	<?php
 	}
-	
+
 	// }}}
-	
-	
+
+
 	/**
 	 * Exports the information about the product's URI mapping(s) on the product preview page.
 	 *
@@ -758,7 +754,7 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 				'<p style="float: left;">' . zen_image(DIR_WS_CATALOG_LANGUAGES .
 					$language_info['directory'] . '/images/' . $language_info['image'], $language_info['name']) .
 				'</p>';
-				
+
 				if ((isset($this->_uri_mappings[$language_info['id']]) &&
 						strlen($this->_uri_mappings[$language_info['id']]) > 0) ||
 						($this->_uri_mapping_autogen &&
@@ -770,25 +766,25 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 								// A new unique URI will have been generated
 								$contents .= '<p style="margin: 0 0 0 50px; color: #f00;">' .
 									CEON_URI_MAPPING_TEXT_URI_ORIGINALLY_GENERATED . '</p>';
-								
+
 								$contents .= '<p style="margin-left: 50px;"><a href="' . HTTP_SERVER .
 									$this->_uri_mappings[$language_info['id']] . '" target="_blank">' .
 									$this->_clashing_mappings[$language_info['id']] . '</a></p>';
-								
+
 								$contents .= '<p style="margin-left: 50px;">' .
 									CEON_URI_MAPPING_TEXT_URI_GENERATED_AUTO_APPENDED . '</p>';
-								
+
 								$contents .= '<p style="margin-left: 50px;">' .
 									$this->_uri_mappings[$language_info['id']] . '</p>';
-								
+
 								$contents .= '<p style="margin-left: 50px;">' .
 									CEON_URI_MAPPING_TEXT_UPDATE_WILL_USE_AUTO_APPENDED_MAPPING;
-								
+
 							} else {
 								// User is simply to be warned about the clash
 								$contents .= '<p style="margin: 0 0 0 50px; color: #f00;">' .
 									CEON_URI_MAPPING_TEXT_URI_GENERATED_WHICH_IS_CLASHING . '</p>';
-								
+
 								$contents .= '<p style="margin-left: 50px;"><a href="' . HTTP_SERVER .
 									$this->_uri_mappings[$language_info['id']] .
 									'" target="_blank">' .
@@ -799,26 +795,26 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 								// A new unique URI will have been generated
 								$contents .= '<p style="margin: 0 0 0 50px; color: #f00;">' .
 									CEON_URI_MAPPING_TEXT_URI_ORIGINALLY_ENTERED . '</p>';
-								
+
 								$contents .= '<p style="margin-left: 50px;"><a href="' . HTTP_SERVER .
 									$this->_uri_mappings[$language_info['id']] .
 									'" target="_blank">' .
 									$this->_clashing_mappings[$language_info['id']] . '</a></p>';
-								
+
 								$contents .= '<p style="margin-left: 50px;">' .
 									CEON_URI_MAPPING_TEXT_URI_ENTERED_AUTO_APPENDED . '</p>';
-								
+
 								$contents .= '<p style="margin-left: 50px;">' .
 									$this->_uri_mappings[$language_info['id']] . '</p>';
-								
+
 								$contents .= '<p style="margin-left: 50px;">' .
 									CEON_URI_MAPPING_TEXT_UPDATE_WILL_USE_AUTO_APPENDED_MAPPING;
-								
+
 							} else {
 								// User is simply to be warned about the clash
 								$contents .= '<p style="margin: 0 0 0 50px; color: #f00;">' .
 									CEON_URI_MAPPING_TEXT_URI_ENTERED_WHICH_IS_CLASHING . '</p>';
-								
+
 								$contents .= '<p style="margin-left: 50px;">' .
 									$this->_clashing_mappings[$language_info['id']] . '</p>';
 							}
@@ -828,14 +824,14 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 							$this->_uri_mappings[$language_info['id']] . '</p>';
 					}
 				} else if (isset($this->_autogeneration_errors[$language_info['id']])) {
-					// The attempt to auto-generate a mapping failed 
+					// The attempt to auto-generate a mapping failed
 					$contents .= '<p style="margin: 0 0 0 50px; color: #f00;">' .
 						$this->_autogeneration_errors[$language_info['id']] . '</p>';
 				} else {
 					$contents .= '<p style="margin: 0 0 0 50px;">' .
 						CEON_URI_MAPPING_TEXT_PRODUCT_NO_URI_ENTERED . '</p>';
 				}
-				
+
 				$contents .= "</p>\n";
 				$contents .= '
 					</td>
@@ -845,12 +841,12 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 			</tr>-->';
 		return $contents;
 	}
-	
+
 	// }}}
-	
-	
+
+
 	// {{{ productPreviewBuildHiddenFields()
-	
+
 	/**
 	 * Outputs the values for Ceon URI Mapping for posting to the insert/update page.
 	 *
@@ -860,25 +856,25 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 	public function productPreviewBuildHiddenFields()
 	{
 		global $languages;
-		
+
 		$hidden_fields = '';
-		
+
 		for ($i = 0, $n = count($languages); $i < $n; $i++) {
 			$hidden_fields .= zen_draw_hidden_field('prev-uri-mappings[' . $languages[$i]['id'] . ']',
 				isset($this->_prev_uri_mappings[$languages[$i]['id']]) ? htmlspecialchars(stripslashes($this->_prev_uri_mappings[$languages[$i]['id']])) : '');
-			
+
 			$hidden_fields .= zen_draw_hidden_field('uri-mappings[' . $languages[$i]['id'] . ']',
 				isset($this->_uri_mappings[$languages[$i]['id']]) ? htmlspecialchars(stripslashes($this->_uri_mappings[$languages[$i]['id']])) : '');
 		}
-		
+
 		return $hidden_fields;
 	}
-	
+
 	// }}}
-	
-	
+
+
 	// {{{ updateProductHandler()
-	
+
 	/**
 	 * Handles the Ceon URI Mapping functionality when a product is being updated.
 	 *
@@ -890,10 +886,10 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 	public function updateProductHandler($product_id, $product_type)
 	{
 		global $languages, $messageStack;
-		
+
 		// Build the information for the pages that must have URIs managed
 		$product_page_type = $product_type . '_info';
-		
+
 		$page_types = array(
 			'product_reviews',
 			'product_reviews_info',
@@ -901,22 +897,22 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 			'tell_a_friend',
 			'ask_a_question'
 			);
-		
+
 		$page_types_to_manage = array();
-		
+
 		foreach ($page_types as $page_type) {
 			if ($this->autoManageProductRelatedPageURI($page_type)) {
 				$page_types_to_manage[] = $page_type;
 			}
 		}
-		
+
 		for ($i = 0, $n = count($languages); $i < $n; $i++) {
 			$prev_uri_mapping = isset($_POST['prev-uri-mappings']) && isset($_POST['prev-uri-mappings'][$languages[$i]['id']]) ? trim($_POST['prev-uri-mappings'][$languages[$i]['id']]) : '';
 			$uri_mapping = isset($_POST['uri-mappings']) && isset($_POST['uri-mappings'][$languages[$i]['id']]) ? trim($_POST['uri-mappings'][$languages[$i]['id']]) : '';
-			
+
 			$insert_uri_mapping = false;
 			$update_uri_mapping = false;
-			
+
 			if ($uri_mapping != '') {
 				// Check if the URI mapping is being updated or does not yet exist
 				if ($prev_uri_mapping == '') {
@@ -925,20 +921,20 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 					$update_uri_mapping = true;
 				}
 			}
-			
+
 			if ($insert_uri_mapping || $update_uri_mapping) {
 				if ($update_uri_mapping) {
 					// Consign previous mapping to the history, so old URI mapping isn't broken
 					$this->makeURIMappingHistorical($prev_uri_mapping, $languages[$i]['id']);
 				}
-				
+
 				// Add the new URI mapping
 				$uri = $uri_mapping;
-				
+
 				$main_page = $product_page_type;
-				
+
 				$mapping_added = $this->addURIMapping($uri, $languages[$i]['id'], $main_page, null, $product_id);
-				
+
 				if ($mapping_added == CEON_URI_MAPPING_ADD_MAPPING_SUCCESS) {
 					if ($insert_uri_mapping) {
 						$success_message = sprintf(CEON_URI_MAPPING_TEXT_PRODUCT_MAPPING_ADDED,
@@ -949,15 +945,15 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 							ucwords($languages[$i]['name']),
 							'<a href="' . HTTP_SERVER . $uri . '" target="_blank">' . $uri . '</a>');
 					}
-					
+
 					$messageStack->add_session($success_message, 'success');
-					
+
 				} else {
 					if ($mapping_added == CEON_URI_MAPPING_ADD_MAPPING_ERROR_MAPPING_EXISTS) {
 						$failure_message = sprintf(CEON_URI_MAPPING_TEXT_ERROR_ADD_MAPPING_EXISTS,
 							ucwords($languages[$i]['name']),
 							'<a href="' . HTTP_SERVER . $uri . '" target="_blank">' . $uri . '</a>');
-						
+
 					} else if ($mapping_added == CEON_URI_MAPPING_ADD_MAPPING_ERROR_DATA_ERROR) {
 						$failure_message = sprintf(CEON_URI_MAPPING_TEXT_ERROR_ADD_MAPPING_DATA,
 							ucwords($languages[$i]['name']), $uri);
@@ -965,56 +961,56 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 						$failure_message = sprintf(CEON_URI_MAPPING_TEXT_ERROR_ADD_MAPPING_DB,
 							ucwords($languages[$i]['name']), $uri);
 					}
-					
+
 					$messageStack->add_session($failure_message, 'error');
 				}
-				
+
 				// Now add the URI mappings for the review pages/tell-a-friend page for this product
 				$base_uri = $uri . '/';
-				
+
 				// Get the language code for the mapping's language
 				$language_code = strtolower($languages[$i]['code']);
-				
+
 				foreach ($page_types_to_manage as $page_type) {
 					// Mark any existing URI mapping for this product related page as no longer being the "primary"
 					// mapping, leaving it in the database so old links aren't broken.
 					$columns_to_retrieve = array(
 						'uri'
 						);
-					
+
 					$selections = array(
 						'main_page' => $page_type,
 						'associated_db_id' => (int) $product_id,
 						'language_id' => (int) $languages[$i]['id'],
 						'current_uri' => 1,
-						); /* query_string_parameters */
-					
+						);
+
 					$order_by = 'current_uri DESC';
-					
+
 					$current_uri_mapping_result =
 						$this->getURIMappingsResultset($columns_to_retrieve, $selections, $order_by, 1);
-					
+
 					if (!$current_uri_mapping_result->EOF) {
 						$this->makeURIMappingHistorical($current_uri_mapping_result->fields['uri'],
 							$languages[$i]['id']);
 					}
-					
+
 					$uri_part = $this->getProductRelatedPageURIPart($page_type, $language_code);
-					
+
 					if ($uri_part == false) {
 						// Unexpected database problem encountered
 						continue;
 					}
-					
+
 					$uri_part = $this->_convertStringForURI($uri_part, $language_code);
-					
+
 					$uri = $base_uri . $uri_part;
-					
+
 					$main_page = constant('FILENAME_' . strtoupper($page_type));
-					
+
 					$mapping_added =
 						$this->addURIMapping($uri, $languages[$i]['id'], $main_page, ($page_type == 'ask_a_question' ? 'pid=' . (int) $product_id : null), $product_id);
-					
+
 					if ($mapping_added == CEON_URI_MAPPING_ADD_MAPPING_SUCCESS) {
 						if ($insert_uri_mapping) {
 							$success_message = sprintf(CEON_URI_MAPPING_TEXT_PRODUCT_MAPPING_ADDED,
@@ -1026,15 +1022,15 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 								ucwords($languages[$i]['name']),
 								'<a href="' . HTTP_SERVER . $uri . '" target="_blank">' . $uri . '</a>');
 						}
-						
+
 						$messageStack->add_session($success_message, 'success');
-						
+
 					} else {
 						if ($mapping_added == CEON_URI_MAPPING_ADD_MAPPING_ERROR_MAPPING_EXISTS) {
 							$failure_message = sprintf(CEON_URI_MAPPING_TEXT_ERROR_ADD_MAPPING_EXISTS,
 								ucwords($languages[$i]['name']), '<a href="' . HTTP_SERVER . $uri .
 								'" target="_blank">' . $uri . '</a>');
-							
+
 						} else if ($mapping_added ==CEON_URI_MAPPING_ADD_MAPPING_ERROR_DATA_ERROR) {
 							$failure_message = sprintf(CEON_URI_MAPPING_TEXT_ERROR_ADD_MAPPING_DATA,
 								ucwords($languages[$i]['name']), $uri);
@@ -1042,149 +1038,149 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 							$failure_message = sprintf(CEON_URI_MAPPING_TEXT_ERROR_ADD_MAPPING_DB,
 								ucwords($languages[$i]['name']), $uri);
 						}
-						
+
 						$messageStack->add_session($failure_message, 'error');
 					}
 				}
 			} else if ($prev_uri_mapping != '' && $uri_mapping == '') {
 				// No URI mapping, consign existing mappings to the history, so old URI mappings aren't broken
 				$this->makeURIMappingHistorical($prev_uri_mapping, $languages[$i]['id']);
-				
+
 				$success_message = sprintf(CEON_URI_MAPPING_TEXT_PRODUCT_MAPPING_MADE_HISTORICAL,
 					ucwords($languages[$i]['name']));
-				
+
 				$messageStack->add_session($success_message, 'caution');
-				
+
 				foreach ($page_types_to_manage as $page_type) {
 					$columns_to_retrieve = array(
 						'uri'
 						);
-					
+
 					$selections = array(
 						'main_page' => $page_type,
 						'associated_db_id' => (int) $product_id,
 						'language_id' => (int) $languages[$i]['id'],
 						'current_uri' => 1,
 						);
-					
+
 					$order_by = 'current_uri DESC';
-					
+
 					$current_uri_mapping_result =
 						$this->getURIMappingsResultset($columns_to_retrieve, $selections, $order_by, 1);
-					
+
 					if (!$current_uri_mapping_result->EOF) {
 						$prp_uri_mapping = $current_uri_mapping_result->fields['uri'];
-						
+
 						$this->makeURIMappingHistorical($prp_uri_mapping, $languages[$i]['id']);
-						
+
 						$success_message = sprintf(
 							CEON_URI_MAPPING_TEXT_PRODUCT_RELATED_PAGE_MAPPING_MADE_HISTORICAL,
 							ucwords($languages[$i]['name']), $prp_uri_mapping);
-						
+
 						$messageStack->add_session($success_message, 'caution');
 					}
 				}
 			}
 		}
 	}
-	
+
 	// }}}
-	
-	
+
+
 	// {{{ addURIMappingFieldsToProductCopyFieldsArray()
-	
+
 	/**
 	 * Adds the fields necessary for the Ceon URI Mapping options to the list of product copy fields, accessing the
 	 * list of product copy fields directly, through a global variable.
 	 *
 	 * @access  public
-	 * @param   integer   $product_id   The ID of the product being copied.
+	 * @param  integer  $product_id   The ID of the product being copied.
 	 * @return  none
 	 */
 	public function addURIMappingFieldsToProductCopyFieldsArray($product_id)
-	{
+    {
 		global $contents;
-		
+
 		$uri_mapping_input_fields = $this->buildProductCopyURIMappingFields($product_id);
-		
+
 		if ($uri_mapping_input_fields != false) {
 			$contents[] = array('text' => $uri_mapping_input_fields);
 		}
 	}
-	
+
 	// }}}
-	
-	
+
+
 	// {{{ buildProductCopyURIMappingFields()
-	
+
 	/**
 	 * Builds the input fields for copying URI mappings, for a product that is being copied.
 	 *
 	 * @access  public
-	 * @param   integer   $product_id   The ID of the product being copied.
-	 * @return  string|boolean   The source for the input fields or false if no input fields necessary.
+	 * @param  integer  $product_id   The ID of the product being copied.
+	 * @return  string|bool   The source for the input fields or false if no input fields necessary.
 	 */
 	public function buildProductCopyURIMappingFields($product_id)
-	{
-		global /*$db,*/ $languages, $ceon_uri_mapping_product_pages;
-		
+    {
+		global $languages, $ceon_uri_mapping_product_pages;
+
 		if (!isset($languages) || !is_array($languages)) {
 			$languages = zen_get_languages();
 		}
-		
+
 		$num_languages = count($languages);
-		
+
 		// Does this product have any existing mappings?
 		$product_has_mappings = false;
-		
+
 		$columns_to_retrieve = array(
 			'uri'
 			);
-		
+
 		$selections = array(
 			'main_page' => $ceon_uri_mapping_product_pages,
 			'associated_db_id' => (int) $product_id
 			);
-		
+
 		$existing_product_uri_mappings_result =
 			$this->getURIMappingsResultset($columns_to_retrieve, $selections, null, 1);
-		
+
 		if (!$existing_product_uri_mappings_result->EOF) {
 			$product_has_mappings = true;
 		}
-		
+
 		if ($product_has_mappings || $this->_autogenEnabled()) {
 			$uri_mapping_input_fields = zen_draw_separator('pixel_black.gif', '0%', '2');
-			
+
 			$uri_mapping_input_fields .= "<h6>" . CEON_URI_MAPPING_TEXT_DUPLICATE_PRODUCT_URI_MAPPING . '</h6>';
-			
+
 			// Default to auto-generating URIs for product's copy
 			$autogen_selected = $this->_autogenEnabled();
-			
+
 			$copy_selected = (($product_has_mappings && !$this->_autogenEnabled()) ? true : false);
-			
+
 			if ($this->_autogenEnabled()) {
 				if ($num_languages == 1) {
 					$autogen_message = CEON_URI_MAPPING_TEXT_COPY_AUTOGEN_URI;
 				} else {
 					$autogen_message = CEON_URI_MAPPING_TEXT_COPY_AUTOGEN_URIS;
 				}
-				
+
 				$uri_mapping_input_fields .= zen_draw_radio_field('uri-mapping', 'autogen', $autogen_selected) .
 					' ' . $autogen_message . '<br />';
 			}
-			
+
 			if ($product_has_mappings) {
 				if ($num_languages == 1) {
 					$copy_message = CEON_URI_MAPPING_TEXT_COPY_EXISTING_MAPPING;
 				} else {
 					$copy_message = CEON_URI_MAPPING_TEXT_COPY_EXISTING_MAPPINGS;
 				}
-				
+
 				$uri_mapping_input_fields .= zen_draw_radio_field('uri-mapping', 'copy', $copy_selected) . ' ' .
 					$copy_message . '<br />';
 			}
-			
+
 			if ($this->_autogenEnabled() && !$product_has_mappings) {
 				if ($num_languages == 1) {
 					$ignore_message = CEON_URI_MAPPING_TEXT_COPY_PRODUCT_DONT_AUTOGEN_URI;
@@ -1204,25 +1200,25 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 					$ignore_message = CEON_URI_MAPPING_TEXT_COPY_PRODUCT_DONT_AUTOGEN_COPY_URIS;
 				}
 			}
-			
+
 			$uri_mapping_input_fields .=
 				zen_draw_radio_field('uri-mapping', 'ignore', false) . ' ' . $ignore_message;
-			
+
 			$uri_mapping_input_fields .= "</p>";
-			
-//			$uri_mapping_input_fields .= zen_draw_separator('pixel_black.gif', '100%', '2');
-			
+
+//			$uri_mapping_input_fields .= zen_draw_separator();
+
 			return $uri_mapping_input_fields;
 		}
-		
+
 		return false;
 	}
-	
+
 	/// }}}
-	
-	
+
+
 	// {{{ copyToConfirmHandler()
-	
+
 	/**
 	 * Handles the Ceon URI Mapping functionality when a product is being copied.
 	 *
@@ -1241,43 +1237,43 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 		
 		// Generate new URI mapping for this new product?
 		$this->_uri_mapping_autogen = (($_POST['uri-mapping'] == 'autogen') ? true : false);
-		
+
 		// Copy existing URIs from product being copied?
 		$uri_mapping_copy = (($_POST['uri-mapping'] == 'copy') ? true : false);
-		
+
 		if ($this->_uri_mapping_autogen || $uri_mapping_copy) {
 			if ($uri_mapping_copy) {
 				// Look up and copy any URI mappings for the product being copied from
 				$existing_product_uri_mappings = array();
-				
+
 				$columns_to_retrieve = array(
 					'language_id',
 					'uri'
 					);
-				
+
 				$selections = array(
 					'main_page' => $product_type . '_info',
 					'associated_db_id' => (int) $product_id_from,
 					'current_uri' => 1
 					);
-				
+
 				$existing_product_uri_mappings_result =
 					$this->getURIMappingsResultset($columns_to_retrieve, $selections);
-				
+
 				while (!$existing_product_uri_mappings_result->EOF) {
 					$existing_product_uri_mappings[$existing_product_uri_mappings_result->fields['language_id']] =
 						$existing_product_uri_mappings_result->fields['uri'];
-					
+
 					$existing_product_uri_mappings_result->MoveNext();
 				}
 			}
-			
+
 			// Now insert the URI mappings for the new product into the database
 			$languages = zen_get_languages();
-			
+
 			// Build the information for the pages that must have URIs managed
 			$product_page_type = $product_type . '_info';
-			
+
 			$page_types = array(
 				'product_reviews',
 				'product_reviews_info',
@@ -1285,60 +1281,60 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 				'tell_a_friend',
 				'ask_a_question'
 				);
-			
+
 			$page_types_to_manage = array();
-			
+
 			foreach ($page_types as $page_type) {
 				if ($this->autoManageProductRelatedPageURI($page_type)) {
 					$page_types_to_manage[] = $page_type;
 				}
 			}
-			
+
 			for ($i = 0, $n = count($languages); $i < $n; $i++) {
 				$uri_mapping = '';
-				
+
 				// Auto-generate the URI if requested
 				if ($this->_uri_mapping_autogen) {
 					$uri_mapping = $this->autogenProductURIMapping($product_id_to, null, null,
 						$languages[$i]['code'], $languages[$i]['id']);
-					
+
 					if ($uri_mapping == CEON_URI_MAPPING_GENERATION_ATTEMPT_FOR_PRODUCT_WITH_NO_NAME ||
 							$uri_mapping == CEON_URI_MAPPING_GENERATION_ATTEMPT_FOR_PRODUCT_WITH_NO_MODEL) {
 						// Can't generate the URI because of missing "uniqueness" data
-						
+
 						// Build a link to the product's edit page so the user can fix the problem
 						// immediately
 						$product_type_admin_handler = $product_type . '.php';
-							
+
 						if (!file_exists(DIR_FS_ADMIN . $product_type_admin_handler) && (PROJECT_VERSION_MAJOR > '1' || version_compare(PROJECT_VERSION_MAJOR . PROJECT_VERSION_MINOR, '1.5.6', '>='))) {
 							$product_type_admin_handler = 'product' . '.php';
 						}
-						
+
 						$product_edit_link = zen_href_link($product_type_admin_handler, 'pID=' . $product_id_to .
 							'&product_type=' . $product_type_id . '&cPath=' . $dest_category_id .
 							'&action=new_product', 'NONSSL', true, true, false, false);
-						
+
 						if ($uri_mapping == CEON_URI_MAPPING_GENERATION_ATTEMPT_FOR_PRODUCT_WITH_NO_NAME) {
 							$message = CEON_URI_MAPPING_TEXT_ERROR_AUTOGENERATION_PRODUCT_HAS_NO_NAME;
 						} else {
 							$message = CEON_URI_MAPPING_TEXT_ERROR_AUTOGENERATION_PRODUCT_HAS_NO_MODEL;
 						}
-						
+
 						$failure_message = sprintf($message, ucwords($languages[$i]['name']), $product_edit_link);
-						
+
 						$messageStack->add_session($failure_message, 'error');
-						
+
 						continue;
-						
+
 					} else if ($uri_mapping ==
 							CEON_URI_MAPPING_GENERATION_ATTEMPT_FOR_CATEGORY_PATH_PART_WITH_NO_NAME) {
 						// Can't generate the URI because of invalid data
 						$failure_message = sprintf(
 							CEON_URI_MAPPING_TEXT_ERROR_AUTOGENERATION_PRODUCT_CATEGORY_HAS_NO_NAME,
 							ucwords($languages[$i]['name']));
-						
+
 						$messageStack->add_session($failure_message, 'error');
-						
+
 						continue;
 					}
 				} else {
@@ -1348,19 +1344,19 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 						$uri_mapping = $existing_product_uri_mappings[$languages[$i]['id']];
 					}
 				}
-				
+
 				if (strlen($uri_mapping) > 1) {
 					// Make sure URI mapping is relative to root of site and does not have a
 					// trailing slash or any illegal characters
 					$uri_mapping = $this->_cleanUpURIMapping($uri_mapping);
 				}
-				
+
 				if ($uri_mapping != '') {
 					// URI mapping does not yet exist
 					$uri = $uri_mapping;
-					
+
 					$main_page = $product_page_type;
-					
+
 					// Check that the mapping just generated doesn't clash with any existing mapping
 					if (!$this->_uri_mapping_autogen) {
 						// Mapping already exists for product being copied from!
@@ -1368,94 +1364,94 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 					} else {
 						// Autogenerating URI so must check it is a unique URI
 						$mapping_clashed = false;
-						
+
 						$columns_to_retrieve = array(
 							'uri'
 							);
-						
+
 						$selections = array(
 							'uri' => zen_db_prepare_input($uri),
 							'current_uri' => 1,
 							'language_id' => (int) $languages[$i]['id']
 							);
-						
+
 						$order_by = 'current_uri DESC';
-						
+
 						$existing_uri_mapping_result = $this->getURIMappingsResultset(
 							$columns_to_retrieve, $selections, $order_by, 1);
-						
+
 						if (!$existing_uri_mapping_result->EOF) {
 							// This mapping clashes with an existing mapping
 							$mapping_clashed = true;
 						}
 					}
-					
+
 					if ($mapping_clashed) {
 						if (!$this->_uri_mapping_autogen || $this->_mappingClashAutoAppendInteger()) {
 							// Attempt to find a unique variation of the mapping by appending an auto-incrementing
 							// integer
 							$uniqueness_integer = 1;
-							
+
 							$base_uri = $uri;
-							
+
 							$unique_mapping_found = false;
-							
+
 							while (!$unique_mapping_found) {
 								$uri = $base_uri . $uniqueness_integer;
-								
+
 								$columns_to_retrieve = array(
 									'main_page',
 									'associated_db_id'
 									);
-								
+
 								$selections = array(
 									'uri' => zen_db_prepare_input($uri),
 									'current_uri' => 1,
 									'language_id' => (int) $languages[$i]['id']
 									);
-								
+
 								$order_by = 'current_uri DESC';
-								
+
 								$existing_uri_mapping_result = $this->getURIMappingsResultset($columns_to_retrieve,
 									$selections, $order_by, 1);
-								
+
 								if ($existing_uri_mapping_result->EOF) {
 									// This variation of the mapping doesn't clash with an existing mapping, use
 									// it!
 									$unique_mapping_found = true;
 								}
-								
+
 								$uniqueness_integer++;
 							}
 						} else {
 							// No attempt should be made to create a unique variation of the mapping, instead the
 							// user must be warned that the mapping was not created for this copied product
-							
+
 							// Build a link to the product's edit page so the user can fix the problem immediately
 							$product_type_admin_handler = $product_type . '.php';
-							
+
 							if (!file_exists(DIR_FS_ADMIN . $product_type_admin_handler) && (PROJECT_VERSION_MAJOR > '1' || version_compare(PROJECT_VERSION_MAJOR . PROJECT_VERSION_MINOR, '1.5.6', '>='))) {
 								$product_type_admin_handler = 'product' . '.php';
 							}
-							
+
 							$product_edit_link = zen_href_link($product_type_admin_handler, 'pID=' .
 								$product_id_to . '&product_type=' . $product_type_id . '&cPath=' .
 								$dest_category_id . '&action=new_product', 'NONSSL', true, true, false, false);
-							
+
 							$failure_message = sprintf(CEON_URI_MAPPING_TEXT_ERROR_COPY_PRODUCT_MAPPING_CLASHED,
 								ucwords($languages[$i]['name']), '<a href="' . HTTP_SERVER . $uri .
 								'" target="_blank">' . $uri . '</a>', ucwords($languages[$i]['name']),
 								$product_edit_link);
-							
+
 							$messageStack->add_session($failure_message, 'error');
-							
+
 							continue;
 						}
 					}
-					
+
 					$mapping_added =
 						$this->addURIMapping($uri, $languages[$i]['id'], $main_page, null, $product_id_to);
-						
+
 					if ($mapping_added == CEON_URI_MAPPING_ADD_MAPPING_SUCCESS) {
 						if ($this->_uri_mapping_autogen && !$mapping_clashed) {
 							$success_message = sprintf(CEON_URI_MAPPING_TEXT_PRODUCT_MAPPING_ADDED,
@@ -1465,15 +1461,15 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 							// Build a link to the product's edit page so the user can change the auto-appended URI
 							// immediately
 							$product_type_admin_handler = $product_type . '.php';
-							
+
 							if (!file_exists(DIR_FS_ADMIN . $product_type_admin_handler) && (PROJECT_VERSION_MAJOR > '1' || version_compare(PROJECT_VERSION_MAJOR . PROJECT_VERSION_MINOR, '1.5.6', '>='))) {
 								$product_type_admin_handler = 'product' . '.php';
 							}
-							
+
 							$product_edit_link = zen_href_link($product_type_admin_handler, 'pID=' .
 								$product_id_to . '&product_type=' . $product_type_id . '&cPath=' .
 								$dest_category_id . '&action=new_product', 'NONSSL', true, true, false, false);
-							
+
 							// Message differs according to whether or not the auto-append setting was used
 							// willingly or enforced
 							if ($this->_mappingClashAutoAppendInteger()) {
@@ -1481,20 +1477,20 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 							} else {
 								$message = CEON_URI_MAPPING_TEXT_PRODUCT_MAPPING_ADDED_ENFORCED_AUTO_APPEND;
 							}
-							
+
 							$success_message = sprintf($message, ucwords($languages[$i]['name']),
 								'<a href="' . HTTP_SERVER . $uri . '" target="_blank">' . $uri . '</a>',
 								$product_edit_link);
 						}
-						
+
 						$messageStack->add_session($success_message, 'success');
-						
+
 					} else {
 						if ($mapping_added == CEON_URI_MAPPING_ADD_MAPPING_ERROR_MAPPING_EXISTS) {
 							$failure_message = sprintf(CEON_URI_MAPPING_TEXT_ERROR_ADD_MAPPING_EXISTS,
 								ucwords($languages[$i]['name']),
 								'<a href="' . HTTP_SERVER . $uri . '" target="_blank">' . $uri . '</a>');
-							
+
 						} else if ($mapping_added == CEON_URI_MAPPING_ADD_MAPPING_ERROR_DATA_ERROR) {
 							$failure_message = sprintf(CEON_URI_MAPPING_TEXT_ERROR_ADD_MAPPING_DATA,
 								ucwords($languages[$i]['name']), $uri);
@@ -1502,46 +1498,46 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 							$failure_message = sprintf(CEON_URI_MAPPING_TEXT_ERROR_ADD_MAPPING_DB,
 								ucwords($languages[$i]['name']), $uri);
 						}
-						
+
 						$messageStack->add_session($failure_message, 'error');
 					}
-					
+
 					// Now add the URI mappings for the review pages/tell-a-friend page for this product
 					$base_uri = $uri . '/';
-					
+
 					// Get the language code for the mapping's language
 					$language_code = strtolower($languages[$i]['code']);
-					
+
 					foreach ($page_types_to_manage as $page_type) {
 						$uri_part = $this->getProductRelatedPageURIPart($page_type, $language_code);
-						
+
 						if ($uri_part == false) {
 							// Unexpected database problem encountered
 							continue;
 						}
-						
+
 						$uri_part = $this->_convertStringForURI($uri_part, $language_code);
-						
+
 						$uri = $base_uri . $uri_part;
-						
+
 						$main_page = constant('FILENAME_' . strtoupper($page_type));
-						
+
 						$mapping_added =
 							$this->addURIMapping($uri, $languages[$i]['id'], $main_page, ($page_type == 'ask_a_question' ? 'pid=' . (int) $product_id_to : null), $product_id_to);
-						
+
 						if ($mapping_added == CEON_URI_MAPPING_ADD_MAPPING_SUCCESS) {
 							$success_message = sprintf(CEON_URI_MAPPING_TEXT_PRODUCT_MAPPING_ADDED,
 								ucwords($languages[$i]['name']),
 								'<a href="' . HTTP_SERVER . $uri . '" target="_blank">' . $uri . '</a>');
-							
+
 							$messageStack->add_session($success_message, 'success');
-							
+
 						} else {
 							if ($mapping_added == CEON_URI_MAPPING_ADD_MAPPING_ERROR_MAPPING_EXISTS) {
 								$failure_message = sprintf(CEON_URI_MAPPING_TEXT_ERROR_ADD_MAPPING_EXISTS,
 									ucwords($languages[$i]['name']),
 									'<a href="' . HTTP_SERVER . $uri . '" target="_blank">' . $uri . '</a>');
-								
+
 							} else if ($mapping_added == CEON_URI_MAPPING_ADD_MAPPING_ERROR_DATA_ERROR) {
 								$failure_message = sprintf(CEON_URI_MAPPING_TEXT_ERROR_ADD_MAPPING_DATA,
 									ucwords($languages[$i]['name']), $uri);
@@ -1549,7 +1545,7 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 								$failure_message = sprintf(CEON_URI_MAPPING_TEXT_ERROR_ADD_MAPPING_DB,
 									ucwords($languages[$i]['name']), $uri);
 							}
-							
+
 							$messageStack->add_session($failure_message, 'error');
 						}
 					}
@@ -1557,12 +1553,12 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 			}
 		}
 	}
-	
+
 	// }}}
-	
-	
+
+
 	// {{{ addURIMappingFieldsToProductMoveFieldsArray()
-	
+
 	/**
 	 * Adds the fields necessary for the Ceon URI Mapping options to the list of product move  fields, accessing
 	 * the list of product move fields directly, through a global variable.
@@ -1574,19 +1570,19 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 	public function addURIMappingFieldsToProductMoveFieldsArray($product_id)
 	{
 		global $contents;
-		
+
 		$uri_mapping_input_fields = $this->buildProductMoveURIMappingFields($product_id);
-		
+
 		if ($uri_mapping_input_fields != false) {
 			$contents[] = array('text' => $uri_mapping_input_fields);
 		}
 	}
-	
+
 	// }}}
-	
-	
+
+
 	// {{{ buildProductMoveURIFields()
-	
+
 	/**
 	 * Builds the input fields for dealing with URI mappings for a product being moved.
 	 *
@@ -1597,42 +1593,42 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 	public function buildProductMoveURIMappingFields($product_id)
 	{
 		global /*$db,*/ $languages, $ceon_uri_mapping_product_pages;
-		
+
 		if (!isset($languages) || !is_array($languages)) {
 			$languages = zen_get_languages();
 		}
-		
+
 		$num_languages = count($languages);
-		
+
 		// Does this product have any existing mappings?
 		$product_has_mappings = false;
-		
+
 		$columns_to_retrieve = array(
 			'uri'
 			);
-		
+
 		$selections = array(
 			'main_page' => $ceon_uri_mapping_product_pages,
 			'associated_db_id' => (int) $product_id
 			);
-		
+
 		$existing_product_uri_mappings_result =
 			$this->getURIMappingsResultset($columns_to_retrieve, $selections, null, 1);
-		
+
 		if (!$existing_product_uri_mappings_result->EOF) {
 			$product_has_mappings = true;
 		}
-		
+
 		if ($product_has_mappings || $this->_autogenEnabled()) {
 			$uri_mapping_input_fields = zen_draw_separator('pixel_black.gif', '100%', '2');
-			
+
 			$uri_mapping_input_fields .= "<p>" . CEON_URI_MAPPING_TEXT_MOVE_PRODUCT_URI_MAPPING .
 				'<br />';
-			
+
 			// Default to auto-generating URIs for product's new location
 			$autogen_selected = $this->_autogenEnabled();
 			$move_selected = (($product_has_mappings && !$this->_autogenEnabled()) ? true : false);
-			
+
 			if ($this->_autogenEnabled()) {
 				if ($num_languages == 1) {
 					$autogen_message = CEON_URI_MAPPING_TEXT_MOVE_AUTOGEN_URI;
@@ -1642,7 +1638,7 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 				$uri_mapping_input_fields .= zen_draw_radio_field('uri-mapping', 'autogen', $autogen_selected) .
 					' ' . $autogen_message . '<br />';
 			}
-			
+
 			if ($product_has_mappings) {
 				if ($num_languages == 1) {
 					$move_message = CEON_URI_MAPPING_TEXT_MOVE_USE_EXISTING_MAPPING;
@@ -1652,7 +1648,7 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 				$uri_mapping_input_fields .= zen_draw_radio_field('uri-mapping', 'use-existing', $move_selected) .
 					' ' . $move_message . '<br />';
 			}
-			
+
 			if ($this->_autogenEnabled() && !$product_has_mappings) {
 				if ($num_languages == 1) {
 					$ignore_message = CEON_URI_MAPPING_TEXT_MOVE_PRODUCT_DONT_AUTOGEN_URI;
@@ -1672,25 +1668,25 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 					$ignore_message = CEON_URI_MAPPING_TEXT_MOVE_PRODUCT_DONT_AUTOGEN_MOVE_URIS;
 				}
 			}
-			
+
 			$uri_mapping_input_fields .=
 				zen_draw_radio_field('uri-mapping', 'drop-existing', false) . ' ' . $ignore_message;
-			
+
 			$uri_mapping_input_fields .= "</p>";
-			
+
 			$uri_mapping_input_fields .= zen_draw_separator('pixel_black.gif', '100%', '2');
-			
+
 			return $uri_mapping_input_fields;
 		}
-		
+
 		return false;
 	}
-	
+
 	/// }}}
-	
-	
+
+
 	// {{{ moveProductConfirmHandler()
-	
+
 	/**
 	 * Handles the Ceon URI Mapping functionality when a product is being moved.
 	 *
@@ -1704,23 +1700,23 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 	public function moveProductConfirmHandler($product_id, $product_type_id, $product_type, $dest_category_id)
 	{
 		global /*$db,*/ $messageStack;
-		
+
 		$languages = zen_get_languages();
 		
 		// Generate new URI mapping for this product?
 		$this->_uri_mapping_autogen = (($_POST['uri-mapping'] == 'autogen') ? true : false);
-		
+
 		// Drop existing URIs ?
 		$uri_mapping_drop_existing = (($_POST['uri-mapping'] == 'drop-existing') ? true : false);
-		
+
 		if (!$this->_uri_mapping_autogen && !$uri_mapping_drop_existing) {
 			// Nothing to be done!
 			return;
 		}
-		
+
 		// Build the information for the pages that must have URIs managed
 		$product_page_type = $product_type . '_info';
-		
+
 		$page_types = array(
 			'product_reviews',
 			'product_reviews_info',
@@ -1728,15 +1724,15 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 			'tell_a_friend',
 			'ask_a_question'
 			);
-		
+
 		$page_types_to_manage = array();
-		
+
 		foreach ($page_types as $page_type) {
 			if ($this->autoManageProductRelatedPageURI($page_type)) {
 				$page_types_to_manage[] = $page_type;
 			}
 		}
-		
+
 		if ($this->_uri_mapping_autogen) {
 			// Generate the new URI mappings for the product
 			for ($i = 0, $n = count($languages); $i < $n; $i++) {
@@ -1745,188 +1741,188 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 				$columns_to_retrieve = array(
 					'uri'
 					);
-				
+
 				$selections = array(
 					'main_page' => $product_page_type,
 					'associated_db_id' => (int) $product_id,
 					'language_id' => (int) $languages[$i]['id'],
 					'current_uri' => 1,
 					);
-				
+
 				$order_by = 'current_uri DESC';
-				
+
 				$current_uri_mapping_result =
 					$this->getURIMappingsResultset($columns_to_retrieve, $selections, $order_by, 1);
-				
+
 				if (!$current_uri_mapping_result->EOF) {
 					$this->makeURIMappingHistorical($current_uri_mapping_result->fields['uri'],
 						$languages[$i]['id']);
 				}
-				
+
 				//$uri_mapping = '';
-				
+
 				$uri_mapping = $this->autogenProductURIMapping($product_id, null, null, $languages[$i]['code'],
 					$languages[$i]['id']);
-				
+
 				if ($uri_mapping == CEON_URI_MAPPING_GENERATION_ATTEMPT_FOR_PRODUCT_WITH_NO_NAME ||
 						$uri_mapping == CEON_URI_MAPPING_GENERATION_ATTEMPT_FOR_PRODUCT_WITH_NO_MODEL) {
 					// Can't generate the URI because of missing "uniqueness" data
-					
+
 					// Build a link to the product's edit page so the user can fix the problem immediately
 					$product_type_admin_handler = $product_type . '.php';
-					
+
 					$product_edit_link = zen_href_link($product_type_admin_handler, 'pID=' . $product_id .
 						'&product_type=' . $product_type_id . '&cPath=' . $dest_category_id .
 						'&action=new_product', 'NONSSL', true, true, false, false);
-					
+
 					if ($uri_mapping == CEON_URI_MAPPING_GENERATION_ATTEMPT_FOR_PRODUCT_WITH_NO_NAME) {
 						$message = CEON_URI_MAPPING_TEXT_ERROR_AUTOGENERATION_PRODUCT_HAS_NO_NAME;
 					} else {
 						$message = CEON_URI_MAPPING_TEXT_ERROR_AUTOGENERATION_PRODUCT_HAS_NO_MODEL;
 					}
-					
+
 					$failure_message = sprintf($message, ucwords($languages[$i]['name']),
 						$product_edit_link);
-					
+
 					$messageStack->add_session($failure_message, 'error');
-					
+
 					continue;
-					
+
 				} else if ($uri_mapping ==
 						CEON_URI_MAPPING_GENERATION_ATTEMPT_FOR_CATEGORY_PATH_PART_WITH_NO_NAME) {
 					// Can't generate the URI because of invalid data
 					$failure_message = sprintf(
 						CEON_URI_MAPPING_TEXT_ERROR_AUTOGENERATION_PRODUCT_CATEGORY_HAS_NO_NAME,
 						ucwords($languages[$i]['name']));
-					
+
 					$messageStack->add_session($failure_message, 'error');
-					
+
 					continue;
 				}
-				
+
 				// Make sure URI mapping is relative to root of site and does not have a trailing slash or any
 				// illegal characters
 				$uri_mapping = $this->_cleanUpURIMapping($uri_mapping);
-				
+
 				if ($uri_mapping != '') {
 					// URI mapping no longer exists for this newly moved product
 					$uri = $uri_mapping;
-					
+
 					$main_page = $product_page_type;
-					
+
 					// Check that the mapping just generated doesn't clash with any existing mapping
 					$mapping_clashed = false;
-					
+
 					$columns_to_retrieve = array(
 						'uri'
 						);
-					
+
 					$selections = array(
 						'uri' => zen_db_prepare_input($uri),
 						'current_uri' => 1,
 						'language_id' => (int) $languages[$i]['id']
 						);
-					
+
 					$order_by = 'current_uri DESC';
-					
+
 					$existing_uri_mapping_result =
 						$this->getURIMappingsResultset($columns_to_retrieve, $selections, $order_by, 1);
-					
+
 					if (!$existing_uri_mapping_result->EOF) {
 						// This mapping clashes with an existing mapping
 						$mapping_clashed = true;
 					}
-					
+
 					if ($mapping_clashed) {
 						if ($this->_mappingClashAutoAppendInteger()) {
 							// Attempt to find a unique variation of the mapping by appending an
 							// auto-incrementing integer
 							$uniqueness_integer = 1;
-							
+
 							$base_uri = $uri;
-							
+
 							$unique_mapping_found = false;
-							
+
 							while (!$unique_mapping_found) {
 								$uri = $base_uri . $uniqueness_integer;
-								
+
 								$columns_to_retrieve = array(
 									'uri'
 									);
-								
+
 								$selections = array(
 									'uri' => zen_db_prepare_input($uri),
 									'current_uri' => 1,
 									'language_id' => (int) $languages[$i]['id']
 									);
-								
+
 								$order_by = 'current_uri DESC';
-								
+
 								$existing_uri_mapping_result = $this->getURIMappingsResultset($columns_to_retrieve,
 									$selections, $order_by, 1);
-								
+
 								if ($existing_uri_mapping_result->EOF) {
 									// This variation of the mapping doesn't clash with an existing
 									// mapping, use it!
 									$unique_mapping_found = true;
 								}
-								
+
 								$uniqueness_integer++;
 							}
 						} else {
 							// No attempt should be made to create a unique variation of the mapping, instead the
 							// user must be warned that the mapping was not  created for this moved product
-							
+
 							// Build a link to the product's edit page so the user can fix the problem immediately
 							$product_type_admin_handler = $product_type . '.php';
-							
+
 							$product_edit_link = zen_href_link($product_type_admin_handler, 'pID=' . $product_id .
 								'&product_type=' . $product_type_id . '&cPath=' . $dest_category_id .
 								'&action=new_product', 'NONSSL', true, true, false, false);
-							
+
 							$failure_message = sprintf(CEON_URI_MAPPING_TEXT_ERROR_MOVE_PRODUCT_MAPPING_CLASHED,
 								ucwords($languages[$i]['name']), '<a href="' . HTTP_SERVER . $uri .
 								'" target="_blank">' . $uri . '</a>', ucwords($languages[$i]['name']),
 								$product_edit_link);
-							
+
 							$messageStack->add_session($failure_message, 'error');
-							
+
 							continue;
 						}
 					}
-					
+
 					$mapping_added =
 						$this->addURIMapping($uri, $languages[$i]['id'], $main_page, null, $product_id);
-					
+
 					if ($mapping_added == CEON_URI_MAPPING_ADD_MAPPING_SUCCESS) {
 						if (!$mapping_clashed) {
 							$success_message = sprintf(CEON_URI_MAPPING_TEXT_PRODUCT_MAPPING_ADDED,
 								ucwords($languages[$i]['name']), '<a href="' . HTTP_SERVER . $uri .
 								'" target="_blank">' . $uri . '</a>');
 						} else {
-							// Build a link to the product's edit page so the user can change the auto-appended URI 
+							// Build a link to the product's edit page so the user can change the auto-appended URI
 							// immediately
 							$product_type_admin_handler = $product_type . '.php';
-							
+
 							$product_edit_link = zen_href_link($product_type_admin_handler, 'pID=' . $product_id .
 								'&product_type=' . $product_type_id . '&cPath=' . $dest_category_id .
 								'&action=new_product', 'NONSSL', true, true, false, false);
-							
+
 							$success_message = sprintf(
 								CEON_URI_MAPPING_TEXT_PRODUCT_MAPPING_ADDED_WITH_AUTO_APPEND,
 								ucwords($languages[$i]['name']),
 								'<a href="' . HTTP_SERVER . $uri . '" target="_blank">' . $uri . '</a>',
 								$product_edit_link);
 						}
-						
+
 						$messageStack->add_session($success_message, 'success');
-						
+
 					} else {
 						if ($mapping_added == CEON_URI_MAPPING_ADD_MAPPING_ERROR_MAPPING_EXISTS) {
 							$failure_message = sprintf(CEON_URI_MAPPING_TEXT_ERROR_ADD_MAPPING_EXISTS,
 								ucwords($languages[$i]['name']),
 								'<a href="' . HTTP_SERVER . $uri . '" target="_blank">' . $uri . '</a>');
-							
+
 						} else if ($mapping_added == CEON_URI_MAPPING_ADD_MAPPING_ERROR_DATA_ERROR) {
 							$failure_message = sprintf(CEON_URI_MAPPING_TEXT_ERROR_ADD_MAPPING_DATA,
 								ucwords($languages[$i]['name']), $uri);
@@ -1934,69 +1930,69 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 							$failure_message = sprintf(CEON_URI_MAPPING_TEXT_ERROR_ADD_MAPPING_DB,
 								ucwords($languages[$i]['name']), $uri);
 						}
-						
+
 						$messageStack->add_session($failure_message, 'error');
 					}
-					
+
 					// Now add the URI mappings for the review pages/tell-a-friend page for this product
 					$base_uri = $uri . '/';
-					
+
 					// Get the language code for the mapping's language
 					$language_code = strtolower($languages[$i]['code']);
-					
+
 					foreach ($page_types_to_manage as $page_type) {
 						// Mark any existing URI mapping for this product related page as no longer  being the
 						// "primary" mapping, leaving it in the database so old links aren't broken.
 						$columns_to_retrieve = array(
 							'uri'
 							);
-						
+
 						$selections = array(
 							'main_page' => $page_type,
 							'associated_db_id' => (int) $product_id,
 							'language_id' => (int) $languages[$i]['id'],
 							'current_uri' => 1,
 							);
-						
+
 						$order_by = 'current_uri DESC';
-						
+
 						$current_uri_mapping_result =
 							$this->getURIMappingsResultset($columns_to_retrieve, $selections, $order_by, 1);
-						
+
 						if (!$current_uri_mapping_result->EOF) {
 							$this->makeURIMappingHistorical($current_uri_mapping_result->fields['uri'],
 								$languages[$i]['id']);
 						}
-						
+
 						$uri_part = $this->getProductRelatedPageURIPart($page_type, $language_code);
-						
+
 						if ($uri_part == false) {
 							// Unexpected database problem encountered
 							continue;
 						}
-						
+
 						$uri_part = $this->_convertStringForURI($uri_part, $language_code);
-						
+
 						$uri = $base_uri . $uri_part;
-						
+
 						$main_page = constant('FILENAME_' . strtoupper($page_type));
-						
+
 						$mapping_added = $this->addURIMapping($uri, $languages[$i]['id'],
 							$main_page, ($page_type == 'ask_a_question' ? 'pid=' . (int)$product_id : null), $product_id);
-						
+
 						if ($mapping_added == CEON_URI_MAPPING_ADD_MAPPING_SUCCESS) {
 							$success_message = sprintf(CEON_URI_MAPPING_TEXT_PRODUCT_MAPPING_ADDED,
 								ucwords($languages[$i]['name']),
 								'<a href="' . HTTP_SERVER . $uri . '" target="_blank">' . $uri . '</a>');
-							
+
 							$messageStack->add_session($success_message, 'success');
-							
+
 						} else {
 							if ($mapping_added == CEON_URI_MAPPING_ADD_MAPPING_ERROR_MAPPING_EXISTS) {
 								$failure_message = sprintf(CEON_URI_MAPPING_TEXT_ERROR_ADD_MAPPING_EXISTS,
 									ucwords($languages[$i]['name']),
 									'<a href="' . HTTP_SERVER . $uri . '" target="_blank">' . $uri . '</a>');
-									
+
 							} else if ($mapping_added == CEON_URI_MAPPING_ADD_MAPPING_ERROR_DATA_ERROR) {
 								$failure_message = sprintf(CEON_URI_MAPPING_TEXT_ERROR_ADD_MAPPING_DATA,
 									ucwords($languages[$i]['name']), $uri);
@@ -2004,7 +2000,7 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 								$failure_message = sprintf(CEON_URI_MAPPING_TEXT_ERROR_ADD_MAPPING_DB,
 									ucwords($languages[$i]['name']), $uri);
 							}
-							
+
 							$messageStack->add_session($failure_message, 'error');
 						}
 					}
@@ -2017,62 +2013,62 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 				$columns_to_retrieve = array(
 					'uri'
 					);
-				
+
 				$selections = array(
 					'main_page' => $product_page_type,
 					'associated_db_id' => (int) $product_id,
 					'language_id' => (int) $languages[$i]['id'],
 					'current_uri' => 1,
 					);
-				
+
 				$order_by = 'current_uri DESC';
-				
+
 				$current_uri_mapping_result =
 					$this->getURIMappingsResultset($columns_to_retrieve, $selections, $order_by, 1);
-				
+
 				if (!$current_uri_mapping_result->EOF) {
 					$this->makeURIMappingHistorical($current_uri_mapping_result->fields['uri'],
 						$languages[$i]['id']);
-					
+
 					$success_message = sprintf(CEON_URI_MAPPING_TEXT_PRODUCT_MAPPING_MADE_HISTORICAL,
 						ucwords($languages[$i]['name']));
-					
+
 					$messageStack->add_session($success_message, 'caution');
 				}
-				
+
 				foreach ($page_types_to_manage as $page_type) {
 					$columns_to_retrieve = array(
 						'uri'
 						);
-					
+
 					$selections = array(
 						'main_page' => $page_type,
 						'associated_db_id' => (int) $product_id,
 						'language_id' => (int) $languages[$i]['id'],
 						'current_uri' => 1,
 						);
-					
+
 					$order_by = 'current_uri DESC';
-					
+
 					$current_uri_mapping_result =
 						$this->getURIMappingsResultset($columns_to_retrieve, $selections, $order_by, 1);
-					
+
 					if (!$current_uri_mapping_result->EOF) {
 						$prp_uri_mapping = $current_uri_mapping_result->fields['uri'];
-						
+
 						$this->makeURIMappingHistorical($prp_uri_mapping, $languages[$i]['id']);
-						
+
 						$success_message = sprintf(
 							CEON_URI_MAPPING_TEXT_PRODUCT_RELATED_PAGE_MAPPING_MADE_HISTORICAL,
 							ucwords($languages[$i]['name']), $prp_uri_mapping);
-						
+
 						$messageStack->add_session($success_message, 'caution');
 					}
 				}
 			}
 		}
 	}
-	
+
 	// }}}
 }
 
