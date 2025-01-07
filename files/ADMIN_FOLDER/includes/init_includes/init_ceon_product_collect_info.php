@@ -66,7 +66,7 @@ if (defined('FILENAME_CATEGORY_PRODUCT_LISTING') && $_SERVER['SCRIPT_NAME'] == D
 if (defined('FILENAME_CATEGORY_PRODUCT_LISTING') && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!strstr(FILENAME_CATEGORY_PRODUCT_LISTING, '.php') ? FILENAME_CATEGORY_PRODUCT_LISTING . '.php' : FILENAME_CATEGORY_PRODUCT_LISTING) && (isset($_SESSION['ceon_uri_mapping_insert_product']) || isset($_SESSION['ceon_uri_mapping_update_product']))) {
 		
 	// BEGIN CEON URI MAPPING 1 of 1
-	$products_id = $_GET['pID'];
+	$products_id = (int)$_GET['pID'];
 	$_POST = !empty($_SESSION['ceon_uri_mapping_insert_product']) ? $_SESSION['ceon_uri_mapping_insert_product'] : $_SESSION['ceon_uri_mapping_update_product'];
 	$product_type = (int)$_POST['product_type'];
 	
@@ -101,7 +101,7 @@ if (defined('FILENAME_CATEGORY_PRODUCT_LISTING') && $_SERVER['SCRIPT_NAME'] == D
 if (defined('FILENAME_CATEGORY_PRODUCT_LISTING') && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!strstr(FILENAME_CATEGORY_PRODUCT_LISTING, '.php') ? FILENAME_CATEGORY_PRODUCT_LISTING . '.php' : FILENAME_CATEGORY_PRODUCT_LISTING) && isset($_SESSION['ceon_uri_mapping_move_product_confirm'])) {
 
 	$new_parent_id = $_GET['cPath'];
-	$products_id = $_GET['pID'];
+	$products_id = (int)$_GET['pID'];
 	$_POST = $_SESSION['ceon_uri_mapping_move_product_confirm'];
 	
 	// BEGIN CEON URI MAPPING 1 of 1

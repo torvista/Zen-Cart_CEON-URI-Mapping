@@ -41,14 +41,14 @@ class CeonURIMappingAdminCopyObserver extends base
 				//							$products_id_to= $dup_products_id;
 						global $zc_products;
 						
-						$products_id_from = $product_data['products_id'];
-						$products_id_to = $product_data['dup_products_id'];
+						$products_id_from = (int)$product_data['products_id'];
+						$products_id_to = (int)$product_data['dup_products_id'];
 						$categories_id = (int)$_POST['categories_id'];
 //						$products_id_from = (int)zen_db_prepare_input($_POST['products_id']);
 //						$categories_id = !empty($_GET['cPath']) ? (int)$_GET['cPath'] : 0;
 //						$products_id_to = !empty($_GET['pID']) ? (int)$_GET['pID'] : 0;
 						
-						$sql = "SELECT products_type FROM " . TABLE_PRODUCTS . " WHERE products_id=" . (int)$products_id_to;
+						$sql = "SELECT products_type FROM " . TABLE_PRODUCTS . " WHERE products_id=" . $products_id_to;
 						$product = $GLOBALS['db']->Execute($sql);
 						
 						$this->ceon_uri_mapping_copy_product_confirmed = true;
@@ -63,7 +63,7 @@ class CeonURIMappingAdminCopyObserver extends base
 						$ceon_uri_mapping_admin = new CeonURIMappingAdminProductPages();
 						
 						$ceon_uri_mapping_admin->copyToConfirmHandler($products_id_from, $products_id_to,
-							$product->fields['products_type'], $zc_products->get_handler($product->fields['products_type']),
+                            (int)$product->fields['products_type'], $zc_products->get_handler($product->fields['products_type']),
 							$categories_id);
 				}
 		}

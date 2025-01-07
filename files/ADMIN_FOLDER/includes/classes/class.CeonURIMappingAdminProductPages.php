@@ -11,7 +11,7 @@
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        http://ceon.net/software/business/zen-cart/uri-mapping
  * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version     $Id: class.CeonURIMappingAdminProductPages.php 1054 2024-01-04 15:45:15Z conor updated 5.1.1 $
+ * @version     $Id: class.CeonURIMappingAdminProductPages.php 2025-01-07 torvista
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -94,10 +94,10 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 	 */
 	public function __construct()
 	{
-		// Load the language definition file for the current language
-		include_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . 'ceon_uri_mapping_product_pages.php');
+        // Load the language definition file for the current language
+		@include_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . 'ceon_uri_mapping_product_pages.php');
 
-		if (!defined('CEON_URI_MAPPING_TEXT_PRODUCT_URI') && $_SESSION['language'] != 'english') {
+		if (!defined('CEON_URI_MAPPING_TEXT_PRODUCT_URI') && $_SESSION['language'] !== 'english') {
 			// Fall back to english language file
 			include_once(DIR_WS_LANGUAGES . 'english/' . 'ceon_uri_mapping_product_pages.php');
 		}
@@ -123,17 +123,17 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 		// Get any current product URI mappings from the database
 		if (isset($_GET['pID']) && empty($_POST)) {
 			// Get the product's type handler
-			$product_type_handler_query = "
+			$product_type_handler_query = '
 				SELECT
 					pt.type_handler
 				FROM
-					" . TABLE_PRODUCTS . " p
+					' . TABLE_PRODUCTS . ' p
 				LEFT JOIN
-					" . TABLE_PRODUCT_TYPES . " pt
+					' . TABLE_PRODUCT_TYPES . ' pt
 				ON
 					pt.type_id = p.products_type
 				WHERE
-					p.products_id = '" . (int) $_GET['pID'] . "';";
+					p.products_id = ' . (int)$_GET['pID'];
 
 			$product_type_handler_result = $db->Execute($product_type_handler_query);
 
@@ -206,7 +206,7 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 				<td class="main" style="padding-top: 0.5em; padding-bottom: 0.5em;">' . "\n";
 
 		for ($i = 0, $n = count($languages); $i < $n; $i++) {
-			$uri_mapping_input_fields .= "<p>";
+			$uri_mapping_input_fields .= '<p>';
 
 			if (!isset($this->_prev_uri_mappings[$languages[$i]['id']])) {
 				$this->_prev_uri_mappings[$languages[$i]['id']] = '';
@@ -226,7 +226,7 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 			$uri_mapping_input_fields .= "</p>\n";
 		}
 
-		$uri_mapping_input_fields .= "<p>";
+		$uri_mapping_input_fields .= '<p>';
 
 		if ($this->_autogenEnabled()) {
 			if ($num_languages == 1) {
@@ -261,7 +261,7 @@ $autogen_selected = true;
 			$uri_mapping_input_fields .= CEON_URI_MAPPING_TEXT_URI_AUTOGEN_DISABLED;
 		}
 
-		$uri_mapping_input_fields .= "</p>";
+		$uri_mapping_input_fields .= '</p>';
 
 		$uri_mapping_input_fields .= "\n\t\t</td>\n\t</tr>";
 
@@ -350,13 +350,13 @@ $autogen_selected = true;
 			$uri_mapping_input_fields .= CEON_URI_MAPPING_TEXT_URI_AUTOGEN_DISABLED;
 		}
 
-		$uri_mapping_input_fields .= "</div><br>";
+		$uri_mapping_input_fields .= '</div><br>';
 
 		$uri_mapping_input_fields .= "\n\t\t</div>";
 
-		$uri_mapping_input_fields .= "
-				" . zen_draw_separator('pixel_black.gif', '100%', '2') . "
-				";
+		$uri_mapping_input_fields .= '
+				' . zen_draw_separator('pixel_black.gif', '100%', '2') . '
+				';
 
 		return $uri_mapping_input_fields;
 	}
@@ -373,11 +373,9 @@ $autogen_selected = true;
 	 * @param  int  $current_category_id   The ID of the original master category for the product.
 	 * @return  void
 	 */
-	public function productPreviewProcessSubmission($current_category_id): void
+	public function productPreviewProcessSubmission(int $current_category_id): void
     {
-		//global $db;
-
-		$this->_prev_uri_mappings = $_POST['prev-uri-mappings'] ?? [];
+        $this->_prev_uri_mappings = $_POST['prev-uri-mappings'] ?? [];
 		$this->_uri_mappings = $_POST['uri-mappings'] ?? [];
 
 		$languages = zen_get_languages();
@@ -392,7 +390,7 @@ $autogen_selected = true;
 				$master_categories_id = (int) $_POST['master_category'];
 			} else {
 				// Find out where this product is being added/updated
-				$master_categories_id = (int) $current_category_id;
+				$master_categories_id = $current_category_id;
 			}
 
 			// Need to store names so they can be appended to the URI being generated for the product
@@ -561,10 +559,10 @@ $autogen_selected = true;
 	 *
 	 * @access  public
 	 * @param  int  $product_id     The product's ID.
-	 * @param   string    $product_type   The product's type (not its type ID).
+	 * @param  string  $product_type   The product's type (not its type ID).
 	 * @return  void
 	 */
-	public function productPreviewInitialLoad($product_id, $product_type): void
+	public function productPreviewInitialLoad(int $product_id, string $product_type): void
     {
 		$this->_prev_uri_mappings = [];
 		$this->_uri_mappings = [];
@@ -600,12 +598,12 @@ $autogen_selected = true;
 
 	/**
 	 * Outputs the information about the product's URI mapping(s) on the product preview page.
-	 * This function does not appear to be used anywhere...function productPreviewExportURIMappingInfo builds the table for the product preview page
+	 * torvista: This function does not appear to be used anywhere...function productPreviewExportURIMappingInfo builds the table for the product preview page
 	 * @access  public
-	 * @param   array     $language_info   An array of Zen Cart language info.
+	 * @param  array  $language_info   An array of Zen Cart language info.
 	 * @return  void
      */
-	public function productPreviewOutputURIMappingInfo($language_info): void
+	public function productPreviewOutputURIMappingInfo(array $language_info): void
     {
 		?>
 			<tr>
@@ -724,10 +722,10 @@ $autogen_selected = true;
 	 * Exports the information about the product's URI mapping(s) on the product preview page.
 	 *
 	 * @access  public
-	 * @param   array     $language_info   An array of Zen Cart language info.
+	 * @param  array  $language_info   An array of Zen Cart language info.
 	 * @return  string
 	 */
-	public function productPreviewExportURIMappingInfo($language_info): string
+	public function productPreviewExportURIMappingInfo(array $language_info): string
     {
 		$contents = '
 				<table>
@@ -870,10 +868,10 @@ $autogen_selected = true;
 	 *
 	 * @access  public
 	 * @param  int  $product_id     The ID of the product.
-	 * @param   string    $product_type   The product's type (not the type ID).
+	 * @param  string  $product_type   The product's type (not the type ID).
 	 * @return  void
 	 */
-	public function updateProductHandler($product_id, $product_type): void
+	public function updateProductHandler(int $product_id, string $product_type): void
     {
 		global $languages, $messageStack;
 
@@ -970,7 +968,7 @@ $autogen_selected = true;
 
 					$selections = [
 						'main_page' => $page_type,
-						'associated_db_id' => (int) $product_id,
+						'associated_db_id' => $product_id,
 						'language_id' => (int) $languages[$i]['id'],
 						'current_uri' => 1,
                     ];
@@ -999,7 +997,7 @@ $autogen_selected = true;
 					$main_page = constant('FILENAME_' . strtoupper($page_type));
 
 					$mapping_added =
-						$this->addURIMapping($uri, $languages[$i]['id'], $main_page, ($page_type == 'ask_a_question' ? 'pid=' . (int) $product_id : null), $product_id);
+						$this->addURIMapping($uri, $languages[$i]['id'], $main_page, ($page_type == 'ask_a_question' ? 'pid=' . $product_id : null), $product_id);
 
 					if ($mapping_added == CEON_URI_MAPPING_ADD_MAPPING_SUCCESS) {
 						if ($insert_uri_mapping) {
@@ -1048,7 +1046,7 @@ $autogen_selected = true;
 
 					$selections = [
 						'main_page' => $page_type,
-						'associated_db_id' => (int) $product_id,
+						'associated_db_id' => $product_id,
 						'language_id' => (int) $languages[$i]['id'],
 						'current_uri' => 1,
                     ];
@@ -1087,7 +1085,7 @@ $autogen_selected = true;
 	 * @param  int  $product_id   The ID of the product being copied.
      * @return void
 	 */
-	public function addURIMappingFieldsToProductCopyFieldsArray($product_id): void
+	public function addURIMappingFieldsToProductCopyFieldsArray(int $product_id): void
     {
 		global $contents;
 
@@ -1110,7 +1108,7 @@ $autogen_selected = true;
 	 * @param  int  $product_id   The ID of the product being copied.
 	 * @return  string|bool   The source for the input fields or false if no input fields necessary.
 	 */
-	public function buildProductCopyURIMappingFields($product_id): bool|string
+	public function buildProductCopyURIMappingFields(int $product_id): bool|string
     {
 		global $languages, $ceon_uri_mapping_product_pages;
 
@@ -1142,7 +1140,7 @@ $autogen_selected = true;
 		if ($product_has_mappings || $this->_autogenEnabled()) {
 			$uri_mapping_input_fields = zen_draw_separator('pixel_black.gif', '0%', '2');
 
-			$uri_mapping_input_fields .= "<h6>" . CEON_URI_MAPPING_TEXT_DUPLICATE_PRODUCT_URI_MAPPING . '</h6>';
+			$uri_mapping_input_fields .= '<h6>' . CEON_URI_MAPPING_TEXT_DUPLICATE_PRODUCT_URI_MAPPING . '</h6>';
 
 			// Default to auto-generating URIs for product's copy
 			$autogen_selected = $this->_autogenEnabled();
@@ -1194,9 +1192,7 @@ $autogen_selected = true;
 			$uri_mapping_input_fields .=
 				zen_draw_radio_field('uri-mapping', 'ignore', false) . ' ' . $ignore_message;
 
-			$uri_mapping_input_fields .= "</p>";
-
-//			$uri_mapping_input_fields .= zen_draw_separator();
+			$uri_mapping_input_fields .= '</p>';
 
 			return $uri_mapping_input_fields;
 		}
@@ -1216,12 +1212,13 @@ $autogen_selected = true;
 	 * @param  int  $product_id_from    The ID of the product being copied from.
 	 * @param  int  $product_id_to      The ID of the product being top.
 	 * @param  int  $product_type_id    The product's type ID.
-	 * @param   string    $product_type       The product's type (not its type ID).
+	 * @param  string  $product_type       The product's type (not its type ID).
 	 * @param  int  $dest_category_id   The ID of the category the product is being copied to.
 	 * @return  void
 	 */
-	public function copyToConfirmHandler($product_id_from, $product_id_to, $product_type_id, $product_type,
-		$dest_category_id): void
+	public function copyToConfirmHandler(
+        int $product_id_from, int $product_id_to, int $product_type_id, string $product_type,
+		int $dest_category_id): void
     {
 		global /*$db,*/ $messageStack;
 		
@@ -1243,7 +1240,7 @@ $autogen_selected = true;
 
 				$selections = [
 					'main_page' => $product_type . '_info',
-					'associated_db_id' => (int) $product_id_from,
+					'associated_db_id' => $product_id_from,
 					'current_uri' => 1
                 ];
 
@@ -1513,7 +1510,7 @@ $autogen_selected = true;
 						$main_page = constant('FILENAME_' . strtoupper($page_type));
 
 						$mapping_added =
-							$this->addURIMapping($uri, $languages[$i]['id'], $main_page, ($page_type == 'ask_a_question' ? 'pid=' . (int) $product_id_to : null), $product_id_to);
+							$this->addURIMapping($uri, $languages[$i]['id'], $main_page, ($page_type == 'ask_a_question' ? 'pid=' . $product_id_to : null), $product_id_to);
 
 						if ($mapping_added == CEON_URI_MAPPING_ADD_MAPPING_SUCCESS) {
 							$success_message = sprintf(CEON_URI_MAPPING_TEXT_PRODUCT_MAPPING_ADDED,
@@ -1557,7 +1554,7 @@ $autogen_selected = true;
 	 * @param  int  $product_id   The ID of the product being moved.
 	 * @return  void
 	 */
-	public function addURIMappingFieldsToProductMoveFieldsArray($product_id): void
+	public function addURIMappingFieldsToProductMoveFieldsArray(int $product_id): void
     {
 		global $contents;
 
@@ -1580,7 +1577,7 @@ $autogen_selected = true;
 	 * @param  int  $product_id   The ID of the product being moved.
 	 * @return  string|bool   The source for the input fields or false if no input fields necessary.
 	 */
-	public function buildProductMoveURIMappingFields($product_id): bool|string
+	public function buildProductMoveURIMappingFields(int $product_id): bool|string
     {
 		global /*$db,*/ $languages, $ceon_uri_mapping_product_pages;
 
@@ -1599,7 +1596,7 @@ $autogen_selected = true;
 
 		$selections = [
 			'main_page' => $ceon_uri_mapping_product_pages,
-			'associated_db_id' => (int) $product_id
+			'associated_db_id' => $product_id
         ];
 
 		$existing_product_uri_mappings_result =
@@ -1612,7 +1609,7 @@ $autogen_selected = true;
 		if ($product_has_mappings || $this->_autogenEnabled()) {
 			$uri_mapping_input_fields = zen_draw_separator('pixel_black.gif', '100%', '2');
 
-			$uri_mapping_input_fields .= "<p>" . CEON_URI_MAPPING_TEXT_MOVE_PRODUCT_URI_MAPPING .
+			$uri_mapping_input_fields .= '<p>' . CEON_URI_MAPPING_TEXT_MOVE_PRODUCT_URI_MAPPING .
 				'<br>';
 
 			// Default to auto-generating URIs for product's new location
@@ -1662,7 +1659,7 @@ $autogen_selected = true;
 			$uri_mapping_input_fields .=
 				zen_draw_radio_field('uri-mapping', 'drop-existing', false) . ' ' . $ignore_message;
 
-			$uri_mapping_input_fields .= "</p>";
+			$uri_mapping_input_fields .= '</p>';
 
 			$uri_mapping_input_fields .= zen_draw_separator('pixel_black.gif', '100%', '2');
 
@@ -1683,13 +1680,13 @@ $autogen_selected = true;
 	 * @access  public
 	 * @param  int  $product_id         The ID of the product being moved.
 	 * @param  int  $product_type_id    The product's type ID.
-	 * @param   string    $product_type       The product's type (not its type ID).
+	 * @param  string  $product_type    The product's type (not its type ID).
 	 * @param  int  $dest_category_id   The ID of the category the product is being moved to.
 	 * @return  void
 	 */
-	public function moveProductConfirmHandler($product_id, $product_type_id, $product_type, $dest_category_id)
-	{
-		global /*$db,*/ $messageStack;
+	public function moveProductConfirmHandler(int $product_id, int $product_type_id, string $product_type, int $dest_category_id): void
+    {
+		global $messageStack;
 
 		$languages = zen_get_languages();
 		
@@ -1734,7 +1731,7 @@ $autogen_selected = true;
 
 				$selections = [
 					'main_page' => $product_page_type,
-					'associated_db_id' => (int) $product_id,
+					'associated_db_id' => $product_id,
 					'language_id' => (int) $languages[$i]['id'],
 					'current_uri' => 1,
                 ];
@@ -1939,7 +1936,7 @@ $autogen_selected = true;
 
 						$selections = [
 							'main_page' => $page_type,
-							'associated_db_id' => (int) $product_id,
+							'associated_db_id' => $product_id,
 							'language_id' => (int) $languages[$i]['id'],
 							'current_uri' => 1,
                         ];
@@ -1968,7 +1965,7 @@ $autogen_selected = true;
 						$main_page = constant('FILENAME_' . strtoupper($page_type));
 
 						$mapping_added = $this->addURIMapping($uri, $languages[$i]['id'],
-							$main_page, ($page_type == 'ask_a_question' ? 'pid=' . (int)$product_id : null), $product_id);
+							$main_page, ($page_type == 'ask_a_question' ? 'pid=' . $product_id : null), $product_id);
 
 						if ($mapping_added == CEON_URI_MAPPING_ADD_MAPPING_SUCCESS) {
 							$success_message = sprintf(CEON_URI_MAPPING_TEXT_PRODUCT_MAPPING_ADDED,
@@ -2006,7 +2003,7 @@ $autogen_selected = true;
 
 				$selections = [
 					'main_page' => $product_page_type,
-					'associated_db_id' => (int) $product_id,
+					'associated_db_id' => $product_id,
 					'language_id' => (int) $languages[$i]['id'],
 					'current_uri' => 1,
                 ];
@@ -2033,7 +2030,7 @@ $autogen_selected = true;
 
 					$selections = [
 						'main_page' => $page_type,
-						'associated_db_id' => (int) $product_id,
+						'associated_db_id' => $product_id,
 						'language_id' => (int) $languages[$i]['id'],
 						'current_uri' => 1,
                     ];
