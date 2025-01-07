@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is called by javascript_loader.php at the start of the body tag, just above the header menu, and loads most of the admin javascript components
+ * This file is called by javascript_loader.php at the start of the body tag, just above the header menu, and loads most of the admin JavaScript components
  *
  * @package admin
  * @copyright Copyright 2003-2024 Zen Cart Development Team
@@ -12,13 +12,13 @@
 // displays the javascript necessary for
 // admin/product.php&action=new_product and
 // admin/product.php&action=update_product
-if (defined('FILENAME_PRODUCT') && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!strstr(FILENAME_PRODUCT, '.php') ? FILENAME_PRODUCT . '.php' : FILENAME_PRODUCT) && isset($_GET['action']) && ($_GET['action'] == 'new_product' || $_GET['action'] == 'update_product' || ($_GET['action'] == 'insert_product' && empty($_GET['pID'])))) {
+if (defined('FILENAME_PRODUCT') && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!str_contains(FILENAME_PRODUCT, '.php') ? FILENAME_PRODUCT . '.php' : FILENAME_PRODUCT) && isset($_GET['action']) && ($_GET['action'] == 'new_product' || $_GET['action'] == 'update_product' || ($_GET['action'] == 'insert_product' && empty($_GET['pID'])))) {
 	$ceon_class_name = 'form-group';
 ?>
-	<script title="ceon_uri_mapping_javascript(<?php echo __LINE__; ?>)">
+	<script title="ceon_uri_mapping_javascript(<?=__LINE__ ?>)">
 window.onload = function(){
 	var ceonUriMappingURI = document.createElement("div");
-	ceonUriMappingURI.setAttribute("class", "<?php echo $ceon_class_name; ?>");
+	ceonUriMappingURI.setAttribute("class", "<?= $ceon_class_name ?>");
 	ceonUriMappingURI.innerHTML = <?php
 	$languages = zen_get_languages();
 
@@ -29,7 +29,7 @@ window.onload = function(){
 		$ceon_uri_mapping_admin = empty($GLOBALS['ceon_uri_mapping_admin']) ? new CeonURIMappingAdminProductPages() : $GLOBALS['ceon_uri_mapping_admin'];
 	}
 	echo json_encode(/*utf8_encode*/($ceon_uri_mapping_admin->collectInfoBuildURIMappingForm())); ?>;
-	var classList = document.getElementsByClassName("<?php echo $ceon_class_name; ?>");
+	var classList = document.getElementsByClassName("<?= $ceon_class_name ?>");
 	var place = classList[classList.length - 1];
 	
 	if (!classList.length) {
@@ -43,14 +43,14 @@ window.onload = function(){
 
 // displays the javascript necessary for
 // admin/product.php&action=new_product_preview
-if (defined('FILENAME_PRODUCT') && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!strstr(FILENAME_PRODUCT, '.php') ? FILENAME_PRODUCT . '.php' : FILENAME_PRODUCT) && isset($_GET['action']) && ($_GET['action'] == 'new_product_preview')) {
+if (defined('FILENAME_PRODUCT') && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!str_contains(FILENAME_PRODUCT, '.php') ? FILENAME_PRODUCT . '.php' : FILENAME_PRODUCT) && isset($_GET['action']) && ($_GET['action'] == 'new_product_preview')) {
 	$ceon_class_name = 'row';
 ?>
-	<script title="ceon_uri_mapping_javascript(<?php echo __LINE__; ?>)">
+	<script title="ceon_uri_mapping_javascript(<?=__LINE__ ?>)">
 window.onload = function(){
 	var formList;
 	var ceonUriMappingGeneratedURI = document.createElement("div");
-	ceonUriMappingGeneratedURI.setAttribute("class", "<?php echo $ceon_class_name; ?>");
+	ceonUriMappingGeneratedURI.setAttribute("class", "<?= $ceon_class_name ?>");
 	ceonUriMappingGeneratedURI.innerHTML = <?php
 
 	$languages = zen_get_languages();
@@ -80,8 +80,7 @@ window.onload = function(){
 	place.parentElement.insertBefore(ceonUriMappingGeneratedURI, place);
 
 	var ceonUriMappingHiddenURI = document.createElement("div");
-	ceonUriMappingHiddenURI.innerHTML = <?php
-	echo json_encode(/*utf8_encode*/($ceon_uri_mapping_admin->productPreviewBuildHiddenFields()));
+	ceonUriMappingHiddenURI.innerHTML = <?= json_encode(/*utf8_encode*/($ceon_uri_mapping_admin->productPreviewBuildHiddenFields()))
 	 ?>;
 	classList = document.getElementsByClassName("row text-right");
 	place = classList[classList.length - 1];
@@ -100,13 +99,13 @@ window.onload = function(){
 
 // displays the javascript necessary for
 // admin/manufacturers.php&action=edit
-if (defined('FILENAME_MANUFACTURERS') && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!strstr(FILENAME_MANUFACTURERS, '.php') ? FILENAME_MANUFACTURERS . '.php' : FILENAME_MANUFACTURERS) && isset($_GET['action']) && $_GET['action'] == 'edit') {
+if (defined('FILENAME_MANUFACTURERS') && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!str_contains(FILENAME_MANUFACTURERS, '.php') ? FILENAME_MANUFACTURERS . '.php' : FILENAME_MANUFACTURERS) && isset($_GET['action']) && $_GET['action'] == 'edit') {
 	$ceon_class_name = 'row infoBoxContent';
 ?>
 	<script title="ceon_uri_mapping_javascript(<?= __LINE__ ?>)">
 window.onload = function(){
 	let ceonUriMappingGeneratedURI = document.createElement("div");
-	ceonUriMappingGeneratedURI.setAttribute("class", "<?php echo $ceon_class_name; ?>");
+	ceonUriMappingGeneratedURI.setAttribute("class", "<?= $ceon_class_name ?>");
 	ceonUriMappingGeneratedURI.innerHTML = <?php
 	require_once(DIR_WS_CLASSES . 'class.CeonURIMappingAdminManufacturerPages.php');
 	$ceon_uri_mapping_admin = new CeonURIMappingAdminManufacturerPages();
@@ -132,13 +131,13 @@ window.onload = function(){
 
 // displays the javascript necessary for
 // admin/manufacturers.php&action=new
-if (defined('FILENAME_MANUFACTURERS') && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!strstr(FILENAME_MANUFACTURERS, '.php') ? FILENAME_MANUFACTURERS . '.php' : FILENAME_MANUFACTURERS) && isset($_GET['action']) && $_GET['action'] == 'new') {
+if (defined('FILENAME_MANUFACTURERS') && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!str_contains(FILENAME_MANUFACTURERS, '.php') ? FILENAME_MANUFACTURERS . '.php' : FILENAME_MANUFACTURERS) && isset($_GET['action']) && $_GET['action'] == 'new') {
 	$ceon_class_name = 'row infoBoxContent';
 ?>
 	<script title="ceon_uri_mapping_javascript(<?= __LINE__ ?>)">
 window.onload = function(){
 	let ceonUriMappingGeneratedURI = document.createElement("div");
-	ceonUriMappingGeneratedURI.setAttribute("class", "<?php echo $ceon_class_name; ?>");
+	ceonUriMappingGeneratedURI.setAttribute("class", "<?= $ceon_class_name ?>");
 	ceonUriMappingGeneratedURI.innerHTML = <?php
     $languages = zen_get_languages();
     require_once(DIR_WS_CLASSES . 'class.CeonURIMappingAdminManufacturerPages.php');
@@ -166,9 +165,9 @@ window.onload = function(){
 
 // displays the javascript necessary for
 // admin/ezpages.php&action=new
-if (defined('FILENAME_EZPAGES_ADMIN') && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!strstr(FILENAME_EZPAGES_ADMIN, '.php') ? FILENAME_EZPAGES_ADMIN . '.php' : FILENAME_EZPAGES_ADMIN) && isset($_GET['action']) && $_GET['action'] == 'new') {
+if (defined('FILENAME_EZPAGES_ADMIN') && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!str_contains(FILENAME_EZPAGES_ADMIN, '.php') ? FILENAME_EZPAGES_ADMIN . '.php' : FILENAME_EZPAGES_ADMIN) && isset($_GET['action']) && $_GET['action'] == 'new') {
 ?>
-	<script title="ceon_uri_mapping_javascript(<?php echo __LINE__; ?>)">
+	<script title="ceon_uri_mapping_javascript(<?=__LINE__ ?>)">
 window.onload = function(){
 	var ceonUriMappingGeneratedURI = document.createElement("div");
 	ceonUriMappingGeneratedURI.setAttribute('class', 'form-group');
@@ -204,10 +203,9 @@ window.onload = function(){
 
 // displays the javascript necessary for
 // admin/product.php&action=copy_product
-if (defined('FILENAME_CATEGORY_PRODUCT_LISTING') && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!strstr(FILENAME_CATEGORY_PRODUCT_LISTING, '.php') ? FILENAME_CATEGORY_PRODUCT_LISTING . '.php' : FILENAME_CATEGORY_PRODUCT_LISTING) && isset($_GET['action']) && $_GET['action'] == 'copy_product') {
-
+if (defined('FILENAME_CATEGORY_PRODUCT_LISTING') && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!str_contains(FILENAME_CATEGORY_PRODUCT_LISTING, '.php') ? FILENAME_CATEGORY_PRODUCT_LISTING . '.php' : FILENAME_CATEGORY_PRODUCT_LISTING) && isset($_GET['action']) && $_GET['action'] == 'copy_product') {
 ?>
-	<script title="ceon_uri_mapping_javascript(<?php echo __LINE__; ?>)">
+	<script title="ceon_uri_mapping_javascript(<?= __LINE__ ?>)">
 window.onload = function(){
 	var ceonUriMappingGeneratedURI = document.createElement("div");
 	ceonUriMappingGeneratedURI.setAttribute('class', 'row infoBoxContent duplicate-only hiddenField');
@@ -253,10 +251,10 @@ window.onload = function(){
 
 // displays the javascript necessary for
 // admin/product.php&action=move_product
-if (defined('FILENAME_CATEGORY_PRODUCT_LISTING') && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!strstr(FILENAME_CATEGORY_PRODUCT_LISTING, '.php') ? FILENAME_CATEGORY_PRODUCT_LISTING . '.php' : FILENAME_CATEGORY_PRODUCT_LISTING) && isset($_GET['action']) && $_GET['action'] == 'move_product') {
+if (defined('FILENAME_CATEGORY_PRODUCT_LISTING') && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!str_contains(FILENAME_CATEGORY_PRODUCT_LISTING, '.php') ? FILENAME_CATEGORY_PRODUCT_LISTING . '.php' : FILENAME_CATEGORY_PRODUCT_LISTING) && isset($_GET['action']) && $_GET['action'] == 'move_product') {
 
 ?>
-	<script title="ceon_uri_mapping_javascript(<?php echo __LINE__; ?>)">
+	<script title="ceon_uri_mapping_javascript(<?=__LINE__ ?>)">
 window.onload = function(){
 	var ceonUriMappingGeneratedURI = document.createElement("div");
 	ceonUriMappingGeneratedURI.setAttribute('class', 'row infoBoxContent');
@@ -299,10 +297,10 @@ window.onload = function(){
 
 // displays the javascript necessary for
 // admin/categories.php&action=new_category
-if (defined('FILENAME_CATEGORIES') && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!strstr(FILENAME_CATEGORIES, '.php') ? FILENAME_CATEGORIES . '.php' : FILENAME_CATEGORIES) && isset($_GET['action']) && $_GET['action'] == 'new_category') {
+if (defined('FILENAME_CATEGORIES') && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!str_contains(FILENAME_CATEGORIES, '.php') ? FILENAME_CATEGORIES . '.php' : FILENAME_CATEGORIES) && isset($_GET['action']) && $_GET['action'] == 'new_category') {
 
 ?>
-	<script title="ceon_uri_mapping_javascript(<?php echo __LINE__; ?>)">
+	<script title="ceon_uri_mapping_javascript(<?=__LINE__ ?>)">
 window.onload = function(){
 	var ceonUriMappingGeneratedURI = document.createElement("div");
 	ceonUriMappingGeneratedURI.setAttribute('class', 'row');
@@ -343,10 +341,10 @@ window.onload = function(){
 
 // displays the javascript necessary for
 // admin/categories.php&action=edit_category
-if (defined('FILENAME_CATEGORIES') && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!strstr(FILENAME_CATEGORIES, '.php') ? FILENAME_CATEGORIES . '.php' : FILENAME_CATEGORIES) && isset($_GET['action']) && $_GET['action'] == 'edit_category') {
+if (defined('FILENAME_CATEGORIES') && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!str_contains(FILENAME_CATEGORIES, '.php') ? FILENAME_CATEGORIES . '.php' : FILENAME_CATEGORIES) && isset($_GET['action']) && $_GET['action'] == 'edit_category') {
 
 ?>
-	<script title="ceon_uri_mapping_javascript(<?php echo __LINE__; ?>)">
+	<script title="ceon_uri_mapping_javascript(<?=__LINE__ ?>)">
 window.onload = function(){
 	var ceonUriMappingGeneratedURI = document.createElement("div");
 	ceonUriMappingGeneratedURI.setAttribute('class', 'row');
@@ -359,7 +357,7 @@ window.onload = function(){
 	
 	$ceon_uri_mapping_admin->addURIMappingFieldsToEditCategoryForm(
 		(int) $GLOBALS['cInfo']->categories_id,
-		array('label' => 'col-sm-2 control-label', 'input_field'=>'col-sm-9 col-md-6')
+		['label' => 'col-sm-2 control-label', 'input_field'=>'col-sm-9 col-md-6']
 		);
 	
 	$text_str = '';
@@ -388,10 +386,10 @@ window.onload = function(){
 
 // displays the javascript necessary for
 // admin/categories.php&action=move_category - Needs development in class structure.
-if (false && defined('FILENAME_CATEGORY_PRODUCT_LISTING') && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!strstr(FILENAME_CATEGORY_PRODUCT_LISTING, '.php') ? FILENAME_CATEGORY_PRODUCT_LISTING . '.php' : FILENAME_CATEGORY_PRODUCT_LISTING) && isset($_GET['action']) && $_GET['action'] == 'move_category') {
+if (false && defined('FILENAME_CATEGORY_PRODUCT_LISTING') && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!str_contains(FILENAME_CATEGORY_PRODUCT_LISTING, '.php') ? FILENAME_CATEGORY_PRODUCT_LISTING . '.php' : FILENAME_CATEGORY_PRODUCT_LISTING) && isset($_GET['action']) && $_GET['action'] == 'move_category') {
 
 ?>
-	<script title="ceon_uri_mapping_javascript(<?php echo __LINE__; ?>)">
+	<script title="ceon_uri_mapping_javascript(<?= __LINE__ ?>)">
 window.onload = function(){
 	var ceonUriMappingGeneratedURI = document.createElement("div");
 	ceonUriMappingGeneratedURI.setAttribute('class', 'row');
