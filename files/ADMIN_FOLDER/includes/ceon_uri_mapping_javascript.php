@@ -54,17 +54,16 @@ window.onload = function(){
 	ceonUriMappingGeneratedURI.innerHTML = <?php
 
 	$languages = zen_get_languages();
-	
-	$ceonUriMappingPreview = '<p class="control-label">' . CEON_URI_MAPPING_TEXT_PRODUCT_URI . '</p>';
-	
+
 	if (empty($ceon_uri_mapping_admin) || !is_object($ceon_uri_mapping_admin)) {
 		if (!class_exists('CeonURIMappingAdminProductPages')) {
 			require_once(DIR_WS_CLASSES . 'class.CeonURIMappingAdminProductPages.php');
 		}
 		$ceon_uri_mapping_admin = empty($GLOBALS['ceon_uri_mapping_admin']) ? new CeonURIMappingAdminProductPages() : $GLOBALS['ceon_uri_mapping_admin'];
 	}
-	
-	for ($i = 0, $n = count($languages); $i < $n; $i++) {
+
+    $ceonUriMappingPreview = '<p class="control-label">' . CEON_URI_MAPPING_TEXT_PRODUCT_URI . '</p>';
+    for ($i = 0, $n = count($languages); $i < $n; $i++) {
 		$ceonUriMappingPreview .= $ceon_uri_mapping_admin->productPreviewExportURIMappingInfo($languages[$i]);
 	}
 	
