@@ -38,6 +38,8 @@ Don't waste your time, just buy it (say I). You'll have lots of merging fun addi
 https://www.zen-cart.com/showthread.php?225478-Ceon-URI-Mapping-V5-0
 
 ## Changelog
+07/01/2025: lots of minor nitpicks...for future changes refer to the commit history.
+
 31/12/2025: remove includes\init_includes\overrides\init_add_crumbs.php. Not necessary ZC158+
 
 07/08/2024:  
