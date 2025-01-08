@@ -594,7 +594,7 @@ TABBED_PANELS_MENU_JS;
 			}
 			
 			// Parse information returned from version check and display appropriate output to user
-			if (strlen($version_checker_response) == 0) {
+			if ($version_checker_response === false || strlen($version_checker_response) == 0) {
 				$output .= '<p class="Error"><strong>' . TEXT_ERROR_VERSION_CHECK_NO_RESPONSE . '</strong></p>';
 				
 				$output_manual_link = true;
