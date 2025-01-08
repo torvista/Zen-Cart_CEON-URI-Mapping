@@ -270,13 +270,14 @@ class CeonURIMappingTabbedPanelAdminInterface extends CeonURIMappingAdmin
 		
 		// Have the panel selected and displayed automatically
 		if (!is_null($selected_panel_id)) {
-			$this->_output .= '<style type="text/css">' . "\n";
+            // TODO style should not be here
+			$this->_output .= '<style>' . "\n";
 			$this->_output .= 'fieldset#' . $selected_panel_id . ' { display: block; }' . "\n";
 			$this->_output .= '</style>' . "\n";
 		}
 		
 		$this->_output .= <<<TABBED_PANELS_MENU_JS
-<script type="text/javascript">
+<script>
 var current_panel_id = '$selected_panel_id';
 
 function CeonShowPanel(id) {
@@ -302,7 +303,7 @@ function CeonShowPanel(id) {
 }
 </script>
 <noscript>
-<style type="text/css">
+<style>
 fieldset.CeonPanel { display: block; }
 </style>
 </noscript>
@@ -413,7 +414,7 @@ TABBED_PANELS_MENU_JS;
 		
 		if (is_null($content)) {
 			// The panel's content is built using table rows
-			$panel .= '<table border="0" width="98%" cellpadding="0" cellspacing="0">' . "\n";
+			$panel .= '<table>' . "\n";
 			
 			$panel .= $table_rows;
 			
@@ -471,7 +472,7 @@ TABBED_PANELS_MENU_JS;
 	{
 		$buttons = '				<div class="SpacerSmall"></div>' . "\n";
 		
-		$buttons .= zen_image_submit('button_save.gif', IMAGE_SAVE, 'name="save" value="save" id="save"');
+		$buttons .= zen_image_submit('button_save.gif', IMAGE_SAVE, 'name="save" id="save"');
 		
 		$buttons .= '&nbsp;<a href="' . zen_href_link(FILENAME_CEON_URI_MAPPING_CONFIG, '', 'NONSSL') .'">' .
 			zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>' . "\n";
