@@ -596,7 +596,7 @@ class CeonURIMappingConfigUtility extends CeonURIMappingVersion
 			}
 		}
 		
-		$this->_automatic_version_checking = $_POST['automatic-version-checking'];
+		$this->_automatic_version_checking = $_POST['automatic-version-checking'] == '1';
 		
 		// Save the configuration
 		if (!$ceon_uri_mapping_demo && count($this->_error_messages) == 0) {
