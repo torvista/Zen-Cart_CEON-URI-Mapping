@@ -1183,29 +1183,10 @@ class CeonURIMappingInstallationCheck extends CeonURIMappingVersion
 				),
 			'min_version_rem' => array(
 				'1.5.5'
-				),
-			);
-		
-		$core_file_modifications[] = array(
-			'path' => DIR_FS_CATALOG . DIR_WS_INCLUDES . 'init_includes/overrides/init_add_crumbs.php',
-			'num_mods' => 2,
-			'file_required' => true,
-			'old_snippets' => array(
-					'$typefilter_parameters = \'\';',
-					'zen_href_link(FILENAME_DEFAULT, $typefilter_parameters));'
-				),
-			'new_snippets' => array(
-				array(
-					'$link_parameters = $get_terms->fields[\'get_term_name\']',
-					'zen_href_link(FILENAME_DEFAULT, $link_parameters));'
-					),
-				array(
-					'|2 of 2[\s]+\*/|'
-					)
-				)
-			);
-		
-		$core_file_modifications[] = array(
+            ],
+        ];
+
+		$core_file_modifications[] = [
 			'path' => DIR_FS_CATALOG . DIR_WS_INCLUDES . 'init_includes/overrides/init_canonical.php',
 			'num_mods' => 2,
 			'file_required' => true,
