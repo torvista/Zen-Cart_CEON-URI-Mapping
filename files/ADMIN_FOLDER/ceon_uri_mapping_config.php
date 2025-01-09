@@ -1,5 +1,5 @@
 <?php
-//steve css select disabled
+
 /**
  * Ceon URI Mapping Configuration Utility HTML Output Page.
  *
@@ -229,12 +229,12 @@ $config_utility = new CeonURIMappingConfigUtility();
 	</style>
 	<![endif]-->
 </head>
-  <body>
-    <!-- header //-->
-    <?php require DIR_WS_INCLUDES . 'header.php'; ?>
-    <!-- header_eof //-->
+<body>
+<!-- header //-->
+<?php require(DIR_WS_INCLUDES . 'header.php'); ?>
+<!-- header_eof //-->
 
-    <!-- body //-->
+<!-- body //-->
 <div id="ceon-uri-mapping-wrapper">
 <?php echo zen_draw_form('ceon-uri-mapping', FILENAME_CEON_URI_MAPPING_CONFIG, zen_get_all_get_params(), 'post',
 	'onsubmit="" id="ceon-uri-mapping"', true);

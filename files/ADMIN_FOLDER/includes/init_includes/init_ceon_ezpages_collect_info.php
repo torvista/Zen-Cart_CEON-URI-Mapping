@@ -7,42 +7,42 @@
  * @copyright   Copyright 2003-2019 Zen Cart Development Team
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        https://ceon.net
- * $Id: init_ceon_ezpages_collect_info.php xxxx 2016-11-14 20:31:10Z Ceon Support $
+ * $Id: init_ceon_ezpages_collect_info.php  2025-01-08 torvista
  */
 
 
 if (defined('FILENAME_EZPAGES_ADMIN') && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!strstr(FILENAME_EZPAGES_ADMIN, '.php') ? FILENAME_EZPAGES_ADMIN . '.php' : FILENAME_EZPAGES_ADMIN) && isset($_GET['action']) && $_GET['action'] == 'deleteconfirm') {
-			$pages_id = zen_db_prepare_input($_POST['ezID']);
+			$pages_id = (int)zen_db_prepare_input($_POST['ezID']);
 
 			// BEGIN CEON URI MAPPING 2 of 4
 			require_once(DIR_WS_CLASSES . 'class.CeonURIMappingAdminEZPagePages.php');
-			
+
 			$ceon_uri_mapping_admin = new CeonURIMappingAdminEZPagePages();
-			
+
 			$ceon_uri_mapping_admin->deleteConfirmHandler($pages_id);
-			
-			// END CEON URI MAPPING 2 of 4      
+
+			// END CEON URI MAPPING 2 of 4
 
 } // EOF of the action for categories file.
 
 if (defined('FILENAME_EZPAGES_ADMIN') && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!strstr(FILENAME_EZPAGES_ADMIN, '.php') ? FILENAME_EZPAGES_ADMIN . '.php' : FILENAME_EZPAGES_ADMIN) && (isset($_SESSION['ceon_uri_mapping_ezpages_insert']) || isset($_SESSION['ceon_uri_mapping_ezpages_update']))) {
 		$_POST = !empty($_SESSION['ceon_uri_mapping_ezpages_insert']) ? $_SESSION['ceon_uri_mapping_ezpages_insert'] : $_SESSION['ceon_uri_mapping_ezpages_update'];
-		
+
 		unset($_SESSION['ceon_uri_mapping_ezpages_insert']);
 		unset($_SESSION['ceon_uri_mapping_ezpages_update']);
-		
+
 		$pages_id = isset($_GET['ezID']) ? (int)$_GET['ezID'] : 0;
-		$pages_title_array = zen_db_prepare_input($_POST['pages_title']);
-		
+		$pages_title_array = zen_db_prepare_input($_POST['pages_title']); //todo review this wrt the subsequent call to insertUpdateHandler with second parameter $pages_title_array
+
 		// BEGIN CEON URI MAPPING 1 of 4
 		require_once(DIR_WS_CLASSES . 'class.CeonURIMappingAdminEZPagePages.php');
-		
+
 		$ceon_uri_mapping_admin = new CeonURIMappingAdminEZPagePages();
-		
+
 		$ceon_uri_mapping_admin->insertUpdateHandler($pages_id, $pages_title_array, ((!empty($pages_title_array) && is_array($pages_title_array)) ? $pages_title_array : null));
-		
+
 		// END CEON URI MAPPING 1 of 4
-		
+
 		// Really should just redirect to the same uri that currently have...  Will reduce the amount of work in the future.
 		zen_redirect(zen_href_link(FILENAME_EZPAGES_ADMIN, zen_get_all_get_params()));
 }
@@ -56,7 +56,7 @@ if (defined('FILENAME_EZPAGES_ADMIN') && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN
 			unset($_SESSION['ceon_uri_mapping_ezpages_update']);
 
 			$languages = zen_get_languages();
-	
+
 			if (isset($_POST['pages_id'])) {
 				$pages_id = zen_db_prepare_input($_POST['pages_id']);
 			}
@@ -128,11 +128,10 @@ if (defined('FILENAME_EZPAGES_ADMIN') && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN
 
 		// BEGIN CEON URI MAPPING 3 of 4
 		require_once(DIR_WS_CLASSES . 'class.CeonURIMappingAdminEZPagePages.php');
-		
+
 		$ceon_uri_mapping_admin = new CeonURIMappingAdminEZPagePages();
-		
+
 		$ceon_uri_mapping_admin->configureEnvironment();
-		
+
 		// END CEON URI MAPPING 3 of 4
 }
-

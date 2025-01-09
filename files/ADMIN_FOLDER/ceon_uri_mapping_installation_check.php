@@ -13,7 +13,7 @@
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        http://ceon.net/software/business/zen-cart/uri-mapping
  * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version     $Id: ceon_uri_mapping_installation_check.php 1027 2012-07-17 20:31:10Z conor $
+ * @version     $Id: ceon_uri_mapping_installation_check.php 2025-01-08 torvista
  */
 
 require('includes/application_top.php');
@@ -31,36 +31,12 @@ $installation_check = new CeonURIMappingInstallationCheck();
 $installation_check->performChecks();
 
 ?>
-<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
-<head>
-<?php
-if (is_file(DIR_WS_INCLUDES . 'admin_html_head.php')) {
-  require DIR_WS_INCLUDES . 'admin_html_head.php';
-} else {
-?>
-	<title><?php echo HEADING_TITLE; ?></title><!--steve edit-->
-	<meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET; ?>">
-	<meta http-equiv="X-UA-Compatible" content="IE=9">
-	<link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
-	<link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-	<script type="text/javascript" src="includes/menu.js"></script>
-<?php } ?>
-	<script type="text/javascript" src="includes/general.js"></script>
-	<script type="text/javascript">
-		<!--
-		function init()
-		{
-			cssjsmenu('navbar');
-			if (document.getElementById)
-			{
-				var kill = document.getElementById('hoverJS');
-				kill.disabled = true;
-			}
-		}
-		// -->
-	</script>
-	<style type="text/css">
+  <head>
+    <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
+
+	<style>
 	#ceon-uri-mapping-wrapper {
 		margin: 0 0.8em 0 0.8em;
 	}
@@ -85,7 +61,7 @@ if (is_file(DIR_WS_INCLUDES . 'admin_html_head.php')) {
 	fieldset fieldset {
 		margin-top: 1em;
 		background: #f3f3f3;
-		box-shadow: inset 0px 0px 8px 1px #e3e3e3;
+		box-shadow: inset 0 0 8px 1px #e3e3e3;
 	}
 	fieldset.CeonPanel fieldset legend {
 		background: transparent;
@@ -147,9 +123,8 @@ if (is_file(DIR_WS_INCLUDES . 'admin_html_head.php')) {
 	#ceon-panels-wrapper {
 		border: 1px solid #599659;
 		background: #599659;
-		padding: 1em;
-		padding-top: 1.4em;
-		margin-bottom: 0.8em;
+        padding: 1.4em 1em 1em;
+        margin-bottom: 0.8em;
 	}
 	
 	.DisplayNone { display: none; }
@@ -226,7 +201,7 @@ if (is_file(DIR_WS_INCLUDES . 'admin_html_head.php')) {
 		background: #eee;
 		border: 1px solid #999;
 		margin: 0.2em 0.6em 0.6em 0.6em;
-		padding: 0em 1em 0.6em 2em;
+		padding: 0 1em 0.6em 2em;
 	}
 	
 	ul.ErrorInstructions li {
@@ -265,7 +240,7 @@ if (is_file(DIR_WS_INCLUDES . 'admin_html_head.php')) {
 	
 	.Collapse { display:  none; }
 	
-	#footer {
+	#footerCeon {
 		margin-top: 1.5em;
 		border-top: 1px solid #000;
 		padding-top: 1em;
@@ -273,26 +248,26 @@ if (is_file(DIR_WS_INCLUDES . 'admin_html_head.php')) {
 		font-size: 0.9em;
 		padding-bottom: 2em;
 	}
-	#footer img {
+	#footerCeon img {
 		border: none;
 	}
 	#ceon-button-logo {
 		float: left;
 		margin-right: 14px;
 	}
-	#footer p {
+	#footerCeon p {
 		margin: 0 0 0.8em 0;
 	}
-	#footer p#version-info {
+	#footerCeon p#version-info {
 		padding: 0;
-		line-height: 1.3
+		line-height: 1.3;
 	}
-	#footer p.Error {
+	#footerCeon p.Error {
 		font-size: 1.1em;
 	}
 	</style>
 	<!--[if IE]>
-	<style type="text/css">
+	<style>
 	fieldset {
 		position: relative;
 		padding-top: 2.2em;
@@ -312,8 +287,7 @@ if (is_file(DIR_WS_INCLUDES . 'admin_html_head.php')) {
 	</style>
 	<![endif]-->
 </head>
-<body onload="init()">
-<a name="top" id="top"></a>
+<body>
 <!-- header //-->
 <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
 <!-- header_eof //-->
@@ -323,9 +297,7 @@ if (is_file(DIR_WS_INCLUDES . 'admin_html_head.php')) {
 	<h1 class="pageHeading CeonAdminPageHeading"><?php echo HEADING_TITLE; ?></h1>
 
 <?php
-
 echo $installation_check->getOutput();
-
 ?>
 </div>
 <!-- body_eof //-->

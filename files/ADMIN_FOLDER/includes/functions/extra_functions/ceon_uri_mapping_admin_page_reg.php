@@ -4,7 +4,6 @@
  * Ceon URI Mapping Admin Page Registration.
  *
  * Attempts to create a link to the Ceon URI Mapping Config Utility in the Zen Cart admin menu in Zen Cart 1.5+.
- * After running successfully once, this file deletes itself as it is never needed again!
  * 
  * @package     ceon_uri_mapping
  * @author      Conor Kerr <zen-cart.uri-mapping@ceon.net>
