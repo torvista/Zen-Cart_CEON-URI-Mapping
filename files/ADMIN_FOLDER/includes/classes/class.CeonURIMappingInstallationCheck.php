@@ -2822,7 +2822,7 @@ class CeonURIMappingInstallationCheck extends CeonURIMappingVersion
 
 		// Add JavaScript function for quick and easy selection of the rule's content
 		$content .= <<<SELECT_AND_COPY_JS
-<script type="text/javascript">
+<script>
 <!--
 function HighlightAll(field) {
 	var el = eval("document." + field)
