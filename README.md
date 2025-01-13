@@ -6,6 +6,9 @@ Due to the haphazard communication/support from CEON, this repository aims to co
 
 As this repository is just strictly maintenance, the original documentation has not been updated.
 
+## branch "Admin_IDE_Inspections"
+All Admin files have had a spring clean but also type hints added. I'm using this in strict mode for a while, see what crawls out of the woodwork, other early adopters are encourage to use it and report any issues.
+
 ## Installation
 All files are contained in the /files folder.  
 All files apart from those in /file/includes/template files are new and so will not overwrite existing files.  
