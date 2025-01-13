@@ -71,7 +71,7 @@ class CeonURIMappingAdminProductsObserver extends base
 						$GLOBALS['ceon_uri_mapping_admin'] = new CeonURIMappingAdminProductPages();
 
 						if (zen_not_null($_POST)) {
-								$GLOBALS['ceon_uri_mapping_admin']->productPreviewProcessSubmission($GLOBALS['current_category_id']);
+								$GLOBALS['ceon_uri_mapping_admin']->productPreviewProcessSubmission((int)$GLOBALS['current_category_id']);
 
 								// END CEON URI MAPPING 1 of 4
 						} else {
