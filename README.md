@@ -1,4 +1,13 @@
 # CEON-URI-Mapping
+
+## This branch: Admin_IDE_Inspections
+Since I was accused of the heinous crime of offering invalid HTML from my repository (as if I could have written this plugin)...I bit the bullet and went through all the admin files to see what else would be automagically detected.  
+The answer is not much, thanks to the quality efforts of Conor Kerr (RIP).  
+So, this branch is cleared of whitespace, has type hints for parameters and functions, short array and phpdoc syntax, makes use of php8 functions and simplification of code where possible.  
+I use the admin files all in strict mode  to make it more fussy, and so far so good.  
+So feel free to use this branch.
+
+
 Currently based on version 5.1.1 available 11/01/2024 from ceon.net  
 It does NOT include the files for the commercial UMM version.
 

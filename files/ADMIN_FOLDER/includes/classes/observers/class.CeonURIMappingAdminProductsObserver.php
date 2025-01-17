@@ -12,7 +12,7 @@
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        https://ceon.net
  * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version     class.CeonURIMappingAdminProductsObserver.php torvista 07/01/2025
+ * @version     class.CeonURIMappingAdminProductsObserver.php 2025-01-08 torvista
  */
 class CeonURIMappingAdminProductsObserver extends base
 {
@@ -23,7 +23,8 @@ class CeonURIMappingAdminProductsObserver extends base
 
 		public function update(&$callingClass, $notifier, $action): void
 		{
-				if (!defined('CEON_URI_MAPPING_ENABLED')) {
+//steve, why was this done?
+				if (!defined('CEON_URI_MAPPING_ENABLED') || CEON_URI_MAPPING_ENABLED === '0') {
 						return;
 				}
 				if (!isset($action)) {
@@ -70,7 +71,7 @@ class CeonURIMappingAdminProductsObserver extends base
 						$GLOBALS['ceon_uri_mapping_admin'] = new CeonURIMappingAdminProductPages();
 
 						if (zen_not_null($_POST)) {
-								$GLOBALS['ceon_uri_mapping_admin']->productPreviewProcessSubmission($GLOBALS['current_category_id']);
+								$GLOBALS['ceon_uri_mapping_admin']->productPreviewProcessSubmission((int)$GLOBALS['current_category_id']);
 
 								// END CEON URI MAPPING 1 of 4
 						} else {

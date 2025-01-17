@@ -506,7 +506,7 @@ TABBED_PANELS_MENU_JS;
 		
 		$copyright_year_range .= '-' . $end_year;
 		
-		$footer .= 'ceon-button-logo.png" alt="Ceon" id="ceon-button-logo" /></a>' .
+		$footer .= 'ceon-button-logo.png" alt="Ceon" id="ceon-button-logo"></a>' .
 			'Module &copy; Copyright ' . $copyright_year_range .
 			' <a href="https://ceon.net/software/business/zen-cart" target="_blank">Ceon</a>' . "</p>\n";
 		
