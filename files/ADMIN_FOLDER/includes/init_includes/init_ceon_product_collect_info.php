@@ -93,7 +93,6 @@ if (defined('FILENAME_CATEGORY_PRODUCT_LISTING') && $_SERVER['SCRIPT_NAME'] == D
 	zen_redirect(zen_href_link(FILENAME_CATEGORY_PRODUCT_LISTING, zen_get_all_get_params()));
 }
 
-
 // notifier
 //  $zco_notifier->notify('NOTIFY_BEGIN_ADMIN_CATEGORIES', $action);
 
@@ -103,8 +102,8 @@ if (defined('FILENAME_CATEGORY_PRODUCT_LISTING') &&
     $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (! str_contains(FILENAME_CATEGORY_PRODUCT_LISTING, '.php') ? FILENAME_CATEGORY_PRODUCT_LISTING . '.php' : FILENAME_CATEGORY_PRODUCT_LISTING) &&
     isset($_SESSION['ceon_uri_mapping_move_product_confirm'])) {
 
-	$new_parent_id = $_GET['cPath'];
-	$products_id = (int)$_GET['pID'];
+	$new_parent_id = (int)$_GET['cPath'];
+	$products_id = $_GET['pID'];
 	$_POST = $_SESSION['ceon_uri_mapping_move_product_confirm'];
 
 	require_once(DIR_WS_CLASSES . 'class.CeonURIMappingAdminProductPages.php');
