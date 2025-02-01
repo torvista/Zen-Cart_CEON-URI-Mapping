@@ -1,13 +1,5 @@
 # CEON-URI-Mapping
 
-## This branch: Admin_IDE_Inspections
-Since I was accused of the heinous crime of offering invalid HTML from my repository (as if I could have written this plugin)...I bit the bullet and went through all the admin files to see what else would be automagically detected.  
-The answer is not much, thanks to the quality efforts of Conor Kerr (RIP).  
-So, this branch is cleared of whitespace, has type hints for parameters and functions, short array and phpdoc syntax, makes use of php8 functions and simplification of code where possible.  
-I use the admin files all in strict mode  to make it more fussy, and so far so good.  
-So feel free to use this branch.
-
-
 Currently based on version 5.1.1 available 11/01/2024 from ceon.net  
 It does NOT include the files for the commercial UMM version.
 
@@ -15,8 +7,12 @@ Due to the haphazard communication/support from CEON, this repository aims to co
 
 As this repository is just strictly maintenance, the original documentation has not been updated.
 
-## branch "Admin_IDE_Inspections"
-All Admin files have had a spring clean but also type hints added. I'm using this in strict mode for a while, see what crawls out of the woodwork, other early adopters are encourage to use it and report any issues.
+## Changes not fixes...
+Since I was accused of the heinous crime of offering invalid HTML from my repository (as if I could have written this plugin)...I bit the bullet and went through all the admin files to see what else would be automagically detected.  
+The answer is not much, thanks to the quality efforts of the author Conor Kerr (RIP) who was CEON.  
+So, these files are cleared of whitespace, have type hints for parameters and functions, short array and phpdoc syntax, makes use of php8 functions and has some simplification of code where identified.  
+I use the admin files all in strict mode  to make it more fussy, and so far so good.  
+I'm using these files in strict mode so am reasonably confident others should not have issues....but if you do, open an issue here, obviously!
 
 ## Installation
 All files are contained in the /files folder.  
