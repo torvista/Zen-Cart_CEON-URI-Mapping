@@ -322,7 +322,7 @@ class CeonURIMappingConfigUtility extends CeonURIMappingVersion
 		global $db;
 
 		// Only one config currently supported so its ID is hard-coded in the following SQL
-		$load_config_sql = "
+		$load_config_sql = '
 			SELECT
 				version,
 				autogen_new,
@@ -339,9 +339,9 @@ class CeonURIMappingConfigUtility extends CeonURIMappingVersion
 				manage_ask_a_question_mappings,
 				automatic_version_checking
 			FROM
-				" . TABLE_CEON_URI_MAPPING_CONFIGS . " 
+				' . TABLE_CEON_URI_MAPPING_CONFIGS . ' 
 			WHERE
-				id = '1';";
+				id = 1';
 
 		$load_config_result = $db->Execute($load_config_sql);
 
@@ -382,9 +382,9 @@ class CeonURIMappingConfigUtility extends CeonURIMappingVersion
 					language_code,
 					uri_part
 				FROM
-					" . TABLE_CEON_URI_MAPPING_PRODUCT_RELATED_PAGES_URI_PARTS . "
+					' . TABLE_CEON_URI_MAPPING_PRODUCT_RELATED_PAGES_URI_PARTS . '
 				WHERE
-					1 = 1;";
+					1 = 1';
 
 			$uri_parts_result = $db->Execute($uri_parts_sql);
 
@@ -624,11 +624,11 @@ class CeonURIMappingConfigUtility extends CeonURIMappingVersion
 			$save_config_result = zen_db_perform(TABLE_CEON_URI_MAPPING_CONFIGS,
 				$save_config_data_array, 'update', $selection_sql);
 
-			$remove_current_prp_uri_part_records = "
+			$remove_current_prp_uri_part_records = '
 				DELETE FROM
-					" . TABLE_CEON_URI_MAPPING_PRODUCT_RELATED_PAGES_URI_PARTS . "
+					' . TABLE_CEON_URI_MAPPING_PRODUCT_RELATED_PAGES_URI_PARTS . '
 				WHERE
-					1 = 1;";
+					1 = 1';
 
 			$db->Execute($remove_current_prp_uri_part_records);
 
