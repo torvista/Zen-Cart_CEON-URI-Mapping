@@ -89,7 +89,7 @@ class CeonURIMappingAdminManufacturerPages extends CeonURIMappingAdminManufactur
 		// Load the language definition file for the current language
 		@include_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . 'ceon_uri_mapping_manufacturer_pages.php');
 
-		if (!defined('CEON_URI_MAPPING_TEXT_MANUFACTURERS_URI') && $_SESSION['language'] != 'english') {
+		if (!defined('CEON_URI_MAPPING_TEXT_MANUFACTURER_URI') && $_SESSION['language'] != 'english') {
 			// Fall back to english language file
 			include_once(DIR_WS_LANGUAGES . 'english/' . 'ceon_uri_mapping_manufacturer_pages.php');
 		}
