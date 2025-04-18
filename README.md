@@ -1,11 +1,14 @@
 # CEON-URI-Mapping
 
-Currently based on version 5.1.1 available 11/01/2024 from ceon.net  
+Based on version 5.1.1 available 11/01/2024 from ceon.net  
 It does NOT include the files for the commercial UMM version. I have a private repository with fixes for that, open to users who have purchased that module.
 
 Due to the haphazard communication/support from CEON, this repository aims to collect bugfixes post 5.1.1, to keep things rolling until... something else happens.
 
 As this repository is just strictly maintenance, the original documentation has not been updated.
+
+## Compatibility
+PHP8+ & current (2.1.0) Zen Cart but probably 157d onwards.
 
 ## Changes not fixes...
 Since I was accused of the heinous crime of offering invalid HTML from my repository (as if I could have written this plugin)...I bit the bullet and went through all the admin files to see what else would be automagically detected.  
