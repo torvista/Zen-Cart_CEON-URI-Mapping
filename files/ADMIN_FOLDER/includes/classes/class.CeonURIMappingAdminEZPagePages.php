@@ -12,7 +12,7 @@
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        http://ceon.net/software/business/zen-cart/uri-mapping
  * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version     $Id: class.CeonURIMappingAdminEZPagePages.php 1054 2012-09-22 15:45:15Z conor $
+ * @version     $Id: class.CeonURIMappingAdminEZPagePages.php 2025-07-08 torvista
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -378,11 +378,11 @@ class CeonURIMappingAdminEZPagePages extends CeonURIMappingAdminEZPages
                 $autogen_selected = false;
 
                 if ($num_uri_mappings == 1) {
-                    $autogen_message .= '<br />' . CEON_URI_MAPPING_TEXT_URI_AUTOGEN_ONE_EXISTING_MAPPING;
+                    $autogen_message .= '<br>' . CEON_URI_MAPPING_TEXT_URI_AUTOGEN_ONE_EXISTING_MAPPING;
                 } elseif ($num_uri_mappings == $num_languages) {
-                    $autogen_message .= '<br />' . CEON_URI_MAPPING_TEXT_URI_AUTOGEN_ALL_EXISTING_MAPPINGS;
+                    $autogen_message .= '<br>' . CEON_URI_MAPPING_TEXT_URI_AUTOGEN_ALL_EXISTING_MAPPINGS;
                 } else {
-                    $autogen_message .= '<br />' . CEON_URI_MAPPING_TEXT_URI_AUTOGEN_SOME_EXISTING_MAPPINGS;
+                    $autogen_message .= '<br>' . CEON_URI_MAPPING_TEXT_URI_AUTOGEN_SOME_EXISTING_MAPPINGS;
                 }
             }
 
@@ -426,13 +426,13 @@ class CeonURIMappingAdminEZPagePages extends CeonURIMappingAdminEZPages
 
         $num_languages = sizeof($languages);
 
-        $uri_mapping_input_fields = zen_draw_separator('pixel_trans.gif', '1', '10') . '
-				' . zen_draw_separator('pixel_black.gif', '100%', '2') .
-            zen_draw_label(CEON_URI_MAPPING_TEXT_EZ_PAGE_URI, 'uri-mappings', 'class ="col-sm-3 control label"') . '
-				<div class="col-sm-9 col-md-6"><div class="input-group">' . "\n";
+        $uri_mapping_input_fields = zen_draw_separator('pixel_black.gif', '100%', '1') .
+            '<p class="col-sm-3 control-label">' . CEON_URI_MAPPING_TEXT_EZ_PAGE_URI . '</p>' .
+            '<div class="col-sm-9 col-md-6">' . "\n";
 
         for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
-            $uri_mapping_input_fields .= '<span class="input-group-addon">';
+            $uri_mapping_input_fields .= '<div class="input-group">' . "\n" .
+                '<span class="input-group-addon">';
 
             if ( ! isset($this->_prev_uri_mappings[$languages[$i]['id']])) {
                 $this->_prev_uri_mappings[$languages[$i]['id']] = '';
@@ -458,10 +458,10 @@ class CeonURIMappingAdminEZPagePages extends CeonURIMappingAdminEZPages
                     'style="width:100%" class="form-control"'
                 );
 
-            $uri_mapping_input_fields .= "</div>\n";
+            $uri_mapping_input_fields .= "</span></div>\n";
         }
 
-        $uri_mapping_input_fields .= '<br><div class="input-group">';
+        $uri_mapping_input_fields .= '<div class="input-group">';
 
         if ($this->_autogenEnabled()) {
             if ($num_languages == 1) {
@@ -476,11 +476,11 @@ class CeonURIMappingAdminEZPagePages extends CeonURIMappingAdminEZPages
                 $autogen_selected = false;
 
                 if ($num_uri_mappings == 1) {
-                    $autogen_message .= '<br />' . CEON_URI_MAPPING_TEXT_URI_AUTOGEN_ONE_EXISTING_MAPPING;
+                    $autogen_message .= '<br>' . CEON_URI_MAPPING_TEXT_URI_AUTOGEN_ONE_EXISTING_MAPPING;
                 } elseif ($num_uri_mappings == $num_languages) {
-                    $autogen_message .= '<br />' . CEON_URI_MAPPING_TEXT_URI_AUTOGEN_ALL_EXISTING_MAPPINGS;
+                    $autogen_message .= '<br>' . CEON_URI_MAPPING_TEXT_URI_AUTOGEN_ALL_EXISTING_MAPPINGS;
                 } else {
-                    $autogen_message .= '<br />' . CEON_URI_MAPPING_TEXT_URI_AUTOGEN_SOME_EXISTING_MAPPINGS;
+                    $autogen_message .= '<br>' . CEON_URI_MAPPING_TEXT_URI_AUTOGEN_SOME_EXISTING_MAPPINGS;
                 }
             }
 
@@ -494,13 +494,11 @@ class CeonURIMappingAdminEZPagePages extends CeonURIMappingAdminEZPages
             $uri_mapping_input_fields .= CEON_URI_MAPPING_TEXT_URI_AUTOGEN_DISABLED;
         }
 
-        $uri_mapping_input_fields .= '</div><br>';
+        $uri_mapping_input_fields .= '</div>';
 
         $uri_mapping_input_fields .= "\n\t\t</div>";
 
-        $uri_mapping_input_fields .= '
-				' . zen_draw_separator('pixel_black.gif', '100%', '2') . '
-				';
+        $uri_mapping_input_fields .= zen_draw_separator('pixel_black.gif', '100%', '1');
         return $uri_mapping_input_fields;
     }
 
