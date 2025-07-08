@@ -89,7 +89,7 @@ class CeonURIMappingAdminEZPagePages extends CeonURIMappingAdminEZPages
         // Load the language definition file for the current language
         @include_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . 'ceon_uri_mapping_ezpage_pages.php');
 
-        if ( ! defined('CEON_URI_MAPPING_TEXT_EZPAGES_URI') && $_SESSION['language'] != 'english') {
+        if ( ! defined('CEON_URI_MAPPING_TEXT_EZ_PAGE_URI') && $_SESSION['language'] != 'english') {
             // Fall back to english language file
             include_once(DIR_WS_LANGUAGES . 'english/' . 'ceon_uri_mapping_ezpage_pages.php');
         }
