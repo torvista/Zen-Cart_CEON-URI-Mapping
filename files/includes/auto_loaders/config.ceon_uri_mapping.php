@@ -3,7 +3,7 @@
 /**
  * Autoloader array for Ceon URI Mapping functionality. Makes sure that Ceon URI Mapping is instantiated at the
  * right point of the Zen Cart initsystem.
- * 
+ *
  * @package     ceon_uri_mapping
  * @author      Conor Kerr <zen-cart.uri-mapping@ceon.net>
  * @copyright   Copyright 2008-2024 Ceon
@@ -15,31 +15,31 @@
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
-	die('Illegal Access');
-} 
+    die('Illegal Access');
+}
 
-$autoLoadConfig[0][] = array(
-	'autoType' => 'class',
-	'loadFile' => 'class.CeonURIMappingHandler.php',
-	);
+$autoLoadConfig[0][] = [
+    'autoType' => 'class',
+    'loadFile' => 'class.CeonURIMappingHandler.php',
+];
 
-$autoLoadConfig[94][] = array(
-	'autoType' => 'classInstantiate',
-	'className' => 'CeonURIMappingHandler',
-	'objectName' => 'ceon_uri_mapping',
-	);
+$autoLoadConfig[94][] = [
+    'autoType' => 'classInstantiate',
+    'className' => 'CeonURIMappingHandler',
+    'objectName' => 'ceon_uri_mapping',
+];
 //autoload to instantiate earlier than using auto.ceon_uri_mapping_link_build.php, for breadcrumbs
-$autoLoadConfig[0][] = array(
+$autoLoadConfig[0][] = [
     'autoType' => 'class',
     'loadFile' => 'observers/class.ceon_uri_mapping_link_build.php',
-     );
-$autoLoadConfig[99][] = array(
+];
+$autoLoadConfig[99][] = [
     'autoType' => 'classInstantiate',
     'className' => 'CeonUriMappingLinkBuild',
     'objectName' => 'ceon_uri_mapping_link_build',
-     );
+];
 
-$autoLoadConfig[45][] = array(
-	'autoType' => 'init_script',
-	'loadFile' => 'init_ceon_uri_mapping_sessions.php',
-);
+$autoLoadConfig[45][] = [
+    'autoType' => 'init_script',
+    'loadFile' => 'init_ceon_uri_mapping_sessions.php',
+];
