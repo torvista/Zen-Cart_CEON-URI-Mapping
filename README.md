@@ -1,9 +1,9 @@
 # CEON-URI-Mapping
 
 Based on version 5.1.1 available 11/01/2024 from ceon.net  
-It does NOT include the files for the commercial UMM version. I have a private repository with fixes for that, open to users who have purchased that module.
+It does NOT include the UMM-edition files that are bundled with the commercial Uri Mappings Manager (UMM). I have private repositories with fixes for those, open to users who have purchased that module.
 
-Due to the haphazard communication/support from CEON, this repository aims to collect bugfixes post 5.1.1, to keep things rolling until... something else happens.
+Due to the haphazard communication/support from CEON support, this repository aims to collect bugfixes post 5.1.1, to keep things rolling until... something else happens.
 
 As this repository is just strictly maintenance, the original documentation has not been updated.
 
