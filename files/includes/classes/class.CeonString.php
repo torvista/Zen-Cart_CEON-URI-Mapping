@@ -642,7 +642,7 @@ class CeonString
 				return grapheme_strlen($string);
 			} else {
 				// Use standard PHP function
-				return strlen(utf8_decode($string));
+				return strlen(mb_convert_encoding($string, 'ISO-8859-1', 'UTF-8'));
 			}
 		}
 		
