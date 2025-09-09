@@ -84,11 +84,11 @@ class CeonURIMappingAdminCopyObserver extends base
      * @param $callingClass
      * @param $notifier
      * @param $product_data
-     * @return null
+     * @return void
      */
-    public function updateNotifyModulesCopyToConfirmDuplicate(&$callingClass, $notifier, $product_data): null
+    public function updateNotifyModulesCopyToConfirmDuplicate(&$callingClass, $notifier, $product_data): void
     {
-        return $this->notify_modules_copy_to_confirm_duplicate($callingClass, $notifier, $product_data);
+        $this->notify_modules_copy_to_confirm_duplicate($callingClass, $notifier, $product_data);
     }
 
     /**
