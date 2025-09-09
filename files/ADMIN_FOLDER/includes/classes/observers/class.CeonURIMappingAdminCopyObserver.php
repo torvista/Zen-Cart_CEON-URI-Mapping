@@ -17,7 +17,7 @@
 class CeonURIMappingAdminCopyObserver extends base
 {
 
-    public $ceon_uri_mapping_copy_product_confirmed;
+    public bool $ceon_uri_mapping_copy_product_confirmed;
 
     public function __construct()
     {
