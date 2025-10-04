@@ -109,8 +109,11 @@ class CeonURIMappingHREFLinkBuilder extends CeonURIMappingDBLookup
 			// This link is to a manufacturer's page
 			
 			// Get the manufacturer ID
-			$pattern = '/[&\?]?(manufacturers_id=([0-9]+))/i';
-			
+          // https://github.com/torvista/Zen-Cart_CEON-URI-Mapping/issues/40
+          // pattern modified to disallow 0 
+          //$pattern = '/[&\?]?(manufacturers_id=([0-9]+))/i';
+            $pattern = '/[&\?]?(manufacturers_id=([1-9]\d*))/i';
+
 			if (preg_match($pattern, $parameters, $matches)) {
 				$manufacturer_query_pair = $matches[1];
 				$manufacturer_id = $matches[2];
