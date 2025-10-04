@@ -10,7 +10,7 @@
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        http://ceon.net/software/business/zen-cart/uri-mapping
  * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version     $Id: class.CeonURIMappingHREFLinkBuilder.php 1054 2012-09-22 15:45:15Z conor $
+ * @version     $Id: class.CeonURIMappingHREFLinkBuilder.php 04 Oct 2025 torvista
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -378,7 +378,7 @@ class CeonURIMappingHREFLinkBuilder extends CeonURIMappingDBLookup
 			
 			// Add the session ID when moving from different HTTP and HTTPS servers, or when SID is defined
 			if (($add_session_id == true) && ($session_started == true) && (SESSION_FORCE_COOKIE_USE == 'False')) {
-				if (defined('SID') && zen_not_null(constant('SID'))) {
+				if (PHP_VERSION_ID < 80401 && defined('SID') && zen_not_null(constant('SID'))) {
 					$sid = constant('SID');
 				} elseif ( ( ($request_type == 'NONSSL') && ($connection == 'SSL') && (ENABLE_SSL == 'true') ) || ( ($request_type == 'SSL') && ($connection == 'NONSSL') ) ) {
 					if ($http_domain != $https_domain) {
