@@ -35,23 +35,23 @@ if (!defined('IS_ADMIN_FLAG')) {
 class CeonURIMappingDBLookup
 {
 	// {{{ Class Constructor
-	
+
 	/**
 	 * Creates a new instance of the CeonURIMappingDBLookup class. Not intended to be used as this is an abstract
 	 * class.
-	 * 
+	 *
 	 * @access  public
 	 */
 	public function __construct()
 	{
-		
+
 	}
-	
+
 	// }}}
-	
-	
+
+
 	// {{{ getURIMappingsResultset()
-	
+
 	/**
 	 * Performs a query against the URI mappings database. Use of this method abstracts the calling code from the
 	 * actual implementation of the database's structure.
@@ -65,35 +65,35 @@ class CeonURIMappingDBLookup
 	 * @param   string    $order_by   A SQL string to be used to order the resultset.
 	 * @param   string    $limit      A SQL string to be used to limit the resultset.
 	 * @param   string    $group_by   A SQL string to be used to group the resultset.
-	 * @return  resultset   A Zen Cart database resultset.
+	 * @return  queryFactoryResult $db   A Zen Cart database resultset.
 	 */
 	public function getURIMappingsResultset($columns_to_retrieve, $selections, $order_by = null, $limit = null,
 		$group_by = null)
 	{
 		global $db;
-		
+
 		if (is_array($columns_to_retrieve)) {
 			$columns_to_retrieve = implode(', ', $columns_to_retrieve);
 		}
-		
+
 		$selection_string = '';
-		
+
 		$num_selection_columns = count($selections);
-		
+
 		$column_name_i = 0;
-		
+
 		foreach ($selections as $column_name => $column_value) {
 			if (is_array($column_value)) {
 				// The value is an array of values so create an ORed group
 				$num_column_values = count($column_value);
-				
+
 				$selection_string .= '(' . "\n";
-				
+
 				for ($column_value_i = 0; $column_value_i < $num_column_values; $column_value_i++) {
 					$selection_string .= "\t" . $column_name;
-					
+
 					$value = $column_value[$column_value_i];
-					
+
 					if (is_null($value) || strtolower($value) == 'null') {
 						$selection_string .= " IS NULL\n";
 					} else if (strtolower($value) == 'not null') {
@@ -104,20 +104,20 @@ class CeonURIMappingDBLookup
 						} else {
 							$selection_string .= ' = ';
 						}
-						
+
 						$selection_string .= "'" . zen_db_input($value) . "'\n";
 					}
-					
+
 					if ($column_value_i < ($num_column_values - 1)) {
 						$selection_string .= " OR\n";
 					}
 				}
-				
+
 				$selection_string .= ')' . "\n";
-				
+
 			} else {
 				$selection_string .= "\t" . $column_name;
-				
+
 				if (is_null($column_value) || strtolower($column_value) == 'null') {
 					$selection_string .= " IS NULL\n";
 				} else if (strtolower($column_value) == 'not null') {
@@ -128,18 +128,18 @@ class CeonURIMappingDBLookup
 					} else {
 						$selection_string .= ' = ';
 					}
-					
+
 					$selection_string .= "'" . zen_db_input($column_value) . "'\n";
 				}
 			}
-			
+
 			if ($column_name_i < ($num_selection_columns - 1)) {
 				$selection_string .= " AND\n";
 			}
-			
+
 			$column_name_i++;
 		}
-		
+
 		$sql = "
 			SELECT
 				" . $columns_to_retrieve . "
@@ -147,24 +147,24 @@ class CeonURIMappingDBLookup
 				" . TABLE_CEON_URI_MAPPINGS . "
 			WHERE
 				" . $selection_string;
-		
+
 		if (!is_null($order_by)) {
 			$sql .= "\n" . ' ORDER BY ' . $order_by;
 		}
-		
+
 		if (!is_null($limit)) {
 			$sql .= "\n" . ' LIMIT ' . $limit;
 		}
-		
+
 		if (!is_null($group_by)) {
 			$sql .= "\n" . ' GROUP_BY ' . $group_by;
 		}
-		
+
 		$sql .= ';';
-		
+
 		return $db->Execute($sql);
 	}
-	
+
 	// }}}
 }
 

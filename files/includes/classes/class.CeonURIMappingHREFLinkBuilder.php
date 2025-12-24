@@ -40,7 +40,7 @@ require_once(DIR_FS_CATALOG . DIR_WS_CLASSES . 'class.CeonURIMappingDBLookup.php
 class CeonURIMappingHREFLinkBuilder extends CeonURIMappingDBLookup
 {
 	// {{{ properties
-	
+
 	/**
 	 * The link built by this instance.
 	 *
@@ -48,33 +48,33 @@ class CeonURIMappingHREFLinkBuilder extends CeonURIMappingDBLookup
 	 * @access  protected
 	 */
 	protected $_href_link = '';
-	
+
 	// }}}
-	
-	
+
+
 	// {{{ Class Constructor
-	
+
 	/**
 	 * Creates a new instance of the CeonURIMappingHREFLinkBuilder class.
-	 * 
+	 *
 	 * @access  public
 	 */
 	public function __construct()
 	{
 		parent::__construct();
 	}
-	
+
 	// }}}
-	
-	
+
+
 	// {{{ buildHREFLink()
-	
+
 	/**
 	 * Builds a static URI-based link for a Zen Cart page, if a mapping exists for the page. The link is built in a
 	 * format that can be directly included in a HTML link's href attribute.
 	 *
 	 * @access  public
-	 * @param   string    $base_link    The base string for the link, as built by the standard Zen Cart 
+	 * @param   string    $base_link    The base string for the link, as built by the standard Zen Cart
 	 *                                  zen_href_link() function.
 	 * @param   string    $main_page    The Zen Cart page type the link is to.
 	 * @param   string    $parameters   The query string parameters which are to be used to identify the specific
@@ -87,55 +87,55 @@ class CeonURIMappingHREFLinkBuilder extends CeonURIMappingDBLookup
 	{
 		global $request_type, $session_started, $http_domain, $https_domain, $ceon_uri_mapping_product_pages,
 			$ceon_uri_mapping_product_related_pages;
-		
+
 		// Reset the link for this instance
 		$this->_href_link = '';
-		
+
 		// Variable holds the main part of the link being built
 		$link = '';
-		
+
 		if (preg_match('/.*index.php\?main_page=([^&]+)/i', $main_page, $matches)) {
 			// Link isn't to a page's filename but to a specific URI (e.g. an EZ-Page alt url)
 			// Extract the page ID and any parameters from the string
 			$main_page = $matches[1];
 			$page = '';
 			$temp = str_replace($matches[0], '', $page);
-			
+
 			$parameters = $parameters . $temp;
 		}
-		
+
 		if ($main_page == FILENAME_DEFAULT && $parameters != '' &&
 				strpos(strtolower($parameters), 'manufacturers_id=') !== false) {
 			// This link is to a manufacturer's page
-			
+
 			// Get the manufacturer ID
           // https://github.com/torvista/Zen-Cart_CEON-URI-Mapping/issues/40
-          // pattern modified to disallow 0 
+          // pattern modified to disallow 0
           //$pattern = '/[&\?]?(manufacturers_id=([0-9]+))/i';
             $pattern = '/[&\?]?(manufacturers_id=([1-9]\d*))/i';
 
 			if (preg_match($pattern, $parameters, $matches)) {
 				$manufacturer_query_pair = $matches[1];
 				$manufacturer_id = $matches[2];
-				
+
 				$manufacturer_parameter = 'manufacturers_id=' . $manufacturer_id;
-				
+
 				$columns_to_retrieve = array(
 					'uri'
 					);
-				
+
 				$selections = array(
 					'main_page' => $main_page,
 					'query_string_parameters' => $manufacturer_parameter,
 					'language_id' => (int) $_SESSION['languages_id'],
 					'current_uri' => 1
 					);
-				
+
 				$uri_mapping_result = $this->getURIMappingsResultset($columns_to_retrieve, $selections, null, 1);
-				
+
 				if (!$uri_mapping_result->EOF) {
 					$link = $uri_mapping_result->fields['uri'];
-					
+
 					// Remove the manufacturer ID from the URI as it will be regenerated when the static URI is
 					// loaded
 					$parameters = str_replace($manufacturer_query_pair . '&', '', $parameters);
@@ -145,46 +145,46 @@ class CeonURIMappingHREFLinkBuilder extends CeonURIMappingDBLookup
 		} else if ($main_page == FILENAME_DEFAULT && $parameters != '' &&
 				strpos(strtolower($parameters), 'typefilter=') !== false) {
 			// This link is to a category page
-			
+
 			// Get the filter information
 			$pattern = '/[&\?]?(typefilter=([^&]+))/i';
-			
+
 			if (preg_match($pattern, $parameters, $matches)) {
 				$typefilter_name_query_pair = $matches[1];
 				$typefilter_name = $matches[2];
-				
+
 				// Attempt to get ID for filter's property
 				$pattern = '/[&\?]?(' . $typefilter_name . '_id=([^&]+))/i';
-				
+
 				if (preg_match($pattern, $parameters, $matches)) {
 					$typefilter_id_query_pair = $matches[1];
 					$typefilter_id = $matches[2];
-					
+
 					$typefilter_parameter = 'typefilter=' . $typefilter_name . '&' . $typefilter_name . '_id=' .
 						$typefilter_id;
-					
+
 					$columns_to_retrieve = array(
 						'uri'
 						);
-					
+
 					$selections = array(
 						'main_page' => $main_page,
 						'query_string_parameters' => $typefilter_parameter,
 						'language_id' => (int) $_SESSION['languages_id'],
 						'current_uri' => 1
 						);
-					
+
 					$uri_mapping_result =
 						$this->getURIMappingsResultset($columns_to_retrieve, $selections, null, 1);
-					
+
 					if (!$uri_mapping_result->EOF) {
 						$link = $uri_mapping_result->fields['uri'];
-						
+
 						// Remove the typefilter info from the URI as it will be regenerated when the static URI is
 						// loaded
 						$parameters = str_replace($typefilter_id_query_pair . '&', '', $parameters);
 						$parameters = str_replace($typefilter_id_query_pair, '', $parameters);
-						
+
 						$parameters = str_replace($typefilter_name_query_pair . '&', '', $parameters);
 						$parameters = str_replace($typefilter_name_query_pair, '', $parameters);
 					}
@@ -193,33 +193,33 @@ class CeonURIMappingHREFLinkBuilder extends CeonURIMappingDBLookup
 		} else if ($main_page == FILENAME_DEFAULT && $parameters != '' &&
 				strpos(strtolower($parameters), 'cpath=') !== false) {
 			// This link is to a category page
-			
+
 			// Get the category ID
 			$pattern = '/[&\?]?(cPath=([0-9\_]+))/i';
-			
+
 			if (preg_match($pattern, $parameters, $matches)) {
 				$category_query_pair = $matches[1];
 				$category_parts = explode('_', $matches[2]);
-				
+
 				// Category ID to be linked to is the last part of the specification
 				$category_id = $category_parts[count($category_parts) - 1];
-				
+
 				$columns_to_retrieve = array(
 					'uri'
 					);
-				
+
 				$selections = array(
 					'main_page' => $main_page,
 					'associated_db_id' => (int) $category_id,
 					'language_id' => (int) $_SESSION['languages_id'],
 					'current_uri' => 1
 					);
-				
+
 				$uri_mapping_result = $this->getURIMappingsResultset($columns_to_retrieve, $selections, null, 1);
-				
+
 				if (!$uri_mapping_result->EOF) {
 					$link = $uri_mapping_result->fields['uri'];
-					
+
 					// Remove the category ID from the URI as it will be regenerated when the static URI is loaded
 					$parameters = str_replace($category_query_pair . '&', '', $parameters);
 					$parameters = str_replace($category_query_pair, '', $parameters);
@@ -229,54 +229,54 @@ class CeonURIMappingHREFLinkBuilder extends CeonURIMappingDBLookup
 			// Link is to the index page.. no need to look up mapping in database, simply use the default index
 			// page static URI
 			$link = DIR_WS_CATALOG;
-			
+
 		} else if (in_array($main_page, $ceon_uri_mapping_product_pages) ||
 				in_array($main_page, $ceon_uri_mapping_product_related_pages)) {
 			// This link is to a product info page or one of the other pages related to the product
-			
+
 			// Get the product ID
 			$pattern = '/[&\?]?(products_id=([0-9]+)[^&]*)/i';
 			if ($main_page == FILENAME_ASK_A_QUESTION) {
 				$pattern = '/[&\?]?(pid=([0-9]+)[^&]*)/i';
 			}
-			
+
 			if (preg_match($pattern, $parameters, $matches)) {
 				$product_query_pair = $matches[1];
 				$product_id = $matches[2];
-				
+
 				$columns_to_retrieve = array(
 					'uri'
 					);
-				
+
 				$selections = array(
 					'main_page' => $main_page,
 					'associated_db_id' => (int) $product_id,
 					'language_id' => (int) $_SESSION['languages_id'],
 					'current_uri' => 1
 					);
-				
+
 				$uri_mapping_result = $this->getURIMappingsResultset($columns_to_retrieve, $selections, null, 1);
-				
+
 				if (!$uri_mapping_result->EOF) {
 					$link = $uri_mapping_result->fields['uri'];
-					
+
 					if (strpos($product_query_pair, ':') === false) {
 						// Remove product ID from query string unless it includes information about selected
 						// attributes (which is added when linking from shopping cart to product info page)
 						$parameters = str_replace($product_query_pair . '&', '', $parameters);
 						$parameters = str_replace($product_query_pair, '', $parameters);
 					}
-					
+
 					// Don't add the cPath to the URI if it matches the product's full cPath. All  other variations
 					// must still be added to retain context on the site
 					$cpath_being_linked_to = null;
-					
+
 					$pattern = '/cPath\=([0-9\_]+)/';
-					
+
 					if (preg_match($pattern, $parameters, $matches)) {
 						$cpath_being_linked_to = $matches[1];
 					}
-					
+
 					if ($cpath_being_linked_to == zen_get_product_path($product_id)) {
 						$parameters = str_replace('cPath=' . $cpath_being_linked_to . '&', '', $parameters);
 						$parameters = str_replace('cPath=' . $cpath_being_linked_to, '', $parameters);
@@ -285,42 +285,42 @@ class CeonURIMappingHREFLinkBuilder extends CeonURIMappingDBLookup
 			}
 		} else if ($main_page == FILENAME_EZPAGES || $main_page == FILENAME_EZPAGES_POPUP) {
 			// This link is to an EZ-Pages page
-			
+
 			// Get the page ID
 			$pattern = '/[&\?]?(id=([0-9]+))/i';
-			
+
 			if (preg_match($pattern, $parameters, $matches)) {
 				$ez_page_id_query_pair = $matches[1];
 				$ez_page_id = $matches[2];
-				
+
 				$columns_to_retrieve = array(
 					'uri'
 					);
-				
+
 				$selections = array(
 					'main_page' => $main_page,
 					'associated_db_id' => (int) $ez_page_id,
 					'language_id' => (int) $_SESSION['languages_id'],
 					'current_uri' => 1
 					);
-				
+
 				$uri_mapping_result = $this->getURIMappingsResultset($columns_to_retrieve, $selections, null, 1);
-				
+
 				if (!$uri_mapping_result->EOF) {
 					$link = $uri_mapping_result->fields['uri'];
-					
+
 					$parameters = str_replace($ez_page_id_query_pair . '&', '', $parameters);
 					$parameters = str_replace($ez_page_id_query_pair, '', $parameters);
 				}
 			}
 		} else {
 			// This link is some other Zen Cart page
-			
+
 			// Attempt to match a page with the exact same parameters first
 			$columns_to_retrieve = array(
 				'uri'
 				);
-			
+
 			$selections = array(
 				'main_page' => $main_page,
 				'associated_db_id' => 'null',
@@ -328,21 +328,21 @@ class CeonURIMappingHREFLinkBuilder extends CeonURIMappingDBLookup
 				'language_id' => (int) $_SESSION['languages_id'],
 				'current_uri' => 1
 				);
-			
+
 			$uri_mapping_result = $this->getURIMappingsResultset($columns_to_retrieve, $selections, null, 1);
-			
+
 			if (!$uri_mapping_result->EOF) {
 				$link = $uri_mapping_result->fields['uri'];
-				
+
 				// Don't add any parameters as they will be initialised later if URI being mapped to is loaded
 				$parameters = '';
-				
+
 			} else {
 				 // Attempt to match a page with no parameters
 				$columns_to_retrieve = array(
 					'uri'
 					);
-				
+
 				$selections = array(
 					'main_page' => $main_page,
 					'associated_db_id' => 'null',
@@ -350,35 +350,35 @@ class CeonURIMappingHREFLinkBuilder extends CeonURIMappingDBLookup
 					'language_id' => (int) $_SESSION['languages_id'],
 					'current_uri' => 1
 					);
-				
+
 				$uri_mapping_result = $this->getURIMappingsResultset($columns_to_retrieve, $selections, null, 1);
-				
+
 				if (!$uri_mapping_result->EOF) {
 					$link = $uri_mapping_result->fields['uri'];
 				}
 			}
 		}
-		
+
 		if ($link != '') {
 			$link = $base_link . $link;
-			
+
 			if (strlen($parameters) > 0) {
 				// Must add the parameters to the link
 				$link .= '?';
-				
+
 				while (substr($parameters, 0, 1) == '?' || substr($parameters, 0, 1) == '&') {
 					$parameters = substr($parameters, 1, strlen($parameters) - 1);
 				}
-				
+
 				$link .= zen_output_string($parameters);
-				
+
 				$separator = '&';
 			} else {
 				$separator = '?';
 			}
-			
+
 			// Perform standard Zen Cart functionality for links
-			
+
 			// Add the session ID when moving from different HTTP and HTTPS servers, or when SID is defined
 			if (($add_session_id == true) && ($session_started == true) && (SESSION_FORCE_COOKIE_USE == 'False')) {
 				if (PHP_VERSION_ID < 80401 && defined('SID') && zen_not_null(constant('SID'))) {
@@ -389,42 +389,42 @@ class CeonURIMappingHREFLinkBuilder extends CeonURIMappingDBLookup
 					}
 				}
 			}
-			
+
 			// Clean up the link
 			while (strstr($link, '&&')) $link = str_replace('&&', '&', $link);
 			while (strstr($link, '&amp;&amp;')) $link = str_replace('&amp;&amp;', '&amp;', $link);
-			
+
 			if ( (SEARCH_ENGINE_FRIENDLY_URLS == 'true') && (false/*@TODO $search_engine_safe*/ == true) ) {
 				while (strstr($link, '&&')) $link = str_replace('&&', '&', $link);
-				
+
 				$link = str_replace('&amp;', '/', $link);
 				$link = str_replace('?', '/', $link);
 				$link = str_replace('&', '/', $link);
 				$link = str_replace('=', '/', $link);
-				
+
 				$separator = '?';
 			}
-			
+
 			if (isset($sid)) {
 				$link .= $separator . zen_output_string($sid);
 			}
 			// Encode the link's ampersand entities
 			while (strstr($link, '&amp;&amp;')) $link = str_replace('&amp;&amp;', '&amp;', $link);
-			
+
 			$link = preg_replace('/&/', '&amp;', $link);
-			
+
 			// Have got the link to be used, store it in this instance
 			$this->_href_link = $link;
 		}
-		
+
 		return (strlen($this->_href_link) > 0);
 	}
-	
+
 	// }}}
-	
-	
+
+
 	// {{{ getHREFLink()
-	
+
 	/**
 	 * Simply returns the HREF link value built by this instance.
 	 *
@@ -435,7 +435,7 @@ class CeonURIMappingHREFLinkBuilder extends CeonURIMappingDBLookup
 	{
 		return $this->_href_link;
 	}
-	
+
 	// }}}
 }
 
