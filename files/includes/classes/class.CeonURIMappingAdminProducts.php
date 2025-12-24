@@ -49,22 +49,22 @@ define('CEON_URI_MAPPING_GENERATION_ATTEMPT_FOR_PRODUCT_WITH_NO_MODEL', -4);
 class CeonURIMappingAdminProducts extends CeonURIMappingAdminCategoriesProducts
 {
 	// {{{ Class Constructor
-	
+
 	/**
 	 * Creates a new instance of the CeonURIMappingAdminProducts class.
-	 * 
+	 *
 	 * @access  public
 	 */
 	public function __construct()
 	{
 		parent::__construct();
 	}
-	
+
 	// }}}
-	
-	
+
+
 	// {{{ autoManageProductRelatedPageURI()
-	
+
 	/**
 	 * Checks whether auto-managing of the specified product related page URI is enabled or disabled.
 	 *
@@ -75,10 +75,10 @@ class CeonURIMappingAdminProducts extends CeonURIMappingAdminCategoriesProducts
 	public function autoManageProductRelatedPageURI($page_type)
 	{
 		global $db;
-		
+
 		if (!isset($automanage_enabled)) {
 			static $automanage_enabled = array();
-			
+
 			// Only one config currently supported so ID is hard-coded in following SQL
 			$automanage_enabled_sql = "
 				SELECT
@@ -91,9 +91,9 @@ class CeonURIMappingAdminProducts extends CeonURIMappingAdminCategoriesProducts
 					" . TABLE_CEON_URI_MAPPING_CONFIGS . "
 				WHERE
 					id ='1';";
-			
+
 			$automanage_enabled_result = $db->Execute($automanage_enabled_sql);
-			
+
 			if (!$automanage_enabled_result->EOF) {
 				$automanage_enabled = array(
 					'product_reviews' =>
@@ -109,19 +109,19 @@ class CeonURIMappingAdminProducts extends CeonURIMappingAdminCategoriesProducts
 					);
 			}
 		}
-		
+
 		if ($automanage_enabled[$page_type] == 1) {
 			return true;
 		}
-		
+
 		return false;
 	}
-	
+
 	// }}}
-	
-	
+
+
 	// {{{ getProductRelatedPageURIPart()
-	
+
 	/**
 	 * Looks up the product related page URI part for the page type and language specified.
 	 *
@@ -134,12 +134,12 @@ class CeonURIMappingAdminProducts extends CeonURIMappingAdminCategoriesProducts
 	public function getProductRelatedPageURIPart($page_type, $language_code)
 	{
 		global $db;
-		
+
 		if (!isset($uri_parts) || !isset($uri_parts[$language_code]) ||
 				!isset($uri_parts[$language_code][$page_type])) {
 			// URI part hasn't been cached for this page type for the specified language, cache all now
 			static $uri_parts = array();
-			
+
 			// Only hold the information in memory for URI parts that are being auto-managed
 			$page_types = array(
 				'product_reviews',
@@ -148,19 +148,19 @@ class CeonURIMappingAdminProducts extends CeonURIMappingAdminCategoriesProducts
 				'tell_a_friend',
 				'ask_a_question'
 				);
-			
+
 			$page_types_sql_string = '';
-			
+
 			foreach ($page_types as $current_page_type) {
 				if ($this->autoManageProductRelatedPageURI($current_page_type)) {
 					if (strlen($page_types_sql_string) > 0) {
 						$page_types_sql_string .= ' OR ';
 					}
-					
+
 					$page_types_sql_string .= "page_type = '" . $current_page_type . "'\n";
 				}
 			}
-			
+
 			// Only one config currently supported so ID is hard-coded in following SQL
 			$uri_parts_sql = "
 				SELECT
@@ -171,35 +171,35 @@ class CeonURIMappingAdminProducts extends CeonURIMappingAdminCategoriesProducts
 					" . TABLE_CEON_URI_MAPPING_PRODUCT_RELATED_PAGES_URI_PARTS . "
 				WHERE
 					" . $page_types_sql_string . ";";
-			
+
 			$uri_parts_result = $db->Execute($uri_parts_sql);
-			
+
 			while (!$uri_parts_result->EOF) {
 				if (!isset($uri_parts[$uri_parts_result->fields['language_code']])) {
 					$uri_parts[$uri_parts_result->fields['language_code']] = array();
 				}
-				
+
 				$uri_parts[$uri_parts_result->fields['language_code']][$uri_parts_result->fields['page_type']] =
 					$uri_parts_result->fields['uri_part'];
-				
+
 				$uri_parts_result->MoveNext();
 			}
 		}
-		
+
 		if (isset($uri_parts[$language_code]) && isset($uri_parts[$language_code][$page_type]) &&
 				strlen($uri_parts[$language_code][$page_type]) > 0) {
-			
+
 			return $uri_parts[$language_code][$page_type];
 		}
-		
+
 		return false;
 	}
-	
+
 	// }}}
-	
-	
+
+
 	// {{{ autogenProductURIMapping()
-	
+
 	/**
 	 * Generates a URI mapping for a product, for the specified language.
 	 *
