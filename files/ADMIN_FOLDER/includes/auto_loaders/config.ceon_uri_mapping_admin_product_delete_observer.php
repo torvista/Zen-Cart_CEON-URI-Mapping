@@ -19,13 +19,13 @@ if (!defined('IS_ADMIN_FLAG')) {
 }
 
 //added to use an observer with includes/functions/general.php for processing product removal
- $autoLoadConfig[0][] = array(
-  'autoType' => 'class',
-  'loadFile' => 'observers/class.CeonURIMappingDeleteProductsObserver.php',
-  'classPath'=>DIR_WS_CLASSES
-  );
- $autoLoadConfig[198][] = array(
-  'autoType' => 'classInstantiate',
-  'className' => 'ceonAdminRemoveProducts',
-  'objectName' => 'ceonAdminRemoveProductsObserve'
-  );
+$autoLoadConfig[0][] = [
+    'autoType' => 'class',
+    'loadFile' => 'observers/class.CeonURIMappingDeleteProductsObserver.php',
+    'classPath' => DIR_WS_CLASSES
+];
+$autoLoadConfig[198][] = [
+    'autoType' => 'classInstantiate',
+    'className' => 'ceonAdminRemoveProducts',
+    'objectName' => 'ceonAdminRemoveProductsObserve'
+];

@@ -9,7 +9,7 @@
  * This code is added to support either existing at the point of loading the page itself, although
  *   in Version 5.0.2, the parameter for generating the uri was changed to pid to match ZC 1.5.7
  *   and allow this sequence of files to be removed from a default ZC installation.
- * 
+ *
  * @package     ceon_uri_mapping
  * @author      Conor Kerr <zen-cart.uri-mapping@ceon.net>
  * @copyright   Copyright 2008-2020 Ceon
@@ -21,15 +21,15 @@
  **/
 
 if (!defined('IS_ADMIN_FLAG')) {
-	die('Illegal Access');
-} 
+    die('Illegal Access');
+}
 
-$autoLoadConfig[0][] = array(
-	'autoType' => 'class',
-	'loadFile' => 'observers/class.ceon_ask_a_question.php',
-	);
-$autoLoadConfig[200][] = array(
+$autoLoadConfig[0][] = [
+    'autoType' => 'class',
+    'loadFile' => 'observers/class.ceon_ask_a_question.php',
+];
+$autoLoadConfig[200][] = [
     'autoType' => 'classInstantiate',
     'className' => 'zcObserverCeonAskAQuestion',
     'objectName' => 'ceon_ask_a_question',
-     );
+];

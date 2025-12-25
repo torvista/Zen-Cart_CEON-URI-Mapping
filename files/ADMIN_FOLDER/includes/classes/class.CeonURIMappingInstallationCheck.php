@@ -1,5 +1,6 @@
 <?php
 
+//declare(strict_types=1); multiple issues
 /**
  * Ceon URI Mapping Installation Check Class.
  *
@@ -111,7 +112,7 @@ class CeonURIMappingInstallationCheck extends CeonURIMappingVersion
 	// {{{ _lookUpAutomaticVersionCheckingEnabled()
 
 	/**
-	 * Checks if the automatic version checking funcitonality is enabled and stores the status in this instance's
+	 * Checks if the automatic version checking functionality is enabled and stores the status in this instance's
 	 * property.
 	 *
 	 * @access  protected
@@ -644,7 +645,7 @@ class CeonURIMappingInstallationCheck extends CeonURIMappingVersion
 
 	/**
 	 * Examines the store's files to check if any of the Ceon URI Mapping core file modifications are missing, or
-	 * if any old modificiations haven't been updated to the new ones. Adds the appropriate error messages to the
+	 * if any old modifications haven't been updated to the new ones. Adds the appropriate error messages to the
 	 * main error messages property.
 	 *
 	 * @access  protected
@@ -2410,9 +2411,7 @@ class CeonURIMappingInstallationCheck extends CeonURIMappingVersion
 	 */
 	protected function _getSelectedPanelID(): ?string
     {
-		$selected_panel_id = 'installation-check-panel';
-
-		return $selected_panel_id;
+        return 'installation-check-panel';
 	}
 
 	// }}}
@@ -2825,12 +2824,12 @@ class CeonURIMappingInstallationCheck extends CeonURIMappingVersion
 <script>
 <!--
 function HighlightAll(field) {
-	var el = eval("document." + field)
+	var el = eval("document." + field);
 	el.focus();
 	el.select();
 	
 	if (document.all){
-		therange = el.createTextRange()
+		therange = el.createTextRange();
 		therange.execCommand("Copy")
 	}
 }

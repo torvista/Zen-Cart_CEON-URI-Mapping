@@ -11,9 +11,9 @@ class zcObserverClassCeonURIMappingJavaScriptLoader extends base
 {
     public function __construct() {
         $observeThis = [];
-        
+
         $observeThis[] = 'NOTIFY_ADMIN_FOOTER_END';
-        
+
         $this->attach($this, $observeThis);
     }
 

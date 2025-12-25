@@ -4,7 +4,7 @@
  * instantiated at the right point of the Zen Cart initsystem.
  * The load point for this observer is to be before the includes/init_includes/init_canonical.php file.  File's load point is
  *  expected to be identified in includes/auto_loaders/config.canonical.php.
- * 
+ *
  * @package     ceon_uri_mapping
  * @author      Conor Kerr <zen-cart.uri-mapping@ceon.net>
  * @copyright   Copyright 2008-2019 Ceon
@@ -16,15 +16,15 @@
  **/
 
 if (!defined('IS_ADMIN_FLAG')) {
-	die('Illegal Access');
-} 
+    die('Illegal Access');
+}
 
-$autoLoadConfig[0][] = array(
-	'autoType' => 'class',
-	'loadFile' => 'observers/class.ceon_canonical.php',
-	);
-$autoLoadConfig[160][] = array(
+$autoLoadConfig[0][] = [
+    'autoType' => 'class',
+    'loadFile' => 'observers/class.ceon_canonical.php',
+];
+$autoLoadConfig[160][] = [
     'autoType' => 'classInstantiate',
     'className' => 'zcObserverCeonCanonical',
     'objectName' => 'ceon_canonical',
-     );
+];

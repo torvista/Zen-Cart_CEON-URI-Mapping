@@ -20,10 +20,14 @@ if (!defined('IS_ADMIN_FLAG')) {
 
 //steve added to use an observer with html_output.php function zen_href_catalog_link
 
-$autoLoadConfig[10][] = array('autoType' => 'class',
+$autoLoadConfig[10][] = [
+    'autoType' => 'class',
     'loadFile' => 'observers/class.CeonURIMappingLinkBuildAdmin.php',
-    'classPath' => DIR_WS_CLASSES);
+    'classPath' => DIR_WS_CLASSES
+];
 
-$autoLoadConfig[90][] = array('autoType' => 'classInstantiate',
+$autoLoadConfig[90][] = [
+    'autoType' => 'classInstantiate',
     'className' => 'CeonURIMappingLinkBuildAdmin',
-    'objectName' => 'ceon_uri_mapping_link_build_admin');
+    'objectName' => 'ceon_uri_mapping_link_build_admin'
+];

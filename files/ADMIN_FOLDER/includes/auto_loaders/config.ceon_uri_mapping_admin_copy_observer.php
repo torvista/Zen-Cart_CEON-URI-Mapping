@@ -19,13 +19,13 @@ if (!defined('IS_ADMIN_FLAG')) {
 }
 
 //added to use an observer with admin/product.php for processing product modifications
- $autoLoadConfig[0][] = array(
-  'autoType' => 'class',
-  'loadFile' => 'observers/class.CeonURIMappingAdminCopyObserver.php',
-  'classPath'=>DIR_WS_CLASSES
-  );
- $autoLoadConfig[197][] = array(
-  'autoType' => 'classInstantiate',
-  'className' => 'CeonURIMappingAdminCopyObserver',
-  'objectName' => 'CeonURIMappingAdminCopy_Observe'
-  );
+$autoLoadConfig[0][] = [
+    'autoType' => 'class',
+    'loadFile' => 'observers/class.CeonURIMappingAdminCopyObserver.php',
+    'classPath' => DIR_WS_CLASSES
+];
+$autoLoadConfig[197][] = [
+    'autoType' => 'classInstantiate',
+    'className' => 'CeonURIMappingAdminCopyObserver',
+    'objectName' => 'CeonURIMappingAdminCopy_Observe'
+];

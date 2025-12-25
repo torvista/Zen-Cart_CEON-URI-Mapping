@@ -107,11 +107,11 @@ class CeonURIMappingAdminEZPagePages extends CeonURIMappingAdminEZPages
      *
      * @access  public
      * @param  int  $page_id  The ID of the EZ-page.
-     * @param  int  $page_title  The name for the EZ-Page. TODO think this is incorrect
+     * @param  string  $page_title  The name for the EZ-Page.
      * @param  array|null  $page_titles_array  The names for the EZ-Page for the languages used by the store.
      * @return  void
      */
-    public function insertUpdateHandler(int $page_id, $page_title, ?array $page_titles_array = null): void
+    public function insertUpdateHandler(int $page_id, string $page_title, ?array $page_titles_array = null): void
     {
         global $messageStack;
 
@@ -426,7 +426,7 @@ class CeonURIMappingAdminEZPagePages extends CeonURIMappingAdminEZPages
 
         $num_languages = sizeof($languages);
 
-        $uri_mapping_input_fields = zen_draw_separator('pixel_black.gif', '100%', '1') .
+        $uri_mapping_input_fields = zen_draw_separator('pixel_black.gif') .
             '<p class="col-sm-3 control-label">' . CEON_URI_MAPPING_TEXT_EZ_PAGE_URI . '</p>' .
             '<div class="col-sm-9 col-md-6">' . "\n";
 
@@ -498,7 +498,7 @@ class CeonURIMappingAdminEZPagePages extends CeonURIMappingAdminEZPages
 
         $uri_mapping_input_fields .= "\n\t\t</div>";
 
-        $uri_mapping_input_fields .= zen_draw_separator('pixel_black.gif', '100%', '1');
+        $uri_mapping_input_fields .= zen_draw_separator('pixel_black.gif');
         return $uri_mapping_input_fields;
     }
 

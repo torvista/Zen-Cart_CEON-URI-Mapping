@@ -10,7 +10,6 @@
  * $Id: init_ceon_ezpages_collect_info.php  2025-01-08 torvista
  */
 
-
 if (defined('FILENAME_EZPAGES_ADMIN') && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!strstr(FILENAME_EZPAGES_ADMIN, '.php') ? FILENAME_EZPAGES_ADMIN . '.php' : FILENAME_EZPAGES_ADMIN) && isset($_GET['action']) && $_GET['action'] == 'deleteconfirm') {
 			$pages_id = (int)zen_db_prepare_input($_POST['ezID']);
 
@@ -113,7 +112,7 @@ if (defined('FILENAME_EZPAGES_ADMIN') && $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN
 				$page_error = true;
 			}
 
-			if ($page_error == false) {
+			if (!$page_error) {
 				// SET SESSION VARIABLE AWAITING REDIRECT. WHERE
 //        zen_redirect(zen_href_link(FILENAME_EZPAGES_ADMIN, (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . 'ezID=' . $pages_id));
 

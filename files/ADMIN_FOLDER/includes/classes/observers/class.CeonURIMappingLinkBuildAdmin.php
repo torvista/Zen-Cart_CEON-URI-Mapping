@@ -68,7 +68,7 @@ class CeonURIMappingLinkBuildAdmin extends base
 						trigger_error('System not updated to handle editable notifier parameters.  Need to properly update the operating system.  This message will not be repeated for this session.', E_USER_WARNING);
 						$_SESSION['NotifySEFUInterceptAdmcathref'] = false;
 				}
-				
+
 				if (!isset($_SESSION['NotifySEFUInterceptAdmcathref'])) {
 					$this->notify_sefu_intercept_admcathref($callingClass, $notifier, $p1, $link, $page, $parameters, $connection);
 				}

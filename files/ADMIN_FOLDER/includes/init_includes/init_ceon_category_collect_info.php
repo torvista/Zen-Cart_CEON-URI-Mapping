@@ -8,7 +8,6 @@
  * $Id: init_ceon_category_collect_info.php 2025-01-08 torvista
  */
 
-
 // Code processed directly in/by the admin/categories.php file is handled by the
 //   associated observer for the categories file.
 
@@ -101,7 +100,7 @@ if (defined('FILENAME_CATEGORY_PRODUCT_LISTING') &&
 		zen_redirect(zen_href_link(FILENAME_CATEGORY_PRODUCT_LISTING, zen_get_all_get_params()));
 }
 
-// move_category_confirm initialize
+// move_category_confirm initialise
 //		Because the operation will redirect at completion, want to identify if
 //		an action had been identified as to be done so that can be triggered at the
 //		next redirect.

@@ -17,10 +17,10 @@ class CeonUriMappingLinkBuild extends base
 {
 		public function __construct()
 		{
-				$this->attach($this, array(
+				$this->attach($this, [
 					'NOTIFY_SEFU_INTERCEPT',
 					'NOTIFY_INIT_ADD_CRUMBS_GET_TERMS_LINK_PARAMETERS',
-				));//OOP. Called from function zen_href_link (html_output.php)
+                ]);//OOP. Called from function zen_href_link (html_output.php)
 		
 		}
 		
@@ -38,8 +38,8 @@ class CeonUriMappingLinkBuild extends base
 		 * @return  void (early escape if no processing necessary otherwise edits $link_parameters)
 		 * 
 		 */
-		public function notify_init_add_crumbs_get_terms_link_parameters(&$callingClass, $notifier, $next_get_term, &$link_parameters)
-		{
+		public function notify_init_add_crumbs_get_terms_link_parameters(&$callingClass, $notifier, $next_get_term, &$link_parameters): void
+        {
 				if (!defined('CEON_URI_MAPPING_ENABLED') || CEON_URI_MAPPING_ENABLED != 1) {
 						return;
 				}
@@ -52,7 +52,7 @@ class CeonUriMappingLinkBuild extends base
 				$link_parameters = 'typefilter=' . str_replace('_id', '', $next_get_term['get_term_name']) . '&' . $link_parameters;
 		}
 		
-		public function notify_sefu_intercept(&$callingClass, $notifier, $p1, &$link, $page, $parameters, $connection, $add_session_id, $static, &$use_dir_ws_catalog)//& required for &$link to modify it inside here
+		public function notify_sefu_intercept(&$callingClass, $notifier, $p1, &$link, $page, $parameters, $connection, $add_session_id, $static, &$use_dir_ws_catalog): void//& required for &$link to modify it inside here
 		{
 				if (!(defined('CEON_URI_MAPPING_ENABLED') && CEON_URI_MAPPING_ENABLED == 1 && $static == false)) {
 					return;
@@ -78,17 +78,18 @@ class CeonUriMappingLinkBuild extends base
 				}
 		}
 		
-		public function updateNotifySefuIntercept(&$callingClass, $notifier, $p1, &$link, $page, $parameters, $connection, $add_session_id, $static, &$use_dir_ws_catalog)//& required for &$link to modify it inside here
+		public function updateNotifySefuIntercept(&$callingClass, $notifier, $p1, &$link, $page, $parameters, $connection, $add_session_id, $static, &$use_dir_ws_catalog): void//& required for &$link to modify it inside here
 		{
 				$this->notify_sefu_intercept($callingClass, $notifier, $p1, $link, $page, $parameters, $connection, $add_session_id, $static, $use_dir_ws_catalog);
 		}
 		
-		public function updateNotifyInitAddCrumbsGetTermsLinkParameters(&$callingClass, $notifier, $next_get_term, &$link_parameters) {
+		public function updateNotifyInitAddCrumbsGetTermsLinkParameters(&$callingClass, $notifier, $next_get_term, &$link_parameters): void
+        {
 				$this->notify_init_add_crumbs_get_terms_link_parameters($callingClass, $notifier, $next_get_term, $link_parameters);
 		}
 		
 		// Additional parameters are not provided a default value because this notifier is not expected for less than Zen Cart 1.5.3 and if it is used then it would need to address the additional parameters.
-		public function update(&$callingClass, $notifier, $p1 = null, &$link = null, $page = null, $parameters = null, $connection = null, $add_session_id = null, $static = null, &$use_dir_ws_catalog = null)//& required for &$link to modify it inside here
+		public function update(&$callingClass, $notifier, $p1 = null, &$link = null, $page = null, $parameters = null, $connection = null, $add_session_id = null, $static = null, &$use_dir_ws_catalog = null): void//& required for &$link to modify it inside here
 		{
 				if (!(defined('CEON_URI_MAPPING_ENABLED') && CEON_URI_MAPPING_ENABLED == 1 && $static == false)) {
 					//trigger_error('closed', E_USER_WARNING);

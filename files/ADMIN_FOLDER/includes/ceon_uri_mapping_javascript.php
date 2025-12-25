@@ -165,7 +165,7 @@ window.onload = function(){
 	</script>
 <?php }
 
-// displays the javascript necessary for
+// displays the JavaScript necessary for
 // admin/ezpages.php&action=new
 if (defined('FILENAME_EZPAGES_ADMIN') && 
     $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!str_contains(FILENAME_EZPAGES_ADMIN, '.php') ? FILENAME_EZPAGES_ADMIN . '.php' : FILENAME_EZPAGES_ADMIN) && 

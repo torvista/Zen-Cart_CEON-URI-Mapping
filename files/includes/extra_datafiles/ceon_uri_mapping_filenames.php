@@ -16,20 +16,20 @@
  * Product type info pages which are missing their defines.
  */
 if (!defined('FILENAME_DOCUMENT_GENERAL_INFO')) {
-  define('FILENAME_DOCUMENT_GENERAL_INFO', 'document_general_info');
+    define('FILENAME_DOCUMENT_GENERAL_INFO', 'document_general_info');
 }
 if (!defined('FILENAME_DOCUMENT_PRODUCT_INFO')) {
-  define('FILENAME_DOCUMENT_PRODUCT_INFO', 'document_product_info');
+    define('FILENAME_DOCUMENT_PRODUCT_INFO', 'document_product_info');
 }
 if (!defined('FILENAME_EZPAGES_POPUP')) {
-  define('FILENAME_EZPAGES_POPUP', 'ezpages_popup');
+    define('FILENAME_EZPAGES_POPUP', 'ezpages_popup');
 }
 if (!defined('FILENAME_PRODUCT_BOOK_INFO')) {
-  define('FILENAME_PRODUCT_BOOK_INFO', 'product_book_info');
+    define('FILENAME_PRODUCT_BOOK_INFO', 'product_book_info');
 }
 if (!defined('FILENAME_PRODUCT_FREE_SHIPPING_INFO')) {
-  define('FILENAME_PRODUCT_FREE_SHIPPING_INFO', 'product_free_shipping_info');
+    define('FILENAME_PRODUCT_FREE_SHIPPING_INFO', 'product_free_shipping_info');
 }
 if (!defined('FILENAME_PRODUCT_MUSIC_INFO')) {
-  define('FILENAME_PRODUCT_MUSIC_INFO', 'product_music_info');
+    define('FILENAME_PRODUCT_MUSIC_INFO', 'product_music_info');
 }

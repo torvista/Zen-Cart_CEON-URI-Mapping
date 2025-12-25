@@ -20,10 +20,14 @@ if (!defined('IS_ADMIN_FLAG')) {
 
 // added to use an observer with the footer.php notifier supporting Zen Cart 1.5.7 and above.
 
-$autoLoadConfig[10][] = array('autoType' => 'class',
+$autoLoadConfig[10][] = [
+    'autoType' => 'class',
     'loadFile' => 'observers/class.CeonURIMappingJavaScriptLoader.php',
-    'classPath' => DIR_WS_CLASSES);
+    'classPath' => DIR_WS_CLASSES
+];
 
-$autoLoadConfig[180][] = array('autoType' => 'classInstantiate',
+$autoLoadConfig[180][] = [
+    'autoType' => 'classInstantiate',
     'className' => 'zcObserverClassCeonURIMappingJavaScriptLoader',
-    'objectName' => 'zcObserverClassCeonURIMappingJavaScriptLoader');
+    'objectName' => 'zcObserverClassCeonURIMappingJavaScriptLoader'
+];

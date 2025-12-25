@@ -18,28 +18,32 @@
 /**
  * If the store has any custom product page types, add their info page definitions to the list.
  */
-if (empty($ceon_uri_mapping_product_pages)) $ceon_uri_mapping_product_pages = array();
+if (empty($ceon_uri_mapping_product_pages)) {
+    $ceon_uri_mapping_product_pages = [];
+}
 
-$ceon_uri_mapping_product_pages = array_merge(array(
-	FILENAME_DOCUMENT_GENERAL_INFO,
-	FILENAME_DOCUMENT_PRODUCT_INFO,
-	FILENAME_PRODUCT_INFO,
-	FILENAME_PRODUCT_BOOK_INFO,
-	FILENAME_PRODUCT_FREE_SHIPPING_INFO,
-	FILENAME_PRODUCT_MUSIC_INFO
-	), $ceon_uri_mapping_product_pages);
+$ceon_uri_mapping_product_pages = array_merge([
+    FILENAME_DOCUMENT_GENERAL_INFO,
+    FILENAME_DOCUMENT_PRODUCT_INFO,
+    FILENAME_PRODUCT_INFO,
+    FILENAME_PRODUCT_BOOK_INFO,
+    FILENAME_PRODUCT_FREE_SHIPPING_INFO,
+    FILENAME_PRODUCT_MUSIC_INFO
+], $ceon_uri_mapping_product_pages);
 
-if (empty($ceon_uri_mapping_product_related_pages)) $ceon_uri_mapping_product_related_pages = array();
-	
-$ceon_uri_mapping_product_related_pages = array_merge(array(
-	FILENAME_PRODUCT_REVIEWS,
-	FILENAME_PRODUCT_REVIEWS_INFO,
-	FILENAME_PRODUCT_REVIEWS_WRITE
-	), $ceon_uri_mapping_product_related_pages);
+if (empty($ceon_uri_mapping_product_related_pages)) {
+    $ceon_uri_mapping_product_related_pages = [];
+}
+
+$ceon_uri_mapping_product_related_pages = array_merge([
+    FILENAME_PRODUCT_REVIEWS,
+    FILENAME_PRODUCT_REVIEWS_INFO,
+    FILENAME_PRODUCT_REVIEWS_WRITE
+], $ceon_uri_mapping_product_related_pages);
 
 if (defined('FILENAME_TELL_A_FRIEND')) {
-	$ceon_uri_mapping_product_related_pages[] = FILENAME_TELL_A_FRIEND;
+    $ceon_uri_mapping_product_related_pages[] = FILENAME_TELL_A_FRIEND;
 }
 if (defined('FILENAME_ASK_A_QUESTION')) {
-	$ceon_uri_mapping_product_related_pages[] = FILENAME_ASK_A_QUESTION;
+    $ceon_uri_mapping_product_related_pages[] = FILENAME_ASK_A_QUESTION;
 }

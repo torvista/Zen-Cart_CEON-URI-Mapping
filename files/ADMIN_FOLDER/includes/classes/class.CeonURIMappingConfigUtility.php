@@ -48,10 +48,10 @@ class CeonURIMappingConfigUtility extends CeonURIMappingVersion
 	/**
 	 * Whether auto-generation is enabled.
 	 *
-	 * @var     bool
+	 * @var     bool|null
 	 * @access  protected
 	 */
-	protected $_autogen_new = null;
+	protected ?bool $_autogen_new = null;
 
 	/**
 	 * The whitespace replacement setting for the store.
@@ -91,15 +91,15 @@ class CeonURIMappingConfigUtility extends CeonURIMappingVersion
 	 * @var     int
 	 * @access  protected
 	 */
-	protected $_language_code_add = null;
+	protected  $_language_code_add = null;
 
 	/**
 	 * The action to be taken if a URI mapping being auto-generated clashes with an existing mapping.
 	 *
-	 * @var     string
+	 * @var     null|string
 	 * @access  protected
 	 */
-	protected $_mapping_clash_action = null;
+	protected ?string $_mapping_clash_action = null;
 
 	/**
 	 * Whether product reviews pages should have their URIs auto-managed.
@@ -350,7 +350,7 @@ class CeonURIMappingConfigUtility extends CeonURIMappingVersion
 		} else {
 			$this->_installed_version = $load_config_result->fields['version'];
 
-			$this->_autogen_new = $load_config_result->fields['autogen_new'];
+            $this->_autogen_new = $load_config_result->fields['autogen_new'] === '1';
 			$this->_whitespace_replacement = $load_config_result->fields['whitespace_replacement'];
 			$this->_capitalisation = $load_config_result->fields['capitalisation'];
 			$this->_remove_words = $load_config_result->fields['remove_words'];
@@ -438,7 +438,7 @@ class CeonURIMappingConfigUtility extends CeonURIMappingVersion
     {
 		global $db, $languages, $num_languages, $ceon_uri_mapping_demo, $messageStack;
 
-		$this->_autogen_new = $_POST['autogen-new'];
+		$this->_autogen_new = $_POST['autogen-new'] === '1';
 		$this->_whitespace_replacement = $_POST['whitespace-replacement'];
 		$this->_capitalisation = $_POST['capitalisation'];
 		$this->_remove_words = trim($_POST['remove-words']);
@@ -602,7 +602,7 @@ class CeonURIMappingConfigUtility extends CeonURIMappingVersion
 		if (!$ceon_uri_mapping_demo && count($this->_error_messages) == 0) {
 
 			$save_config_data_array = [
-				'autogen_new' => $this->_autogen_new,
+				'autogen_new' => (int)$this->_autogen_new,
 				'whitespace_replacement' => $this->_whitespace_replacement,
 				'capitalisation' => $this->_capitalisation,
 				'remove_words' => ((strlen($this->_remove_words) == 0) ? 'null' : $this->_remove_words),

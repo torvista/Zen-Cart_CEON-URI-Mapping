@@ -469,8 +469,6 @@ class CeonURIMappingAdminCategoryPages extends CeonURIMappingAdminCategories
 				$autogen_selected = true;
 			} else {
 				$autogen_selected = false;
-//steve override to always update
-$autogen_selected = true;
 
 				if ($num_prev_uri_mappings == 1) {
 					$autogen_message .= '<br />' . CEON_URI_MAPPING_TEXT_URI_AUTOGEN_ONE_EXISTING_MAPPING;

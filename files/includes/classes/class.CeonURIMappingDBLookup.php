@@ -57,19 +57,18 @@ class CeonURIMappingDBLookup
 	 * actual implementation of the database's structure.
 	 *
 	 * @access  public
-	 * @param   array|string   $columns_to_retrieve   The column(s) to retrieve. Either an array of column names or
+	 * @param  array|string  $columns_to_retrieve   The column(s) to retrieve. Either an array of column names or
 	 *                                                a single column name.
-	 * @param   array     $selections   An associative array of column names and values to match for these columns.
+	 * @param  array  $selections   An associative array of column names and values to match for these columns.
 	 *                                  A set of values can be grouped with OR by specifying an array of values for
 	 *                                  the value.
-	 * @param   string    $order_by   A SQL string to be used to order the resultset.
-	 * @param   string    $limit      A SQL string to be used to limit the resultset.
-	 * @param   string    $group_by   A SQL string to be used to group the resultset.
+	 * @param  string|null  $order_by   A SQL string to be used to order the resultset.
+	 * @param  int|string|null  $limit      A SQL string to be used to limit the resultset. Although all uses appear to be as 1 integer
+	 * @param  string|null  $group_by   A SQL string to be used to group the resultset.
 	 * @return  queryFactoryResult $db   A Zen Cart database resultset.
 	 */
-	public function getURIMappingsResultset($columns_to_retrieve, $selections, $order_by = null, $limit = null,
-		$group_by = null)
-	{
+	public function getURIMappingsResultset(array|string $columns_to_retrieve, array $selections, ?string $order_by = null, int|string|null $limit = null, ?string $group_by = null): queryFactoryResult
+    {
 		global $db;
 
 		if (is_array($columns_to_retrieve)) {
@@ -96,10 +95,10 @@ class CeonURIMappingDBLookup
 
 					if (is_null($value) || strtolower($value) == 'null') {
 						$selection_string .= " IS NULL\n";
-					} else if (strtolower($value) == 'not null') {
+					} elseif (strtolower($value) == 'not null') {
 						$selection_string .= " IS NOT NULL\n";
 					} else {
-						if (substr($value, -1) == '%') {
+						if (str_ends_with($value, '%')) {
 							$selection_string .= ' LIKE ';
 						} else {
 							$selection_string .= ' = ';
@@ -120,10 +119,10 @@ class CeonURIMappingDBLookup
 
 				if (is_null($column_value) || strtolower($column_value) == 'null') {
 					$selection_string .= " IS NULL\n";
-				} else if (strtolower($column_value) == 'not null') {
+				} elseif (strtolower($column_value) == 'not null') {
 					$selection_string .= " IS NOT NULL\n";
 				} else {
-					if (substr($column_value, -1) == '%') {
+					if (str_ends_with($column_value, '%')) {
 						$selection_string .= ' LIKE ';
 					} else {
 						$selection_string .= ' = ';

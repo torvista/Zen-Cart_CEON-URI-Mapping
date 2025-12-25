@@ -50,42 +50,41 @@ define('CEON_URI_MAPPING_GENERATION_ATTEMPT_FOR_CATEGORY_PATH_PART_WITH_NO_NAME'
 class CeonURIMappingAdminCategoriesProducts extends CeonURIMappingAdmin
 {
 	// {{{ Class Constructor
-	
+
 	/**
 	 * Creates a new instance of the CeonURIMappingAdminCategoriesProducts class.
-	 * 
+	 *
 	 * @access  public
 	 */
 	public function __construct()
 	{
 		parent::__construct();
 	}
-	
+
 	// }}}
-	
-	
+
+
 	// {{{ autogenCategoryOrProductURIMapping()
-	
-	/**
-	 * Generates a URI mapping for a category or a product, for the specified language.
-	 *
-	 * @access  public
-	 * @param   integer   $id              The ID of the category/product.
-	 * @param   string    $type            Whether the ID corresponds to a category or a product.
-	 * @param   integer   $parent_category_id   The ID of the parent category (used if the details in the database
-	 *                                          could be out of date as new information is being submitted when the
-	 *                                          URI is being generated).
-	 * @param   string    $name                 The name of category/product (used if new information is being
-	 *                                          submitted when the URI is being generated).
-	 * @param   string    $language_code   The ISO 639 language code of the language.
-	 * @param   integer   $language_id     The Zen Cart language ID for the language.
-	 * @return  string    The auto-generated URI for the category/product and language.
-	 */
-	public function autogenCategoryOrProductURIMapping($id, $type, $parent_category_id, $name, $language_code,
-		$language_id)
-	{
+
+    /**
+     * Generates a URI mapping for a category or a product, for the specified language.
+     *
+     * @access  public
+     * @param  int  $id  The ID of the category/product.
+     * @param  string  $type  Whether the ID corresponds to a category or a product.
+     * @param  int  $parent_category_id  The ID of the parent category (used if the details in the database
+     *                                          could be out of date as new information is being submitted when the
+     *                                          URI is being generated).
+     * @param  string  $name  The name of category/product (used if new information is being
+     *                                          submitted when the URI is being generated).
+     * @param  string  $language_code  The ISO 639 language code of the language.
+     * @param  int  $language_id  The Zen Cart language ID for the language.
+     * @return int|string The auto-generated URI for the category/product and language.
+     */
+	public function autogenCategoryOrProductURIMapping(int $id, string $type, int $parent_category_id, string $name, string $language_code, int $language_id): int|string
+    {
 		//global $db;
-		
+
 		// Get the complete path to this category/product, or the parent category if this is a new category/product
 		if (is_null($name)) {
 			$category_and_product_path_array = $this->getCategoryOrProductPath($id, $type, $language_id);
@@ -93,18 +92,18 @@ class CeonURIMappingAdminCategoriesProducts extends CeonURIMappingAdmin
 			$category_and_product_path_array =
 				$this->getCategoryOrProductPath($parent_category_id, 'category', $language_id);
 		}
-		
+
 		$category_and_product_path_array = array_reverse($category_and_product_path_array);
-		
-		if (!is_null($name) || count($category_and_product_path_array) == 0) {
+
+		if (!is_null($name) || count($category_and_product_path_array) === 0) {
 			// Must add the new category/product's name to the path array
 			$category_and_product_path_array[] = $name;
 		}
-		
-		// Must not generate URIs for any category or product which has no name.. would conflict with parent
+
+		// Must not generate URIs for any category or product which has no name... would conflict with parent
 		// category (manual mapping can be used if that behaviour is required).
 		$num_categories_products = count($category_and_product_path_array);
-		
+
 		for ($i = 0; $i < $num_categories_products; $i++) {
 			if (strlen($category_and_product_path_array[$i]) == 0 || $category_and_product_path_array[$i] == '/' ||
 					$category_and_product_path_array[$i] == '\\') {
@@ -115,63 +114,62 @@ class CeonURIMappingAdminCategoriesProducts extends CeonURIMappingAdmin
 						return CEON_URI_MAPPING_GENERATION_ATTEMPT_FOR_CATEGORY_WITH_NO_NAME;
 					}
 				}
-				
+
 				return CEON_URI_MAPPING_GENERATION_ATTEMPT_FOR_CATEGORY_PATH_PART_WITH_NO_NAME;
 			}
 		}
-		
+
 		for ($i = 0, $n = count($category_and_product_path_array); $i < $n; $i++) {
 			$category_and_product_path_array[$i] = $this->_convertStringForURI(
 				$category_and_product_path_array[$i], $language_code);
 		}
-		
+
 		// Language code to be auto-included, then push to the beginning of the URI
 		if ($this->_autoLanguageCodeAdd()) {
 			array_unshift($category_and_product_path_array, $language_code);
 		}
-		
+
 		// Implode the path array into a URI
 		$uri = implode('/', $category_and_product_path_array);
-		
+
 		// Prepend the URI with the store's directory (if any), otherwise add a "root" slash
 		if (strlen(DIR_WS_CATALOG) > 0) {
 			$uri = DIR_WS_CATALOG . $uri;
 		} else {
 			$uri = '/' . $uri;
 		}
-		
+
 		return $uri;
 	}
-	
+
 	// }}}
-	
-	
+
 	// {{{ getCategoryOrProductPath()
-	
+
 	/**
 	 * Looks up the hierarchy of the parent categories for the given category/product.
 	 *
 	 * @access  public
-	 * @param   integer   $id            The ID of the category/product.
-	 * @param   string    $for           Either 'category' or 'product'.
-	 * @param   integer   $language_id   The ID of the language of the category names to lookup.
-	 * @param   array     $categories_array   Used internally as part of recursion process.
-	 * @return  array     A hierarchical array of the parent categories (if any) for the given category/product,
+	 * @param  int  $id            The ID of the category/product.
+	 * @param  string  $for           Either 'category' or 'product'.
+	 * @param  int  $language_id   The ID of the language of the category names to lookup.
+	 * @param  array|string  $categories_array   Used internally as part of recursion process.
+	 * @return  array|string     A hierarchical array of the parent categories (if any) for the given category/product,
 	 *                    from the "leaf" product/category back to the "root/top" category.
 	 */
-	public function getCategoryOrProductPath($id, $for, $language_id, $categories_array = '')
-	{
+	public function getCategoryOrProductPath(int $id, string $for, int $language_id, array|string $categories_array = ''): array|string
+    {
 		global $db;
-		
+
 		if (!is_array($categories_array)) {
-			$categories_array = array();
+			$categories_array = [];
 		}
-		
+
 		if ($id == 0) {
 			return $categories_array;
 		}
-		
-		if ($for == 'product') {
+
+		if ($for === 'product') {
 			$master_category = $db->Execute("
 				SELECT
 					pd.products_name,
@@ -186,10 +184,10 @@ class CeonURIMappingAdminCategoriesProducts extends CeonURIMappingAdmin
 					p.products_id = '" . (int) $id . "'
 				AND
 					pd.language_id = '" . (int) $language_id . "';");
-			
+
 			if (!$master_category->EOF) {
 				$categories_array[] = $master_category->fields['products_name'];
-				
+
 				if ($master_category->fields['master_categories_id'] == '0') {
 					// Product uses root/top category
 				} else {
@@ -207,9 +205,9 @@ class CeonURIMappingAdminCategoriesProducts extends CeonURIMappingAdmin
 							c.categories_id = cd.categories_id
 						AND
 							cd.language_id = '" . (int) $language_id . "'");
-					
+
 					$categories_array[] = $category->fields['categories_name'];
-					
+
 					if ((zen_not_null($category->fields['parent_id'])) &&
 							($category->fields['parent_id'] != '0')) {
 						$categories_array = $this->getCategoryOrProductPath($category->fields['parent_id'],
@@ -217,7 +215,7 @@ class CeonURIMappingAdminCategoriesProducts extends CeonURIMappingAdmin
 					}
 				}
 			}
-		} else if ($for == 'category') {
+		} elseif ($for === 'category') {
 			$category = $db->Execute("
 				SELECT
 					cd.categories_name,
@@ -231,18 +229,18 @@ class CeonURIMappingAdminCategoriesProducts extends CeonURIMappingAdmin
 					c.categories_id = cd.categories_id
 				AND
 					cd.language_id = '" . (int) $language_id . "'");
-			
+
 			$categories_array[] = $category->fields['categories_name'];
-			
+
 			if ((zen_not_null($category->fields['parent_id'])) && ($category->fields['parent_id'] != '0')) {
-				$categories_array = $this->getCategoryOrProductPath($category->fields['parent_id'], 'category',
+				$categories_array = $this->getCategoryOrProductPath((int)$category->fields['parent_id'], 'category',
 					$language_id, $categories_array);
 			}
 		}
-		
+
 		return $categories_array;
 	}
-	
+
 	// }}}
 }
 

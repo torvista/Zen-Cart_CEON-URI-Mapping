@@ -19,13 +19,13 @@ if (!defined('IS_ADMIN_FLAG')) {
 }
 
 //added to use an observer with admin/categories.php for processing category modifications
- $autoLoadConfig[0][] = array(
-  'autoType' => 'class',
-  'loadFile' => 'observers/class.CeonURIMappingAdminCategoriesObserver.php',
-  'classPath'=>DIR_WS_CLASSES
-  );
- $autoLoadConfig[198][] = array(
-  'autoType' => 'classInstantiate',
-  'className' => 'CeonURIMappingAdminCategoriesObserver',
-  'objectName' => 'CeonURIMappingAdminCategories_Observe'
-  );
+$autoLoadConfig[0][] = [
+    'autoType' => 'class',
+    'loadFile' => 'observers/class.CeonURIMappingAdminCategoriesObserver.php',
+    'classPath' => DIR_WS_CLASSES
+];
+$autoLoadConfig[198][] = [
+    'autoType' => 'classInstantiate',
+    'className' => 'CeonURIMappingAdminCategoriesObserver',
+    'objectName' => 'CeonURIMappingAdminCategories_Observe'
+];

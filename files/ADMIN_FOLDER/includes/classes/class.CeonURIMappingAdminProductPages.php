@@ -239,8 +239,6 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 				$autogen_selected = true;
 			} else {
 				$autogen_selected = false;
-//steve override to always update
-$autogen_selected = true;
 
 				if ($num_uri_mappings == 1) {
 					$autogen_message .= '<br>' . CEON_URI_MAPPING_TEXT_URI_AUTOGEN_ONE_EXISTING_MAPPING;
@@ -942,7 +940,7 @@ $autogen_selected = true;
 							ucwords($languages[$i]['name']),
 							'<a href="' . HTTP_SERVER . $uri . '" target="_blank">' . $uri . '</a>');
 
-					} else if ($mapping_added == CEON_URI_MAPPING_ADD_MAPPING_ERROR_DATA_ERROR) {
+					} elseif ($mapping_added == CEON_URI_MAPPING_ADD_MAPPING_ERROR_DATA_ERROR) {
 						$failure_message = sprintf(CEON_URI_MAPPING_TEXT_ERROR_ADD_MAPPING_DATA,
 							ucwords($languages[$i]['name']), $uri);
 					} else {
@@ -985,7 +983,7 @@ $autogen_selected = true;
 
 					$uri_part = $this->getProductRelatedPageURIPart($page_type, $language_code);
 
-					if ($uri_part == false) {
+					if ($uri_part === false) {
 						// Unexpected database problem encountered
 						continue;
 					}
@@ -1498,7 +1496,7 @@ $autogen_selected = true;
 					foreach ($page_types_to_manage as $page_type) {
 						$uri_part = $this->getProductRelatedPageURIPart($page_type, $language_code);
 
-						if ($uri_part == false) {
+						if ($uri_part === false) {
 							// Unexpected database problem encountered
 							continue;
 						}
@@ -1642,7 +1640,7 @@ $autogen_selected = true;
 				} else {
 					$ignore_message = CEON_URI_MAPPING_TEXT_MOVE_PRODUCT_DONT_AUTOGEN_URIS;
 				}
-			} else if (!$this->_autogenEnabled() && $product_has_mappings) {
+			} elseif (!$this->_autogenEnabled() && $product_has_mappings) {
 				if ($num_languages == 1) {
 					$ignore_message = CEON_URI_MAPPING_TEXT_MOVE_PRODUCT_DONT_MOVE_URI;
 				} else {
@@ -1953,7 +1951,7 @@ $autogen_selected = true;
 
 						$uri_part = $this->getProductRelatedPageURIPart($page_type, $language_code);
 
-						if ($uri_part == false) {
+						if ($uri_part === false) {
 							// Unexpected database problem encountered
 							continue;
 						}

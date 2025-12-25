@@ -14,7 +14,7 @@
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
-	die('Illegal Access');
+    die('Illegal Access');
 }
 
 // Used to force the path for sessions to be at the root.
@@ -23,5 +23,5 @@ if (!defined('IS_ADMIN_FLAG')) {
 //  that the file includes/init_includes/overrides/init_sessions.php is not necessary.
 // Option/configuration taken from includes/extra_datafiles/ceon_uri_mapping_sessions_define.php
 if (defined('CEON_URI_MAPPING_ENABLED') && CEON_URI_MAPPING_ENABLED != 0) {
-  define('CUSTOM_COOKIE_PATH', '/');
+    define('CUSTOM_COOKIE_PATH', '/');
 }

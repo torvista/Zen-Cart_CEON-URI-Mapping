@@ -69,15 +69,15 @@ class CeonURIMappingAdminProducts extends CeonURIMappingAdminCategoriesProducts
 	 * Checks whether auto-managing of the specified product related page URI is enabled or disabled.
 	 *
 	 * @access  public
-	 * @param   string    $page_type   The type of the page.
-	 * @return  boolean   Whether auto-managing of the page's URI is enabled or disabled.
+	 * @param  string  $page_type   The type of the page.
+	 * @return  bool   Whether auto-managing of the page's URI is enabled or disabled.
 	 */
-	public function autoManageProductRelatedPageURI($page_type)
-	{
+	public function autoManageProductRelatedPageURI(string $page_type): bool
+    {
 		global $db;
 
 		if (!isset($automanage_enabled)) {
-			static $automanage_enabled = array();
+			static $automanage_enabled = [];
 
 			// Only one config currently supported so ID is hard-coded in following SQL
 			$automanage_enabled_sql = "
@@ -95,7 +95,7 @@ class CeonURIMappingAdminProducts extends CeonURIMappingAdminCategoriesProducts
 			$automanage_enabled_result = $db->Execute($automanage_enabled_sql);
 
 			if (!$automanage_enabled_result->EOF) {
-				$automanage_enabled = array(
+				$automanage_enabled = [
 					'product_reviews' =>
 						$automanage_enabled_result->fields['manage_product_reviews_mappings'],
 					'product_reviews_info' =>
@@ -106,7 +106,7 @@ class CeonURIMappingAdminProducts extends CeonURIMappingAdminCategoriesProducts
 						$automanage_enabled_result->fields['manage_tell_a_friend_mappings'],
 					'ask_a_question' =>
 						$automanage_enabled_result->fields['manage_ask_a_question_mappings']
-					);
+                ];
 			}
 		}
 
@@ -122,32 +122,32 @@ class CeonURIMappingAdminProducts extends CeonURIMappingAdminCategoriesProducts
 
 	// {{{ getProductRelatedPageURIPart()
 
-	/**
-	 * Looks up the product related page URI part for the page type and language specified.
-	 *
-	 * @access  public
-	 * @param   string    $page_type   The type of the page.
-	 * @param   string    $language_code   The language code the URI part should be returned for.
-	 * @return  string|false   The product related page's URI part or false if there is no URI part for the
-	 *                         specified page type and language code.
-	 */
-	public function getProductRelatedPageURIPart($page_type, $language_code)
-	{
+    /**
+     * Looks up the product related page URI part for the page type and language specified.
+     *
+     * @access  public
+     * @param  string  $page_type  The type of the page.
+     * @param  string  $language_code  The language code the URI part should be returned for.
+     * @return false|string product related page's URI part or false if there is no URI part for the
+     *                         specified page type and language code.
+     */
+	public function getProductRelatedPageURIPart(string $page_type, string $language_code): false|string
+    {
 		global $db;
 
 		if (!isset($uri_parts) || !isset($uri_parts[$language_code]) ||
 				!isset($uri_parts[$language_code][$page_type])) {
 			// URI part hasn't been cached for this page type for the specified language, cache all now
-			static $uri_parts = array();
+			static $uri_parts = [];
 
 			// Only hold the information in memory for URI parts that are being auto-managed
-			$page_types = array(
+			$page_types = [
 				'product_reviews',
 				'product_reviews_info',
 				'product_reviews_write',
 				'tell_a_friend',
 				'ask_a_question'
-				);
+            ];
 
 			$page_types_sql_string = '';
 
@@ -176,7 +176,7 @@ class CeonURIMappingAdminProducts extends CeonURIMappingAdminCategoriesProducts
 
 			while (!$uri_parts_result->EOF) {
 				if (!isset($uri_parts[$uri_parts_result->fields['language_code']])) {
-					$uri_parts[$uri_parts_result->fields['language_code']] = array();
+					$uri_parts[$uri_parts_result->fields['language_code']] = [];
 				}
 
 				$uri_parts[$uri_parts_result->fields['language_code']][$uri_parts_result->fields['page_type']] =
@@ -186,8 +186,7 @@ class CeonURIMappingAdminProducts extends CeonURIMappingAdminCategoriesProducts
 			}
 		}
 
-		if (isset($uri_parts[$language_code]) && isset($uri_parts[$language_code][$page_type]) &&
-				strlen($uri_parts[$language_code][$page_type]) > 0) {
+		if (isset($uri_parts[$language_code][$page_type]) && strlen($uri_parts[$language_code][$page_type]) > 0) {
 
 			return $uri_parts[$language_code][$page_type];
 		}
@@ -200,28 +199,27 @@ class CeonURIMappingAdminProducts extends CeonURIMappingAdminCategoriesProducts
 
 	// {{{ autogenProductURIMapping()
 
-	/**
-	 * Generates a URI mapping for a product, for the specified language.
-	 *
-	 * @access  public
-	 * @param   integer   $id              The ID of the product.
-	 * @param   integer   $parent_category_id   The ID of the parent category (used if the details in the database
-	 *                                          could be out of date as new  information is being submitted when
-	 *                                          the URI is being generated).
-	 * @param   string    $name               The name of product (used if new information is being submitted when
-	 *                                        the URI is being generated).
-	 * @param   string    $language_code      The ISO 639 language code of the language.
-	 * @param   integer   $language_id        The Zen Cart language ID for the language.
-	 * @param   string    $model              The product's model code.
-	 * @param   string    $mapping_template   The mapping template for this product.
-	 * @return  string    The auto-generated URI for the product and language.
-	 */
-	public function autogenProductURIMapping($id, $parent_category_id, $name, $language_code, $language_id, $model = null)
-	{
+    /**
+     * Generates a URI mapping for a product, for the specified language.
+     *
+     * @access  public
+     * @param  int  $id  The ID of the product.
+     * @param  int|null  $parent_category_id  The ID of the parent category (used if the details in the database
+     *                                          could be out of date as new  information is being submitted when
+     *                                          the URI is being generated).
+     * @param  null|string  $name  The name of product (used if new information is being submitted when
+     *                                        the URI is being generated).
+     * @param  string  $language_code  The ISO 639 language code of the language.
+     * @param  int  $language_id  The Zen Cart language ID for the language.
+     * @param  string|null  $model  The product's model code.
+     * @return  string    The auto-generated URI for the product and language.
+     */
+	public function autogenProductURIMapping(int $id, int $parent_category_id, string $name, string $language_code, int $language_id, ?string $model = null): string
+    {
 		return $this->autogenCategoryOrProductURIMapping($id, 'product', $parent_category_id, $name,
 			$language_code, $language_id);
 	}
-	
+
 	// }}}
 }
 

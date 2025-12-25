@@ -40,7 +40,7 @@ require_once(DIR_FS_CATALOG . DIR_WS_CLASSES . 'class.CeonURIMappingHandlerBase.
 class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 {
 	// {{{ Class Constructor
-	
+
 	/**
 	 * Creates a new instance of the CeonURIMappingHandler class. Checks the server and module's configuration,
 	 * then attempts to map the current URI to the appropriate Zen Cart page.
@@ -64,21 +64,22 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 	 * @return  void
 	 * @author  Conor Kerr <zen-cart.uri-mapping@ceon.net>
 	 */
-	protected function _handleStaticURI()
+	protected function _handleStaticURI(): void
     {
 		global $db;
 
 		// Make sure that request URI has no invalid characters in it
+        //TODO IDE reports redundant escape character
 		$uri_to_match = preg_replace('/[^a-zA-Z0-9_\-\.\/%]/', '', $this->_request_uri);
 
 		// Remove any trailing slashes
-		while (substr($uri_to_match, -1) == '/') {
+		while (str_ends_with($uri_to_match, '/')) {
 			$uri_to_match = substr($uri_to_match, 0, strlen($uri_to_match) -1);
 		}
-
+        //TODO unused variable?
 		$match_criteria_sql = "um.uri = '" . zen_db_prepare_input($uri_to_match) . "'";
 
-		$columns_to_retrieve = array(
+		$columns_to_retrieve = [
 			'language_id',
 			'main_page',
 			'query_string_parameters',
@@ -86,11 +87,11 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 			'alternate_uri',
 			'current_uri',
 			'redirection_type_code'
-			);
+        ];
 
-		$selections = array(
+		$selections = [
 			'uri' => zen_db_prepare_input($uri_to_match)
-			);
+        ];
 
 		$order_by = '
 			current_uri DESC,
@@ -98,12 +99,12 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 			date_added DESC';
 
 		$match_uri_result = $this->getURIMappingsResultset($columns_to_retrieve, $selections, $order_by);
-		
+
 		if ($match_uri_result->EOF) {
 			// URI couldn't be mapped, should the index page be shown or the 404 page?
 			if (MISSING_PAGE_CHECK == 'On' || MISSING_PAGE_CHECK == 'true') {
 				$_GET['main_page'] = 'index';
-			} else if (MISSING_PAGE_CHECK == 'Page Not Found') {
+			} elseif (MISSING_PAGE_CHECK === 'Page Not Found') {
 				header('HTTP/1.1 404 Not Found');
 				$_GET['main_page'] = 'page_not_found';
 			}
@@ -117,9 +118,9 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 		// accessed, otherwise simply use the most recent current mapping, falling back to the most recent mapping
 		// for the original language ID and, as a last resort, the most recent mapping for any ID
 		$current_and_original_language_mapping = null;
-		$current_mappings = array();
-		$original_language_mappings = array();
-		$other_mappings = array();
+		$current_mappings = [];
+		$original_language_mappings = [];
+		$other_mappings = [];
 
 		while (!$match_uri_result->EOF) {
 			$current_mapping_info = $match_uri_result->fields;
@@ -133,7 +134,7 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 
 			if ($current_mapping_info['current_uri'] == 1) {
 				$current_mappings[] = $current_mapping_info;
-			} else if ($current_mapping_info['language_id'] == $this->_original_language_id) {
+			} elseif ($current_mapping_info['language_id'] == $this->_original_language_id) {
 				$original_language_mappings[] = $current_mapping_info;
 			} else {
 				$other_mappings[] = $current_mapping_info;
@@ -145,9 +146,9 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 		// Use the details for the best possible match for the URI (criteria as above)
 		if (!is_null($current_and_original_language_mapping)) {
 			$mapping_info = $current_and_original_language_mapping;
-		} else if (sizeof($current_mappings) > 0) {
+		} elseif (sizeof($current_mappings) > 0) {
 			$mapping_info = $current_mappings[0];
-		} else if (sizeof($original_language_mappings) > 0) {
+		} elseif (sizeof($original_language_mappings) > 0) {
 			$mapping_info = $original_language_mappings[0];
 		} else {
 			$mapping_info = $other_mappings[0];
@@ -160,7 +161,7 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 		$alternate_uri = $mapping_info['alternate_uri'];
 		$current_uri = $mapping_info['current_uri'];
 		$redirection_type_code = $mapping_info['redirection_type_code'];
-		
+
 		if (!is_null($alternate_uri)) {
 			$alternate_uri = trim($alternate_uri);
 
@@ -192,7 +193,7 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 
 			zen_exit();
 
-		} else if (is_null($main_page)) {
+		} elseif (is_null($main_page)) {
 			// No value found for main page, this is a corrupted URI mapping!
 			header('HTTP/1.1 404 Not Found');
 
@@ -201,32 +202,31 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 			// Add an error message to the message stack session variable as the message stack
 			// itself isn't available at this point in the initsystem
 			if (!isset($_SESSION['messageToStack']) || !is_array($_SESSION['messageToStack'])) {
-				$_SESSION['messageToStack'] = array();
+				$_SESSION['messageToStack'] = [];
 			}
 
-			$_SESSION['messageToStack'][] = array(
+			$_SESSION['messageToStack'][] = [
 				'class' => 'heading',
 				'text' => 'Unable to map identified URI: ' . $this->_request_uri,
 				'type' => 'error'
-				);
+            ];
 
 			return;
 		}
-		
+
 		// Have matched a Zen Cart page to initialise
 
 		// Is the URI a current URI or should an attempt be made to find the current URI to redirect to? Or has the
 		// user just changed the language so an attempt should be made to find the current URI for the new
 		// language?
-		// Although don't perform redirect checks if a form is being posted, as any redirect would break the post
+		// Don't perform redirect checks if a form is being posted, as any redirect would break the post
 		if (count($_POST) == 0 && ($current_uri != 1 || $this->_language_changed)) {
 			// Attempt to find the current URI mapping for the user's chosen language
 			$redirection_check_language_id = $_SESSION['languages_id'];
 
-			$redirection_uri = $this->_getCurrentURI($main_page, $associated_db_id, $query_string_parameters,
-				$redirection_check_language_id);
+			$redirection_uri = $this->_getCurrentURI($main_page, $associated_db_id, $query_string_parameters, (int)$redirection_check_language_id);
 
-			if ($redirection_uri == false) {
+			if ($redirection_uri === false) {
 				// Didn't find a current URI mapping for the user's chosen language
 
 				// If the URI mapping identified so far is a historical mapping which uses a different language,
@@ -234,10 +234,9 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 				if ($current_uri != 1 && $language_id != $_SESSION['languages_id']) {
 					$redirection_check_language_id = $language_id;
 
-					$redirection_uri = $this->_getCurrentURI($main_page, $associated_db_id,
-						$query_string_parameters, $redirection_check_language_id);
+					$redirection_uri = $this->_getCurrentURI($main_page, $associated_db_id,	$query_string_parameters, (int)$redirection_check_language_id);
 
-					if ($redirection_uri == false) {
+					if (!$redirection_uri === false) {
 						// Didn't find a current URI mapping for the language the identified mapping is using
 
 					} else {
@@ -277,14 +276,14 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 				$redirection_uri = false;
 			}
 
-			if ($redirection_uri != false) {
+			if ($redirection_uri !== false) {
 				// Have found a current URI mapping for this page, force a redirect to it
 
 				// Include any extra info in the GET variables
 				if (!is_null($associated_db_id) || is_null($query_string_parameters)) {
 					$query_string = $this->_buildQueryString();
 
-				} else if (!is_null($query_string_parameters)) {
+				} elseif (!is_null($query_string_parameters)) {
 					// Query string variables will be rebuilt after redirecting so no need to append them
 					$query_string = '';
 				}
@@ -296,13 +295,13 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 
 				zen_exit();
 
-			} else if (!$this->_language_changed) {
+			} elseif (!$this->_language_changed) {
 				// There is no current URI for this language, this is a URI from the historical database, being
 				// used to prevent broken links
 				$this->_handleHistoricalURIWithNoCurrentMapping($main_page, $associated_db_id,
 					$query_string_parameters);
 			}
-		} else if ($language_id != $_SESSION['languages_id']) {
+		} elseif ($language_id != $_SESSION['languages_id']) {
 			// The user hasn't just selected a new language, but the URI uses a different language from the
 			// session, so must switch the session to use the new language
 			$language_info_query = "
@@ -319,7 +318,7 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 			$_SESSION['language'] = $language_info_result->fields['directory'];
 			$_SESSION['languages_id'] = $language_id;
 			$_SESSION['languages_code'] = $language_info_result->fields['code'];
-			
+
 			$this->_language_changed = true;
 		}
 
@@ -328,10 +327,10 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 
 		if (!is_null($associated_db_id)) {
 			// Page is a category, EZ-Page or a product info page, must initialise the appropriate ID
-			if ($main_page == FILENAME_DEFAULT) {
+			if ($main_page === FILENAME_DEFAULT) {
 				// This is a category page
 				// Must build the full contextual link to the category, so any hierarchy is respected
-				$categories = array();
+				$categories = [];
 
 				zen_get_parent_categories($categories, $associated_db_id);
 
@@ -347,7 +346,7 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 
 				$_GET['cPath'] = $cPath;
 
-			} else if ($main_page == FILENAME_EZPAGES || $main_page == FILENAME_EZPAGES_POPUP) {
+			} elseif ($main_page === FILENAME_EZPAGES || $main_page === FILENAME_EZPAGES_POPUP) {
 				// Have found an EZ-Page. Should it be displayed as a normal page or in a popup?
 				if ($main_page == FILENAME_EZPAGES_POPUP || isset($_GET['ezpopup'])) {
 					$_GET['main_page'] = FILENAME_EZPAGES_POPUP;
@@ -359,7 +358,7 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 
 			} elseif ($main_page == FILENAME_ASK_A_QUESTION) {
 				// Have found an Ask A Question Page.
-				if (isset($_GET['pid']) && strpos($_GET['pid'], ':') !== false) {
+				if (isset($_GET['pid']) && str_contains($_GET['pid'], ':')) {
 					// Query string parameter includes information about selected attributes (which is added when
 					// linking from shopping cart to a product info page) so don't override the parameter's value
 
@@ -373,7 +372,7 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 
 			} else {
 				// This is a product related page
-				if (isset($_GET['products_id']) && strpos($_GET['products_id'], ':') !== false) {
+				if (isset($_GET['products_id']) && str_contains($_GET['products_id'], ':')) {
 					// Query string parameter includes information about selected attributes (which is added when
 					// linking from shopping cart to a product info page) so don't override the parameter's value
 
@@ -386,7 +385,7 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 					$_GET['cPath'] = zen_get_product_path($_GET['products_id']);
 				}
 			}
-		} else if (!is_null($query_string_parameters)) {
+		} elseif (!is_null($query_string_parameters)) {
 			// Page is a Zen Cart page with preset parameters, must initialise the parameters
 			$query_string_pairs = explode('&', $query_string_parameters);
 
@@ -414,10 +413,10 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 			$GLOBALS['zco_notifier']->notify('CEON_CLASS_HANDLER_HANDLE_STATIC_URI_END', compact('mapping_info', 'uri_to_match'));
 		}
 	}
-	
+
 	// }}}
-	
-	
+
+
 	// {{{ _handleZCDynamicURI()
 
 	/**
@@ -426,10 +425,10 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 	 *
 	 * @access  protected
 	 * @author  Conor Kerr <zen-cart.uri-mapping@ceon.net>
-	 * @return  none
+	 * @return  void
 	 */
-	protected function _handleZCDynamicURI()
-	{
+	protected function _handleZCDynamicURI(): void
+    {
 		global $ceon_uri_mapping_product_pages, $ceon_uri_mapping_product_related_pages;
 
 		$associated_db_id = null;
@@ -442,27 +441,27 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 				// This is a manufacturer page - get the URI for the manufacturers page if there is one
 				$query_string_to_match = 'manufacturers_id=' . (int) $_GET['manufacturers_id'];
 
-			} else if (isset($_GET['typefilter']) && $_GET['typefilter'] != '' &&
+			} elseif (isset($_GET['typefilter']) && $_GET['typefilter'] != '' &&
 					isset($_GET[$_GET['typefilter'] . '_id']) && $_GET[$_GET['typefilter'] . '_id'] != '') {
 				// This is a filtered page - get the URI for the filtered page if there is one
 				$query_string_to_match = 'typefilter=' . $_GET['typefilter'] . '&' . $_GET['typefilter'] . '_id=' .
 					$_GET[$_GET['typefilter'] . '_id'];
 
-			} else if (isset($_GET['cPath'])) {
+			} elseif (isset($_GET['cPath'])) {
 				// This is a category page - get the URI for the category ID
 				$category_parts = explode('_', $_GET['cPath']);
 				$category_id = $category_parts[count($category_parts) - 1];
 
 				$associated_db_id = $category_id;
 			}
-		} else if (in_array($_GET['main_page'], $ceon_uri_mapping_product_pages) ||
+		} elseif (in_array($_GET['main_page'], $ceon_uri_mapping_product_pages) ||
 				in_array($_GET['main_page'], $ceon_uri_mapping_product_related_pages)) {
 			$associated_db_id = !empty($_GET['products_id']) ? $_GET['products_id'] : (!empty($_GET['pid']) ? $_GET['pid'] : 0);
 
-		} else if ($_GET['main_page'] == FILENAME_EZPAGES || $_GET['main_page'] == FILENAME_EZPAGES_POPUP) {
+		} elseif ($_GET['main_page'] == FILENAME_EZPAGES || $_GET['main_page'] == FILENAME_EZPAGES_POPUP) {
 			$associated_db_id = !empty($_GET['id']) ? $_GET['id'] : 0;
 
-		} else if ((count($_GET) > 1 && !isset($_GET[zen_session_name()])) ||
+		} elseif ((count($_GET) > 1 && !isset($_GET[zen_session_name()])) ||
 				(isset($_GET[zen_session_name()]) && count($_GET) > 2)) {
 			// Check if there's a query string to match against for this Zen Cart page
 			$query_string_to_match = $this->_query_string;
@@ -470,20 +469,20 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 			// Remove main_page variable from query string parameters to be matched
 			$query_string_to_match = str_replace('main_page=' . $_GET['main_page'], '', $query_string_to_match);
 
-			if (substr($query_string_to_match, 0, 1) == '&') {
+			if (str_starts_with($query_string_to_match, '&')) {
 				$query_string_to_match = substr($query_string_to_match, 1, strlen($query_string_to_match) - 1);
 			}
 
-			if (substr($query_string_to_match, -1) == '&') {
+			if (str_ends_with($query_string_to_match, '&')) {
 				$query_string_to_match = substr($query_string_to_match, 0, strlen($query_string_to_match) - 1);
 			}
 		}
 
 		// Attempt to find a current URI mapping for the user's chosen language
-		$redirection_uri = $this->_getCurrentURI($_GET['main_page'], $associated_db_id,
+		$redirection_uri = $this->_getCurrentURI($_GET['main_page'], (int)$associated_db_id,
 			$query_string_to_match, $_SESSION['languages_id']);
 
-		if ($redirection_uri != false) {
+		if ($redirection_uri !== false) {
 			// Have found a URI mapping for this page, use this as the "current" URI for this page by forcing a
 			// redirect to it
 
@@ -492,23 +491,23 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 				// Fine to redirect
 
 				// Remove unnecessary variables from query string
-				if ($_GET['main_page'] == FILENAME_DEFAULT && isset($_GET['manufacturer_id'])) {
+				if ($_GET['main_page'] === FILENAME_DEFAULT && isset($_GET['manufacturer_id'])) {
 					// Remove the manufacturer ID from the URI as it will be regenerated
 					// when the static URI is loaded
 					unset($_GET['manufacturer_id']);
 
-				} else if ($_GET['main_page'] == FILENAME_DEFAULT && isset($_GET['typefilter']) &&
+				} elseif ($_GET['main_page'] === FILENAME_DEFAULT && isset($_GET['typefilter']) &&
 						$_GET['typefilter'] != '' && isset($_GET[$_GET['typefilter'] . '_id']) &&
 						$_GET[$_GET['typefilter'] . '_id'] != '') {
 					// Remove the filter info from the URI as it will be regenerated when the static URI is loaded
 					unset($_GET['typefilter']);
 					unset($_GET[$_GET['typefilter'] . '_id']);
 
-				} else if ($_GET['main_page'] == FILENAME_DEFAULT && isset($_GET['cPath'])) {
+				} elseif ($_GET['main_page'] === FILENAME_DEFAULT && isset($_GET['cPath'])) {
 					// Remove the category ID from the URI as it will be regenerated when the static URI is loaded
 					unset($_GET['cPath']);
 
-				} else if (in_array($_GET['main_page'], $ceon_uri_mapping_product_pages) ||
+				} elseif (in_array($_GET['main_page'], $ceon_uri_mapping_product_pages) ||
 						in_array($_GET['main_page'], $ceon_uri_mapping_product_related_pages)) {
 					// Remove the category ID from the URI if it is simply the product's master category as it will
 					// be regenerated when the static URI is loaded
@@ -543,12 +542,12 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 				// Don't redirect to the same address!
 				$redirection_uri = false;
 			}
-		} else if (is_null($associated_db_id) && !is_null($query_string_to_match) &&
+		} elseif (is_null($associated_db_id) && !is_null($query_string_to_match) &&
 				$_GET['main_page'] != FILENAME_DEFAULT) {
 			// Could this possibly be a Zen Cart page without parameters?
 			$redirection_uri = $this->_getCurrentURI($_GET['main_page'], null, null, $_SESSION['languages_id']);
 
-			if ($redirection_uri != false) {
+			if ($redirection_uri !== false) {
 				// Perform a sanity check to make sure that the URI to be redirected to isn't simply the current
 				// URI
 				if ($this->_request_uri != $redirection_uri) {
@@ -561,7 +560,7 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 			}
 		}
 
-		if ($redirection_uri != false) {
+		if ($redirection_uri !== false) {
 			$query_string = $this->_buildQueryString();
 
 			$redirection_uri .= $query_string;
@@ -584,14 +583,14 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 	 * Redirects to a standard Zen Cart dynamic URI, building the URI from the parameters passed.
 	 *
 	 * @access  protected
-	 * @author  Conor Kerr <zen-cart.uri-mapping@ceon.net>
 	 * @param   string    $main_page                 The name of the Zen Cart page for the URI.
-	 * @param   integer   $associated_db_id          The associated database ID for the URI.
-	 * @param   integer   $query_string_parameters   The query string parameters for the URI.
-	 * @return  none
+	 * @param  int  $associated_db_id          The associated database ID for the URI.
+     * @param  string  $query_string_parameters   The query string parameters for the URI.
+     * @return  void
+	 * @author  Conor Kerr <zen-cart.uri-mapping@ceon.net>
 	 */
-	protected function _handleHistoricalURIWithNoCurrentMapping($main_page, $associated_db_id, $query_string_parameters)
-	{
+	protected function _handleHistoricalURIWithNoCurrentMapping($main_page, $associated_db_id, $query_string_parameters): void
+    {
 		global $request_type;
 
 		if (!is_null($associated_db_id)) {
@@ -612,7 +611,7 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 
 				case FILENAME_ASK_A_QUESTION:
 					$_GET['pid'] = $associated_db_id;
-					
+
 
 					break;
 
@@ -622,7 +621,7 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 
 					break;
 			}
-		} else if (!is_null($query_string_parameters)) {
+		} elseif (!is_null($query_string_parameters)) {
 			// Must make sure that all parameters for this URI are loaded
 			$query_string_pairs = explode('&', $query_string_parameters);
 
@@ -642,7 +641,7 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 			$redirection_uri = DIR_WS_CATALOG;
 		}
 
-		if (substr($redirection_uri, 0, 1) != '/') {
+		if (!str_starts_with($redirection_uri, '/')) {
 			$redirection_uri = '/' . $redirection_uri;
 		}
 
@@ -674,14 +673,14 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 	 * Handles a Zen Cart dynamic URI which has no URI mapping.
 	 *
 	 * @access  protected
-	 * @author  Conor Kerr <zen-cart.uri-mapping@ceon.net>
 	 * @param   string    $main_page                 The name of the Zen Cart page for the URI.
-	 * @param   integer   $associated_db_id          The associated database ID for the URI.
-	 * @param   integer   $query_string_parameters   The query string parameters for the URI.
-	 * @return  none
+	 * @param  int  $associated_db_id          The associated database ID for the URI.
+     * @param  string  $query_string_parameters   The query string parameters for the URI.
+     * @return  void
+	 * @author  Conor Kerr <zen-cart.uri-mapping@ceon.net>
 	 */
-	protected function _handleUnmappedURI($main_page, $associated_db_id, $query_string_parameters)
-	{
+	protected function _handleUnmappedURI(string $main_page, int $associated_db_id, string $query_string_parameters): void
+    {
 		if (is_null($associated_db_id) && !is_null($query_string_parameters) &&
 				$_GET['main_page'] == FILENAME_DEFAULT) {
 			// Build the canonical URI for a manufacturer page or a filtered page as the fallover Zen Cart
@@ -692,7 +691,7 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 				$ceon_uri_mapping_canonical_uri = HTTP_SERVER . DIR_WS_CATALOG .
 					'index.php?main_page=index&manufacturers_id=' . (int) $_GET['manufacturers_id'];
 
-			} else if (isset($_GET['typefilter']) && $_GET['typefilter'] != '' &&
+			} elseif (isset($_GET['typefilter']) && $_GET['typefilter'] != '' &&
 					isset($_GET[$_GET['typefilter'] . '_id']) && $_GET[$_GET['typefilter'] . '_id'] != '') {
 				global $ceon_uri_mapping_canonical_uri;
 

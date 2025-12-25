@@ -14,7 +14,7 @@
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
-	die('Illegal Access');
+    die('Illegal Access');
 }
 
 define('TABLE_CEON_URI_MAPPINGS', DB_PREFIX . 'ceon_uri_mappings');

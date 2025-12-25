@@ -3,9 +3,9 @@
  * Autoloader array for Ceon URI Mapping currencies functionality. Makes sure that Ceon URI Mapping currencies integration is
  * instantiated at the right point of the Zen Cart initsystem.
  * The load point for this observer is to be after the includes/init_includes/init_currencies.php file but before the next
- * init_ related operation that might use currency information.  File's load point is expected to be identified 
+ * init_ related operation that might use currency information.  File's load point is expected to be identified
  * in includes/auto_loaders/config.core.php.
- * 
+ *
  * @package     ceon_uri_mapping
  * @author      Conor Kerr <zen-cart.uri-mapping@ceon.net>
  * @copyright   Copyright 2008-2019 Ceon
@@ -22,7 +22,7 @@
  * require('includes/init_includes/init_ceon_currencies.php');
  *
  */
-  $autoLoadConfig[123][] = array(
-                                'autoType'=>'init_script',
-                                'loadFile'=> 'init_ceon_currencies.php'
-                                );
+$autoLoadConfig[123][] = [
+    'autoType' => 'init_script',
+    'loadFile' => 'init_ceon_currencies.php'
+];

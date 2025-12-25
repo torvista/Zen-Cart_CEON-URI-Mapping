@@ -1,4 +1,4 @@
-<?php
+<?php //IDE inspections NOT done, multiple issues
 
 /**
  * Ceon URI Mapping Install/Upgrade Class - Installs/configures the module, upgrades from an earlier version or

@@ -48,42 +48,42 @@ define('CEON_URI_MAPPING_GENERATION_ATTEMPT_FOR_CATEGORY_WITH_NO_NAME', -2);
 class CeonURIMappingAdminCategories extends CeonURIMappingAdminCategoriesProducts
 {
 	// {{{ Class Constructor
-	
+
 	/**
 	 * Creates a new instance of the CeonURIMappingAdminCategories class.
-	 * 
+	 *
 	 * @access  public
 	 */
 	public function __construct()
 	{
 		parent::__construct();
 	}
-	
+
 	// }}}
-	
-	
+
+
 	// {{{ autogenCategoryURIMapping()
-	
-	/**
-	 * Generates a URI for a category, for the specified language.
-	 *
-	 * @access  public
-	 * @param   integer   $id              The ID of the category.
-	 * @param   integer   $parent_category_id   The ID of the parent category (used if the details in the database
-	 *                                          could be out of date as new information is being submitted when the
-	 *                                          URI is being generated).
-	 * @param   string    $name            The name of category (used if new information is being submitted when
-	 *                                     the URI is being generated).
-	 * @param   string    $language_code   The ISO 639 language code of the language.
-	 * @param   integer   $language_id     The Zen Cart language ID for the language.
-	 * @return  string    The auto-generated URI for the category and language.
-	 */
-	public function autogenCategoryURIMapping($id, $parent_category_id, $name, $language_code, $language_id)
-	{
+
+    /**
+     * Generates a URI for a category, for the specified language.
+     *
+     * @access  public
+     * @param  int  $id  The ID of the category.
+     * @param  int|null  $parent_category_id  The ID of the parent category (used if the details in the database
+     *                                          could be out of date as new information is being submitted when the
+     *                                          URI is being generated).
+     * @param  null|string  $name  The name of category (used if new information is being submitted when
+     *                                     the URI is being generated).
+     * @param  string  $language_code  The ISO 639 language code of the language.
+     * @param  int  $language_id  The Zen Cart language ID for the language.
+     * @return int|string|null The auto-generated URI for the category and language.
+     */
+	public function autogenCategoryURIMapping(int $id, int $parent_category_id, string $name, string $language_code, int $language_id): string
+    {
 		return $this->autogenCategoryOrProductURIMapping($id, 'category', $parent_category_id, $name,
 			$language_code, $language_id);
 	}
-	
+
 	// }}}
 }
 

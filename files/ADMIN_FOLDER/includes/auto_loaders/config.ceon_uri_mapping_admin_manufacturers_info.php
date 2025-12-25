@@ -20,7 +20,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 
 //added to support processing when working with products as navigation occurs.
 
-$autoLoadConfig[199][] = array(
-    'autoType'=>'init_script',
-    'loadFile'=>'init_ceon_manufacturers_collect_info.php'
-  );
+$autoLoadConfig[199][] = [
+    'autoType' => 'init_script',
+    'loadFile' => 'init_ceon_manufacturers_collect_info.php'
+];

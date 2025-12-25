@@ -93,6 +93,7 @@ if (defined('FILENAME_CATEGORY_PRODUCT_LISTING') && $_SERVER['SCRIPT_NAME'] == D
 	zen_redirect(zen_href_link(FILENAME_CATEGORY_PRODUCT_LISTING, zen_get_all_get_params()));
 }
 
+//TODO should this be here: it is used in categories.php
 // notifier
 //  $zco_notifier->notify('NOTIFY_BEGIN_ADMIN_CATEGORIES', $action);
 
@@ -109,8 +110,7 @@ if (defined('FILENAME_CATEGORY_PRODUCT_LISTING') &&
 	require_once(DIR_WS_CLASSES . 'class.CeonURIMappingAdminProductPages.php');
 
 	$ceon_uri_mapping_admin = new CeonURIMappingAdminProductPages();
-
-	$ceon_uri_mapping_admin->moveProductConfirmHandler($products_id, zen_get_products_type($products_id), $zc_products->get_handler(zen_get_products_type($products_id)), $new_parent_id);
+	$ceon_uri_mapping_admin->moveProductConfirmHandler((int)$products_id, zen_get_products_type($products_id), $zc_products->get_handler(zen_get_products_type($products_id)), $new_parent_id);
 
 	unset($_SESSION['ceon_uri_mapping_move_product_confirm']);
 
