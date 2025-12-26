@@ -3,7 +3,7 @@
 ## 25/12/2025: developers please use the branch "storefront_IDE": it has many minor IDE-based changes (but no code/functionality changes) for whitespace, short array syntax, type hints, some formatting, short form keywords, some strict comparisons, elseif, str_contains, str_ends_with, str_starts_with AND some fixes for strict types (strict types are not used in these files, just my personal set, still testing).
 
 Based on version 5.1.1 available 11/01/2024 from ceon.net  
-It does NOT include the UMM-edition files that are bundled with the commercial Uri Mappings Manager (UMM). I have private repositories with fixes for those, open to users who have purchased that module.
+It does NOT include the UMM-edition files that are bundled with the commercial Uri Mappings Manager (UMM). I have a private repository with fixes for those, open to users who have purchased that module.
 
 Due to the haphazard communication/support from CEON support, this repository aims to collect bugfixes post 5.1.1, to keep things rolling until... something else happens.
 
