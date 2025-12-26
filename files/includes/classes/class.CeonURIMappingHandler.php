@@ -480,7 +480,7 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 
 		// Attempt to find a current URI mapping for the user's chosen language
 		$redirection_uri = $this->_getCurrentURI($_GET['main_page'], (int)$associated_db_id,
-			$query_string_to_match, $_SESSION['languages_id']);
+			$query_string_to_match, (int)$_SESSION['languages_id']);
 
 		if ($redirection_uri !== false) {
 			// Have found a URI mapping for this page, use this as the "current" URI for this page by forcing a
@@ -545,7 +545,7 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 		} elseif (is_null($associated_db_id) && !is_null($query_string_to_match) &&
 				$_GET['main_page'] != FILENAME_DEFAULT) {
 			// Could this possibly be a Zen Cart page without parameters?
-			$redirection_uri = $this->_getCurrentURI($_GET['main_page'], null, null, $_SESSION['languages_id']);
+			$redirection_uri = $this->_getCurrentURI($_GET['main_page'], null, null, (int)$_SESSION['languages_id']);
 
 			if ($redirection_uri !== false) {
 				// Perform a sanity check to make sure that the URI to be redirected to isn't simply the current
@@ -571,7 +571,7 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 			zen_exit();
 		}
 
-		$this->_handleUnmappedURI($_GET['main_page'], $associated_db_id, $query_string_to_match);
+		$this->_handleUnmappedURI($_GET['main_page'], (int)$associated_db_id, $query_string_to_match);
 	}
 
 	// }}}
@@ -589,7 +589,7 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
      * @return  void
 	 * @author  Conor Kerr <zen-cart.uri-mapping@ceon.net>
 	 */
-	protected function _handleHistoricalURIWithNoCurrentMapping($main_page, $associated_db_id, $query_string_parameters): void
+	protected function _handleHistoricalURIWithNoCurrentMapping(string $main_page, int $associated_db_id, string $query_string_parameters): void
     {
 		global $request_type;
 
@@ -674,12 +674,12 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 	 *
 	 * @access  protected
 	 * @param   string    $main_page                 The name of the Zen Cart page for the URI.
-	 * @param  int  $associated_db_id          The associated database ID for the URI.
-     * @param  string  $query_string_parameters   The query string parameters for the URI.
+	 * @param  int|null  $associated_db_id          The associated database ID for the URI.
+     * @param  null|string  $query_string_parameters   The query string parameters for the URI.
      * @return  void
 	 * @author  Conor Kerr <zen-cart.uri-mapping@ceon.net>
 	 */
-	protected function _handleUnmappedURI(string $main_page, int $associated_db_id, string $query_string_parameters): void
+	protected function _handleUnmappedURI(string $main_page, ?int $associated_db_id, ?string $query_string_parameters): void
     {
 		if (is_null($associated_db_id) && !is_null($query_string_parameters) &&
 				$_GET['main_page'] == FILENAME_DEFAULT) {

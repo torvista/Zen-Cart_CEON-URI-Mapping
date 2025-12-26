@@ -85,7 +85,7 @@ class CeonURIMappingAdminCategoryPages extends CeonURIMappingAdminCategories
 			// Auto-generate the URI if requested
 			if ($uri_mapping_autogen) {
 				$uri_mapping = $this->autogenCategoryURIMapping($category_id, $current_category_id,
-					$_POST['categories_name'][$languages[$i]['id']], $languages[$i]['code'], $languages[$i]['id']);
+					$_POST['categories_name'][$languages[$i]['id']], $languages[$i]['code'], (int)$languages[$i]['id']);
 
 				if ($uri_mapping == CEON_URI_MAPPING_GENERATION_ATTEMPT_FOR_CATEGORY_WITH_NO_NAME ||
 						$uri_mapping == CEON_URI_MAPPING_GENERATION_ATTEMPT_FOR_CATEGORY_PATH_PART_WITH_NO_NAME) {

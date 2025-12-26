@@ -398,7 +398,7 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 				$product_id = (isset($_GET['pID']) ? (int) $_GET['pID'] : null);
 
 				$uri_mapping = $this->autogenProductURIMapping($product_id, $master_categories_id,
-					$names[$languages[$i]['id']], $languages[$i]['code'], $languages[$i]['id'],
+					$names[$languages[$i]['id']], $languages[$i]['code'], (int)$languages[$i]['id'],
 					$_POST['products_model']);
 
 				if ($uri_mapping == CEON_URI_MAPPING_GENERATION_ATTEMPT_FOR_PRODUCT_WITH_NO_NAME ||
@@ -1687,7 +1687,7 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 		global $messageStack;
 
 		$languages = zen_get_languages();
-		
+
 		// Generate new URI mapping for this product?
 		$this->_uri_mapping_autogen = $_POST['uri-mapping'] == 'autogen';
 

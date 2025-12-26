@@ -104,14 +104,14 @@ class CeonURIMappingAdminEZPagePages extends CeonURIMappingAdminEZPages
 
     /**
      * Handles the Ceon URI Mapping functionality when an EZ-page is being inserted or updated.
-     *
+     * TODO review admin\includes\init_includes\init_ceon_ezpages_collect_info.php, around line 36: passes an array as $page_title
      * @access  public
      * @param  int  $page_id  The ID of the EZ-page.
      * @param  string  $page_title  The name for the EZ-Page.
      * @param  array|null  $page_titles_array  The names for the EZ-Page for the languages used by the store.
      * @return  void
      */
-    public function insertUpdateHandler(int $page_id, string $page_title, ?array $page_titles_array = null): void
+    public function insertUpdateHandler(int $page_id, $page_title, ?array $page_titles_array = null): void
     {
         global $messageStack;
 
@@ -123,7 +123,7 @@ class CeonURIMappingAdminEZPagePages extends CeonURIMappingAdminEZPages
             $prev_uri_mapping = (isset($_POST['prev-uri-mappings'][$languages[$i]['id']])) ? trim($_POST['prev-uri-mappings'][$languages[$i]['id']]) : '';
 
             // Handle multilanguage EZ-Pages
-            if ( ! is_null($page_titles_array)) {
+            if (!is_null($page_titles_array)) {
                 $page_title = $page_titles_array[$languages[$i]['id']];
             }
 

@@ -360,7 +360,7 @@ class CeonURIMappingHandlerBase extends CeonURIMappingDBLookup
 		}
 
 		if (is_null($this->_original_language_id)) {
-			$this->_original_language_id = $_SESSION['languages_id'];
+			$this->_original_language_id = (int)$_SESSION['languages_id'];
 		}
 	}
 

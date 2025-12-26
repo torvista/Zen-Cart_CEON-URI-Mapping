@@ -124,7 +124,7 @@ class CeonURIMappingAdminManufacturerPages extends CeonURIMappingAdminManufactur
 			// Auto-generate the URI if requested
 			if ($uri_mapping_autogen) {
 				$uri_mapping = $this->autogenManufacturerURIMapping($manufacturer_id, $manufacturer_name,
-					$languages[$i]['code'], $languages[$i]['id']);
+					$languages[$i]['code'], (int)$languages[$i]['id']);
 
 				if ($uri_mapping == CEON_URI_MAPPING_GENERATION_ATTEMPT_FOR_MANUFACTURER_WITH_NO_NAME) {
 					// Can't generate the URI because of missing "uniqueness" data
