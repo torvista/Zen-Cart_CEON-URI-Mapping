@@ -10,7 +10,7 @@
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        http://ceon.net/software/business/zen-cart/uri-mapping
  * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version     $Id: class.CeonURIMappingHandler.php 1054 2024-01-05 15:45:15Z conor updated 5.1.1$
+ * @version     $Id: class.CeonURIMappingHandler.php 05 Jan 2026 torvista
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -234,7 +234,7 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 				if ($current_uri != 1 && $language_id != $_SESSION['languages_id']) {
 					$redirection_check_language_id = $language_id;
 
-					$redirection_uri = $this->_getCurrentURI($main_page, $associated_db_id,	$query_string_parameters, (int)$redirection_check_language_id);
+					$redirection_uri = $this->_getCurrentURI($main_page, $associated_db_id,	$query_string_parameters, $redirection_check_language_id);
 
 					if (!$redirection_uri === false) {
 						// Didn't find a current URI mapping for the language the identified mapping is using
@@ -585,11 +585,11 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 	 * @access  protected
 	 * @param   string    $main_page                 The name of the Zen Cart page for the URI.
 	 * @param  int  $associated_db_id          The associated database ID for the URI.
-     * @param  string  $query_string_parameters   The query string parameters for the URI.
+     * @param  null|string  $query_string_parameters   The query string parameters for the URI.
      * @return  void
 	 * @author  Conor Kerr <zen-cart.uri-mapping@ceon.net>
 	 */
-	protected function _handleHistoricalURIWithNoCurrentMapping(string $main_page, int $associated_db_id, string $query_string_parameters): void
+	protected function _handleHistoricalURIWithNoCurrentMapping(string $main_page, int $associated_db_id, ?string $query_string_parameters): void
     {
 		global $request_type;
 
