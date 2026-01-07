@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 /**
  * Ceon URI Mapping URI Handler Base Class.
  *
@@ -8,9 +9,9 @@
  * @copyright   Copyright 2008-2019 Ceon
  * @copyright   Copyright 2003-2019 Zen Cart Development Team
  * @copyright   Portions Copyright 2003 osCommerce
- * @link        http://ceon.net/software/business/zen-cart/uri-mapping
- * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version     $Id: class.CeonURIMappingHandlerBase.php 1027 2012-07-17 20:31:10Z conor $
+ * @link        https://ceon.net/software/business/zen-cart/uri-mapping
+ * @license     https://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version     $Id: class.CeonURIMappingHandlerBase.php 12 Jan 2026 torvista
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -139,6 +140,8 @@ class CeonURIMappingHandlerBase extends CeonURIMappingDBLookup
 		// Run the language initsystem code here as, for some strange reason, it runs late in the initsystem
 		// process and the Ceon URI Mapping module must run before the sanitize initsystem script which normally
 		// precedes the language initsystem code.
+        // 16/12/2025 ZC 2.2.0:https://github.com/zencart/zencart/commit/e2bd93e73a9dd717e77278cc716c10e43b3c2503
+        // init_languages moved to breakpoint 75, so this function is longer required from this version onewards
 		$this->_initLanguageSystem();
 
 		$current_uri_is_index_page = $this->_checkForAndHandleIndexPage();
@@ -548,8 +551,6 @@ class CeonURIMappingHandlerBase extends CeonURIMappingDBLookup
 	 */
 	protected function _getCurrentURI(string $main_page, ?int $associated_db_id, ?string $query_string_parameters, int $language_id): false|string
     {
-		//global $db; //unused/remove
-
 		$columns_to_retrieve = [
 			'uri'
         ];
@@ -636,7 +637,7 @@ class CeonURIMappingHandlerBase extends CeonURIMappingDBLookup
 			if (is_array($value)) {
 				$query_string .= $this->_buildArrayQueryParameter($key, $value);
 			} else {
-				$query_string .= '&' . urlencode($key) . '=' . urlencode($value);
+				$query_string .= '&' . urlencode($key) . '=' . urlencode((string)$value);
 			}
 		}
 
@@ -670,7 +671,7 @@ class CeonURIMappingHandlerBase extends CeonURIMappingDBLookup
 			if (is_array($subvalue)) {
 				$parameter_string .= $this->_buildArrayQueryParameter($key, $subvalue);
 			} else {
-				$parameter_string .= '&' . urlencode($key) . '=' . urlencode($subvalue);
+				$parameter_string .= '&' . urlencode($key) . '=' . urlencode((string)$subvalue);
 			}
 		}
 

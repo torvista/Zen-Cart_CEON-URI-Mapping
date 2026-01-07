@@ -1,5 +1,6 @@
 <?php //TODO review function call, IDE Inspections partially done
 
+declare(strict_types=1);
 /**
  * @package     ceon_uri_mapping
  * @author      Conor Kerr <zen-cart.uri-mapping@ceon.net>

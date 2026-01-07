@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * Autoloader array for Ceon URI Mapping ADMIN functionality. Makes sure that Ceon URI Mapping is instantiated at the
  * right point of the Zen Cart initsystem.

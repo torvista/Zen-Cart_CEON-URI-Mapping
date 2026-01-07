@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 /** 
  * Transliteration class provides transliteration of strings. Included as a library used by the Ceon URI Mapping
  * module.

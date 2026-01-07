@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 /**
  * Ceon URI Mapping URI Handler Class.
  *
@@ -8,8 +9,8 @@
  * @copyright   Copyright 2008-2024 Ceon
  * @copyright   Copyright 2003-2019 Zen Cart Development Team
  * @copyright   Portions Copyright 2003 osCommerce
- * @link        http://ceon.net/software/business/zen-cart/uri-mapping
- * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @link        https://ceon.net/software/business/zen-cart/uri-mapping
+ * @license     https://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version     $Id: class.CeonURIMappingHandler.php 05 Jan 2026 torvista
  */
 
@@ -69,7 +70,6 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 		global $db;
 
 		// Make sure that request URI has no invalid characters in it
-        //TODO IDE reports redundant escape character
 		$uri_to_match = preg_replace('/[^a-zA-Z0-9_\-\.\/%]/', '', $this->_request_uri);
 
 		// Remove any trailing slashes
@@ -583,11 +583,11 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 	 * Redirects to a standard Zen Cart dynamic URI, building the URI from the parameters passed.
 	 *
 	 * @access  protected
+	 * @author  Conor Kerr <zen-cart.uri-mapping@ceon.net>
 	 * @param   string    $main_page                 The name of the Zen Cart page for the URI.
 	 * @param  int  $associated_db_id          The associated database ID for the URI.
      * @param  null|string  $query_string_parameters   The query string parameters for the URI.
      * @return  void
-	 * @author  Conor Kerr <zen-cart.uri-mapping@ceon.net>
 	 */
 	protected function _handleHistoricalURIWithNoCurrentMapping(string $main_page, int $associated_db_id, ?string $query_string_parameters): void
     {
@@ -673,11 +673,11 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 	 * Handles a Zen Cart dynamic URI which has no URI mapping.
 	 *
 	 * @access  protected
+	 * @author  Conor Kerr <zen-cart.uri-mapping@ceon.net>
 	 * @param   string    $main_page                 The name of the Zen Cart page for the URI.
 	 * @param  int|null  $associated_db_id          The associated database ID for the URI.
      * @param  null|string  $query_string_parameters   The query string parameters for the URI.
      * @return  void
-	 * @author  Conor Kerr <zen-cart.uri-mapping@ceon.net>
 	 */
 	protected function _handleUnmappedURI(string $main_page, ?int $associated_db_id, ?string $query_string_parameters): void
     {

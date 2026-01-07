@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 /**torvista: changed from auto as not loaded soon enough for breadcrumbs
  * Observer for Ceon URI Mapping link creation. Watches html_output.php function zen_href_link
  *
@@ -10,7 +11,7 @@
  * @copyright   Copyright 2003-2007 Zen Cart Development Team
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        https://github.com/torvista/CEON-URI-Mapping
- * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @license     https://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version     2024
  */
 class CeonUriMappingLinkBuild extends base

@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * Initialise script to inject modification of the currency information for Ceon URI Mapping after includes/init_includes/init_currencies.php
  * has performed its operations, but before the next software may use that information.  Expected to load shortly after
@@ -11,7 +13,7 @@
  * @copyright   Copyright 2008-2019 Ceon
  * @copyright   Copyright 2003-2007 Zen Cart Development Team
  * @copyright   Portions Copyright 2003 osCommerce
- * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @license     https://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version     2019 - 5.0.0
  **/
 

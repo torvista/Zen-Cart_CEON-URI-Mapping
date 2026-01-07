@@ -1,6 +1,7 @@
-# CEON-URI-Mapping
+# CEON URI Mapping
 
-## 27/12/2025 This branch is in use in production, containing many minor code changes as a result of IDE suggestions, but no actual bug fixes. Issues may emerge due to type hinting, please report.
+## 2026+ This branch is in use in production, containing many minor code changes as a result of IDE suggestions. Debugs may be triggered due to strict mode and type hinting, but are easily fixed so please report them.
+
 Based on version 5.1.1 available 11/01/2024 from ceon.net  
 It does NOT include the UMM-edition files that are bundled with the commercial Uri Mappings Manager (UMM). I have private repositories with fixes for those, open to users who have purchased that module.
 

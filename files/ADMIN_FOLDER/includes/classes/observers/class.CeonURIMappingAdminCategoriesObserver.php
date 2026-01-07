@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 /**
  * Observer for Ceon URI Mapping admin/categories.php code
  * Watches admin/categories.php
@@ -11,7 +12,7 @@
  * @copyright   Copyright 2003-2019 Zen Cart Development Team
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        https://ceon.net
- * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @license     https://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version     class.CeonURIMappingAdminCategoriesObserver.php 2025-01-08 torvista
  */
 class CeonURIMappingAdminCategoriesObserver extends base

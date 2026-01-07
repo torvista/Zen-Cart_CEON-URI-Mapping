@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 /**
  * Ceon URI Mapping Admin and Product Type Info Page File Name Definitions.
  *

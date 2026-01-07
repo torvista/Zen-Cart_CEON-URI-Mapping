@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
 /**
  * Ceon URI Mapping Admin Page Registration.
  *
  * Attempts to create a link to the Ceon URI Mapping Config Utility in the Zen Cart admin menu in Zen Cart 1.5+.
+ * After running successfully once, this file originally deleted itself as was never needed again!
+ * However this was confusing when testing locally, before copying files to server and then finding this file was missing.
  * 
  * @package     ceon_uri_mapping
  * @author      Conor Kerr <zen-cart.uri-mapping@ceon.net>
@@ -21,7 +24,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 
 // This file should normally only need to be run once, but if the user hasn't installed the software properly, it
 // may need to be run again. Flag tracks the situation
-// set autodelete to false: confusing when testing locally before copying files to server and this file is missing
+// torvista: set autodelete to false
 $can_autodelete = false;
 
 if (function_exists('zen_register_admin_page')) {

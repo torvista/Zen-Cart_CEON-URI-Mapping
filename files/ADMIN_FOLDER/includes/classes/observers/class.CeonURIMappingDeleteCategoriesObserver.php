@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 /**************
  * Ceon URI Mapping URI Admin Remove Category Class.
  *
@@ -8,8 +9,8 @@
  * @copyright   Copyright 2008-2019 Ceon
  * @copyright   Copyright 2003-2019 Zen Cart Development Team
  * @copyright   Portions Copyright 2003 osCommerce
- * @link        http://ceon.net/software/business/zen-cart/uri-mapping
- * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @link        https://ceon.net/software/business/zen-cart/uri-mapping
+ * @license     https://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version     $Id: class.CeonURIMappingDeleteCategoriesObserver.php 2025-01-08 torvista
  */
 

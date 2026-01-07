@@ -1,12 +1,13 @@
 <?php
+declare(strict_types=1);
 /**
  * This file is called by includes\classes\observers\class.CeonURIMappingJavaScriptLoader.php at the end of the body tag and loads most of the admin JavaScript components. It could go in the observer itself...
  *
  * @package admin
  * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: ceon_uri_mapping_javascript.php 2025-01-08 torvista
+ * @license https://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: ceon_uri_mapping_javascript.php 08 Jan 2026 torvista
  */
 
 // displays the JavaScript necessary for

@@ -1,9 +1,11 @@
 <?php
+
+declare(strict_types=1);
 /**
  * @package admin
  * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @license https://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version CeonURIMappingJavaScriptLoader.php 2025-01-08 torvista
  */
 

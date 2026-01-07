@@ -1,10 +1,12 @@
 <?php
+
+declare(strict_types=1);
 /**
  * @package Ceon URI Mapping
  * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @author Ceon Support
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @license https://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * $Id: init_ceon_category_collect_info.php 2025-01-08 torvista
  */
 
@@ -15,7 +17,7 @@
 // Take action when a redirect occurs and previously detected that going to insert or update a category
 //   zen_redirect(zen_href_link(FILENAME_CATEGORY_PRODUCT_LISTING, 'cPath=' . $cPath . '&pID=' . $products_id . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '') . (isset($_POST['search']) ? '&search=' . $_POST['search'] : '')));
 if (defined('FILENAME_CATEGORY_PRODUCT_LISTING') &&
-    $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (! str_contains(FILENAME_CATEGORY_PRODUCT_LISTING, '.php') ? FILENAME_CATEGORY_PRODUCT_LISTING . '.php' : FILENAME_CATEGORY_PRODUCT_LISTING) &&
+    $_SERVER['SCRIPT_NAME'] == DIR_WS_ADMIN . (!str_contains(FILENAME_CATEGORY_PRODUCT_LISTING, '.php') ? FILENAME_CATEGORY_PRODUCT_LISTING . '.php' : FILENAME_CATEGORY_PRODUCT_LISTING) &&
     (isset($_SESSION['ceon_uri_mapping_insert_category']) || isset($_SESSION['ceon_uri_mapping_update_category']))) {
 		$categories_id = isset($_GET['cID']) ? (int)$_GET['cID'] : 0;
 		$current_category_id = (int)(!empty($_SESSION['ceon_uri_mapping_insert_category']) ? $_SESSION['ceon_uri_mapping_insert_category']['current_category_id'] : $_SESSION['ceon_uri_mapping_update_category']['current_category_id']);

@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * Observer for Ceon URI Mapping canonical link creation. Watches includes/init_includes/init_canonical.php
  * This observer must load before includes/init_includes/init_canonical.php is loaded (by includes/auto_loaders/config.canonical.php)
@@ -9,7 +11,7 @@
  * @copyright   Copyright 2008-2020 Ceon
  * @copyright   Copyright 2003-2007 Zen Cart Development Team
  * @copyright   Portions Copyright 2003 osCommerce
- * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @license     https://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version     2020 - 5.1.0
  **/
 

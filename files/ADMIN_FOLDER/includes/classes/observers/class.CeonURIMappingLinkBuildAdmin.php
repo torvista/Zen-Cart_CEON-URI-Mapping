@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 /**
  * Observer for Ceon URI Mapping link creation for admin-generated emails, BISN etc.
  * Watches html_output.php function zen_href_catalog_link
@@ -11,7 +12,7 @@
  * @copyright   Copyright 2003-2007 Zen Cart Development Team
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        https://ceon.net
- * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @license     https://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version     2025-01-08 torvista
  */
 class CeonURIMappingLinkBuildAdmin extends base
@@ -21,7 +22,7 @@ class CeonURIMappingLinkBuildAdmin extends base
 				$this->attach($this, ['NOTIFY_SEFU_INTERCEPT_ADMCATHREF']);
 		}
 
-		public function notify_sefu_intercept_admcathref(&$callingClass, $notifier, $p1, &$link, $page, $parameters, $connection): void//can use "update" or camelized notifier name. & required for &$link to modify it inside here
+		public function notify_sefu_intercept_admcathref(&$callingClass, $notifier, $p1, &$link, $page, $parameters, $connection): void //can use "update" or camelized notifier name. & required for &$link to modify it inside here
 		{
 				if (!isset($link) && !isset($page) && !isset($parameters) && !isset($connection) && !isset($_SESSION['NotifySEFUInterceptAdmcathref'])) {
 						trigger_error('System not updated to handle editable notifier parameters.  Need to properly update the operating system.  This message will not be repeated for this session.', E_USER_WARNING);
@@ -57,12 +58,12 @@ class CeonURIMappingLinkBuildAdmin extends base
 				}
 		}
 
-		public function updateNotifySEFUInterceptAdmcathref(&$callingClass, $notifier, $p1, &$link, $page, $parameters, $connection): void//can use "update" or camelized notifier name. & required for &$link to modify it inside here
+		public function updateNotifySEFUInterceptAdmcathref(&$callingClass, $notifier, $p1, &$link, $page, $parameters, $connection): void //can use "update" or camelized notifier name. & required for &$link to modify it inside here
 		{
 				$this->notify_sefu_intercept_admcathref($callingClass, $notifier, $p1, $link, $page, $parameters, $connection);
 		}
 
-		public function update(&$callingClass, $notifier, $p1, &$link = null, $page = null, $parameters = null, $connection = null): void//can use "update" or camelized notifier name. & required for &$link to modify it inside here
+		public function update(&$callingClass, $notifier, $p1, &$link = null, $page = null, $parameters = null, $connection = null): void //can use "update" or camelized notifier name. & required for &$link to modify it inside here
 		{
 				if (!isset($link) && !isset($page) && !isset($parameters) && !isset($connection) && !isset($_SESSION['NotifySEFUInterceptAdmcathref'])) {
 						trigger_error('System not updated to handle editable notifier parameters.  Need to properly update the operating system.  This message will not be repeated for this session.', E_USER_WARNING);

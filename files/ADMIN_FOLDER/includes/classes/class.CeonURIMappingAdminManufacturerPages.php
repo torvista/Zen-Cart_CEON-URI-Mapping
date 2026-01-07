@@ -1,5 +1,6 @@
-<?php
+<?php //TODO obsolete attributes
 
+declare(strict_types=1);
 /**
  * Ceon URI Mapping Zen Cart Manufacturers Admin Functionality.
  *
@@ -10,9 +11,9 @@
  * @copyright   Copyright 2008-2019 Ceon
  * @copyright   Copyright 2003-2019 Zen Cart Development Team
  * @copyright   Portions Copyright 2003 osCommerce
- * @link        http://ceon.net/software/business/zen-cart/uri-mapping
- * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version     $Id: class.CeonURIMappingAdminManufacturerPages.php 2025-01-08 torvista
+ * @link        https://ceon.net/software/business/zen-cart/uri-mapping
+ * @license     https://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version     $Id: class.CeonURIMappingAdminManufacturerPages.php 08 Jan 2026 torvista
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -162,7 +163,7 @@ class CeonURIMappingAdminManufacturerPages extends CeonURIMappingAdminManufactur
 			if ($insert_uri_mapping || $update_uri_mapping) {
 				if ($update_uri_mapping) {
 					// Consign previous mapping to the history, so old URI mapping isn't broken
-					$this->makeURIMappingHistorical($prev_uri_mapping, $languages[$i]['id']);
+					$this->makeURIMappingHistorical($prev_uri_mapping, (int)$languages[$i]['id']);
 				}
 
 				// Add the new URI mapping
@@ -171,7 +172,7 @@ class CeonURIMappingAdminManufacturerPages extends CeonURIMappingAdminManufactur
 				$main_page = FILENAME_DEFAULT;
 
 				$mapping_added =
-					$this->addURIMapping($uri, $languages[$i]['id'], $main_page, $query_string_parameters);
+					$this->addURIMapping($uri, (int)$languages[$i]['id'], $main_page, $query_string_parameters);
 
 				if ($mapping_added == CEON_URI_MAPPING_ADD_MAPPING_SUCCESS) {
 					if ($insert_uri_mapping) {
@@ -204,7 +205,7 @@ class CeonURIMappingAdminManufacturerPages extends CeonURIMappingAdminManufactur
 				}
 			} elseif ($prev_uri_mapping != '' && $uri_mapping == '') {
 				// No URI mapping, consign existing mapping to the history, so old URI mapping isn't broken
-				$this->makeURIMappingHistorical($prev_uri_mapping, $languages[$i]['id']);
+				$this->makeURIMappingHistorical($prev_uri_mapping, (int)$languages[$i]['id']);
 
 				$success_message = sprintf(CEON_URI_MAPPING_TEXT_MANUFACTURER_MAPPING_MADE_HISTORICAL,
 					ucwords($languages[$i]['name']));

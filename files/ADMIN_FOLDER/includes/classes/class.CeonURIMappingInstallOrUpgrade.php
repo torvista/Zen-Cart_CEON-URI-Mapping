@@ -1,4 +1,4 @@
-<?php //IDE inspections NOT done, multiple issues
+<?php
 
 /**
  * Ceon URI Mapping Install/Upgrade Class - Installs/configures the module, upgrades from an earlier version or
@@ -9,9 +9,9 @@
  * @copyright   Copyright 2008-2024 Ceon
  * @copyright   Copyright 2003-2019 Zen Cart Development Team
  * @copyright   Portions Copyright 2003 osCommerce
- * @link        http://ceon.net/software/business/zen-cart/uri-mapping
- * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version     $Id: class.CeonURIMappingInstallOrUpgrade.php 1028 2025-01-08 torvista
+ * @link        https://ceon.net/software/business/zen-cart/uri-mapping
+ * @license     https://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version     $Id: class.CeonURIMappingInstallOrUpgrade.php 08 Jan 2026 torvista
  */
 
 
@@ -1500,7 +1500,7 @@ class CeonURIMappingInstallOrUpgrade
 					'Enable/Disable URI Mapping',
 					'CEON_URI_MAPPING_ENABLED',
 					'1',
-					'If enabled, any Categories/Products/Manufacturers/EZ-Pages/other pages which have a static URI Mapping specified for them in the database will use those static URIs instead of the standard Zen Cart dynamically-built URIs.<br /><br />0 = off <br />1 = on',
+					'If enabled, any Categories/Products/Manufacturers/EZ-Pages/other pages which have a static URI Mapping specified for them in the database will use those static URIs instead of the standard Zen Cart dynamically-built URIs.<br><br>0 = off <br>1 = on',
 					'" . $configuration_group_id . "',
 					'1',
 					'zen_cfg_select_option(array(''0'', ''1''), ',

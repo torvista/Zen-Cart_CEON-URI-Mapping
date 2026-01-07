@@ -1,5 +1,6 @@
-<?php
+<?php //todo obsolete attributes, todo 431 UMM compare
 
+declare(strict_types=1);
 /**
  * Ceon URI Mapping Zen Cart Categories Admin Functionality.
  *
@@ -10,9 +11,9 @@
  * @copyright   Copyright 2008-2019 Ceon
  * @copyright   Copyright 2003-2019 Zen Cart Development Team
  * @copyright   Portions Copyright 2003 osCommerce
- * @link        http://ceon.net/software/business/zen-cart/uri-mapping
- * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version     $Id: class.CeonURIMappingAdminCategoryPages.php 2025-01-08 torvista
+ * @link        https://ceon.net/software/business/zen-cart/uri-mapping
+ * @license     https://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version     $Id: class.CeonURIMappingAdminCategoryPages.php 09 Jan 2026 torvista
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -127,7 +128,7 @@ class CeonURIMappingAdminCategoryPages extends CeonURIMappingAdminCategories
 			if ($insert_uri_mapping || $update_uri_mapping) {
 				if ($update_uri_mapping) {
 					// Consign previous mapping to the history, so old URI mapping isn't broken
-					$this->makeURIMappingHistorical($prev_uri_mapping, $languages[$i]['id']);
+					$this->makeURIMappingHistorical($prev_uri_mapping, (int)$languages[$i]['id']);
 				}
 
 				// Add the new URI mapping
@@ -135,7 +136,7 @@ class CeonURIMappingAdminCategoryPages extends CeonURIMappingAdminCategories
 
 				$main_page = FILENAME_DEFAULT;
 
-				$mapping_added = $this->addURIMapping($uri, $languages[$i]['id'], $main_page, null, $category_id);
+				$mapping_added = $this->addURIMapping($uri, (int)$languages[$i]['id'], $main_page, null, $category_id);
 
 				if ($mapping_added == CEON_URI_MAPPING_ADD_MAPPING_SUCCESS) {
 					if ($insert_uri_mapping) {
@@ -168,7 +169,7 @@ class CeonURIMappingAdminCategoryPages extends CeonURIMappingAdminCategories
 				}
 			} elseif ($prev_uri_mapping != '' && $uri_mapping == '') {
 				// No URI mapping, consign existing mapping to the history, so old URI mapping isn't broken
-				$this->makeURIMappingHistorical($prev_uri_mapping, $languages[$i]['id']);
+				$this->makeURIMappingHistorical($prev_uri_mapping, (int)$languages[$i]['id']);
 
 				$success_message = sprintf(CEON_URI_MAPPING_TEXT_CATEGORY_MAPPING_MADE_HISTORICAL,
 					ucwords($languages[$i]['name']));
@@ -183,7 +184,7 @@ class CeonURIMappingAdminCategoryPages extends CeonURIMappingAdminCategories
 
 	// {{{ addURIMappingFieldsToAddCategoryFieldsArray()
 
-	/** Appears to be unused
+	/** Todo: Appears to be unused
 	 * Adds the fields necessary for the Ceon URI Mapping options to the list of add category fields, accessing the
 	 * list of add category fields directly, through a global variable.
 	 *
@@ -282,7 +283,7 @@ class CeonURIMappingAdminCategoryPages extends CeonURIMappingAdminCategories
      *
      * @access  public
      * @param  int  $category_id  The ID of the category.
-     * @param  string[]  $dividerClass
+     * @param  array  $dividerClass
      * @return  void
      */
 	public function addURIMappingFieldsToEditCategoryForm(int $category_id, array $dividerClass = ['label' => 'col-sm-3 control-label', 'input_field'=>'col-sm-9 col-md-6']): void
@@ -380,11 +381,11 @@ class CeonURIMappingAdminCategoryPages extends CeonURIMappingAdminCategories
 				$autogen_selected = false;
 
 				if ($num_prev_uri_mappings == 1) {
-					$autogen_message .= '<br />' . CEON_URI_MAPPING_TEXT_URI_AUTOGEN_ONE_EXISTING_MAPPING;
+					$autogen_message .= '<br>' . CEON_URI_MAPPING_TEXT_URI_AUTOGEN_ONE_EXISTING_MAPPING;
 				} elseif ($num_prev_uri_mappings == $num_languages) {
-					$autogen_message .= '<br />' . CEON_URI_MAPPING_TEXT_URI_AUTOGEN_ALL_EXISTING_MAPPINGS;
+					$autogen_message .= '<br>' . CEON_URI_MAPPING_TEXT_URI_AUTOGEN_ALL_EXISTING_MAPPINGS;
 				} else {
-					$autogen_message .= '<br />' . CEON_URI_MAPPING_TEXT_URI_AUTOGEN_SOME_EXISTING_MAPPINGS;
+					$autogen_message .= '<br>' . CEON_URI_MAPPING_TEXT_URI_AUTOGEN_SOME_EXISTING_MAPPINGS;
 				}
 			}
 
@@ -471,11 +472,11 @@ class CeonURIMappingAdminCategoryPages extends CeonURIMappingAdminCategories
 				$autogen_selected = false;
 
 				if ($num_prev_uri_mappings == 1) {
-					$autogen_message .= '<br />' . CEON_URI_MAPPING_TEXT_URI_AUTOGEN_ONE_EXISTING_MAPPING;
+					$autogen_message .= '<br>' . CEON_URI_MAPPING_TEXT_URI_AUTOGEN_ONE_EXISTING_MAPPING;
 				} elseif ($num_prev_uri_mappings == $num_languages) {
-					$autogen_message .= '<br />' . CEON_URI_MAPPING_TEXT_URI_AUTOGEN_ALL_EXISTING_MAPPINGS;
+					$autogen_message .= '<br>' . CEON_URI_MAPPING_TEXT_URI_AUTOGEN_ALL_EXISTING_MAPPINGS;
 				} else {
-					$autogen_message .= '<br />' . CEON_URI_MAPPING_TEXT_URI_AUTOGEN_SOME_EXISTING_MAPPINGS;
+					$autogen_message .= '<br>' . CEON_URI_MAPPING_TEXT_URI_AUTOGEN_SOME_EXISTING_MAPPINGS;
 				}
 			}
 
