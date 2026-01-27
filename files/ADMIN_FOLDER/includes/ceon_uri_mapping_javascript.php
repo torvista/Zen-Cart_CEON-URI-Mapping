@@ -327,14 +327,36 @@ window.onload = function(){
 	echo json_encode($text_str); 
     ?>;
 
-	let classList = document.getElementsByClassName("form-group");
-	let place = classList[0];
-	if (!classList.length) {
-		let formList = document.forms;
-		place = formList[formList.length - 1][formList[formList.length - 1].length - 1];
-	}
-//  place.parentElement.insertBefore(ceonUriMappingGeneratedURI, place);
-	place.parentElement.appendChild(ceonUriMappingGeneratedURI);
+	// Target the 'categories' form specifically
+    var targetForm = document.forms['categories'];
+    var place;
+
+    if (targetForm) {
+        // Find form-groups ONLY inside the categories form
+        var internalGroups = targetForm.getElementsByClassName("form-group");
+
+        // Target the last group (usually the buttons) to append near
+        if (internalGroups.length > 0) {
+            place = internalGroups[internalGroups.length - 1];
+        }
+    }
+
+    // Fallback: If 'categories' form isn't found, use the last group on the page (skips header)
+    if (!place) {
+        var classList = document.getElementsByClassName("form-group");
+        if (classList.length > 0) {
+            place = classList[classList.length - 1];
+        }
+    }
+
+    // Legacy Fallback: If no form-groups exist at all
+    if (!place) {
+        var formList = document.forms;
+        place = formList[formList.length - 1][formList[formList.length - 1].length - 1];
+    }
+
+    // Inject the Ceon Fields
+    place.parentElement.appendChild(ceonUriMappingGeneratedURI);
 };
 	</script>
 <?php }
@@ -372,3 +394,4 @@ window.onload = function(){
 };
 	</script>
 <?php }
+
