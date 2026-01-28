@@ -11,7 +11,7 @@ declare(strict_types=1);
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        https://ceon.net/software/business/zen-cart/uri-mapping
  * @license     https://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version     $Id: class.CeonURIMappingHandler.php 05 Jan 2026 torvista
+ * @version     $Id: class.CeonURIMappingHandler.php 07 Mar 2026 torvista
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -248,7 +248,7 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 									directory,
 									code
 								FROM
-									" . TABLE_LANGUAGES . " 
+									" . TABLE_LANGUAGES . "
 								WHERE
 									languages_id = '" . (int) $language_id . "';";
 
@@ -309,7 +309,7 @@ class CeonURIMappingHandler extends CeonURIMappingHandlerBase
 					directory,
 					code
 				FROM
-					" . TABLE_LANGUAGES . " 
+					" . TABLE_LANGUAGES . "
 				WHERE
 					languages_id = '" . (int) $language_id . "';";
 
