@@ -11,7 +11,7 @@ declare(strict_types=1);
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        https://ceon.net/software/business/zen-cart/uri-mapping
  * @license     https://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version     $Id: class.CeonURIMappingConfigUtility.php 04 Feb 2025 torvista
+ * @version     $Id: class.CeonURIMappingConfigUtility.php 28 Jan 2026 torvista
  */
 
 /**
@@ -89,10 +89,10 @@ class CeonURIMappingConfigUtility extends CeonURIMappingVersion
 	/**
 	 * The add language code identifier to URI setting for the store.
 	 *
-	 * @var     int
+	 * @var     ?int
 	 * @access  protected
 	 */
-	protected  $_language_code_add = null;
+	protected ?int $_language_code_add = null;
 
 	/**
 	 * The action to be taken if a URI mapping being auto-generated clashes with an existing mapping.
@@ -340,7 +340,7 @@ class CeonURIMappingConfigUtility extends CeonURIMappingVersion
 				manage_ask_a_question_mappings,
 				automatic_version_checking
 			FROM
-				' . TABLE_CEON_URI_MAPPING_CONFIGS . ' 
+				' . TABLE_CEON_URI_MAPPING_CONFIGS . '
 			WHERE
 				id = 1';
 
@@ -356,7 +356,7 @@ class CeonURIMappingConfigUtility extends CeonURIMappingVersion
 			$this->_capitalisation = $load_config_result->fields['capitalisation'];
 			$this->_remove_words = $load_config_result->fields['remove_words'];
 			$this->_char_str_replacements = $load_config_result->fields['char_str_replacements'];
-			$this->_language_code_add = $load_config_result->fields['language_code_add'];
+			$this->_language_code_add = $load_config_result->fields['language_code_add'] === '1' ? 1 : 0;
 			$this->_mapping_clash_action = $load_config_result->fields['mapping_clash_action'];
 
 			$this->_manage_product_reviews_mappings =
@@ -444,7 +444,7 @@ class CeonURIMappingConfigUtility extends CeonURIMappingVersion
 		$this->_capitalisation = $_POST['capitalisation'];
 		$this->_remove_words = trim($_POST['remove-words']);
 		$this->_char_str_replacements = trim($_POST['char-str-replacements']);
-		$this->_language_code_add = $_POST['language-code-add'];
+		$this->_language_code_add = $_POST['language-code-add'] === '1' ? 1 : 0;
 		$this->_mapping_clash_action = trim($_POST['mapping-clash-action']);
 
 		$this->_manage_product_reviews_mappings =
