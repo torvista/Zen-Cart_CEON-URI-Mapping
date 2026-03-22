@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * Ceon URI Mapping Product Admin Pages Language Defines.
  *
  * @package     ceon_uri_mapping
@@ -10,10 +10,8 @@
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        http://ceon.net/software/business/zen-cart/uri-mapping
  * @license     http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version     $Id: ceon_uri_mapping_product_pages.php 1027 2012-07-17 20:31:10Z conor $
+ * @version     ADMIN\includes\languages\english\ceon_uri_mapping_product_pages.php 21 Mar 2026 torvista
  */
-
-define('BOX_CEON_URI_MAPPING', 'Ceon URI Mapping (SEO) Config');
 
 define('CEON_URI_MAPPING_TEXT_PRODUCT_URI', 'URI Mapping:');
 define('CEON_URI_MAPPING_TEXT_PRODUCT_NO_URI', 'This product is <strong>not mapped</strong> to a URI.');
@@ -61,8 +59,8 @@ define('CEON_URI_MAPPING_TEXT_COPY_PRODUCT_DONT_AUTOGEN_COPY_URI', 'Don\'t auto-
 define('CEON_URI_MAPPING_TEXT_COPY_PRODUCT_DONT_AUTOGEN_COPY_URIS', 'Don\'t auto-generate the URI mappings or copy the existing product\'s URI mappings for the duplicate product.');
 
 define('CEON_URI_MAPPING_TEXT_MOVE_PRODUCT_URI_MAPPING', 'URI Mapping:');
-define('CEON_URI_MAPPING_TEXT_MOVE_AUTOGEN_URI', 'Auto-generate a new URI mapping according the category being moved to.');
-define('CEON_URI_MAPPING_TEXT_MOVE_AUTOGEN_URIS', 'Auto-generate new URI mappings according the category being moved to.');
+define('CEON_URI_MAPPING_TEXT_MOVE_AUTOGEN_URI', 'Auto-generate a new URI mapping according to the category being moved to.');
+define('CEON_URI_MAPPING_TEXT_MOVE_AUTOGEN_URIS', 'Auto-generate new URI mappings according to the category being moved to.');
 define('CEON_URI_MAPPING_TEXT_MOVE_USE_EXISTING_MAPPING', 'Use product\'s existing URI mapping after the product has been moved to its new category.');
 define('CEON_URI_MAPPING_TEXT_MOVE_USE_EXISTING_MAPPINGS', 'Use product\'s existing URI mappings after the product has been moved to its new category.');
 define('CEON_URI_MAPPING_TEXT_MOVE_PRODUCT_DONT_AUTOGEN_URI', 'Don\'t auto-generate a URI mapping for the product after it has been moved.');
