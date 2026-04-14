@@ -2,15 +2,18 @@
 
 ## 2026+ This branch is in use in production, containing many minor code changes as a result of IDE suggestions. Debugs may be triggered due to strict mode and type hinting, but are easily fixed so please report them.
 
-Based on version 5.1.1 available 11/01/2024 from ceon.net  
+Originally based on version 5.1.1 available 11/01/2024 from ceon.net, this repository originally aimed just to collect bugfixes post 5.1.1, but has progressed way past that with very many minor code-tightening tweaks for php (in use on php 8.4).
+The original documentation has not been updated.
+
 It does NOT include the UMM-edition files that are bundled with the commercial Uri Mappings Manager (UMM). I have private repositories with fixes for those, open to users who have purchased that module.
 
-Due to the haphazard communication/support from CEON support, this repository aims to collect bugfixes post 5.1.1, to keep things rolling until... something else happens.
 
-As this repository is just strictly maintenance, the original documentation has not been updated.
+##April 2026
+Zen Cart 3 drops support for legacy language files (all must now be lang.), so all tweaks/development will now only be added to the 3.0 branch of this repo.
+
 
 ## Compatibility
-PHP8+ & current (2.1.0) Zen Cart but probably 157d onwards.
+PHP8+ & current (2.1.0) Zen Cart but probably 158 onwards.
 
 ## Changes not fixes...
 Since I was accused of the heinous crime of offering invalid HTML from my repository (as if I could have written this plugin)...I bit the bullet and went through all the admin files to see what else would be automagically detected.  
@@ -51,7 +54,7 @@ Don't waste your time, just buy it (say I). You'll have lots of merging fun addi
 https://www.zen-cart.com/showthread.php?225478-Ceon-URI-Mapping-V5-0
 
 ## Changelog
-07/01/2025: lots of minor nitpicks...for future changes refer to the commit history.
+07/01/2025: lots of minor nitpicks...for subsequent changes refer to the commit history.
 
 31/12/2025: remove includes\init_includes\overrides\init_add_crumbs.php. Not necessary ZC158+
 
