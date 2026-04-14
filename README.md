@@ -7,10 +7,8 @@ The original documentation has not been updated.
 
 It does NOT include the UMM-edition files that are bundled with the commercial Uri Mappings Manager (UMM). I have private repositories with fixes for those, open to users who have purchased that module.
 
-
-##April 2026
+## April 2026
 Zen Cart 3 drops support for legacy language files (all must now be lang.), so all tweaks/development will now only be added to the 3.0 branch of this repo.
-
 
 ## Compatibility
 PHP8+ & current (2.1.0) Zen Cart but probably 158 onwards.
