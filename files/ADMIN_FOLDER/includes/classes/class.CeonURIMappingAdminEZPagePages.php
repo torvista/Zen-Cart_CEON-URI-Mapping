@@ -1,4 +1,4 @@
-<?php //TODO function call to review, obsolete attributes, TODO UMM compare
+<?php
 
 declare(strict_types=1);
 /**
@@ -13,7 +13,7 @@ declare(strict_types=1);
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        https://ceon.net/software/business/zen-cart/uri-mapping
  * @license     https://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version     $Id: class.CeonURIMappingAdminEZPagePages.php 08 Jan 2026 torvista
+ * @version     $Id: class.CeonURIMappingAdminEZPagePages.php 14 Apr 2026 torvista
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -87,13 +87,10 @@ class CeonURIMappingAdminEZPagePages extends CeonURIMappingAdminEZPages
      */
     public function __construct()
     {
-        // Load the language definition file for the current language
-        @include_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . 'ceon_uri_mapping_ezpage_pages.php');
-
-        if ( ! defined('CEON_URI_MAPPING_TEXT_EZ_PAGE_URI') && $_SESSION['language'] != 'english') {
-            // Fall back to english language file
-            include_once(DIR_WS_LANGUAGES . 'english/' . 'ceon_uri_mapping_ezpage_pages.php');
-        }
+        // Load the language definition file
+        global $languageLoader;
+        $filename = 'ceon_uri_mapping_ezpage_pages.php';
+        $languageLoader->loadExtraLanguageFiles(DIR_WS_LANGUAGES, $_SESSION['language'], $filename);
 
         parent::__construct();
     }

@@ -1,4 +1,4 @@
-<?php //IDE inspections incomplete
+<?php
 
 declare(strict_types=1);
 /**
@@ -11,7 +11,7 @@ declare(strict_types=1);
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        https://ceon.net/software/business/zen-cart/uri-mapping
  * @license     https://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version     $Id: class.CeonURIMappingTabbedPanelAdminInterface.php 08 Jan 2026 torvista
+ * @version     $Id: class.CeonURIMappingTabbedPanelAdminInterface.php 14 Apr 2026 torvista
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -138,14 +138,10 @@ class CeonURIMappingTabbedPanelAdminInterface extends CeonURIMappingAdmin
 	{
 		parent::__construct($load_config);
 
-		// Load the language definition file for the current language
-		@include_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' .
-			'ceon_uri_mapping_tabbed_panel_admin_interface.php');
-
-		if (!defined('TEXT_ERROR_VERSION_CHECK_PROBLEM') && $_SESSION['language'] != 'english') {
-			// Fall back to english language file
-			include_once(DIR_WS_LANGUAGES . 'english/' . 'ceon_uri_mapping_tabbed_panel_admin_interface.php');
-		}
+		// Load the language definition file
+        global $languageLoader;
+        $filename = 'ceon_uri_mapping_tabbed_panel_admin_interface.php';
+        $languageLoader->loadExtraLanguageFiles(DIR_WS_LANGUAGES, $_SESSION['language'], $filename);
 	}
 
 	// }}}
@@ -283,23 +279,23 @@ var current_panel_id = '$selected_panel_id';
 
 function CeonShowPanel(id) {
 	selected_class = 'CeonPanelTabSelected';
-	
+
 	// Hide previous panel
 	prev_panel_el = document.getElementById(current_panel_id);
 	prev_panel_el.style.display = 'none';
-	
+
 	new_panel_el = document.getElementById(id);
 	new_panel_el.style.display = 'block';
-	
+
 	prev_panel_tab_el = document.getElementById(current_panel_id + '-tab');
 	new_panel_tab_el = document.getElementById(id + '-tab');
-	
+
 	if (new_panel_tab_el.className.indexOf(selected_class) == -1) {
 		new_panel_tab_el.className = new_panel_tab_el.className + " " + selected_class;
 	}
-	
+
 	prev_panel_tab_el.className = prev_panel_tab_el.className.replace(selected_class, "");
-	
+
 	current_panel_id = id;
 }
 </script>

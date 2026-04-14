@@ -11,7 +11,7 @@ declare(strict_types=1);
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        https://ceon.net/software/business/zen-cart/uri-mapping
  * @license     https://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version     $Id: class.CeonURIMappingVersion.php 1054 2025-06-23 torvista
+ * @version     $Id: class.CeonURIMappingVersion.php 14 Apr 2026 torvista
  */
 
 /**
@@ -49,14 +49,10 @@ class CeonURIMappingVersion extends CeonURIMappingTabbedPanelAdminInterface
 	{
 		parent::__construct($load_config);
 
-		// Load the language definition file for the current language
-		@include_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' .
-			'ceon_uri_mapping_config.php');
-
-		if (!defined('TEXT_EDITION_TITLE') && $_SESSION['language'] != 'english') {
-			// Fall back to english language file
-			include_once(DIR_WS_LANGUAGES . 'english/' . 'ceon_uri_mapping_config.php');
-		}
+        // Load the language definition file
+        global $languageLoader;
+        $filename = 'ceon_uri_mapping_config.php';
+        $languageLoader->loadExtraLanguageFiles(DIR_WS_LANGUAGES, $_SESSION['language'], $filename);
 
 		// Set up the basic version settings for this module
 		$this->_ceon_base_model_code = 'S-ZC-UM';
