@@ -14,7 +14,7 @@ declare(strict_types=1);
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        https://ceon.net/software/business/zen-cart/uri-mapping
  * @license     https://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version     $Id: class.CeonURIMappingAdminCategoriesProducts.php 08 Jan 2025 torvista
+ * @version     $Id: class.CeonURIMappingAdminCategoriesProducts.php 20 May 2026 torvista
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -71,7 +71,7 @@ class CeonURIMappingAdminCategoriesProducts extends CeonURIMappingAdmin
      * Generates a URI mapping for a category or a product, for the specified language.
      *
      * @access  public
-     * @param  int  $id  The ID of the category/product.
+     * @param  int|null  $id  The ID of the category/product. May be null from new prodcut preview.
      * @param  string  $type  Whether the ID corresponds to a category or a product.
      * @param  int  $parent_category_id  The ID of the parent category (used if the details in the database
      *                                          could be out of date as new information is being submitted when the
@@ -82,7 +82,7 @@ class CeonURIMappingAdminCategoriesProducts extends CeonURIMappingAdmin
      * @param  int  $language_id  The Zen Cart language ID for the language.
      * @return int|string The auto-generated URI for the category/product and language.
      */
-	public function autogenCategoryOrProductURIMapping(int $id, string $type, int $parent_category_id, string $name, string $language_code, int $language_id): int|string
+	public function autogenCategoryOrProductURIMapping(?int $id, string $type, int $parent_category_id, string $name, string $language_code, int $language_id): int|string
     {
 		//global $db;
 
