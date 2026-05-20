@@ -879,9 +879,11 @@ class CeonURIMappingAdminProductPages extends CeonURIMappingAdminProducts
 			'product_reviews',
 			'product_reviews_info',
 			'product_reviews_write',
-			'tell_a_friend',
 			'ask_a_question'
         ];
+
+        if(defined("FILENAME_TELL_A_FRIEND"))
+			$page_types[] = 'tell_a_friend';
 
 		$page_types_to_manage = [];
 
