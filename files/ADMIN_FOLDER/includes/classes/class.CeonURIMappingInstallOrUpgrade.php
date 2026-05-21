@@ -11,7 +11,7 @@
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        https://ceon.net/software/business/zen-cart/uri-mapping
  * @license     https://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version     $Id: class.CeonURIMappingInstallOrUpgrade.php 08 Jan 2026 torvista
+ * @version     $Id: class.CeonURIMappingInstallOrUpgrade.php 21 May 2026 torvista
  */
 
 
@@ -272,8 +272,6 @@ class CeonURIMappingInstallOrUpgrade
 					`manage_product_reviews_mappings` INT(1) UNSIGNED DEFAULT 1,
 					`manage_product_reviews_info_mappings` INT(1) UNSIGNED DEFAULT 1,
 					`manage_product_reviews_write_mappings` INT(1) UNSIGNED DEFAULT 1,
-					`manage_tell_a_friend_mappings` INT(1) UNSIGNED DEFAULT 1,
-					`manage_ask_a_question_mappings` INT(1) UNSIGNED DEFAULT 1,
 					`automatic_version_checking` INT(1) UNSIGNED DEFAULT 1,
 					PRIMARY KEY (`id`)
 					);";
@@ -370,7 +368,6 @@ class CeonURIMappingInstallOrUpgrade
 			'product_reviews',
 			'product_reviews_info',
 			'product_reviews_write',
-			'tell_a_friend',
 			'ask_a_question'
         ];
 
@@ -469,7 +466,6 @@ class CeonURIMappingInstallOrUpgrade
                 $default_uri_parts[$default_language_code]['product_reviews_info'] ?? ($default_uri_parts['en']['product_reviews_info'] ?? 'Review'),
 			'product_reviews_write' =>
                 $default_uri_parts[$default_language_code]['product_reviews_write'] ?? ($default_uri_parts['en']['product_reviews_write'] ?? 'Write a Review'),
-			'tell_a_friend' => $default_uri_parts[$default_language_code]['tell_a_friend'] ?? ($default_uri_parts['en']['tell_a_friend'] ?? 'Tell a Friend'),
 			'ask_a_question' => $default_uri_parts[$default_language_code]['ask_a_question'] ?? ($default_uri_parts['en']['ask_a_question'] ?? 'Ask a Question')
         ];
 
@@ -698,11 +694,11 @@ class CeonURIMappingInstallOrUpgrade
 			$drop_columns_sql = "
 				ALTER TABLE
 					" . TABLE_CEON_URI_MAPPINGS . "
-				DROP 
+				DROP
 					`category_id`,
-				DROP 
+				DROP
 					`product_id`,
-				DROP 
+				DROP
 					`page_id`;";
 
 			$drop_columns_result = $db->Execute($drop_columns_sql);
@@ -942,7 +938,6 @@ class CeonURIMappingInstallOrUpgrade
 					'product_reviews',
 					'product_reviews_info',
 					'product_reviews_write',
-					'tell_a_friend',
 					'ask_a_question'
                 ];
 
@@ -1184,20 +1179,6 @@ class CeonURIMappingInstallOrUpgrade
 			$add_column_result = $db->Execute($add_column_sql);
 		}
 
-
-		if (!in_array('manage_tell_a_friend_mappings', $columns)) {
-			$add_column_sql = "
-				ALTER TABLE
-					" . TABLE_CEON_URI_MAPPING_CONFIGS . "
-				ADD
-					`manage_tell_a_friend_mappings` INT(1) UNSIGNED DEFAULT 1
-				AFTER
-					`manage_product_reviews_write_mappings`;";
-
-			$add_column_result = $db->Execute($add_column_sql);
-		}
-
-
 		if (!in_array('manage_ask_a_question_mappings', $columns)) {
 			$add_column_sql = "
 				ALTER TABLE
@@ -1205,7 +1186,7 @@ class CeonURIMappingInstallOrUpgrade
 				ADD
 					`manage_ask_a_question_mappings` INT(1) UNSIGNED DEFAULT 1
 				AFTER
-					`manage_tell_a_friend_mappings`;";
+					`manage_product_reviews_info_mappings`;";
 
 			$add_column_result = $db->Execute($add_column_sql);
 		}
@@ -1283,7 +1264,6 @@ class CeonURIMappingInstallOrUpgrade
 				manage_product_reviews_mappings,
 				manage_product_reviews_info_mappings,
 				manage_product_reviews_write_mappings,
-				manage_tell_a_friend_mappings,
 				manage_ask_a_question_mappings,
 				automatic_version_checking
 				)
@@ -1301,7 +1281,6 @@ class CeonURIMappingInstallOrUpgrade
 				'1',
 				'1',
 				'1',
-				'0',
 				'0',
 				'1'
 				);";
@@ -1423,7 +1402,7 @@ class CeonURIMappingInstallOrUpgrade
 
 			$configuration_group_id_sql = "
 				SELECT
-					configuration_group_id  
+					configuration_group_id
 				FROM
 					" . TABLE_CONFIGURATION_GROUP . "
 				WHERE

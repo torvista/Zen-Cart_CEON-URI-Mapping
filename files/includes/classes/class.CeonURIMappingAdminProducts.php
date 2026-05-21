@@ -13,7 +13,7 @@ declare(strict_types=1);
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        https://ceon.net/software/business/zen-cart/uri-mapping
  * @license     https://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version     $Id: class.CeonURIMappingAdminProducts.php 20 May 2026 torvista
+ * @version     $Id: class.CeonURIMappingAdminProducts.php 21 May 2026 torvista
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -86,7 +86,6 @@ class CeonURIMappingAdminProducts extends CeonURIMappingAdminCategoriesProducts
 					manage_product_reviews_mappings,
 					manage_product_reviews_info_mappings,
 					manage_product_reviews_write_mappings,
-					manage_tell_a_friend_mappings,
 					manage_ask_a_question_mappings
 				FROM
 					" . TABLE_CEON_URI_MAPPING_CONFIGS . "
@@ -103,8 +102,6 @@ class CeonURIMappingAdminProducts extends CeonURIMappingAdminCategoriesProducts
 						$automanage_enabled_result->fields['manage_product_reviews_info_mappings'],
 					'product_reviews_write' =>
 						$automanage_enabled_result->fields['manage_product_reviews_write_mappings'],
-					'tell_a_friend' =>
-						$automanage_enabled_result->fields['manage_tell_a_friend_mappings'],
 					'ask_a_question' =>
 						$automanage_enabled_result->fields['manage_ask_a_question_mappings']
                 ];
@@ -146,7 +143,6 @@ class CeonURIMappingAdminProducts extends CeonURIMappingAdminCategoriesProducts
 				'product_reviews',
 				'product_reviews_info',
 				'product_reviews_write',
-				'tell_a_friend',
 				'ask_a_question'
             ];
 

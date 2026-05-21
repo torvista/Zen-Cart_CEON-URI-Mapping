@@ -11,7 +11,7 @@ declare(strict_types=1);
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        https://ceon.net/software/business/zen-cart/uri-mapping
  * @license     https://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version     $Id: class.CeonURIMappingConfigUtility.php 28 Jan 2026 torvista
+ * @version     $Id: class.CeonURIMappingConfigUtility.php 21 May 2026 torvista
  */
 
 /**
@@ -127,14 +127,6 @@ class CeonURIMappingConfigUtility extends CeonURIMappingVersion
 	protected ?bool $_manage_product_reviews_write_mappings = null;
 
 	/**
-	 * Whether product tell a friend pages should have their URIs auto-managed.
-	 *
-	 * @var     bool
-	 * @access  protected
-	 */
-	protected ?bool $_manage_tell_a_friend_mappings = null;
-
-	/**
 	 * Whether product ask a question pages should have their URIs auto-managed.
 	 *
 	 * @var     bool
@@ -167,14 +159,6 @@ class CeonURIMappingConfigUtility extends CeonURIMappingVersion
 	 */
 	protected array $_product_reviews_write_pages_uri_parts = [];
 
-	/** TODO remove
-	 * The list of URI part's text for product Tell a Friend pages, for the various languages the store uses.
-	 *
-	 * @var     array
-	 * @access  protected
-	 */
-	protected array $_product_tell_a_friend_pages_uri_parts = [];
-
 	/**
 	 * The list of URI part's text for ask a question pages, for the various languages the store uses.
 	 *
@@ -182,14 +166,6 @@ class CeonURIMappingConfigUtility extends CeonURIMappingVersion
 	 * @access  protected
 	 */
 	protected array $_ask_a_question_pages_uri_parts = [];
-
-	/**
-	 * The list of URI part's text for tell a friend pages, for the various languages the store uses.
-	 *
-	 * @var     array
-	 * @access  protected
-	 */
-	protected array $_tell_a_friend_pages_uri_parts = [];
 
 	// }}}
 
@@ -204,7 +180,7 @@ class CeonURIMappingConfigUtility extends CeonURIMappingVersion
 	 */
 	public function __construct()
 	{
-		// Set the flag so that the configuration isn't autoladed by the admin superclass - it may not exist or yet
+		// Set the flag so that the configuration isn't autoloaded by the admin superclass - it may not exist or yet
 		// or it may be out of date!
 		parent::__construct(false);
 
@@ -336,7 +312,6 @@ class CeonURIMappingConfigUtility extends CeonURIMappingVersion
 				manage_product_reviews_mappings,
 				manage_product_reviews_info_mappings,
 				manage_product_reviews_write_mappings,
-				manage_tell_a_friend_mappings,
 				manage_ask_a_question_mappings,
 				automatic_version_checking
 			FROM
@@ -367,9 +342,6 @@ class CeonURIMappingConfigUtility extends CeonURIMappingVersion
 
 			$this->_manage_product_reviews_write_mappings =
                 $load_config_result->fields['manage_product_reviews_write_mappings'] == 1;
-
-			$this->_manage_tell_a_friend_mappings =
-                $load_config_result->fields['manage_tell_a_friend_mappings'] == 1;
 
 			$this->_manage_ask_a_question_mappings =
                 $load_config_result->fields['manage_ask_a_question_mappings'] == 1;
@@ -403,11 +375,6 @@ class CeonURIMappingConfigUtility extends CeonURIMappingVersion
 						break;
 					case 'product_reviews_write':
 						$this->_product_reviews_write_pages_uri_parts
-							[$uri_parts_result->fields['language_code']] =
-							$uri_parts_result->fields['uri_part'];
-						break;
-					case 'tell_a_friend':
-						$this->_tell_a_friend_pages_uri_parts
 							[$uri_parts_result->fields['language_code']] =
 							$uri_parts_result->fields['uri_part'];
 						break;
@@ -455,8 +422,6 @@ class CeonURIMappingConfigUtility extends CeonURIMappingVersion
 
 		$this->_manage_product_reviews_write_mappings =
             isset($_POST['manage-product-reviews-write-mappings']);
-
-		$this->_manage_tell_a_friend_mappings = isset($_POST['manage-tell-a-friend-mappings']);
 
 		$this->_manage_ask_a_question_mappings = isset($_POST['manage-ask-a-question-mappings']);
 
@@ -545,13 +510,8 @@ class CeonURIMappingConfigUtility extends CeonURIMappingVersion
 					TEXT_ERROR_URI_PART_MUST_BE_ENTERED;
 			}
 
-
-			$uri_part = CeonString::transliterate($_POST['tell-a-friend-pages-uri-parts'][$language_code], CHARSET, $language_code);
-
 			$uri_part = trim(preg_replace('|[^a-zA-Z0-9\.\-_\/ ]|', '',
 				$uri_part));
-/*			$uri_part = trim(preg_replace('|[^a-zA-Z0-9\.\-_\/ ]|', '',
-				$_POST['tell-a-friend-pages-uri-parts'][$language_code]));*/
 
 			// Remove any slashes at the start of the URI part
 			while (str_starts_with($uri_part, '/')) {
@@ -561,14 +521,6 @@ class CeonURIMappingConfigUtility extends CeonURIMappingVersion
 			// Remove any trailing slashes
 			while (str_ends_with($uri_part, '/')) {
 				$uri_part = substr($uri_part, 0, strlen($uri_part) -1);
-			}
-
-			$this->_tell_a_friend_pages_uri_parts[$language_code] = $uri_part;
-
-			if ($this->_manage_tell_a_friend_mappings && strlen($uri_part) == 0) {
-				// URI Part is required
-				$this->_error_messages['tell-a-friend-pages-uri-parts-' . $language_code] =
-					TEXT_ERROR_URI_PART_MUST_BE_ENTERED;
 			}
 
 			$uri_part = CeonString::transliterate($_POST['ask-a-question-pages-uri-parts'][$language_code], CHARSET, $language_code);
@@ -614,7 +566,6 @@ class CeonURIMappingConfigUtility extends CeonURIMappingVersion
 				'manage_product_reviews_mappings' => ($this->_manage_product_reviews_mappings ? 1 : 0),
 				'manage_product_reviews_info_mappings' => ($this->_manage_product_reviews_info_mappings ? 1 : 0),
 				'manage_product_reviews_write_mappings' => ($this->_manage_product_reviews_write_mappings ? 1 : 0),
-				'manage_tell_a_friend_mappings' => ($this->_manage_tell_a_friend_mappings ? 1 : 0),
 				'manage_ask_a_question_mappings' => ($this->_manage_ask_a_question_mappings ? 1 : 0),
 				'automatic_version_checking' => ($this->_automatic_version_checking ? 1 : 0),
             ];
@@ -656,14 +607,6 @@ class CeonURIMappingConfigUtility extends CeonURIMappingVersion
 					'page_type' => 'product_reviews_write',
 					'language_code' => $language_code,
 					'uri_part' => $this->_product_reviews_write_pages_uri_parts[$language_code]
-                ];
-
-				zen_db_perform(TABLE_CEON_URI_MAPPING_PRODUCT_RELATED_PAGES_URI_PARTS, $uri_parts_data_array);
-
-				$uri_parts_data_array = [
-					'page_type' => 'tell_a_friend',
-					'language_code' => $language_code,
-					'uri_part' => $this->_tell_a_friend_pages_uri_parts[$language_code]
                 ];
 
 				zen_db_perform(TABLE_CEON_URI_MAPPING_PRODUCT_RELATED_PAGES_URI_PARTS, $uri_parts_data_array);
@@ -995,13 +938,6 @@ class CeonURIMappingConfigUtility extends CeonURIMappingVersion
 		$option_output_rows .= ' <label for="manage-product-reviews-write-mappings">';
 		$option_output_rows .= TEXT_LABEL_AUTO_MANAGED_URI_WRITE_A_REVIEW . "</label></p>\n";
 
-		$option_output_rows .= '<p>' . zen_draw_checkbox_field('manage-tell-a-friend-mappings',
-			$this->_manage_tell_a_friend_mappings, $this->_manage_tell_a_friend_mappings, '',
-			'id="manage-tell-a-friend-mappings"');
-
-		$option_output_rows .= ' <label for="manage-tell-a-friend-mappings">';
-		$option_output_rows .= TEXT_LABEL_AUTO_MANAGED_URI_TELL_A_FRIEND . "</label></p>\n";
-
 		$option_output_rows .= '<p>' . zen_draw_checkbox_field('manage-ask-a-question-mappings',
 			$this->_manage_ask_a_question_mappings, $this->_manage_ask_a_question_mappings, '',
 			'id="manage-ask-a-question-mappings"');
@@ -1091,30 +1027,6 @@ class CeonURIMappingConfigUtility extends CeonURIMappingVersion
 		}
 
 		$option_output_rows .= $this->_buildSubPanel(TEXT_LABEL_AUTO_MANAGED_URI_WRITE_A_REVIEW, $subpanel);
-
-
-		// Tell a friend pages URI part textfields are displayed in a subpanel. Build its content here
-		$subpanel = '';
-
-		for ($i = 0; $i < $num_languages; $i++) {
-			$language_code = strtolower($languages[$i]['code']);
-
-			$subpanel .= zen_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' .
-				$languages[$i]['image'], $languages[$i]['name']) . '&nbsp;' .
-				zen_draw_input_field('tell-a-friend-pages-uri-parts[' . $language_code . ']',
-				$this->_tell_a_friend_pages_uri_parts[$language_code], 'size="20" class="Textfield" aria-label="Tell a Friend uri parts"') . "\n";
-
-			if (isset($this->_error_messages['tell-a-friend-pages-uri-parts-' . $language_code])) {
-				$subpanel .= '<br><span class="FormError">' . TEXT_ERROR_URI_PART_MUST_BE_ENTERED . "</span>\n";
-			}
-
-			if ($i < $num_languages - 1) {
-				$subpanel .= '<br>';
-			}
-		}
-
-		$option_output_rows .= $this->_buildSubPanel(TEXT_LABEL_AUTO_MANAGED_URI_TELL_A_FRIEND, $subpanel);
-
 
 		// Ask a question pages URI part textfields are displayed in a subpanel. Build its content here
 		$subpanel = '';

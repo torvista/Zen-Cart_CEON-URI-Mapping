@@ -13,7 +13,7 @@ declare(strict_types=1);
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        https://ceon.net/software/business/zen-cart/uri-mapping
  * @license     https://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version     $Id: ceon_uri_mapping_product_pages.php 1027 2012-07-17 20:31:10Z conor $
+ * @version     $Id: ceon_uri_mapping_product_pages.php 21 May 2026 torvista
  */
 
 /**
@@ -42,9 +42,6 @@ $ceon_uri_mapping_product_related_pages = array_merge([
     FILENAME_PRODUCT_REVIEWS_WRITE
 ], $ceon_uri_mapping_product_related_pages);
 
-if (defined('FILENAME_TELL_A_FRIEND')) {
-    $ceon_uri_mapping_product_related_pages[] = FILENAME_TELL_A_FRIEND;
-}
 if (defined('FILENAME_ASK_A_QUESTION')) {
     $ceon_uri_mapping_product_related_pages[] = FILENAME_ASK_A_QUESTION;
 }

@@ -1,26 +1,28 @@
 # CEON URI Mapping
 
-## Branches
+## Repository Branches
 
 "main": This is for installation in the CURRENT Zen Cart 2.2.  
 "zencart_3": This is for installation in Zen Cart 3 as per the "master" branch in the Zen Cart repository.
 
 ## History
-Originally based on version 5.1.1 available 11/01/2024 from ceon.net, this repository originally aimed just to collect bugfixes post 5.1.1, but has progressed way past that with very many minor code-tightening tweaks for php (in use on php 8.4/8.5) and array-based lang. langauge files (obligatory in ZC3).
+Originally based on version 5.1.1 available 11/01/2024 from ceon.net, this repository originally aimed just to collect bugfixes post 5.1.1, but has progressed way past that with very many minor code-tightening tweaks for php (in use on php 8.4/8.5) and array-based lang. language files (obligatory in ZC3).
 
-The original documentation has NOT been updated...may be incorrect.
+The original documentation has NOT been updated, may be treading on copyright toes...so may be incorrect.
 
-This repo does NOT include the UMM-Edition files that are bundled with the commercial Uri Mappings Manager (UMM). I have private repositories with fixes for those, available to users who have purchased that module.
+This repo does NOT include the UMM-Edition files that are bundled with the commercial Uri Mappings Manager (UMM). I have private repositories with fixes for those, available on request for users who can demonstrate purchase of that module.
+
+## Removal of Tell-A-Friend references
+This functionality was removed from ZC long ago.  
+You can remove debris of this from the CEON tables using these queries in the ZC Admin->SQL Patch Tool (assuming you do not use table prefixes).  
+Read what the SQL Patch tool says BEFORE executing these queries!
+~~~~sql
+ALTER TABLE `ceon_uri_mapping_configs` DROP `manage_tell_a_friend_mappings`;  
+DELETE FROM `ceon_uri_mapping_prp_uri_parts` WHERE `ceon_uri_mapping_prp_uri_parts`.`page_type` = 'tell_a_friend';
+~~~~
 
 ## Compatibility
 PHP8+ & current Zen Cart (2.2.0).
-
-## Changes not fixes...
-Since I was accused of the heinous crime of offering invalid HTML from my repository (as if I could have written this plugin)...I bit the bullet and went through all the admin files to see what else would be automagically detected.  
-The answer is not much, thanks to the quality efforts of the author Conor Kerr (RIP) who was CEON.  
-So, these files are cleared of whitespace, have type hints for parameters and functions, short array and phpdoc syntax, makes use of php8 functions and has some simplification of code where identified.  
-I use the admin files all in strict mode  to make it more fussy, and so far so good.  
-I'm using these files in strict mode so am reasonably confident others should not have issues....but if you do, open an issue here, obviously!
 
 ## Installation
 All files are contained in the /files folder.  
@@ -47,17 +49,30 @@ You should get a "Congratulations" Message...if not, sorry, you'll have to read 
 Note this "free" version of URI Mapping does not automatically generate static urls for the products/categories/pages that already exist (for example when browsing the storefront). The static urls are only generated when those items are edited in the Admin, one by one...
 
 To add auto-generation, generate the urls en masse and define the structure of the static url as a template per category/manufacturer/product, you need the (paid) add-on: https://ceon.net/seo-modules/ceon-uri-mapping-manager  
-Don't waste your time, just buy it (say I). You'll have lots of merging fun adding it into the files from this repository, but that's just the way it is while there is no real-time CEON-managed bug-fixing process.
+Don't waste your time, just buy it (say I).  
+I have another private repo with updated versions of those files...
 
-## Forum Support:
+## Problems
+Report any issues in the "Issues" section of the repository.
+
+## Forum:
 https://www.zen-cart.com/showthread.php?225478-Ceon-URI-Mapping-V5-0
 
 ## Changelog
-Subsequent: see commit history
+Subsequent: see commit history  
+21/05/2026: removed Tell a Friend references.  
+If you want to remove the debris from your db:
+~~~~sql
+ALTER TABLE `ceon_uri_mapping_configs` DROP `manage_tell_a_friend_mappings`;  
+DELETE FROM `ceon_uri_mapping_prp_uri_parts` WHERE `ceon_uri_mapping_prp_uri_parts`.`page_type` = 'tell_a_friend';
+~~~~
 
 28/04/2026: use lang. files
 
 07/01/2025: lots of minor nitpicks...for subsequent changes refer to the commit history.
+Since I was accused of the heinous crime of offering invalid HTML from my repository (as if I could have written this plugin)...I bit the bullet and went through all the admin files to see what else would be automagically detected. The answer is not much, thanks to the quality efforts of the author Conor Kerr (RIP) who was CEON.  
+So, these files are cleared of whitespace, have type hints for parameters and functions, short array and phpdoc syntax, makes use of php8 functions and has some simplification of code where identified.  
+I use the admin files all in strict mode to make it more fussy, and so far so good.  
 
 31/12/2025: remove includes\init_includes\overrides\init_add_crumbs.php. Not necessary ZC158+
 

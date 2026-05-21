@@ -11,7 +11,7 @@
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        https://ceon.net/software/business/zen-cart/uri-mapping
  * @license     https://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version     $Id: class.CeonURIMappingInstallationCheck.php 14 Apr 2026 torvista
+ * @version     $Id: class.CeonURIMappingInstallationCheck.php 21 May Apr 2026 torvista
  */
 
 /**
@@ -689,8 +689,7 @@ class CeonURIMappingInstallationCheck extends CeonURIMappingVersion
             ],
 			'old_snippets' => [
 				'MAPPING |2 of 2[\s]+global $ceon_uri_mapping_admin;',
-				'|main_page = \'" \. FILENAME_DEFAULT \. "\'[\s]+AND[\s]+associated_db_id = \'" \. \(int\) \$category_id|',
-				'|main_page = \'" \. zen_db_input\(FILENAME_TELL_A_FRIEND\) \. "\'[\s]+\)[\s]+AND[\s]+associated_db_id = \'" \. \(int\) \$product_id|'
+				'|main_page = \'" \. FILENAME_DEFAULT \. "\'[\s]+AND[\s]+associated_db_id = \'" \. \(int\) \$category_id|'
             ],
 			'min_version_rem' => [
 				'1.5.5'
@@ -2827,7 +2826,7 @@ function HighlightAll(field) {
 	var el = eval("document." + field);
 	el.focus();
 	el.select();
-	
+
 	if (document.all){
 		therange = el.createTextRange();
 		therange.execCommand("Copy")
