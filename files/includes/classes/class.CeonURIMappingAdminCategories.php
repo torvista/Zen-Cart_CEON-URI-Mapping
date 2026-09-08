@@ -13,7 +13,7 @@ declare(strict_types=1);
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        https://ceon.net/software/business/zen-cart/uri-mapping
  * @license     https://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version     $Id: class.CeonURIMappingAdminCategories.php 08 Jan 2026 torvista
+ * @version     $Id: class.CeonURIMappingAdminCategories.php 08 Sept 2026 torvista
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -75,11 +75,11 @@ class CeonURIMappingAdminCategories extends CeonURIMappingAdminCategoriesProduct
      *                                          URI is being generated).
      * @param  null|string  $name  The name of category (used if new information is being submitted when
      *                                     the URI is being generated).
-     * @param  string  $language_code  The ISO 639 language code of the language.
+     * @param  string|null  $language_code  The ISO 639 language code of the language. Occasionally a null may be passed, probably a temporary hosting problem.
      * @param  int  $language_id  The Zen Cart language ID for the language.
      * @return int|string|null The auto-generated URI for the category and language.
      */
-	public function autogenCategoryURIMapping(int $id, ?int $parent_category_id, ?string $name, string $language_code, int $language_id): int|string|null
+	public function autogenCategoryURIMapping(int $id, ?int $parent_category_id, ?string $name, ?string $language_code, int $language_id): int|string|null
     {
 		return $this->autogenCategoryOrProductURIMapping($id, 'category', $parent_category_id, $name,
 			$language_code, $language_id);

@@ -13,7 +13,7 @@ declare(strict_types=1);
  * @copyright   Portions Copyright 2003 osCommerce
  * @link        https://ceon.net/software/business/zen-cart/uri-mapping
  * @license     https://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version     $Id: class.CeonURIMappingAdminProducts.php 21 May 2026 torvista
+ * @version     $Id: class.CeonURIMappingAdminProducts.php 08 Sept 2026 torvista
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
@@ -200,18 +200,17 @@ class CeonURIMappingAdminProducts extends CeonURIMappingAdminCategoriesProducts
      * Generates a URI mapping for a product, for the specified language.
      *
      * @access  public
-     * @param  int|null  $id  The ID of the product. May be null, from new product preview.
-     * @param  int|null  $parent_category_id  The ID of the parent category (used if the details in the database
-     *                                          could be out of date as new information is being submitted when
-     *                                          the URI is being generated).
-     * @param  null|string  $name  The name of product (used if new information is being submitted when
-     *                             the URI is being generated).
+     * @param  int|null  $id  The ID of the product. May be null (from new product preview).
+     * @param  int|null  $parent_category_id  The ID of the parent category
+     * (used if the details in the database could be out of date as new information is being submitted when the URI is being generated).
+     * @param  string|null  $name  The name of the product (used if new information is being submitted when the URI is being generated).
      * @param  string  $language_code  The ISO 639 language code of the language.
      * @param  int  $language_id  The Zen Cart language ID for the language.
      * @param  string|null  $model  The product's model code.
+     *
      * @return  string    The auto-generated URI for the product and language.
      */
-	public function autogenProductURIMapping(?int $id, int $parent_category_id, string $name, string $language_code, int $language_id, ?string $model = null): string
+	public function autogenProductURIMapping(?int $id, ?int $parent_category_id, ?string $name, string $language_code, int $language_id, ?string $model = null): string
     {
 		return $this->autogenCategoryOrProductURIMapping($id, 'product', $parent_category_id, $name,
 			$language_code, $language_id);
